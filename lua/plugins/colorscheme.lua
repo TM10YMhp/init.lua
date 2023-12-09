@@ -1,7 +1,8 @@
 return {
   {
-    "tm10ymhp/serene.nvim-dev",
-    dev = true,
+    "tm10ymhp/serene.nvim",
+    -- dev = true,
+    branch = "dev",
     event = "UIEnter",
     config = function ()
       vim.cmd[[colorscheme serene]]
