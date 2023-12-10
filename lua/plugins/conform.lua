@@ -4,11 +4,11 @@ return {
   config = function()
     require("conform").setup({
       formatters_by_ft = {
-        javascript = { "biome" },
-        typescript = { "biome" },
-        javascriptreact = { "biome" },
-        typescriptreact = { "biome" },
-        json = { "biome" },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescriptreact = { "prettier" },
+        json = { "prettier" },
         svelte = { "prettier" },
         css = { "prettier" },
         html = { "prettier" },
@@ -30,7 +30,7 @@ return {
         return {
           lsp_fallback = false,
           async = false,
-          timeout_ms = 500
+          timeout_ms = 1000
         }
       end,
     })
@@ -39,7 +39,7 @@ return {
       require("conform").format({
         lsp_fallback = false,
         async = false,
-        timeout_ms = 500
+        timeout_ms = 1000
       })
     end, { desc = "Conform: Format" })
 
