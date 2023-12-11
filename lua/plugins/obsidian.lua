@@ -12,7 +12,7 @@ return {
           path = "~/vaults/notes_md"
         }
       },
-      notes_subdir = "Ideas",
+      notes_subdir = "inbox",
       daily_notes = {
         folder = "journal",
         date_format = "%yw%W",
