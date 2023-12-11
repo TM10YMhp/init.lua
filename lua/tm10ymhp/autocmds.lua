@@ -37,6 +37,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup,
   pattern = { "*" },
+  desc = "Conceal and format options",
   callback = function()
     vim.opt.conceallevel = 0
     vim.opt.formatoptions = "qjr"
@@ -46,6 +47,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("BufEnter", {
   group = augroup,
   pattern = { "*" },
+  desc = "Large file handling",
   callback = function()
     if utils.is_large_file(vim.fn.expand('%')) then
       vim.cmd([[syntax clear]])
@@ -67,6 +69,18 @@ vim.api.nvim_create_autocmd("BufEnter", {
     else
       vim.opt.eventignore = ""
     end
+  end
+})
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = augroup,
+  pattern = { "*" },
+  desc = 'Reset Telescope highlights',
+  callback = function()
+    if vim.g.colors_name == "serene" then return end
+
+    vim.api.nvim_set_hl(0, "TelescopeSelection", { link = "Visual" })
+    vim.api.nvim_set_hl(0, "TelescopeMatching", { link = "Special" })
   end
 })
 
