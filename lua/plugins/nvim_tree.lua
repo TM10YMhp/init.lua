@@ -19,10 +19,11 @@ return {
       api.config.mappings.default_on_attach(bufnr)
 
       -- remove a default
-      vim.keymap.del('n', '<Tab>', { buffer = bufnr })
+      -- vim.keymap.del('n', '<Tab>', { buffer = bufnr })
 
       -- override a default
-      vim.keymap.set('n', '<C-P>', api.node.open.preview, opts('Preview'))
+      vim.keymap.set('n', '<C-P>', api.node.open.preview, opts('Open Preview'))
+      vim.keymap.set('n', '<S-Tab>', api.node.open.preview, opts('Open Preview'))
     end
 
     require('nvim-tree').setup({
