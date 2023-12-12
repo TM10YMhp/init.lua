@@ -235,6 +235,8 @@ return {
           map('gs', open_split_horizontal, 'Open belowright horizontal')
           map('gv', open_split_vertical, 'Open belowright vertical')
           map('<c-p>', toggle_preview, 'Toggle preview')
+          map('<tab>', toggle_preview, 'Toggle preview')
+          map('<s-tab>', toggle_preview, 'Toggle preview')
           map('<cr>', custom_go_in_plus, 'Custom go in plus')
           map('-', custom_go_out_plus, 'Custom go out plus')
         end,
