@@ -3,6 +3,7 @@ vim.cmd("autocmd!")
 local utils = require('tm10ymhp.utils')
 
 local augroup = vim.api.nvim_create_augroup('tm10ymhp', { clear = true })
+
 vim.api.nvim_create_autocmd('TermOpen', {
   pattern = "term://*",
   group = augroup,
@@ -69,18 +70,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
     else
       vim.opt.eventignore = ""
     end
-  end
-})
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-  group = augroup,
-  pattern = { "*" },
-  desc = 'Reset Telescope highlights',
-  callback = function()
-    if vim.g.colors_name == "serene" then return end
-
-    vim.api.nvim_set_hl(0, "TelescopeSelection", { link = "Visual" })
-    vim.api.nvim_set_hl(0, "TelescopeMatching", { link = "Special" })
   end
 })
 
