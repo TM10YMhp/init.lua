@@ -7,20 +7,32 @@ vim.keymap.set(
 )
 vim.keymap.set(
   { "n", "x" },
-  "<Down>",
-  "v:count == 0 ? 'gj' : 'j'",
-  { expr = true, silent = true }
-)
-vim.keymap.set(
-  { "n", "x" },
   "k",
   "v:count == 0 ? 'gk' : 'k'",
   { expr = true, silent = true }
 )
 vim.keymap.set(
   { "n", "x" },
+  "<Down>",
+  "v:count == 0 ? 'gj' : 'j'",
+  { expr = true, silent = true }
+)
+vim.keymap.set(
+  { "n", "x" },
   "<Up>",
   "v:count == 0 ? 'gk' : 'k'",
+  { expr = true, silent = true }
+)
+vim.keymap.set(
+  "i",
+  "<Down>",
+  "v:count == 0 ? '<c-o>gj' : '<Down>'",
+  { expr = true, silent = true }
+)
+vim.keymap.set(
+  "i",
+  "<Up>",
+  "v:count == 0 ? '<c-o>gk' : '<Up>'",
   { expr = true, silent = true }
 )
 
