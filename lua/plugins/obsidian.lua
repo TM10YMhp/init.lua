@@ -5,11 +5,13 @@ return {
     "nvim-lua/plenary.nvim",
   },
   config = function()
+    local obsidian_dir = "~/vaults/notes_md"
+
     require("obsidian").setup({
       workspaces = {
         {
           name = "personal",
-          path = "~/vaults/notes_md"
+          path = obsidian_dir,
         }
       },
       notes_subdir = "inbox",
@@ -70,8 +72,8 @@ return {
     vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianQuickSwitch<cr>', {
       desc = "Obsidian Quick Switch"
     })
-    vim.keymap.set('n', '<leader>on', '<cmd>ObsidianNew<cr>', {
-      desc = "Obsidian New"
+    vim.keymap.set('n', '<leader>on', '<cmd>e '..obsidian_dir..'<cr>', {
+      desc = "Obsidian Directory"
     })
     vim.keymap.set('n', '<leader>ot', '<cmd>ObsidianTemplate<cr>', {
       desc = "Obsidian Template"
