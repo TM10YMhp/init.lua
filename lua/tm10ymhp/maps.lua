@@ -60,7 +60,7 @@ vim.keymap.set("o", "N", "'nN'[v:searchforward]", {
 vim.keymap.set('n', '<leader>qq', '<cmd>bd<cr>', {
   desc = "Delete Buffer"
 })
-vim.keymap.set('n', '<leader>qa', '<cmd>%bd<cr>', {
+vim.keymap.set('n', '<leader>qa', '<cmd>silent! %bd<cr>', {
   desc = "Delete All Buffers"
 })
 vim.keymap.set('n', '<leader>qc',
@@ -75,7 +75,7 @@ vim.keymap.set('n', '<leader>qr', '<cmd>e<cr>', {
 vim.keymap.set('n', '<leader>qQ', '<cmd>bw<cr>', {
   desc = "Wipeout Buffer"
 })
-vim.keymap.set('n', '<leader>qA', '<cmd>%bw<cr>', {
+vim.keymap.set('n', '<leader>qA', '<cmd>silent! %bw<cr>', {
   desc = "Wipeout All Buffers"
 })
 vim.keymap.set('n', '<leader>qC',
