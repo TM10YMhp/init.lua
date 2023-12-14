@@ -18,6 +18,8 @@ return {
           "css",
           "tsx",
           "astro",
+          "markdown",
+          "markdown_inline",
           -- rest.nvim
           "html",
           "http",
