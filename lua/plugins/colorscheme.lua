@@ -4,7 +4,12 @@ return {
     -- dev = true,
     branch = "dev",
     event = "UIEnter",
-    config = function ()
+    opts = {
+      termguicolors = false
+    },
+    config = function(_, opts)
+      require("serene").setup(opts)
+
       vim.cmd.colorscheme("serene")
     end
   },
