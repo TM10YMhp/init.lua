@@ -5,7 +5,7 @@ return {
     branch = "dev",
     event = "UIEnter",
     config = function ()
-      vim.cmd[[colorscheme serene]]
+      vim.cmd.colorscheme("serene")
     end
   },
   {
