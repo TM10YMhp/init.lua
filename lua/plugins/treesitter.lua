@@ -43,39 +43,34 @@ return {
   },
   {
     "Wansmer/treesj",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    keys = {
+      { "gS", "<cmd>TSJToggle<cr>", desc = "Join Toggle" },
     },
-    config = function()
-      require("treesj").setup({
-        use_default_keymaps = false,
-      })
-
-      vim.keymap.set(
-        "n",
-        "gS",
-        "<cmd>lua require('treesj').toggle()<cr>",
-        { desc = "Toggle Split Join" }
-      )
-    end
+    opts = {
+      use_default_keymaps = false,
+      max_join_length = 150,
+    },
   },
   {
     "Eandrju/cellular-automaton.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    keys = {
+      {
+        "<leader>mr",
+        "<cmd>CellularAutomaton make_it_rain<CR>",
+        desc = "Cellular Automaton: Make It Rain",
+      },
+      {
+        "<leader>ms",
+        "<cmd>CellularAutomaton scramble<CR>",
+        desc = "Cellular Automaton: Scramble",
+      },
+      {
+        "<leader>mg",
+        "<cmd>CellularAutomaton game_of_life<CR>",
+        desc = "Cellular Automaton: Game Of Life",
+      },
     },
-    config = function()
-      vim.keymap.set('n', '<leader>mr', '<cmd>CellularAutomaton make_it_rain<CR>', {
-        desc = "Cellular Automaton: Make It Rain"
-      })
-      vim.keymap.set('n', '<leader>ms', '<cmd>CellularAutomaton scramble<CR>', {
-        desc = "Cellular Automaton: Scramble"
-      })
-      vim.keymap.set('n', '<leader>mg', '<cmd>CellularAutomaton game_of_life<CR>', {
-        desc = "Cellular Automaton: Game Of Life"
-      })
-    end
   },
 }
