@@ -1,10 +1,15 @@
 return {
   "nvim-telescope/telescope.nvim",
-  event = "VeryLazy",
+  cmd = "Telescope",
   dependencies = {
     "nvim-lua/plenary.nvim",
     {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      build = 'make',
+    },
+    {
       "ahmedkhalf/project.nvim",
+      event = "VeryLazy",
       config = function ()
         require("project_nvim").setup({
           -- silent_chdir = false,
@@ -19,9 +24,61 @@ return {
     "nvim-telescope/telescope-ui-select.nvim",
     "yegappan/mru",
     "alan-w-255/telescope-mru.nvim",
+  },
+  keys = {
+    { "<leader>ef", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
     {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'make',
+      "<leader>eF",
+      "<cmd>Telescope find_files cwd=%:p:h<cr>",
+      desc = "Find Files (cwd)",
+    },
+    { "<leader>eb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+    { "<leader>elg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+    { "<leader>ea", "<cmd>Telescope autocommands<cr>", desc = "Autocommands" },
+    { "<leader>ec", "<cmd>Telescope commands<cr>", desc = "Commands" },
+    { "<leader>eh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
+    { "<leader>er", "<cmd>Telescope resume<cr>", desc = "Resume" },
+    {
+      "<leader>ek",
+      "<cmd>Telescope keymaps show_plug=false<cr>",
+      desc = "Key Maps",
+    },
+
+    {
+      "<leader>/",
+      "<cmd>Telescope current_buffer_fuzzy_find<cr>",
+      desc = "Search Word",
+    },
+    { "<leader>uc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme with preview" },
+    { "<leader>uh", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
+
+    { "<leader>cD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
+    { "<leader>cd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
+    { "<leader>cgd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definitions" },
+    { "<leader>cgt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definitions" },
+    { "<leader>cgr", "<cmd>Telescope lsp_references<cr>", desc = "Goto References" },
+    { "<leader>cgs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Goto Symbols" },
+    { "<leader>cgS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Goto Symbols (workspace)" },
+
+    { "<leader>ep", "<cmd>Telescope projects<cr>", desc = "Projects" },
+    { "<leader>eu", "<cmd>Telescope undo<cr>", desc = "Undo" },
+    { "<leader>elG", "<cmd>Telescope live_grep_args<cr>", desc = "Live Grep Args" },
+    { "<leader>eo", "<cmd>Telescope mru<cr>", desc = "MRU" },
+    { "<leader>ss", "<cmd>Telescope symbols<cr>", desc = "Symbols" },
+    {
+      "<leader>se",
+      "<cmd>lua require'telescope.builtin'.symbols{ sources = {'emoji'} }<cr>",
+      desc = "Emoji",
+    },
+    {
+      "<leader>sk",
+      "<cmd>lua require'telescope.builtin'.symbols{ sources = {'kaomoji'} }<cr>",
+      desc = "Kaomoji",
+    },
+    {
+      "<leader>sg",
+      "<cmd>lua require'telescope.builtin'.symbols{ sources = {'gitmoji'} }<cr>",
+      desc = "Gitmoji",
     },
   },
   config = function ()
@@ -150,7 +207,8 @@ return {
         git_files = { preview = { hide_on_startup = false } },
         git_stash = { preview = { hide_on_startup = false } },
         keymaps = {
-          modes = { "", "n", "v", "s", "x", "o", "!", "i", "l", "c", "t" }
+          modes = { "", "n", "v", "s", "x", "o", "!", "i", "l", "c", "t" },
+          layout_config = { width = 80 }
         },
         current_buffer_fuzzy_find = {
           skip_empty_lines = true
@@ -172,128 +230,11 @@ return {
       }
     })
 
-    -- Extensions
     telescope.load_extension("fzf")
-
     telescope.load_extension("projects")
-    vim.keymap.set(
-      'n',
-      '<leader>ep',
-      telescope.extensions.projects.projects,
-      { desc = 'Projects' }
-    )
-
     telescope.load_extension("undo")
-    vim.keymap.set(
-      'n',
-      '<leader>eu',
-      telescope.extensions.undo.undo,
-      { desc = 'Undo' }
-    )
-
     telescope.load_extension("live_grep_args")
-    vim.keymap.set(
-      'n',
-      '<leader>elG',
-      telescope.extensions.live_grep_args.live_grep_args,
-      { desc = 'Live Grep Args' }
-    )
-
     telescope.load_extension("ui-select")
-
     telescope.load_extension("mru")
-    vim.keymap.set(
-      'n',
-      '<leader>eo',
-      "<cmd>Telescope mru<cr>",
-      { desc = 'MRU' }
-    )
-    --
-
-    local builtin = require("telescope.builtin")
-
-    local config_symbols = function (table)
-      return function ()
-        builtin.symbols({ sources = table })
-      end
-    end
-
-    vim.keymap.set('n', '<leader>ss', builtin.symbols, {
-      desc = 'Symbols'
-    })
-    vim.keymap.set('n', '<leader>se', config_symbols({"emoji"}), {
-      desc = 'Symbols Emoji'
-    })
-    vim.keymap.set('n', '<leader>sk', config_symbols({"kaomoji"}), {
-      desc = 'Symbols Kaomoji'
-    })
-    vim.keymap.set('n', '<leader>sg', config_symbols({"gitmoji"}), {
-      desc = 'Symbols Gitmoji'
-    })
-
-    vim.keymap.set('n', '<leader>ek', function()
-      builtin.keymaps({
-        show_plug = false,
-        layout_config = { width = 75 }
-      })
-    end, { desc = 'Key Maps' })
-
-    vim.keymap.set('n', '<leader>ef', builtin.find_files, {
-      desc = 'Find Files'
-    })
-    vim.keymap.set('n', '<leader>eF', '<cmd>Telescope find_files cwd=%:p:h<cr>', {
-      desc = 'Find Files (cwd)'
-    })
-    vim.keymap.set('n', '<leader>eb', builtin.buffers, {
-      desc = 'Buffers'
-    })
-    vim.keymap.set('n', '<leader>elg', builtin.live_grep, {
-      desc = 'Live Grep'
-    })
-    vim.keymap.set('n', '<leader>ea', builtin.autocommands, {
-      desc = 'Autocommands'
-    })
-    vim.keymap.set('n', '<leader>ec', builtin.commands, {
-      desc = 'Commands'
-    })
-    vim.keymap.set('n', '<leader>eh', builtin.help_tags, {
-      desc = 'Help Pages'
-    })
-    vim.keymap.set('n', '<leader>er', builtin.resume, {
-      desc = 'Resume'
-    })
-
-    vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, {
-      desc = 'Search Word'
-    })
-    vim.keymap.set('n', '<leader>uc', builtin.colorscheme, {
-      desc = 'Colorscheme with preview'
-    })
-    vim.keymap.set('n', '<leader>uh', builtin.highlights, {
-      desc = 'Highlight Groups'
-    })
-
-    vim.keymap.set('n', '<leader>cD', builtin.diagnostics, {
-      desc = 'Workspace Diagnostics'
-    })
-    vim.keymap.set('n', '<leader>cd', '<cmd>Telescope diagnostics bufnr=0<cr>', {
-      desc = 'Document Diagnostics'
-    })
-
-    vim.keymap.set('n', '<leader>cgd', builtin.lsp_definitions, {
-      desc = 'Goto Definitions'
-    })
-    vim.keymap.set('n', '<leader>cgt', builtin.lsp_type_definitions, {
-      desc = 'Goto Type Definitions'
-    })
-    vim.keymap.set('n', '<leader>cgr', builtin.lsp_references, {
-      desc = 'Goto References'
-    })
-    vim.keymap.set('n', '<leader>cgs', builtin.lsp_document_symbols, {
-      desc = 'Goto Symbols'
-    })
-    vim.keymap.set('n', '<leader>cgS', builtin.lsp_dynamic_workspace_symbols, {
-      desc = 'Goto Symbols (workspace)'
-    })
   end
 }
