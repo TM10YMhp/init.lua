@@ -2,6 +2,9 @@ return {
   "iamcco/markdown-preview.nvim",
   build = "cd app && npm install && git restore .",
   ft = "markdown",
+  keys = {
+    { "<leader>up", "<cmd>MarkdownPreviewToggle<CR>", desc = "Toggle Markdown Preview" },
+  },
   init = function()
     local config_path = vim.fn.stdpath("config") .. "/lua/styles/"
 
@@ -18,9 +21,5 @@ return {
     vim.g.mkdp_theme = 'dark'
     vim.g.mkdp_combine_preview = 1
     vim.g.mkdp_combine_preview_auto_refresh = 1
-
-    vim.keymap.set("n", "<leader>up", "<cmd>MarkdownPreviewToggle<CR>", {
-      desc = "Toggle Markdown Preview"
-    })
-  end
+  end,
 }
