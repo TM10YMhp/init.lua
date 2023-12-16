@@ -29,8 +29,7 @@ local cmp_kinds = {
 
 return {
   "hrsh7th/nvim-cmp",
-  -- enabled = false,
-  event = "VeryLazy",
+  event = "InsertEnter",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
