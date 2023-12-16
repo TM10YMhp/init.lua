@@ -114,6 +114,9 @@ vim.keymap.set('n', '<leader>uw', '<cmd>set wrap!<cr>', {
 vim.keymap.set('n', '<leader>un', '<cmd>set number!<cr>', {
   desc = "Toogle Line Numbers"
 })
+vim.keymap.set("n", "<leader>uH", "<cmd>set termguicolors!<cr>", {
+  desc = "Toggle Termguicolors"
+})
 vim.keymap.set('n', '<leader>ul', '<cmd>Lazy<cr>', {
   desc = "Lazy"
 })
