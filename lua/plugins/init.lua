@@ -15,7 +15,7 @@ return {
     "chrisgrieser/nvim-early-retirement",
     event = "VeryLazy",
     opts = {
-      retirementAgeMins = 20,
+      retirementAgeMins = 15,
       notificationOnAutoClose = true,
       deleteBufferWhenFileDeleted = false,
     }
@@ -36,13 +36,6 @@ return {
       }
     }
   },
-  -- {
-  --   "tpope/vim-surround",
-  --   event = "VeryLazy",
-  --   init = function()
-  --     vim.g.surround_indent = 0
-  --   end
-  -- },
   {
     "kylechui/nvim-surround",
     event = "VeryLazy",
@@ -51,7 +44,6 @@ return {
   {
     "s1n7ax/nvim-window-picker",
     name = "window-picker",
-    event = "VeryLazy",
     keys = {
       {
         "<leader>w",
@@ -68,13 +60,16 @@ return {
     opts = {
       hint = "statusline-winbar",
     },
+    config = function(_, opts)
+      require("window-picker").setup(opts)
+    end
   },
   {
     "Darazaki/indent-o-matic",
     event = "VeryLazy",
-    config = function()
-      require("indent-o-matic").setup({})
-
+    opts = {},
+    config = function(_, opts)
+      require("indent-o-matic").setup(opts)
       require("indent-o-matic").detect()
     end
   },
