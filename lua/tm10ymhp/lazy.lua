@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins", {
   defaults = { lazy = true },
   dev = { path = "~/projects" },
+  install = { colorscheme = { "serene" } },
   ui = {
     size = { width = 90, height = 40 },
     wrap = true,
