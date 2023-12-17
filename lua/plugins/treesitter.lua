@@ -1,11 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "nvim-treesitter/playground",
-      "RRethy/nvim-treesitter-endwise",
-    },
     event = "VeryLazy",
+    dependencies = { "RRethy/nvim-treesitter-endwise" },
     config = function()
       require('nvim-treesitter.install').prefer_git = false
 
@@ -36,7 +33,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    event = "VeryLazy",
+    event = "InsertEnter",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require('nvim-ts-autotag.internal').attach()
