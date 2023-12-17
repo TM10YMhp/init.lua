@@ -28,7 +28,5 @@ return {
         require("lint").try_lint()
       end
     })
-
-    require("lint").try_lint()
   end
 }
