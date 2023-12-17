@@ -38,12 +38,13 @@ return {
     "rose-pine/neovim",
     name = "rose-pine",
     event = "VeryLazy",
-    config = function()
-      require("rose-pine").setup({
-        disable_background = true,
-        disable_float_background = true,
-        disable_italics = true,
-      })
+    opts = {
+      disable_background = true,
+      disable_float_background = true,
+      disable_italics = true,
+    },
+    config = function(_, opts)
+      require("rose-pine").setup(opts)
     end
   },
   {
