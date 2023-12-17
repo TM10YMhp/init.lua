@@ -1,52 +1,77 @@
 return {
   "voldikss/vim-floaterm",
-  event = "VeryLazy",
   init = function()
     vim.g.floaterm_width = 0.85
     vim.g.floaterm_height = 0.85
     vim.g.floaterm_autohide = 2
   end,
-  config = function()
-    vim.keymap.set('x', '<leader>ts', ':FloatermSend<cr>', {
+  keys = {
+    {
+      '<leader>ts',
+      ':FloatermSend<cr>',
+      mode = 'x',
       desc = "Send command to a job in floaterm"
-    })
-    vim.keymap.set('n', '<leader>t"',
+    },
+    {
+      '<leader>t"',
       "<cmd>FloatermNew --wintype=split --height=0.35<cr>",
-      { desc = "Open a split floaterm window" }
-    )
-    vim.keymap.set('n', '<leader>tC',
+      desc = "Open a split floaterm window"
+    },
+    {
+      '<leader>tC',
       "<cmd>FloatermNew --cwd=<buffer><cr>",
-      { desc = "Open a floaterm window (cwd)" }
-    )
-    vim.keymap.set('t', '<leader>t&',
+      desc = "Open a floaterm window (cwd)"
+    },
+    {
+      '<leader>t&',
       [[<c-\><c-n><cmd>exe 'FloatermKill'|FloatermNext<cr>]],
-      { desc = "Kill the current floaterm instance" }
-    )
-
-    vim.keymap.set('n', '<leader>tc', '<cmd>FloatermNew<cr>', {
+      mode = 't',
+      desc = "Kill the current floaterm instance"
+    },
+    {
+      '<leader>tc',
+      '<cmd>FloatermNew<cr>',
       desc = "Open a floaterm window"
-    })
-    vim.keymap.set('n', '<leader>tp', '<cmd>FloatermPrev<cr>', {
+    },
+    {
+      '<leader>tp',
+      '<cmd>FloatermPrev<cr>',
       desc = "Switch to the previous floaterm instance"
-    })
-    vim.keymap.set('n', '<leader>tn', '<cmd>FloatermNext<cr>', {
+    },
+    {
+      '<leader>tn',
+      '<cmd>FloatermNext<cr>',
       desc = "Switch to the next floaterm instance"
-    })
-    vim.keymap.set('n', '<leader>th', '<cmd>FloatermToggle<cr>', {
+    },
+    {
+      '<leader>th',
+      '<cmd>FloatermToggle<cr>',
       desc = "Open or hide the floaterm window"
-    })
+    },
 
-    vim.keymap.set('t', '<leader>tc', [[<c-\><c-n><cmd>FloatermNew<cr>]], {
+    {
+      '<leader>tc',
+      [[<c-\><c-n><cmd>FloatermNew<cr>]],
+      mode = 't',
       desc = "Open a floaterm window"
-    })
-    vim.keymap.set('t', '<leader>tp', [[<c-\><c-n><cmd>FloatermPrev<cr>]], {
+    },
+    {
+      '<leader>tp',
+      [[<c-\><c-n><cmd>FloatermPrev<cr>]],
+      mode = 't',
       desc = "Switch to the previous floaterm instance"
-    })
-    vim.keymap.set('t', '<leader>tn', [[<c-\><c-n><cmd>FloatermNext<cr>]], {
+    },
+    {
+      '<leader>tn',
+      [[<c-\><c-n><cmd>FloatermNext<cr>]],
+      mode = 't',
       desc = "Switch to the next floaterm instance"
-    })
-    vim.keymap.set('t', '<leader>th', [[<c-\><c-n><cmd>FloatermToggle<cr>]], {
+    },
+    {
+      '<leader>th',
+      [[<c-\><c-n><cmd>FloatermToggle<cr>]],
+      mode = 't',
       desc = "Open or hide the floaterm window"
-    })
-  end
+    },
+  },
 }
