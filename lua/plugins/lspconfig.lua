@@ -4,6 +4,7 @@ return {
   "neovim/nvim-lspconfig",
   -- event = "VeryLazy",
   dependencies = {
+    "j-hui/fidget.nvim",
     {
       "williamboman/mason.nvim",
       cmd = "Mason",
