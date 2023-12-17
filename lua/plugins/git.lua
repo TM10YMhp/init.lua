@@ -2,120 +2,142 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
-    config = function()
-      local gitsigns = require('gitsigns')
-      gitsigns.setup({
-        signs = {
-          add          = { text = '│' },
-          change       = { text = '│' },
-          delete       = { text = '_' },
-          topdelete    = { text = '-' },
-          changedelete = { text = '~' },
-          untracked    = { text = '┆' },
-        },
-        update_debounce = 1000,
-        current_line_blame_opts = {
-          virt_text = true,
-          virt_text_pos = 'eol',
-          delay = 100,
-          ignore_whitespace = false,
-          virt_text_priority = 100,
-        },
-        preview_config = { row = 1 }
-      })
-
-      vim.keymap.set("n", "<leader>ug", "<cmd>Gitsigns toggle_signs<cr>", {
+    opts = {
+      signs = {
+        add          = { text = '│' },
+        change       = { text = '│' },
+        delete       = { text = '_' },
+        topdelete    = { text = '-' },
+        changedelete = { text = '~' },
+        untracked    = { text = '┆' },
+      },
+      update_debounce = 1000,
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = 'eol',
+        delay = 100,
+        ignore_whitespace = false,
+        virt_text_priority = 100,
+      },
+      preview_config = { row = 1 }
+    },
+    keys = {
+      {
+        "<leader>ug",
+        "<cmd>Gitsigns toggle_signs<cr>",
         desc = "Toggle Git Signs"
-      })
-      vim.keymap.set("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<cr>", {
+      },
+      {
+        "<leader>ub",
+        "<cmd>Gitsigns toggle_current_line_blame<cr>",
         desc = "Toggle Git Line Blame"
-      })
-
-      vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", {
+      },
+      {
+        "ih",
+        ":<C-U>Gitsigns select_hunk<CR>",
+        mode = { "o", "x" },
         desc = "Select Hunk"
-      })
-      vim.keymap.set("n", "]h", gitsigns.next_hunk, {
+      },
+      {
+        "]h",
+        function() require('gitsigns').next_hunk() end,
         desc = "Next Hunk"
-      })
-      vim.keymap.set("n", "[h", gitsigns.prev_hunk, {
+      },
+      {
+        "[h",
+        function() require('gitsigns').prev_hunk() end,
         desc = "Prev Hunk"
-      })
-      vim.keymap.set("n", "<leader>hb", function()
-        gitsigns.blame_line({ full = true })
-      end, { desc = "Blame Line" })
-      vim.keymap.set("n", "<leader>hu", gitsigns.undo_stage_hunk, {
+      },
+      {
+        "<leader>hb",
+        function()
+          require('gitsigns').blame_line({ full = true })
+        end,
+        desc = "Blame Line"
+      },
+      {
+        "<leader>hu",
+        function() require('gitsigns').undo_stage_hunk() end,
         desc = "Undo Stage Hunk"
-      })
-      vim.keymap.set("n", "<leader>hp", gitsigns.preview_hunk, {
+      },
+      {
+        "<leader>hp",
+        function() require('gitsigns').preview_hunk() end,
         desc = "Preview Hunk"
-      })
-      vim.keymap.set("n", "<leader>hs",
+      },
+      {
+        "<leader>hs",
         "<cmd>exe 'Gitsigns stage_hunk'|w<cr>",
-        { desc = "Stage Hunk" }
-      )
-      vim.keymap.set("v", "<leader>hs",
+        desc = "Stage Hunk"
+      },
+      {
+        "<leader>hs",
         [[:<c-u>exe "'<,'>Gitsigns stage_hunk"|w<cr>]],
-        { desc = "Stage Hunk" }
-      )
-      vim.keymap.set({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", {
+        mode = "x",
+        desc = "Stage Hunk"
+      },
+      {
+        "<leader>hr",
+        ":Gitsigns reset_hunk<CR>",
+        mode = { "n", "x" },
         desc = "Reset Hunk"
-      })
-      vim.keymap.set("n", "<leader>hS",
+      },
+      {
+        "<leader>hS",
         "<cmd>exe 'Gitsigns stage_buffer'|w<cr>",
-        { desc = "Stage Buffer" }
-      )
-      vim.keymap.set("n", "<leader>hR",
+        desc = "Stage Buffer"
+      },
+      {
+        "<leader>hR",
         "<cmd>exe 'Gitsigns reset_buffer'|Gitsigns refresh<cr>",
-        { desc = "Reset Buffer" }
-      )
-    end
+        desc = "Reset Buffer"
+      }
+    },
   },
   {
     "sindrets/diffview.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("diffview").setup({
-        use_icons = false,
-        signs = {
-          fold_closed = ">",
-          fold_open = "v",
-          done = "✓",
+    keys = {
+      { "<leader>do", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
+      { "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
+      { "<leader>dh", "<cmd>DiffviewFileHistory<cr>", desc = "DiffviewFileHistory" },
+      { "<leader>dH", "<cmd>DiffviewFileHistory %<cr>", desc = "DiffviewFileHistory" },
+    },
+    opts = {
+      use_icons = false,
+      signs = {
+        fold_closed = ">",
+        fold_open = "v",
+        done = "✓",
+      },
+      view = {
+        default = {
+          layout = "diff2_vertical",
         },
-        view = {
-          default = {
-            layout = "diff2_vertical",
-          },
-          merge_tool = {
-            layout = "diff3_vertical",
-          },
-          file_history = {
-            layout = "diff2_vertical",
-          },
+        merge_tool = {
+          layout = "diff3_vertical",
         },
-        file_panel = {
-          win_config = {
-            position = "right",
-            width = 35,
-          }
+        file_history = {
+          layout = "diff2_vertical",
+        },
+      },
+      file_panel = {
+        win_config = {
+          position = "right",
+          width = 35,
         }
-      })
-
-      vim.keymap.set("n", "<leader>do", ":DiffviewOpen<cr>")
-      vim.keymap.set("n", "<leader>dc", ":DiffviewClose<cr>")
-      vim.keymap.set("n", "<leader>dh", ":DiffviewFileHistory<cr>")
-      vim.keymap.set("n", "<leader>dH", ":DiffviewFileHistory %<cr>")
-    end
+      }
+    }
   },
   {
     "tpope/vim-fugitive",
-    event = "VeryLazy",
-    config = function()
-      vim.keymap.set(
-        { "n", "x" },
+    cmd = { "Git", "G" },
+    keys = {
+      {
         "<leader>gb",
         ":G blame<cr>",
-        { desc = "Git Blame" }
-      )
-    end
+        mode = { "n", "x" },
+        desc = "Git Blame"
+      },
+    },
   },
 }
