@@ -65,12 +65,10 @@ return {
     end
   },
   {
-    "Darazaki/indent-o-matic",
+    "tpope/vim-sleuth",
     event = "VeryLazy",
-    opts = {},
-    config = function(_, opts)
-      require("indent-o-matic").setup(opts)
-      require("indent-o-matic").detect()
+    config = function()
+      vim.cmd("Sleuth")
     end
   },
 }
