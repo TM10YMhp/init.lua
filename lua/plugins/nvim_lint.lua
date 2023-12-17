@@ -1,6 +1,10 @@
 return {
   "mfussenegger/nvim-lint",
   event = "VeryLazy",
+  dependencies = {
+    "ahmedkhalf/project.nvim",
+    "williamboman/mason.nvim",
+  },
   keys = {
     {
       "<leader>cl",
@@ -28,5 +32,7 @@ return {
         require("lint").try_lint()
       end
     })
+
+    require("lint").try_lint()
   end
 }
