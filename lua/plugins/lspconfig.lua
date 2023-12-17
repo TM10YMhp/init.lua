@@ -3,6 +3,7 @@ local utils = require("tm10ymhp.utils")
 return {
   "neovim/nvim-lspconfig",
   -- event = "VeryLazy",
+  cmd = "Mason",
   dependencies = {
     {
       "williamboman/mason.nvim",
