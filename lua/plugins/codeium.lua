@@ -1,6 +1,10 @@
+local utils = require("tm10ymhp.utils")
+
 return {
   "Exafunction/codeium.vim",
-  event = "VeryLazy", -- Await Auth
+  -- event = "VeryLazy", -- Await Auth
+  event = "InsertEnter",
+  cmd = "Codeium",
   init = function()
     vim.g.codeium_filetypes = {
       oil = false,
@@ -12,60 +16,48 @@ return {
     vim.g.codeium_disable_bindings = 1
     vim.g.codeium_no_map_tap = true
   end,
-  config = function()
-    vim.keymap.set(
-      'i',
-      '<M-y>',
+  keys = {
+    {
+      "<M-y>",
       function() return vim.fn['codeium#Accept']() end,
-      {
-        silent = true,
-        expr = true,
-        script = true,
-        nowait = true,
-        desc = "Codeium: Accept"
-      }
-    )
-    vim.keymap.set(
-      'i',
-      '<M-e>',
+      mode = "i",
+      desc = "Codeium: Accept",
+      expr = true,
+      silent = true,
+    },
+    {
+      "<M-e>",
       function() return vim.fn['codeium#Clear']() end,
-      {
-        silent = true,
-        expr = true,
-        script = true,
-        nowait = true,
-        desc = "Codeium: Clear"
-      }
-    )
-    vim.keymap.set(
-      'i',
-      '<M-n>',
+      mode = "i",
+      desc = "Codeium: Clear",
+      expr = true,
+    },
+    {
+      "<M-n>",
       function() return vim.fn['codeium#CycleOrComplete']() end,
-      {
-        expr = true,
-        desc = "Codeium: Next Completion"
-      }
-    )
-    vim.keymap.set(
-      'i',
-      '<M-p>',
+      mode = "i",
+      desc = "Codeium: Next Completion",
+      expr = true,
+    },
+    {
+      "<M-p>",
       function() return vim.fn['codeium#CycleCompletions'](-1) end,
-      {
-        expr = true,
-        desc = "Codeium: Prev Completion"
-      }
-    )
-
-    local utils = require("tm10ymhp.utils")
-
-    vim.keymap.set("n", "<leader>ua", function()
-      if vim.g.codeium_enabled then
-        vim.g.codeium_enabled = false
-        utils.notify("Codeium disabled")
-      else
-        vim.g.codeium_enabled = true
-        utils.notify("Codeium enabled")
-      end
-    end, { desc = "Toggle Codeium" })
-  end,
+      mode = "i",
+      desc = "Codeium: Prev Completion",
+      expr = true,
+    },
+    {
+      "<leader>ua",
+      function()
+        if vim.g.codeium_enabled then
+          vim.g.codeium_enabled = false
+          utils.notify("Codeium disabled")
+        else
+          vim.g.codeium_enabled = true
+          utils.notify("Codeium enabled")
+        end
+      end,
+      desc = "Toggle Codeium"
+    },
+  },
 }
