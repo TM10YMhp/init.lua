@@ -10,8 +10,8 @@ return {
       enable_autocmd = false,
     }
   },
-  config = function()
-    require('Comment').setup({
+  opts = function()
+    return {
       padding = true,
       sticky = true,
       ignore = nil,
@@ -35,6 +35,6 @@ return {
       pre_hook = require('ts_context_commentstring.integrations.comment_nvim')
         .create_pre_hook(),
       post_hook = nil,
-    })
+    }
   end
 }
