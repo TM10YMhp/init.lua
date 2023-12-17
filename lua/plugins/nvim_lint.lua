@@ -1,6 +1,13 @@
 return {
   "mfussenegger/nvim-lint",
   event = "VeryLazy",
+  keys = {
+    {
+      "<leader>cl",
+      function() require("lint").try_lint() end,
+      desc = "Lint",
+    },
+  },
   config = function()
     require("lint").linters_by_ft = {
       javascript = { "eslint_d" },
@@ -22,8 +29,6 @@ return {
       end
     })
 
-    vim.keymap.set("n", "<leader>cl", function()
-      require("lint").try_lint()
-    end, { desc = "Lint" })
+    require("lint").try_lint()
   end
 }
