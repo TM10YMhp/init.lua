@@ -1,33 +1,32 @@
 return {
   "chrisgrieser/nvim-various-textobjs",
-  event = "VeryLazy",
-  config = function()
-    require("various-textobjs").setup({})
-
-    vim.keymap.set(
-      { "o", "x" },
-      "ii" ,
-      "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>",
-      { desc = "inner-inner indentation textobj" }
-    )
-    vim.keymap.set(
-      { "o", "x" },
-      "ai" ,
-      "<cmd>lua require('various-textobjs').indentation('outer', 'inner')<CR>",
-      { desc = "outer-inner indentation textobj" }
-    )
-    vim.keymap.set(
-      { "o", "x" },
-      "iI" ,
-      "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>",
-      { desc = "inner-inner indentation textobj" }
-    )
-    vim.keymap.set(
-      { "o", "x" },
-      "aI" ,
-      "<cmd>lua require('various-textobjs').indentation('outer', 'outer')<CR>",
-      { desc = "outer-outer indentation textobj" }
-    )
+  keys = function()
+    local mappings = {
+      {
+        "ii",
+        "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>",
+        mode = { "o", "x" },
+        desc = "inner-inner indentation textobj"
+      },
+      {
+        "ai" ,
+        "<cmd>lua require('various-textobjs').indentation('outer', 'inner')<CR>",
+        mode = { "o", "x" },
+        desc = "outer-inner indentation textobj"
+      },
+      {
+        "iI" ,
+        "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>",
+        mode = { "o", "x" },
+        desc = "inner-inner indentation textobj"
+      },
+      {
+        "aI" ,
+        "<cmd>lua require('various-textobjs').indentation('outer', 'outer')<CR>",
+        mode = { "o", "x" },
+        desc = "outer-outer indentation textobj"
+      },
+    }
 
     local innerOuterMaps = {
       number = "n",
@@ -43,6 +42,23 @@ return {
       pyTripleQuotes = "y",
     }
 
+    for objName, map in pairs(innerOuterMaps) do
+      local name = " " .. objName .. " textobj"
+      table.insert(mappings, {
+        "a" .. map,
+        "<cmd>lua require('various-textobjs')." .. objName .. "('outer')<CR>",
+        mode = { "o", "x" },
+        desc = "outer" .. name
+      })
+
+      table.insert(mappings, {
+        "i" .. map,
+        "<cmd>lua require('various-textobjs')." .. objName .. "('inner')<CR>",
+        mode = { "o", "x" },
+        desc = "inner" .. name
+      })
+    end
+
     local oneMaps = {
       visibleInWindow = "gw",
       restOfIndentation = "R",
@@ -54,29 +70,19 @@ return {
       multiCommentedLines = "ic"
     }
 
-    for objName, map in pairs(innerOuterMaps) do
-      local name = " " .. objName .. " textobj"
-      vim.keymap.set(
-        { "o", "x" },
-        "a" .. map,
-        "<cmd>lua require('various-textobjs')." .. objName .. "('outer')<CR>",
-        { desc = "outer" .. name }
-      )
-      vim.keymap.set(
-        { "o", "x" },
-        "i" .. map,
-        "<cmd>lua require('various-textobjs')." .. objName .. "('inner')<CR>",
-        { desc = "inner" .. name }
-      )
-    end
-
     for objName, map in pairs(oneMaps) do
-      vim.keymap.set(
-        { "o", "x" },
+      table.insert(mappings, {
         map,
         "<cmd>lua require('various-textobjs')." .. objName .. "()<CR>",
-        { desc = objName .. " textobj" }
-      )
+        mode = { "o", "x" },
+        desc = objName .. " textobj"
+      })
     end
+
+    return mappings
+  end,
+  opts = {},
+  config = function(_, opts)
+    require("various-textobjs").setup(opts)
   end
 }
