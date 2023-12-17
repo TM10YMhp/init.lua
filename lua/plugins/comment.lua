@@ -1,8 +1,14 @@
 return {
   "numToStr/Comment.nvim",
   event = "VeryLazy",
+  init = function()
+    vim.g.skip_ts_context_commentstring_module = true
+  end,
   dependencies = {
-    "JoosepAlviste/nvim-ts-context-commentstring"
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    opts = {
+      enable_autocmd = false,
+    }
   },
   config = function()
     require('Comment').setup({
