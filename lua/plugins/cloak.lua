@@ -15,22 +15,19 @@ return {
         ["%.env%.[%w_.-]+"] = "dotenv",
       },
     })
-
-    vim.keymap.set('n', '<leader>uC', '<cmd>CloakToggle<cr>', {
-      desc = "Toggle Cloak"
-    })
   end,
-  config = function()
-    require("cloak").setup({
-      enabled = true,
-      cloak_character = '*',
-      highlight_group = 'Comment',
-      patterns = {
-        {
-          file_pattern = ".env*",
-          cloak_pattern = "=.+",
-        }
+  keys = {
+    { '<leader>uC', '<cmd>CloakToggle<cr>', desc = "Toggle Cloak" }
+  },
+  opts = {
+    enabled = true,
+    cloak_character = '*',
+    highlight_group = 'Comment',
+    patterns = {
+      {
+        file_pattern = ".env*",
+        cloak_pattern = "=.+",
       }
-    })
-  end
+    }
+  },
 }
