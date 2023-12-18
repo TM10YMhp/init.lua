@@ -3,11 +3,12 @@ local utils = require("tm10ymhp.utils")
 return {
   "neovim/nvim-lspconfig",
   -- event = "VeryLazy",
+  cmd = { "LspLog", "LspStart", "LspInfo" },
   dependencies = {
     "j-hui/fidget.nvim",
     {
       "williamboman/mason.nvim",
-      cmd = "Mason",
+      cmd = { "Mason", "MasonLog" },
       opts = {
         ui = {
           check_outdated_packages_on_open = false,
