@@ -16,10 +16,10 @@ return {
       config = function(_, opts)
         require("project_nvim").setup(opts)
 
+        vim.cmd("ProjectRoot")
+
         pcall(require, 'notify')
         require("tm10ymhp.utils").notify("project.nvim loaded")
-
-        vim.cmd("ProjectRoot")
       end
     },
     "debugloop/telescope-undo.nvim",
