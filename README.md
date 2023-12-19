@@ -1,24 +1,29 @@
 <div align="center">
 
 # TM10YMhp's init.lua - VeryLazy
+
 #### escrito en Lua usando [💤 lazy.nvim](https://github.com/folke/lazy.nvim)
 
 </div>
 
 <!-- screenshot -->
+
 ![screenshot](https://github.com/TM10YMhp/dotfiles/blob/master/images/screenshot.png)
 
 El tema `Serene` esta activado por defecto, puede cambiarlo por [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) desde `plugins/colorscheme.lua`.
 
 ## ¿Encontraste un problema o tienes una sugerencia?
+
 Si encuentra algun problema o tiene alguna sugerencia, por favor abre un issue y estare encantado de discutirlo contigo.
 
 ## ✨ Caracteristicas
+
 - 🚀 Increiblemente rapido.
 - 💤 VeryLazy, complementos cargados muy perezosamente gracias a [lazy.nvim](https://github.com/folke/lazy.nvim).
 - 📦 Gran cantidad de complementos preconfigurados y listos para usar.
 
 ## ⚡️ Requisitos previos
+
 - Neovim 0.10 o superior
 
 ## 🚀 Empezando
@@ -26,6 +31,7 @@ Si encuentra algun problema o tiene alguna sugerencia, por favor abre un issue y
 ### 1. Descargar configuracion
 
 ### 2. Instalar complementos
+
 Para instalar los complementos, abra la terminal y ejecute el comando `nvim`.
 
 Luego espere a que `lazy.nvim` instale todos los complementos y finalmente reinicie neovim.
