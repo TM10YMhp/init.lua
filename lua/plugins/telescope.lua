@@ -23,7 +23,7 @@ return {
     "nvim-telescope/telescope-live-grep-args.nvim",
     "nvim-telescope/telescope-symbols.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
-    "yegappan/mru",
+    { "yegappan/mru", event = "VeryLazy" },
     "alan-w-255/telescope-mru.nvim",
   },
   keys = {
