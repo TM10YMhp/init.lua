@@ -17,6 +17,7 @@ return {
         winblend = 0,
         border = "single",
         align = "top",
+        zindex = 150,
       },
     },
   },
