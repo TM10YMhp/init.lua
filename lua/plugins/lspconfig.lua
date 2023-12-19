@@ -55,26 +55,26 @@ return {
     {
       '<leader>lr',
       function()
+        utils.notify('LSP: Restart')
         vim.diagnostic.reset()
         vim.cmd("LspRestart")
-        utils.notify('LSP: Restart')
       end,
       desc = 'LSP: Restart',
     },
     {
       '<leader>lq',
       function()
+        utils.notify('LSP: Stop')
         vim.diagnostic.reset()
         vim.cmd("LspStop")
-        utils.notify('LSP: Stop')
       end,
       desc = 'LSP: Stop',
     },
     {
       '<leader>ls',
       function()
-        vim.cmd("LspStart")
         utils.notify('LSP: Start')
+        vim.cmd("LspStart")
       end,
       desc = 'LSP: Start',
     },
