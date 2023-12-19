@@ -71,4 +71,20 @@ return {
       vim.cmd("silent Sleuth")
     end
   },
+  {
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
+    opts = {
+      input = {
+        border = "single",
+        relative = "editor",
+      },
+      select = {
+        backend = { "builtin" },
+        builtin = {
+          border = "single",
+        }
+      }
+    },
+  },
 }
