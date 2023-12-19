@@ -11,7 +11,7 @@ return {
       "ahmedkhalf/project.nvim",
       event = "VeryLazy",
       opts = {
-        silent_chdir = false,
+        -- silent_chdir = false,
       },
       config = function(_, opts)
         require("project_nvim").setup(opts)
