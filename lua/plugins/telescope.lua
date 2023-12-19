@@ -22,7 +22,6 @@ return {
     "debugloop/telescope-undo.nvim",
     "nvim-telescope/telescope-live-grep-args.nvim",
     "nvim-telescope/telescope-symbols.nvim",
-    "nvim-telescope/telescope-ui-select.nvim",
     { "yegappan/mru", event = "VeryLazy" },
     "alan-w-255/telescope-mru.nvim",
   },
@@ -223,11 +222,6 @@ return {
           case_mode = "smart_case"
         },
         undo = { use_delta = false },
-        ["ui-select"] = {
-          require("telescope.themes").get_ivy({
-            -- even more opts
-          })
-        },
       }
     })
 
@@ -235,7 +229,6 @@ return {
     telescope.load_extension("projects")
     telescope.load_extension("undo")
     telescope.load_extension("live_grep_args")
-    telescope.load_extension("ui-select")
     telescope.load_extension("mru")
   end
 }
