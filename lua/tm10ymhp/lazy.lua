@@ -47,7 +47,6 @@ require("lazy").setup({
       },
     },
   },
-  throttle = 1000,
   checker = {
     enable = false,
   },
