@@ -10,6 +10,7 @@ return {
     {
       "ahmedkhalf/project.nvim",
       event = "VeryLazy",
+      dependencies = { "rcarriga/nvim-notify" },
       config = function ()
         require("project_nvim").setup({
           -- silent_chdir = false,
