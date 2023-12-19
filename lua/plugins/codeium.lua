@@ -31,6 +31,7 @@ return {
       mode = "i",
       desc = "Codeium: Clear",
       expr = true,
+      silent = true,
     },
     {
       "<M-n>",
@@ -38,6 +39,7 @@ return {
       mode = "i",
       desc = "Codeium: Next Completion",
       expr = true,
+      silent = true,
     },
     {
       "<M-p>",
@@ -45,6 +47,7 @@ return {
       mode = "i",
       desc = "Codeium: Prev Completion",
       expr = true,
+      silent = true,
     },
     {
       "<leader>ua",
