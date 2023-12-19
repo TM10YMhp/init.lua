@@ -1,6 +1,9 @@
 return {
   "echasnovski/mini.bracketed",
-  event = "VeryLazy",
+  keys = {
+    { "]", mode = { "n", "x", "o" }, desc = "forward" },
+    { "[", mode = { "n", "x", "o" }, desc = "backward" },
+  },
   opts = {
     buffer     = { suffix = 'b', options = {} },
     comment    = { suffix = 'c', options = {} },
