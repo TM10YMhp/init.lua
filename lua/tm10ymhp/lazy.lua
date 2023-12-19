@@ -11,8 +11,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins", {
+require("lazy").setup({
   defaults = { lazy = true },
+  spec = {
+    { import = "plugins" },
+    { import = "plugins.mini" },
+  },
   dev = { path = "~/projects" },
   ui = {
     size = { width = 90, height = 40 },
