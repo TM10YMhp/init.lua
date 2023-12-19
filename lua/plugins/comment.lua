@@ -1,6 +1,16 @@
 return {
   "numToStr/Comment.nvim",
-  event = "VeryLazy",
+  keys = {
+    { "gcO", desc = "Comment insert above" },
+    { "gco", desc = "Comment insert below" },
+    { "gc", desc = "Comment toggle linewise" },
+    { "gb", desc = "Comment toggle blockwise" },
+    { "gcA", desc = "Comment insert end of line" },
+    { "gcc", desc = "Comment toggle current line" },
+    { "gbc", desc = "Comment toggle current block" },
+    { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
+    { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
+  },
   init = function()
     vim.g.skip_ts_context_commentstring_module = true
   end,
