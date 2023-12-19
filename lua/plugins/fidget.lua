@@ -15,8 +15,9 @@ return {
       poll_rate = 2,
       window = {
         winblend = 0,
-        border = "single"
-      }
-    }
-  }
+        border = "single",
+        align = "top",
+      },
+    },
+  },
 }
