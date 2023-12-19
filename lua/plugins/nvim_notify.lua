@@ -44,7 +44,6 @@ return {
       config = config or {
         style = "minimal",
         border = "single",
-        anchor = "SE"
       }
       config.focus_id = ctx.method
       if not (result and result.contents) then
