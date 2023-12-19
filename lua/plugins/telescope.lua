@@ -10,13 +10,16 @@ return {
     {
       "ahmedkhalf/project.nvim",
       event = "VeryLazy",
-      dependencies = { "rcarriga/nvim-notify" },
-      config = function ()
-        require("project_nvim").setup({
-          -- silent_chdir = false,
-        })
-        vim.cmd("ProjectRoot")
+      opts = {
+        silent_chdir = false,
+      },
+      config = function(_, opts)
+        require("project_nvim").setup(opts)
+
+        pcall(require, 'notify')
         require("tm10ymhp.utils").notify("project.nvim loaded")
+
+        vim.cmd("ProjectRoot")
       end
     },
     "debugloop/telescope-undo.nvim",
