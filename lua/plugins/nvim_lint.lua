@@ -1,13 +1,25 @@
+vim.api.nvim_create_autocmd(
+  "FileType",
+  {
+    pattern = {
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+      "svelte",
+    },
+    callback = function()
+      vim.defer_fn(function()
+        require("lazy").load({
+          plugins = { "nvim-lint" },
+        })
+      end, 1)
+    end,
+  }
+)
+
 return {
   "mfussenegger/nvim-lint",
-  -- event = "VeryLazy",
-  ft = {
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-    "svelte",
-  },
   dependencies = {
     "ahmedkhalf/project.nvim",
     "williamboman/mason.nvim",
@@ -29,7 +41,7 @@ return {
     }
 
     vim.api.nvim_create_autocmd({
-      -- "BufEnter",
+      "BufEnter",
       "BufWritePost",
       -- "InsertLeave",
       -- "TextChanged",
