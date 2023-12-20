@@ -170,15 +170,6 @@ return {
             skip_empty_lines = true
           }
         },
-        extensions = {
-          fzf = {
-            fuzzy = false,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = "smart_case"
-          },
-          undo = { use_delta = false },
-        }
       }
     end,
   },
