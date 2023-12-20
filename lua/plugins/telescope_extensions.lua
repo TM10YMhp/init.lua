@@ -1,5 +1,20 @@
 return {
   "telescope.nvim",
+  opts = function(_, opts)
+    return vim.tbl_deep_extend("force", opts, {
+      extensions = {
+        fzf = {
+          fuzzy = false,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case"
+        },
+        undo = {
+          use_delta = false,
+        },
+      }
+    })
+  end,
   dependencies = {
     {
       'nvim-telescope/telescope-fzf-native.nvim',
@@ -14,17 +29,17 @@ return {
         { "<leader>ss", "<cmd>Telescope symbols<cr>", desc = "Symbols" },
         {
           "<leader>se",
-          "<cmd>lua require'telescope.builtin'.symbols{ sources = {'emoji'} }<cr>",
+          "<cmd>lua require'telescope.builtin'.symbols{sources={'emoji'}}<cr>",
           desc = "Emoji",
         },
         {
           "<leader>sk",
-          "<cmd>lua require'telescope.builtin'.symbols{ sources = {'kaomoji'} }<cr>",
+          "<cmd>lua require'telescope.builtin'.symbols{sources={'kaomoji'}}<cr>",
           desc = "Kaomoji",
         },
         {
           "<leader>sg",
-          "<cmd>lua require'telescope.builtin'.symbols{ sources = {'gitmoji'} }<cr>",
+          "<cmd>lua require'telescope.builtin'.symbols{sources={'gitmoji'}}<cr>",
           desc = "Gitmoji",
         },
       }
