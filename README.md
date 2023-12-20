@@ -23,8 +23,15 @@ Si encuentra algun problema o tiene alguna sugerencia, por favor abre un issue y
 - 📦 Gran cantidad de complementos preconfigurados y listos para usar.
 
 ## ⚡️ Requisitos previos
+- Neovim >= 0.10.0 (debe construirse con LuaJIT)
+- Git >= 2.19.0 (para soporte de clones parciales)
+- Node >= 20.10.0
+- Curl >= 8.4.0
+- Un compilador de C para `nvim-treesitter`
 
-- Neovim 0.10 o superior
+#### Opcional
+- [jq](https://github.com/jqlang/jq)
+- [tidy](https://github.com/htacg/tidy-html5)
 
 ## 🚀 Empezando
 
