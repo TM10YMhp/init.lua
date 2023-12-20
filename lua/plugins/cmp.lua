@@ -68,14 +68,33 @@ return {
     end
   },
   {
+    "hrsh7th/cmp-nvim-lsp",
+    event = "LspAttach",
+    dependencies = { "hrsh7th/nvim-cmp" },
+  },
+  {
+    "windwp/nvim-autopairs",
+    keys = function()
+      local ret = {}
+      for _, key in ipairs({ '"', "'", "(", ")", "[", "]", "`", "{", "}" }) do
+        ret[#ret + 1] = { key, mode = "i", desc = "autopairs map key" }
+      end
+
+      ret[#ret + 1] = { "<BS>", mode = "i", desc = "v:lua.MPairs.autopairs_bs()" }
+      ret[#ret + 1] = { "<CR>", mode = "i", desc = "v:lua.MPairs.completion_confirm()" }
+
+      return ret
+    end,
+    opts = {},
+  },
+  {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
+      -- "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "saadparwaiz1/cmp_luasnip",
       "amarakon/nvim-cmp-buffer-lines",
-      { 'windwp/nvim-autopairs', opts = {} }
     },
     config = function ()
       local cmp = require("cmp")
