@@ -49,7 +49,7 @@ cd ~/.config/
 
 - Clonar repositorio
 ```
-git clone -b dev https://github.com/TM10YMhp/init.lua.git
+git clone -b dev https://github.com/TM10YMhp/init.lua.git nvim
 ```
 
 - Elimina la carpeta `.git` para que puedas agregarla a tu propio repositorio más tarde
