@@ -5,11 +5,6 @@ return {
   -- event = "VeryLazy", -- Await Auth
   event = "InsertEnter",
   cmd = "Codeium",
-  init = function()
-    vim.g.codeium_enabled = true
-    vim.g.codeium_disable_bindings = 1
-    vim.g.codeium_no_map_tap = true
-  end,
   keys = {
     {
       "<M-y>",
