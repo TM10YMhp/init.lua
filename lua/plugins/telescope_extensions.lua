@@ -1,26 +1,22 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
-        extensions = {
-          fzf = {
-            fuzzy = false,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = "smart_case"
-          }
+    opts = {
+      extensions = {
+        fzf = {
+          fuzzy = false,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case"
         }
-      })
-    end,
+      }
+    },
     dependencies = {
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make',
-        config = function()
-          require("telescope").load_extension("fzf")
-        end
-      },
+      'nvim-telescope/telescope-fzf-native.nvim',
+      build = 'make',
+      config = function()
+        require("telescope").load_extension("fzf")
+      end
     },
   },
   {
@@ -49,13 +45,13 @@ return {
     "debugloop/telescope-undo.nvim",
     dependencies = {
       "nvim-telescope/telescope.nvim",
-      opts = function(_, opts)
-        return vim.tbl_deep_extend("force", opts, {
-          extensions = {
-            undo = { use_delta = false }
+      opts = {
+        extensions = {
+          undo = {
+            use_delta = false,
           }
-        })
-      end,
+        }
+      },
     },
     keys = {
       { "<leader>eu", "<cmd>Telescope undo<cr>", desc = "Undo" },
