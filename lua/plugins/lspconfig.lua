@@ -5,7 +5,29 @@ return {
   -- event = "VeryLazy",
   cmd = { "LspLog", "LspStart", "LspInfo" },
   dependencies = {
-    "j-hui/fidget.nvim",
+    {
+      "j-hui/fidget.nvim",
+      opts = {
+        progress = {
+          poll_rate = 2,
+          display = {
+            done_ttl = 0,
+            progress_icon = {
+              pattern = "dots_ellipsis", period = 2
+            }
+          },
+        },
+        notification = {
+          poll_rate = 2,
+          window = {
+            winblend = 0,
+            border = "single",
+            align = "top",
+            zindex = 150,
+          },
+        },
+      },
+    },
     {
       "williamboman/mason.nvim",
       cmd = { "Mason", "MasonLog" },
