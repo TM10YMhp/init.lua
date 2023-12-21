@@ -51,7 +51,7 @@ return {
       { "ga", mode = { "n", "x" }, desc = "Align" },
       { "gA", mode = { "n", "x" }, desc = "Align with preview" },
     },
-    opts = {}
+    config = true
   },
   {
     "echasnovski/mini.move",
@@ -66,7 +66,7 @@ return {
       { "<M-h>", mode = "x", desc = "Move left" },
       { "<M-l>", mode = "x", desc = "Move right" },
     },
-    opts = {}
+    config = true
   },
   {
     "echasnovski/mini.jump",
