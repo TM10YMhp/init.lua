@@ -1,13 +1,15 @@
 <div align="center">
 
 # TM10YMhp's init.lua
- Arranque rapido, bajo consumo de memoria, y carga diferida gracias a [💤 lazy.nvim](https://github.com/folke/lazy.nvim).
+
+Arranque rapido, bajo consumo de memoria, y carga diferida gracias a [💤 lazy.nvim](https://github.com/folke/lazy.nvim).
 
 Elija el fragmento de código que comprenda totalmente.
 
 Siempre en WIP 🏗
 
 <!-- screenshot -->
+
 ![screenshot](https://github.com/TM10YMhp/dotfiles/blob/master/images/screenshot.png)
 
 <sub>Para conocer el esquema de colores, consulte [serene.nvim](https://github.com/TM10YMhp/serene.nvim). Para ver más presentaciones, consulte la sección [presentaciones].</sub>
@@ -25,6 +27,7 @@ Si encuentra algun problema o tiene alguna sugerencia, por favor abre un issue y
 - 📦 Gran cantidad de complementos preconfigurados y listos para usar.
 
 ## ⚡️ Requisitos previos
+
 - Neovim >= 0.10.0 (debe construirse con LuaJIT)
 - Git >= 2.19.0 (para soporte de clones parciales)
 - [ripgrep](https://github.com/BurntSushi/ripgrep) >= 13.0.0
@@ -33,13 +36,16 @@ Si encuentra algun problema o tiene alguna sugerencia, por favor abre un issue y
 - Un compilador de C para `nvim-treesitter`. Mira [aquí](https://github.com/nvim-treesitter/nvim-treesitter#requirements)
 
 #### Opcional
+
 - [jq](https://github.com/jqlang/jq)
 - [tidy](https://github.com/htacg/tidy-html5)
 
 ## 🚀 Empezando
 
 ### 1. Descargar configuracion
+
 - Posicionarse en el directorio
+
 ```bash
 # Windows
 cd ~/AppData/Local/
@@ -48,21 +54,25 @@ cd ~/.config/
 ```
 
 - Clonar repositorio
+
 ```
 git clone -b dev https://github.com/TM10YMhp/init.lua.git nvim
 ```
 
 - Elimina la carpeta `.git` para que puedas agregarla a tu propio repositorio más tarde
+
 ```
-rm -rf ~/.config/nvim/.git
+rm -rf .git/
 ```
 
 - ¡Inicie Neovim!
+
 ```
 nvim
 ```
 
 ### 2. Instalar complementos
+
 Luego de iniciar neovim espere a que `lazy.nvim` instale todos los complementos y finalmente reinicie neovim.
 
 <details><summary>Lista de complementos</summary>
