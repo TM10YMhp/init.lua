@@ -25,7 +25,7 @@ return {
     },
     {
       "williamboman/mason-lspconfig.nvim",
-      opts = {},
+      config = true
     },
   },
   keys = {
