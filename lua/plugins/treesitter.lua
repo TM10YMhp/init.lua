@@ -1,34 +1,38 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
     dependencies = { "RRethy/nvim-treesitter-endwise" },
-    config = function()
+    opts = {
+      endwise = { enable = true }
+    }
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = "VeryLazy",
+    opts = {
+      parser_install_dir = vim.fn.stdpath("config"),
+      ensure_installed = {
+        "lua",
+        "javascript",
+        "typescript",
+        "css",
+        "tsx",
+        "astro",
+        "markdown",
+        "markdown_inline",
+        -- rest.nvim
+        "html",
+        "http",
+        "json",
+      },
+      sync_install = true, -- async cpu cost
+      auto_install = false,
+      highlight = { enable = true },
+      indent = { enable = true },
+    },
+    config = function(_, opts)
       require('nvim-treesitter.install').prefer_git = false
-
-      require("nvim-treesitter.configs").setup({
-        parser_install_dir = vim.fn.stdpath("config"),
-        ensure_installed = {
-          "lua",
-          "javascript",
-          "typescript",
-          "css",
-          "tsx",
-          "astro",
-          "markdown",
-          "markdown_inline",
-          -- rest.nvim
-          "html",
-          "http",
-          "json",
-        },
-        sync_install = true, -- async cpu cost
-        auto_install = false,
-        highlight = { enable = true },
-        indent = { enable = true },
-        -- nvim-treesitter-endwise
-        endwise = { enable = true },
-      })
+      require("nvim-treesitter.configs").setup(opts)
     end
   },
   {
