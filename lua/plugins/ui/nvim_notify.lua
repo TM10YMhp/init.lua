@@ -25,15 +25,27 @@ return {
     max_width = function()
       return math.floor(vim.o.columns * 0.75)
     end,
-    on_open = function(win)
+    on_open = function(win, record)
+      vim.print(record)
       vim.api.nvim_win_set_config(win, {
         zindex = 100,
         border = "single",
+        title = {{ record.title[1], "Notify" .. record.level .. "Border" }},
       })
     end,
     minimum_width = 30,
-    stages = "static",
-    -- render = "simple",
+    stages = "no_animation",
+    render = function(bufnr, notif, highlights)
+      local namespace = require("notify.render.base").namespace()
+      vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, notif.message)
+
+      vim.api.nvim_buf_set_extmark(bufnr, namespace, 0, 0, {
+        hl_group = highlights.body,
+        end_line = #notif.message - 1,
+        end_col = #notif.message[#notif.message],
+        priority = 50,
+      })
+    end,
     fps = 1,
     top_down = false,
   },
@@ -60,5 +72,31 @@ return {
     end
 
     vim.notify = require("notify")
+
+    vim.keymap.set(
+      "n",
+      "<leader>Tn",
+      function()
+        vim.notify("test", vim.log.levels.DEBUG, { title = "DEBUG" })
+        vim.notify("test", vim.log.levels.ERROR, { title = "ERROR" })
+        vim.notify("test", vim.log.levels.INFO, { title = "INFO" })
+        vim.notify("test", vim.log.levels.TRACE, { title = "TRACE" })
+        vim.notify("test", vim.log.levels.WARN, { title = "WARN" })
+        vim.notify("test", vim.log.levels.OFF, { title = "OFF" })
+        vim.notify("test", vim.log.levels.DEBUG, { title = "DEBUG" })
+        vim.notify("test", vim.log.levels.ERROR, { title = "ERROR" })
+        vim.notify("test", vim.log.levels.INFO, { title = "INFO" })
+        vim.notify("test", vim.log.levels.TRACE, { title = "TRACE" })
+        vim.notify("test", vim.log.levels.WARN, { title = "WARN" })
+        vim.notify("test", vim.log.levels.OFF, { title = "OFF" })
+        vim.notify("test", vim.log.levels.DEBUG, { title = "DEBUG" })
+        vim.notify("test", vim.log.levels.ERROR, { title = "ERROR" })
+        vim.notify("test", vim.log.levels.INFO, { title = "INFO" })
+        vim.notify("test", vim.log.levels.TRACE, { title = "TRACE" })
+        vim.notify("test", vim.log.levels.WARN, { title = "WARN" })
+        vim.notify("test", vim.log.levels.OFF, { title = "OFF" })
+      end,
+      { desc = "Test Notifications" }
+    )
   end
 }
