@@ -32,5 +32,5 @@ return {
       desc = "Harpoon: Nav File 4"
     }
   },
-  opts = {},
+  config = true
 }
