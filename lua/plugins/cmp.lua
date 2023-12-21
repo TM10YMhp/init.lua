@@ -28,60 +28,6 @@ local kind_icons = {
 
 return {
   {
-    "L3MON4D3/LuaSnip",
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end
-    },
-    config = function()
-      require("luasnip").setup({})
-
-      -- https://github.com/L3MON4D3/LuaSnip/issues/656
-      local luasnip = require("luasnip")
-      vim.api.nvim_create_autocmd("ModeChanged", {
-        group = vim.api.nvim_create_augroup(
-          "UnlinkLuaSnipSnippetOnModeChange",
-          { clear = true }
-        ),
-        pattern = { "s:n", "i:*" },
-        desc = "Forget the current snippet when leaving the insert mode",
-        callback = function(evt)
-          -- If we have n active nodes, n - 1 will still remain after a
-          -- `unlink_current()` call. We unlink all of them by wrapping the calls
-          -- in a loop.
-          while true do
-            if
-              luasnip.session
-              and luasnip.session.current_nodes[evt.buf]
-              and not luasnip.session.jump_active
-            then
-              luasnip.unlink_current()
-            else
-              break
-            end
-          end
-        end,
-      })
-    end
-  },
-  {
-    "windwp/nvim-autopairs",
-    keys = function()
-      local ret = {}
-      for _, key in ipairs({ '"', "'", "(", ")", "[", "]", "`", "{", "}" }) do
-        ret[#ret + 1] = { key, mode = "i", desc = "autopairs map key" }
-      end
-
-      ret[#ret + 1] = { "<BS>", mode = "i", desc = "v:lua.MPairs.autopairs_bs()" }
-      ret[#ret + 1] = { "<CR>", mode = "i", desc = "v:lua.MPairs.completion_confirm()" }
-
-      return ret
-    end,
-    opts = {},
-  },
-  {
     "hrsh7th/cmp-nvim-lsp",
     event = "LspAttach",
   },
@@ -134,7 +80,7 @@ return {
               sources = {
                 {
                   name = "buffer-lines",
-                  max_item_count = 5,
+                  max_item_count = 20,
                   option = { leading_whitespace = false }
                 }
               }
