@@ -1,4 +1,4 @@
-local cmp_kinds = {
+local kind_icons = {
   Text = 'b',
   Method = 'f',
   Function = 'f',
@@ -82,10 +82,14 @@ return {
     opts = {},
   },
   {
+    "hrsh7th/cmp-nvim-lsp",
+    event = "LspAttach",
+  },
+  {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
+      -- "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "saadparwaiz1/cmp_luasnip",
       "amarakon/nvim-cmp-buffer-lines",
@@ -160,12 +164,13 @@ return {
         }),
         formatting = {
           --fields = { "abbr", "kind", "menu" },
-          format = function(entry, vim_item)
-            vim_item.kind = cmp_kinds[vim_item.kind] or "?"
-            vim_item.menu = ""
-            -- vim_item.menu = "("..entry.source.name..")"
+          format = function(entry, item)
+            item.kind = kind_icons[item.kind] or "?"
+            item.menu = ""
 
-            return vim_item
+            -- item.menu = "("..entry.source.name..")"
+
+            return item
           end,
           expandable_indicator = false
         },
