@@ -35,10 +35,13 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      -- "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "saadparwaiz1/cmp_luasnip",
       "amarakon/nvim-cmp-buffer-lines",
+      {
+        "windwp/nvim-autopairs",
+        config = true
+      },
     },
     opts = function ()
       local cmp = require("cmp")
@@ -56,10 +59,15 @@ return {
           entries = "native",
           -- docs = { auto_open = false }
         },
+        preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
           ['<C-s>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ["<S-CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+          }),
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
           ['<Tab>'] = cmp.mapping.select_next_item({
