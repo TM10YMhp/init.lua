@@ -1,37 +1,5 @@
 return {
   {
-    "echasnovski/mini.tabline",
-    event = "VeryLazy",
-    opts = {
-      show_icons = false,
-      set_vim_settings = false,
-      tabpage_section = 'right'
-    },
-    config = function(_, opts)
-      require('mini.tabline').setup(opts)
-
-      vim.opt.showtabline = 2
-    end
-  },
-  {
-    "echasnovski/mini.ai",
-    keys = {
-      { "a", mode = { "o", "x" }, desc = "Around textobject" },
-      { "i", mode = { "o", "x" }, desc = "Inside textobject" },
-    },
-    opts = {
-      mappings = {
-        around_next = '',
-        inside_next = '',
-        around_last = '',
-        inside_last = '',
-        goto_left = '',
-        goto_right = '',
-      },
-      n_lines = 500
-    }
-  },
-  {
     "echasnovski/mini.jump2d",
     keys = {
       {

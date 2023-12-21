@@ -28,6 +28,45 @@ local kind_icons = {
 
 return {
   {
+    "L3MON4D3/LuaSnip",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end
+    },
+    config = function()
+      require("luasnip").setup({})
+
+      -- https://github.com/L3MON4D3/LuaSnip/issues/656
+      local luasnip = require("luasnip")
+      vim.api.nvim_create_autocmd("ModeChanged", {
+        group = vim.api.nvim_create_augroup(
+          "UnlinkLuaSnipSnippetOnModeChange",
+          { clear = true }
+        ),
+        pattern = { "s:n", "i:*" },
+        desc = "Forget the current snippet when leaving the insert mode",
+        callback = function(evt)
+          -- If we have n active nodes, n - 1 will still remain after a
+          -- `unlink_current()` call. We unlink all of them by wrapping the calls
+          -- in a loop.
+          while true do
+            if
+              luasnip.session
+              and luasnip.session.current_nodes[evt.buf]
+              and not luasnip.session.jump_active
+            then
+              luasnip.unlink_current()
+            else
+              break
+            end
+          end
+        end,
+      })
+    end
+  },
+  {
     "hrsh7th/cmp-nvim-lsp",
     event = "LspAttach",
   },
@@ -153,5 +192,87 @@ return {
         },
       }
     end
-  }
+  },
+  {
+    "kylechui/nvim-surround",
+    keys = {
+      { "cs", desc = "Change a surrounding pair" },
+      { "cS", desc = "Change a surrounding pair, putting replacements on new lines" },
+      { "ds", desc = "Delete a surrounding pair" },
+      { "S", mode = "x" ,desc = "Add a surrounding pair around a visual selection" },
+      { "ys", desc = "Add a surrounding pair around a motion (normal mode)" },
+      { "yss", desc = "Add a surrounding pair around the current line (normal mode)" },
+      { "ySS", desc = "Add a surrounding pair around the current line, on new lines (normal mode)" },
+      { "yS", desc = "Add a surrounding pair around a motion, on new lines (normal mode)" },
+      { "gS", mode = "x", desc = "Add a surrounding pair around a visual selection, on new lines" },
+      { "<C-G>S", mode = "i", desc = "Add a surrounding pair around the cursor, on new lines (insert mode)" },
+      { "<C-G>s", mode = "i", desc = "Add a surrounding pair around the cursor (insert mode)" },
+    },
+    config = true
+  },
+  {
+    "numToStr/Comment.nvim",
+    keys = {
+      { "gcO", desc = "Comment insert above" },
+      { "gco", desc = "Comment insert below" },
+      { "gc", desc = "Comment toggle linewise" },
+      { "gb", desc = "Comment toggle blockwise" },
+      { "gcA", desc = "Comment insert end of line" },
+      { "gcc", desc = "Comment toggle current line" },
+      { "gbc", desc = "Comment toggle current block" },
+      { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
+      { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
+    },
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      opts = {
+        enable_autocmd = false,
+      }
+    },
+    opts = function()
+      return {
+        padding = true,
+        sticky = true,
+        ignore = nil,
+        toggler = {
+          line = 'gcc',
+          block = 'gbc'
+        },
+        opleader = {
+          line = 'gc',
+          block = 'gb'
+        },
+        extra = {
+          above = 'gcO',
+          below = 'gco',
+          eol = 'gcA'
+        },
+        mappings = {
+          basic = true,
+          extra = true
+        },
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim')
+          .create_pre_hook(),
+        post_hook = nil,
+      }
+    end
+  },
+  {
+    "echasnovski/mini.ai",
+    keys = {
+      { "a", mode = { "o", "x" }, desc = "Around textobject" },
+      { "i", mode = { "o", "x" }, desc = "Inside textobject" },
+    },
+    opts = {
+      mappings = {
+        around_next = '',
+        inside_next = '',
+        around_last = '',
+        inside_last = '',
+        goto_left = '',
+        goto_right = '',
+      },
+      n_lines = 500
+    }
+  },
 }
