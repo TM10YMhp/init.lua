@@ -1,22 +1,19 @@
-vim.api.nvim_create_autocmd(
-  "FileType",
-  {
-    pattern = {
-      "javascript",
-      "typescript",
-      "javascriptreact",
-      "typescriptreact",
-      "svelte",
-    },
-    callback = function()
-      vim.defer_fn(function()
-        require("lazy").load({
-          plugins = { "nvim-lint" },
-        })
-      end, 1)
-    end,
-  }
-)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "svelte",
+  },
+  callback = function()
+    vim.defer_fn(function()
+      require("lazy").load({
+        plugins = { "nvim-lint" },
+      })
+    end, 1)
+  end,
+})
 
 return {
   "mfussenegger/nvim-lint",
