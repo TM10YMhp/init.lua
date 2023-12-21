@@ -15,6 +15,13 @@ vim.filetype.add({
   },
 })
 
+-- rest.nvim
+vim.filetype.add({
+  extension = {
+    http = "http"
+  }
+})
+
 -- markdown_preview.nvim
 vim.g.mkdp_auto_start = 0
 vim.g.mkdp_auto_close = 0
