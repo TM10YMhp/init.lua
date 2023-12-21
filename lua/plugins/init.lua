@@ -51,7 +51,22 @@ return {
       { "<C-G>S", mode = "i", desc = "Add a surrounding pair around the cursor, on new lines (insert mode)" },
       { "<C-G>s", mode = "i", desc = "Add a surrounding pair around the cursor (insert mode)" },
     },
-    opts = {}
+    config = true
+  },
+  {
+    "windwp/nvim-autopairs",
+    keys = function()
+      local ret = {}
+      for _, key in ipairs({ '"', "'", "(", ")", "[", "]", "`", "{", "}" }) do
+        ret[#ret + 1] = { key, mode = "i", desc = "autopairs map key" }
+      end
+
+      ret[#ret + 1] = { "<BS>", mode = "i", desc = "v:lua.MPairs.autopairs_bs()" }
+      ret[#ret + 1] = { "<CR>", mode = "i", desc = "v:lua.MPairs.completion_confirm()" }
+
+      return ret
+    end,
+    config = true
   },
   {
     "s1n7ax/nvim-window-picker",
