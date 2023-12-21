@@ -11,9 +11,6 @@ return {
     { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
     { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
   },
-  init = function()
-    vim.g.skip_ts_context_commentstring_module = true
-  end,
   dependencies = {
     "JoosepAlviste/nvim-ts-context-commentstring",
     opts = {
