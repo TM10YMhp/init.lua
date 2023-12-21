@@ -26,7 +26,6 @@ return {
       return math.floor(vim.o.columns * 0.75)
     end,
     on_open = function(win, record)
-      vim.print(record)
       vim.api.nvim_win_set_config(win, {
         zindex = 100,
         border = "single",
@@ -72,31 +71,5 @@ return {
     end
 
     vim.notify = require("notify")
-
-    vim.keymap.set(
-      "n",
-      "<leader>Tn",
-      function()
-        vim.notify("test", vim.log.levels.DEBUG, { title = "DEBUG" })
-        vim.notify("test", vim.log.levels.ERROR, { title = "ERROR" })
-        vim.notify("test", vim.log.levels.INFO, { title = "INFO" })
-        vim.notify("test", vim.log.levels.TRACE, { title = "TRACE" })
-        vim.notify("test", vim.log.levels.WARN, { title = "WARN" })
-        vim.notify("test", vim.log.levels.OFF, { title = "OFF" })
-        vim.notify("test", vim.log.levels.DEBUG, { title = "DEBUG" })
-        vim.notify("test", vim.log.levels.ERROR, { title = "ERROR" })
-        vim.notify("test", vim.log.levels.INFO, { title = "INFO" })
-        vim.notify("test", vim.log.levels.TRACE, { title = "TRACE" })
-        vim.notify("test", vim.log.levels.WARN, { title = "WARN" })
-        vim.notify("test", vim.log.levels.OFF, { title = "OFF" })
-        vim.notify("test", vim.log.levels.DEBUG, { title = "DEBUG" })
-        vim.notify("test", vim.log.levels.ERROR, { title = "ERROR" })
-        vim.notify("test", vim.log.levels.INFO, { title = "INFO" })
-        vim.notify("test", vim.log.levels.TRACE, { title = "TRACE" })
-        vim.notify("test", vim.log.levels.WARN, { title = "WARN" })
-        vim.notify("test", vim.log.levels.OFF, { title = "OFF" })
-      end,
-      { desc = "Test Notifications" }
-    )
   end
 }
