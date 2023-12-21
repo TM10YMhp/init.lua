@@ -24,7 +24,6 @@ local cmp_kinds = {
   Event = 'E',
   Operator = 'O',
   TypeParameter = 'T',
-  Codeium = 'c',
 }
 
 return {
@@ -68,11 +67,6 @@ return {
     end
   },
   {
-    "hrsh7th/cmp-nvim-lsp",
-    event = "LspAttach",
-    dependencies = { "hrsh7th/nvim-cmp" },
-  },
-  {
     "windwp/nvim-autopairs",
     keys = function()
       local ret = {}
@@ -91,15 +85,18 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      -- "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "saadparwaiz1/cmp_luasnip",
       "amarakon/nvim-cmp-buffer-lines",
     },
-    config = function ()
+    opts = function ()
       local cmp = require("cmp")
 
-      cmp.setup({
+      return {
+        completion = {
+          completeopt = "menu,menuone,noinsert,noselect",
+        },
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
@@ -108,62 +105,6 @@ return {
         view = {
           entries = "native",
           -- docs = { auto_open = false }
-        },
-        sorting = {
-          comparators = {
-            -- cmp.config.compare.offset,
-            -- cmp.config.compare.exact,
-            cmp.config.compare.score,
-            -- cmp.config.compare.recently_used,
-            -- cmp.config.compare.kind,
-            -- cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            -- cmp.config.compare.order,
-          },
-        },
-        experimental = { ghost_text = false },
-        formatting = {
-          --fields = { "abbr", "kind", "menu" },
-          format = function(entry, vim_item)
-            vim_item.kind = cmp_kinds[vim_item.kind] or "?"
-            vim_item.menu = ""
-            -- vim_item.menu = "("..entry.source.name..")"
-
-            return vim_item
-          end,
-          expandable_indicator = false
-        },
-        sources = cmp.config.sources({
-          -- { name = 'codeium' },
-          { name = 'nvim_lsp', max_item_count = 50 },
-          { name = 'luasnip' },
-        }, {
-          {
-            name = 'buffer',
-            max_item_count = 20,
-            option = {
-              get_bufnrs = function()
-                local buf = vim.api.nvim_get_current_buf()
-                local byte_size = vim.api.nvim_buf_get_offset(
-                  buf, vim.api.nvim_buf_line_count(buf)
-                )
-                if byte_size > 1024 * 1024 then -- 1 Megabyte max
-                  return {}
-                end
-                return { buf }
-              end
-            }
-          },
-        }),
-        window = {
-          documentation = { border = "single" }
-        },
-        matching = {
-          disallow_fuzzy_matching = true,
-          disallow_fullfuzzy_matching = true,
-          disallow_partial_fuzzy_matching = true,
-          disallow_partial_matching = true,
-          disallow_prefix_unmatching = true,
         },
         mapping = cmp.mapping.preset.insert({
           ['<C-s>'] = cmp.mapping.complete(),
@@ -196,7 +137,62 @@ return {
             }
           }),
         }),
-      })
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp', max_item_count = 50 },
+          { name = 'luasnip' },
+        }, {
+          {
+            name = 'buffer',
+            max_item_count = 20,
+            option = {
+              get_bufnrs = function()
+                local buf = vim.api.nvim_get_current_buf()
+                local byte_size = vim.api.nvim_buf_get_offset(
+                  buf, vim.api.nvim_buf_line_count(buf)
+                )
+                if byte_size > 1024 * 1024 then -- 1 Megabyte max
+                  return {}
+                end
+                return { buf }
+              end
+            }
+          },
+        }),
+        formatting = {
+          --fields = { "abbr", "kind", "menu" },
+          format = function(entry, vim_item)
+            vim_item.kind = cmp_kinds[vim_item.kind] or "?"
+            vim_item.menu = ""
+            -- vim_item.menu = "("..entry.source.name..")"
+
+            return vim_item
+          end,
+          expandable_indicator = false
+        },
+        experimental = { ghost_text = false },
+        sorting = {
+          comparators = {
+            -- cmp.config.compare.offset,
+            -- cmp.config.compare.exact,
+            cmp.config.compare.score,
+            -- cmp.config.compare.recently_used,
+            -- cmp.config.compare.kind,
+            -- cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            -- cmp.config.compare.order,
+          },
+        },
+        window = {
+          documentation = { border = "single" }
+        },
+        matching = {
+          disallow_fuzzy_matching = true,
+          disallow_fullfuzzy_matching = true,
+          disallow_partial_fuzzy_matching = true,
+          disallow_partial_matching = true,
+          disallow_prefix_unmatching = true,
+        },
+      }
     end
   }
 }
