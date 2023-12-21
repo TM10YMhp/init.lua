@@ -81,8 +81,7 @@ return {
 
     return mappings
   end,
-  opts = {},
-  config = function(_, opts)
-    require("various-textobjs").setup(opts)
+  config = function()
+    require("various-textobjs").setup({})
   end
 }
