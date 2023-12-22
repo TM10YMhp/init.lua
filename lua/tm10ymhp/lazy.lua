@@ -16,7 +16,6 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
     { import = "plugins.mini" },
-    { import = "plugins.git" },
   },
   dev = { path = "~/projects" },
   ui = {
