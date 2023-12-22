@@ -54,7 +54,7 @@ return {
     "laytan/cloak.nvim",
     ft = "dotenv",
     keys = {
-      { '<leader>uC', '<cmd>CloakToggle<cr>', desc = "Toggle Cloak" }
+      { '<leader>uc', '<cmd>CloakToggle<cr>', desc = "Toggle Cloak" }
     },
     opts = {
       enabled = true,

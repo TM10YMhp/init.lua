@@ -26,7 +26,7 @@ return {
         "http",
         "json",
       },
-      -- sync_install = true, -- async cpu cost
+      sync_install = true, -- async cpu cost
       auto_install = false,
       highlight = { enable = true },
       indent = { enable = true },

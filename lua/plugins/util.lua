@@ -115,7 +115,7 @@ return {
         "ahmedkhalf/project.nvim",
         event = "VeryLazy",
         keys = {
-          { "<leader>ep", "<cmd>Telescope projects<cr>", desc = "Projects" },
+          { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
         },
         opts = {
           -- silent_chdir = false,

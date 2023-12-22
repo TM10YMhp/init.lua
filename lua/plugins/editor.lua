@@ -12,7 +12,7 @@ return {
     end,
     keys = {
       {
-        '<leader>ee',
+        '<leader>e',
         '<cmd>NvimTreeFindFileToggle!<cr>',
         desc = 'Explorer'
       }
@@ -146,20 +146,20 @@ return {
     cmd = "Telescope",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>ef", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       {
-        "<leader>eF",
+        "<leader>fF",
         "<cmd>Telescope find_files cwd=%:p:h<cr>",
         desc = "Find Files (cwd)",
       },
-      { "<leader>eb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      { "<leader>elg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
-      { "<leader>ea", "<cmd>Telescope autocommands<cr>", desc = "Autocommands" },
-      { "<leader>ec", "<cmd>Telescope commands<cr>", desc = "Commands" },
-      { "<leader>eh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-      { "<leader>er", "<cmd>Telescope resume<cr>", desc = "Resume" },
+      { "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+      { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+      { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Autocommands" },
+      { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
+      { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
+      { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
       {
-        "<leader>ek",
+        "<leader>sk",
         "<cmd>Telescope keymaps show_plug=false<cr>",
         desc = "Key Maps",
       },
@@ -169,8 +169,8 @@ return {
         "<cmd>Telescope current_buffer_fuzzy_find<cr>",
         desc = "Search Word",
       },
-      { "<leader>uc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme with preview" },
-      { "<leader>uh", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
+      { "<leader>uC", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme with preview" },
+      { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
 
       { "<leader>cD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
       { "<leader>cd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
@@ -340,19 +340,19 @@ return {
     "nvim-telescope/telescope-symbols.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
-      { "<leader>ss", "<cmd>Telescope symbols<cr>", desc = "Symbols" },
+      { "<leader>fs", "<cmd>Telescope symbols<cr>", desc = "Symbols" },
       {
-        "<leader>se",
+        "<leader>fe",
         "<cmd>lua require'telescope.builtin'.symbols{sources={'emoji'}}<cr>",
         desc = "Emoji",
       },
       {
-        "<leader>sk",
+        "<leader>fk",
         "<cmd>lua require'telescope.builtin'.symbols{sources={'kaomoji'}}<cr>",
         desc = "Kaomoji",
       },
       {
-        "<leader>sg",
+        "<leader>fg",
         "<cmd>lua require'telescope.builtin'.symbols{sources={'gitmoji'}}<cr>",
         desc = "Gitmoji",
       },
@@ -371,7 +371,7 @@ return {
       },
     },
     keys = {
-      { "<leader>eu", "<cmd>Telescope undo<cr>", desc = "Undo" },
+      { "<leader>su", "<cmd>Telescope undo<cr>", desc = "Undo" },
     },
     config = function()
       require("telescope").load_extension("undo")
@@ -384,7 +384,7 @@ return {
       "nvim-telescope/telescope.nvim",
     },
     keys = {
-      { "<leader>eo", "<cmd>Telescope mru<cr>", desc = "MRU" },
+      { "<leader>sr", "<cmd>Telescope mru<cr>", desc = "MRU" },
     },
     config = function()
       require("telescope").load_extension("mru")
@@ -394,7 +394,7 @@ return {
     "nvim-telescope/telescope-live-grep-args.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
-      { "<leader>elG", "<cmd>Telescope live_grep_args<cr>", desc = "Live Grep Args" },
+      { "<leader>sG", "<cmd>Telescope live_grep_args<cr>", desc = "Live Grep Args" },
     },
     config = function()
       require("telescope").load_extension("live_grep_args")
@@ -429,12 +429,12 @@ return {
     cmd = { "TroubleToggle", "Trouble" },
     keys = {
       {
-        "<leader>ed",
+        "<leader>xd",
         "<cmd>TroubleToggle document_diagnostics<cr>",
         desc = "Document Diagnostics"
       },
       {
-        "<leader>eD",
+        "<leader>xD",
         "<cmd>TroubleToggle workspace_diagnostics<cr>",
         desc = "Workspace Diagnostics"
       },
