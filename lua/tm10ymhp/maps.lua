@@ -56,35 +56,51 @@ vim.keymap.set("o", "N", "'nN'[v:searchforward]", {
   expr = true, desc = "Prev search result"
 })
 
+-- Windows
+vim.keymap.set('n', '<leader>wd',
+  "<c-w>c",
+  { desc = "Delete window" }
+)
+vim.keymap.set('n', '<leader>wo',
+  "<c-w>o",
+  { desc = "Delete other windows" }
+)
+vim.keymap.set('n', '<leader>ws',
+  "<c-w>s",
+  { desc = "Split window below" }
+)
+vim.keymap.set('n', '<leader>wv',
+  "<c-w>v",
+  { desc = "Split window right" }
+)
+
 -- Buffer
 vim.keymap.set('n', '<leader>bb',
   "<cmd>e #<cr>",
   { desc = "Switch to Other Buffer" }
 )
-
--- Delete Buffer
+--- Delete Buffer
 vim.keymap.set('n', '<leader>bq', '<cmd>bd<cr>', {
   desc = "Delete Buffer"
 })
 vim.keymap.set('n', '<leader>ba', '<cmd>silent! %bd<cr>', {
   desc = "Delete All Buffers"
 })
-vim.keymap.set('n', '<leader>bc',
+vim.keymap.set('n', '<leader>bo',
   "<cmd>%bd|e#|bw#<cr>",
   { desc = "Delete All and Reopen" }
 )
 vim.keymap.set('n', '<leader>br', '<cmd>e<cr>', {
   desc = "Reopen Buffer"
 })
-
--- Wipeout Buffer
+--- Wipeout Buffer
 vim.keymap.set('n', '<leader>bQ', '<cmd>bw<cr>', {
   desc = "Wipeout Buffer"
 })
 vim.keymap.set('n', '<leader>bA', '<cmd>silent! %bw<cr>', {
   desc = "Wipeout All Buffers"
 })
-vim.keymap.set('n', '<leader>bC',
+vim.keymap.set('n', '<leader>bO',
   "<cmd>let t=expand('%')|%bw|exe 'e '..t|unlet t<cr>",
   { desc = "Wipeout All and Reopen" }
 )
