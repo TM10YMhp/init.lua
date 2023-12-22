@@ -1,29 +1,29 @@
 local kind_icons = {
-  Text = 'b',
-  Method = 'f',
+  Text = 't',
+  Method = 'm',
   Function = 'f',
-  Constructor = 'f',
-  Field = 'm',
+  Constructor = 'c',
+  Field = 'd',
   Variable = 'v',
   Class = 'C',
   Interface = 'I',
   Module = 'M',
-  Property = 'm',
-  Unit = 'U',
-  Value = 'v',
+  Property = 'p',
+  Unit = 'u',
+  Value = 'l',
   Enum = 'E',
   Keyword = 'k',
-  Snippet = 'S',
-  Color = 'v',
+  Snippet = 's',
+  Color = 'o',
   File = 'F',
   Reference = 'r',
-  Folder = 'F',
-  EnumMember = 'm',
-  Constant = 'v',
+  Folder = 'D',
+  EnumMember = 'e',
+  Constant = 'n',
   Struct = 'S',
-  Event = 'E',
+  Event = 'e',
   Operator = 'O',
-  TypeParameter = 'T',
+  TypeParameter = 'P',
 }
 
 local utils = require("tm10ymhp.utils")
@@ -150,7 +150,7 @@ return {
           end,
         },
         view = {
-          entries = "native",
+          -- entries = "native",
           -- docs = { auto_open = false }
         },
         preselect = cmp.PreselectMode.None,
@@ -190,8 +190,8 @@ return {
           }),
         }),
         sources = cmp.config.sources({
-          { name = 'nvim_lsp', max_item_count = 50 },
-          { name = 'luasnip' },
+          { name = 'nvim_lsp', max_item_count = 40 },
+          { name = 'luasnip', max_item_count = 10 },
         }, {
           {
             name = 'buffer',
@@ -211,7 +211,7 @@ return {
           },
         }),
         formatting = {
-          --fields = { "abbr", "kind", "menu" },
+          -- fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
             item.kind = kind_icons[item.kind] or "?"
             item.menu = ""
@@ -224,16 +224,18 @@ return {
         },
         experimental = { ghost_text = false },
         sorting = {
+          -- priority_weight = 2,
           comparators = {
             -- cmp.config.compare.offset,
             -- cmp.config.compare.exact,
+            -- cmp.config.compare.scopes,
             cmp.config.compare.score,
             -- cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
             -- cmp.config.compare.kind,
             -- cmp.config.compare.sort_text,
             cmp.config.compare.length,
-            cmp.config.compare.locality,
-            -- cmp.config.compare.order,
+            cmp.config.compare.order,
           },
         },
         window = {
