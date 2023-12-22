@@ -491,15 +491,13 @@ return {
       },
       {
         "]h",
-        "&diff ? ']h' : '<cmd>Gitsigns next_hunk<CR>'",
+        "<cmd>Gitsigns next_hunk<CR>",
         desc = "Next Hunk",
-        expr = true,
       },
       {
         "[h",
-        "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'",
+        "<cmd>Gitsigns prev_hunk<CR>",
         desc = "Prev Hunk",
-        expr = true,
       },
       {
         "<leader>hb",
