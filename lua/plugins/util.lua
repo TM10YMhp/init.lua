@@ -169,7 +169,7 @@ return {
     name = "window-picker",
     keys = {
       {
-        "<leader>w",
+        "<leader>ww",
         function()
           local picked_window_id =
             require("window-picker").pick_window() or

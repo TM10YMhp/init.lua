@@ -61,17 +61,17 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     keys = {
       {
-        "<leader>ar",
+        "<leader>zr",
         "<cmd>CellularAutomaton make_it_rain<CR>",
         desc = "Cellular Automaton: Make It Rain",
       },
       {
-        "<leader>as",
+        "<leader>zs",
         "<cmd>CellularAutomaton scramble<CR>",
         desc = "Cellular Automaton: Scramble",
       },
       {
-        "<leader>ag",
+        "<leader>zg",
         "<cmd>CellularAutomaton game_of_life<CR>",
         desc = "Cellular Automaton: Game Of Life",
       },

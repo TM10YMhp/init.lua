@@ -157,7 +157,7 @@ return {
       { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Autocommands" },
       { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-      { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
+      { "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Resume" },
       {
         "<leader>sk",
         "<cmd>Telescope keymaps show_plug=false<cr>",
@@ -172,13 +172,13 @@ return {
       { "<leader>uC", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme with preview" },
       { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
 
-      { "<leader>cD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
-      { "<leader>cd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
-      { "<leader>cgd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definitions" },
-      { "<leader>cgt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definitions" },
-      { "<leader>cgr", "<cmd>Telescope lsp_references<cr>", desc = "Goto References" },
-      { "<leader>cgs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Goto Symbols" },
-      { "<leader>cgS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Goto Symbols (workspace)" },
+      { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
+      { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
+      { "<leader>cd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definitions" },
+      { "<leader>st", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definitions" },
+      { "<leader>sR", "<cmd>Telescope lsp_references<cr>", desc = "Goto References" },
+      { "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Goto Symbols" },
+      { "<leader>sS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Goto Symbols (workspace)" },
     },
     opts = function()
       local actions = require("telescope.actions")
@@ -384,7 +384,7 @@ return {
       "nvim-telescope/telescope.nvim",
     },
     keys = {
-      { "<leader>sr", "<cmd>Telescope mru<cr>", desc = "MRU" },
+      { "<leader>so", "<cmd>Telescope mru<cr>", desc = "MRU" },
     },
     config = function()
       require("telescope").load_extension("mru")
@@ -429,12 +429,12 @@ return {
     cmd = { "TroubleToggle", "Trouble" },
     keys = {
       {
-        "<leader>xd",
+        "<leader>xx",
         "<cmd>TroubleToggle document_diagnostics<cr>",
         desc = "Document Diagnostics"
       },
       {
-        "<leader>xD",
+        "<leader>xX",
         "<cmd>TroubleToggle workspace_diagnostics<cr>",
         desc = "Workspace Diagnostics"
       },
