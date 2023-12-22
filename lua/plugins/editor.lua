@@ -316,23 +316,23 @@ return {
     end,
   },
   {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    event = "VeryLazy",
-    build = 'make',
+    "nvim-telescope/telescope.nvim",
     dependencies = {
-      "nvim-telescope/telescope.nvim",
-      opts = {
-        extensions = {
-          fzf = {
-            fuzzy = false,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = "smart_case"
-          }
-        }
-      },
+      'nvim-telescope/telescope-fzf-native.nvim',
+      build = 'make',
     },
-    config = function()
+    opts = {
+      extensions = {
+        fzf = {
+          fuzzy = false,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case"
+        }
+      }
+    },
+    config = function(_, opts)
+      require("telescope").setup(opts)
       require("telescope").load_extension("fzf")
     end
   },

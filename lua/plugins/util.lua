@@ -109,7 +109,7 @@ return {
     end
   },
   {
-    "telescope.nvim",
+    "nvim-telescope/telescope.nvim",
     dependencies = {
       {
         "ahmedkhalf/project.nvim",
