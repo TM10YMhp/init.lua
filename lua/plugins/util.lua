@@ -1,4 +1,158 @@
+local utils = require("tm10ymhp.utils")
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "svelte",
+  },
+  callback = function()
+    vim.defer_fn(function()
+      require("lazy").load({
+        plugins = { "nvim-lint" },
+      })
+    end, 1)
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "css",
+    "scss",
+    "less",
+    "html",
+    "json",
+    "jsonc",
+    "yaml",
+    "markdown",
+    "graphql",
+    "handlebars",
+    "astro",
+  },
+  callback = function()
+    vim.defer_fn(function()
+      require("lazy").load({
+        plugins = { "conform.nvim" },
+      })
+    end, 1)
+  end,
+})
+
 return {
+  {
+    "stevearc/conform.nvim",
+    -- event = "BufWritePre",
+    cmd = "ConformInfo",
+    dependencies = { "williamboman/mason.nvim" },
+    keys = {
+      {
+        "<leader>cF",
+        function()
+          require("conform").format({
+            lsp_fallback = false,
+            async = false,
+            timeout_ms = 1000
+          })
+        end,
+        mode = { "n", "x" },
+        desc = "Conform: Format"
+      },
+      {
+        "<leader>uf",
+        function()
+          if vim.g.disable_autoformat then
+            vim.g.disable_autoformat = false
+            utils.notify("Autoformat enabled")
+          else
+            vim.g.disable_autoformat = true
+            utils.notify("Autoformat disabled")
+          end
+        end,
+        desc = "Toggle Format On Save"
+      }
+    },
+    opts = {
+      formatters_by_ft = {
+        javascript      = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescript      = { "prettier" },
+        typescriptreact = { "prettier" },
+        vue             = { "prettier" },
+        css             = { "prettier" },
+        scss            = { "prettier" },
+        less            = { "prettier" },
+        html            = { "prettier" },
+        json            = { "prettier" },
+        jsonc           = { "prettier" },
+        yaml            = { "prettier" },
+        markdown        = { "prettier" },
+        graphql         = { "prettier" },
+        handlebars      = { "prettier" },
+        astro           = { "prettier" },
+      },
+      format_on_save = function(bufnr)
+        if vim.g.disable_autoformat then
+          return
+        end
+
+        -- Disable autoformat for files in a certain path
+        local bufname = vim.api.nvim_buf_get_name(bufnr)
+        if bufname:match("/node_modules/") then
+          return
+        end
+
+        return {
+          lsp_fallback = false,
+          async = false,
+          timeout_ms = 1000
+        }
+      end,
+    }
+  },
+  {
+    "mfussenegger/nvim-lint",
+    dependencies = {
+      "ahmedkhalf/project.nvim",
+      "williamboman/mason.nvim",
+    },
+    keys = {
+      {
+        "<leader>cl",
+        function() require("lint").try_lint() end,
+        desc = "Lint",
+      },
+    },
+    config = function()
+      require("lint").linters_by_ft = {
+        javascript      = { "eslint_d" },
+        typescript      = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+        svelte          = { "eslint_d" },
+      }
+
+      vim.api.nvim_create_autocmd({
+        "BufEnter",
+        "BufWritePost",
+        -- "InsertLeave",
+        -- "TextChanged",
+      }, {
+          group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+          callback = function()
+            require("lint").try_lint()
+          end
+        })
+
+      require("lint").try_lint()
+    end
+  },
   {
     "telescope.nvim",
     dependencies = {
