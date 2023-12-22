@@ -80,7 +80,7 @@ vim.keymap.set('n', '<leader>bb',
   { desc = "Switch to Other Buffer" }
 )
 --- Delete Buffer
-vim.keymap.set('n', '<leader>bq', '<cmd>bd<cr>', {
+vim.keymap.set('n', '<leader>bd', '<cmd>bd<cr>', {
   desc = "Delete Buffer"
 })
 vim.keymap.set('n', '<leader>ba', '<cmd>silent! %bd<cr>', {
@@ -94,7 +94,7 @@ vim.keymap.set('n', '<leader>br', '<cmd>e<cr>', {
   desc = "Reopen Buffer"
 })
 --- Wipeout Buffer
-vim.keymap.set('n', '<leader>bQ', '<cmd>bw<cr>', {
+vim.keymap.set('n', '<leader>bD', '<cmd>bw<cr>', {
   desc = "Wipeout Buffer"
 })
 vim.keymap.set('n', '<leader>bA', '<cmd>silent! %bw<cr>', {
@@ -155,12 +155,12 @@ vim.keymap.set('n', '<tab>', '<cmd>bn<cr>', {
 })
 
 -- Tabs
-vim.keymap.set('n', '<leader><s-tab>', '<cmd>tabprevious<cr>', {
-  desc = "Prev tab"
-})
-vim.keymap.set('n', '<leader><tab>', '<cmd>tabnext<cr>', {
-  desc = "Next tab"
-})
+vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+vim.keymap.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+vim.keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- Substitute
 vim.keymap.set('n', [[\\]], [[:%s///gc<left><left><left>]], {
