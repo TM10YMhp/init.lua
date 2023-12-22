@@ -1,50 +1,5 @@
 local utils = require("tm10ymhp.utils")
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-    "svelte",
-  },
-  callback = function()
-    vim.defer_fn(function()
-      require("lazy").load({
-        plugins = { "nvim-lint" },
-      })
-    end, 1)
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "css",
-    "scss",
-    "less",
-    "html",
-    "json",
-    "jsonc",
-    "yaml",
-    "markdown",
-    "graphql",
-    "handlebars",
-    "astro",
-  },
-  callback = function()
-    vim.defer_fn(function()
-      require("lazy").load({
-        plugins = { "conform.nvim" },
-      })
-    end, 1)
-  end,
-})
-
 return {
   {
     "stevearc/conform.nvim",

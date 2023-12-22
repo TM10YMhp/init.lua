@@ -46,6 +46,7 @@ require("lazy").setup({
       },
     },
   },
+  throttle = 1000,
   checker = {
     enable = false,
   },
@@ -70,4 +71,51 @@ require("lazy").setup({
       },
     },
   },
+})
+
+-- nvim-lint
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "svelte",
+  },
+  callback = function()
+    vim.defer_fn(function()
+      require("lazy").load({
+        plugins = { "nvim-lint" },
+      })
+    end, 1)
+  end,
+})
+
+-- conform.nvim
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "css",
+    "scss",
+    "less",
+    "html",
+    "json",
+    "jsonc",
+    "yaml",
+    "markdown",
+    "graphql",
+    "handlebars",
+    "astro",
+  },
+  callback = function()
+    vim.defer_fn(function()
+      require("lazy").load({
+        plugins = { "conform.nvim" },
+      })
+    end, 1)
+  end,
 })
