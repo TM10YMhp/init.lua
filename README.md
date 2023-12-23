@@ -28,17 +28,17 @@ Si encuentra algun problema o tiene alguna sugerencia, por favor abre un issue y
 
 ## ⚡️ Requisitos previos
 
-- Neovim >= 0.10.0 (debe construirse con LuaJIT)
-- Git >= 2.19.0 (para soporte de clones parciales)
-- [ripgrep](https://github.com/BurntSushi/ripgrep) >= 13.0.0
-- Node >= 20.10.0
-- Curl >= 8.4.0
-- Un compilador de C para `nvim-treesitter`. Mira [aquí](https://github.com/nvim-treesitter/nvim-treesitter#requirements)
-
-#### Opcional
-
-- [jq](https://github.com/jqlang/jq)
-- [tidy](https://github.com/htacg/tidy-html5)
+- neovim >= 0.10.0 (debe construirse con LuaJIT)
+- git >= 2.19.0 (para soporte de clones parciales)
+- node >= 20.10.0
+- curl >= 8.4.0
+- un compilador **C** para `nvim-treesitter`. Mira [aquí](https://github.com/nvim-treesitter/nvim-treesitter#requirements)
+- para `telescope.nvim`
+  - [ripgrep](https://github.com/BurntSushi/ripgrep) >= 13.0.0
+  - [make]() para `telescope-fzf-native.nvim`. Mira [aqui]()
+- para `rest.nvim` **(opcional)**
+  - [jq](https://github.com/jqlang/jq)
+  - [tidy](https://github.com/htacg/tidy-html5)
 
 ## 🚀 Empezando
 
