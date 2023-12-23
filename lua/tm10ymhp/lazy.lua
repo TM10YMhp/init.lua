@@ -14,7 +14,31 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   defaults = { lazy = true },
   spec = {
-    { import = "tm10ymhp.plug" },
+    {
+      require("plugins"),
+      require("plugins.coding"),
+      require("plugins.colorscheme"),
+      require("plugins.editor"),
+      require("plugins.extras"),
+      require("plugins.lsp"),
+      require("plugins.treesitter"),
+      require("plugins.ui"),
+      require("plugins.util"),
+
+      require("plugins.codeium"),
+      require("plugins.coding"),
+      require("plugins.comment"),
+      require("plugins.diffview"),
+      require("plugins.floaterm"),
+      require("plugins.gitsigns"),
+      require("plugins.luasnip"),
+      require("plugins.mini_files"),
+      require("plugins.nvim_surround"),
+      require("plugins.nvim_tree"),
+      require("plugins.obsidian"),
+      require("plugins.telescope"),
+      require("plugins.treesitter"),
+    },
   },
   dev = { path = "~/projects" },
   ui = {
