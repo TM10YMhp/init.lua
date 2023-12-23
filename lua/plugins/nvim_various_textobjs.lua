@@ -81,7 +81,4 @@ return {
 
     return mappings
   end,
-  config = function()
-    require("various-textobjs").setup({})
-  end
 }
