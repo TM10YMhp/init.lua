@@ -2,9 +2,7 @@ local obsidian_dir = "~/vaults/notes_md"
 
 return {
   "epwalsh/obsidian.nvim",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
+  dependencies = { "nvim-lua/plenary.nvim" },
   keys = {
     { "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Quick Switch" },
     { "<leader>on", "<cmd>e "..obsidian_dir.."<cr>", desc = "Obsidian Directory" },
