@@ -21,10 +21,11 @@ return {
     }
 
     vim.api.nvim_create_autocmd({
-      "BufEnter",
+      -- "BufEnter",
+      "BufReadPost",
       "BufWritePost",
-      -- "InsertLeave",
-      -- "TextChanged",
+      "InsertLeave",
+      "TextChanged",
     }, {
         group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
         callback = function()
