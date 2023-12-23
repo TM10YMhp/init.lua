@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   defaults = { lazy = true },
   spec = {
-    { import = "plugins" },
+    { import = "tm10ymhp.plug" },
   },
   dev = { path = "~/projects" },
   ui = {
