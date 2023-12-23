@@ -71,7 +71,7 @@ return {
     },
     {
       '<leader>lwl',
-      function() vim.print(vim.lsp.buf.list_workspace_folders()) end,
+      '<cmd>lua vim.print(vim.lsp.buf.list_workspace_folders())<cr>',
       desc = 'LSP: List Workspace Folders',
     },
     {
