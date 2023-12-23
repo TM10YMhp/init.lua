@@ -1,22 +1,16 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  -- event = "VeryLazy",
   event = function()
     local bufname = vim.api.nvim_buf_get_name(0)
     if vim.fn.isdirectory(bufname) == 1 then
       -- api.tree.open({ path = bufname })
       return {"BufEnter"}
     end
-    -- return {"VeryLazy"}
   end,
   keys = {
-    {
-      '<leader>e',
-      '<cmd>NvimTreeFindFileToggle!<cr>',
-      desc = 'Explorer'
-    }
+    { '<leader>e', '<cmd>NvimTreeFindFileToggle!<cr>', desc = 'Explorer' }
   },
-  config = function ()
+  opts = function ()
     local api = require('nvim-tree.api')
 
     local function on_attach(bufnr)
@@ -41,7 +35,7 @@ return {
       vim.keymap.set('n', '<S-Tab>', api.node.open.preview, opts('Open Preview'))
     end
 
-    require('nvim-tree').setup({
+    return {
       on_attach = on_attach,
       hijack_cursor = true,
       sync_root_with_cwd = true,
@@ -132,11 +126,6 @@ return {
           close_window = true
         }
       }
-    })
-    --
-    -- local bufname = vim.api.nvim_buf_get_name(0)
-    -- if vim.fn.isdirectory(bufname) == 1 then
-    --   api.tree.open({ path = bufname })
-    -- end
+    }
   end
 }
