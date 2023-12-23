@@ -116,13 +116,19 @@ return {
           mappings = {
             i = {
               ["<C-p>"] = action_layout.toggle_preview,
-              ["<M-q>"] = open_selected
+              ["<M-q>"] = open_selected,
+              ["<C-Down>"] = require('telescope.actions').cycle_history_next,
+              ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
             },
             n = {
               ["<C-p>"] = action_layout.toggle_preview,
-              ["<M-q>"] = open_selected
+              ["<M-q>"] = open_selected,
             }
           },
+          history = {
+            limit = 100,
+            cycle_wrap = true,
+          }
         },
         pickers = {
           find_files = { hidden = true },
