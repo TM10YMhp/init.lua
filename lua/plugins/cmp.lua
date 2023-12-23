@@ -26,8 +26,6 @@ local kind_icons = {
   TypeParameter = 'P',
 }
 
-local utils = require("tm10ymhp.utils")
-
 return {
   {
     "hrsh7th/cmp-nvim-lsp",
@@ -159,41 +157,4 @@ return {
       }
     end
   },
-  {
-    "echasnovski/mini.ai",
-    keys = {
-      { "a", mode = { "o", "x" }, desc = "Around textobject" },
-      { "i", mode = { "o", "x" }, desc = "Inside textobject" },
-    },
-    opts = {
-      mappings = {
-        around_next = '',
-        inside_next = '',
-        around_last = '',
-        inside_last = '',
-        goto_left = '',
-        goto_right = '',
-      },
-      n_lines = 500
-    }
-  },
-  {
-    "echasnovski/mini.completion",
-    event = "InsertEnter",
-    opts = {
-      delay = { completion = 1000 * 60 * 5 },
-      window = {
-        info = { border = "single" },
-        signature = { border = "single" },
-      },
-      lsp_completion = {
-        auto_setup = false,
-      },
-      mappings = {
-        force_twostep = "",
-        force_fallback = "",
-      },
-      set_vim_settings = false
-    },
-  }
 }

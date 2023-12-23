@@ -1,3 +1,5 @@
+local utils = require("tm10ymhp.utils")
+
 return {
   "Exafunction/codeium.vim",
   -- event = "VeryLazy", -- Await Auth
