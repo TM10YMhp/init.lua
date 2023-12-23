@@ -1,29 +1,35 @@
 return {
   "kevinhwang91/nvim-ufo",
-  dependencies = {
-    "kevinhwang91/promise-async",
-    {
-      "luukvbaal/statuscol.nvim",
-      config = function()
-        local builtin = require("statuscol.builtin")
-        require("statuscol").setup({
-          -- relculright = true,
-          segments = {
-            { text = { builtin.foldfunc } },
-            { text = { "%s" } },
-            { text = { builtin.lnumfunc, " " } },
-          }
-        })
-      end
-    }
-  },
+  dependencies = { "kevinhwang91/promise-async" },
   event = "VeryLazy",
-  config = function()
-    vim.o.foldcolumn = '1'
-    vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-    vim.o.foldlevelstart = 99
-    vim.o.foldenable = true
-
+  keys = {
+    {
+      'zR',
+      "<cmd>lua require('ufo').openAllFolds()<cr>",
+      desc = "Open all folds",
+    },
+    {
+      'zM',
+      "<cmd>lua require('ufo').closeAllFolds()<cr>",
+      desc = "Close all folds",
+    },
+    {
+      'zr',
+      "<cmd>lua require('ufo').openFoldsExceptKinds()<cr>",
+      desc = "Open folds except kinds",
+    },
+    {
+      'zm',
+      "<cmd>lua require('ufo').closeFoldsWith()<cr>",
+      desc = "Close folds with",
+    },
+    {
+      'zK',
+      "<cmd>lua require('ufo').peekFoldedLinesUnderCursor()<cr>",
+      desc = "Peek folds under cursor",
+    },
+  },
+  opts = function()
     local handler = function(virtText, lnum, endLnum, width, truncate)
       local newVirtText = {}
       local suffix = (' ... (%d) '):format(endLnum - lnum)
@@ -52,7 +58,7 @@ return {
       return newVirtText
     end
 
-    require('ufo').setup({
+    return {
       open_fold_hl_timeout = 0,
       -- provider_selector = function(bufnr, filetype, buftype)
       --   return {'treesitter', 'indent'}
@@ -60,8 +66,8 @@ return {
       fold_virt_text_handler = handler,
       preview = {
         win_config = {
-          border = "single",
-          -- border = { "", "─", "", "", "", "─", "", "" },
+          -- border = "single",
+          border = { "", "─", "", "", "", "─", "", "" },
           winblend = 0,
         },
         mappings = {
@@ -73,12 +79,6 @@ return {
           jumpBot = 'G'
         }
       }
-    })
-
-    vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-    vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-    vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
-    vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
-    vim.keymap.set('n', 'zK', require('ufo').peekFoldedLinesUnderCursor)
-  end
+    }
+  end,
 }

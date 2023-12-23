@@ -23,6 +23,7 @@ require("lazy").setup({
     require("plugins.extras.obsidian"),
     require("plugins.extras.project"),
     require("plugins.extras.rest"),
+    require("plugins.extras.statuscol"),
 
     require("plugins.cmp"),
     require("plugins.colorscheme"),

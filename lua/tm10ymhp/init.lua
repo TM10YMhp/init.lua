@@ -71,3 +71,9 @@ vim.g.floaterm_autohide = 2
 
 -- nvim-ts-context-commentstring
 vim.g.skip_ts_context_commentstring_module = true
+
+-- nvim-ufo
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
