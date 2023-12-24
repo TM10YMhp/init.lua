@@ -18,7 +18,15 @@ return {
       ignore_whitespace = false,
       virt_text_priority = 100,
     },
-    preview_config = { row = 1 }
+    preview_config = {
+      border = "single",
+      row = 1,
+      col = 1,
+      style = "minimal",
+      relative = "cursor",
+      width = 80,
+      height = 40,
+    }
   },
   keys = {
     {
