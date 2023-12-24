@@ -9,7 +9,10 @@ return {
       segments = {
         { text = { builtin.foldfunc } },
         { text = { "%s" } },
-        { text = { builtin.lnumfunc, " " } },
+        {
+          text = { builtin.lnumfunc, " " },
+          condition = { true, builtin.not_empty },
+        },
       }
     }
   end
