@@ -145,6 +145,9 @@ vim.keymap.set('n', '<leader>ul', '<cmd>Lazy<cr>', {
 vim.keymap.set('n', '<leader>um', '<cmd>Mason<cr>', {
   desc = "Mason"
 })
+vim.keymap.set('n', '<leader>ui', vim.show_pos, {
+  desc = "Inspect pos"
+})
 
 -- Buffers
 vim.keymap.set('n', '<s-tab>', '<cmd>bp<cr>', {
