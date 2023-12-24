@@ -1,19 +1,26 @@
 return {
-  "luukvbaal/statuscol.nvim",
-  event = "VeryLazy",
-  opts = function()
-    local builtin = require("statuscol.builtin")
+  {
+    "luukvbaal/statuscol.nvim",
+    event = "VeryLazy",
+    opts = function()
+      local builtin = require("statuscol.builtin")
 
-    return {
-      -- relculright = true,
-      segments = {
-        { text = { builtin.foldfunc } },
-        { text = { "%s" } },
-        {
-          text = { builtin.lnumfunc, " " },
-          condition = { true, builtin.not_empty },
-        },
+      return {
+        -- relculright = true,
+        segments = {
+          { text = { builtin.foldfunc } },
+          { text = { "%s" } },
+          {
+            text = { builtin.lnumfunc, " " },
+            condition = { true, builtin.not_empty },
+          },
+        }
       }
-    }
-  end
+    end
+  },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "luukvbaal/statuscol.nvim" },
+    optional = true,
+  }
 }
