@@ -28,8 +28,13 @@ return {
       },
       sync_install = true, -- async cpu cost
       auto_install = false,
-      highlight = { enable = true },
-      indent = { enable = true },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+      indent = {
+        enable = true,
+      },
     },
     config = function(_, opts)
       require('nvim-treesitter.install').prefer_git = false
