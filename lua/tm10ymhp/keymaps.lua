@@ -209,3 +209,32 @@ vim.keymap.set(
   ":<c-u>norm! `[v`]<cr>",
   { desc = "inner paste textobj" }
 )
+
+-- Insert
+vim.keymap.set(
+  "n",
+  "<leader>iD",
+  function()
+    local date = os.date("%y.%m%d.%H%M")
+    vim.api.nvim_put({ date }, "", true, true)
+  end,
+  { desc = "Insert custom date" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>id",
+  function()
+    local date = os.date("%Y-%m-%d")
+    vim.api.nvim_put({ date }, "", true, true)
+  end,
+  { desc = "Insert date" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>it",
+  function()
+    local date = os.date("%H:%M:%S")
+    vim.api.nvim_put({ date }, "", true, true)
+  end,
+  { desc = "Insert time" }
+)

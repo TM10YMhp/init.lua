@@ -14,18 +14,6 @@ return {
     end
   },
   {
-    "folke/tokyonight.nvim",
-    event = "VeryLazy",
-    opts = {
-      transparent = true,
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-        sidebars = "transparent"
-      }
-    }
-  },
-  {
     "Mofiqul/vscode.nvim",
     event = "VeryLazy",
     opts = {
@@ -46,17 +34,5 @@ return {
     config = function(_, opts)
       require("rose-pine").setup(opts)
     end
-  },
-  {
-    "craftzdog/solarized-osaka.nvim",
-    event = "VeryLazy",
-    opts = {
-      transparent = true,
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-        sidebars = "transparent"
-      }
-    }
   },
 }
