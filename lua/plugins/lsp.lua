@@ -49,6 +49,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       config = true
     },
+    "b0o/SchemaStore.nvim"
   },
   keys = {
     { 'K', vim.lsp.buf.hover, desc = 'LSP: Hover' },

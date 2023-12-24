@@ -29,7 +29,6 @@ return {
       },
       { "<leader>uC", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme with preview" },
       { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
-
       { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
       { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
       { "<leader>cd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definitions" },
@@ -37,6 +36,8 @@ return {
       { "<leader>sR", "<cmd>Telescope lsp_references<cr>", desc = "Goto References" },
       { "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Goto Symbols" },
       { "<leader>sS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Goto Symbols (workspace)" },
+      { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
+      { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
     },
     opts = function()
       local actions = require("telescope.actions")
