@@ -213,7 +213,7 @@ vim.keymap.set(
 -- Insert
 vim.keymap.set(
   "n",
-  "<leader>iD",
+  "<leader>ic",
   function()
     local date = os.date("%y.%m%d.%H%M")
     vim.api.nvim_put({ date }, "", true, true)
