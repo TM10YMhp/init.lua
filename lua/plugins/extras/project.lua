@@ -15,7 +15,6 @@ return {
 
         vim.cmd("ProjectRoot")
 
-        pcall(require, 'notify')
         require("tm10ymhp.utils").notify("project.nvim loaded")
 
         vim.api.nvim_create_autocmd("User", {
