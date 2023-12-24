@@ -1,5 +1,9 @@
 return {
   {
+    "dstein64/vim-startuptime",
+    cmd = "StartupTime",
+  },
+  {
     "romainl/vim-cool",
     event = "VeryLazy",
     config = function()

@@ -41,13 +41,13 @@ return {
       subdir = "templates",
       substitutions = {
         ["date:YY\\wWW"] = function()
-          return os.date("%yw%W", os.time())
+          return os.date("%yw%W")
         end,
         ["date:YY.MMDD"] = function()
-          return os.date("%y.%m%d", os.time())
+          return os.date("%y.%m%d")
         end,
         ["time:HHmm|ss"] = function()
-          return os.date("%H%M|%S", os.time())
+          return os.date("%H%M|%S")
         end,
       }
     },
