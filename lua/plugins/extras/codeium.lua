@@ -1,5 +1,3 @@
-local utils = require("tm10ymhp.utils")
-
 return {
   "Exafunction/codeium.vim",
   -- event = "VeryLazy", -- Await Auth
@@ -43,10 +41,10 @@ return {
       function()
         if vim.g.codeium_enabled then
           vim.g.codeium_enabled = false
-          utils.notify("Codeium disabled")
+          require("tm10ymhp.utils").notify("Codeium disabled")
         else
           vim.g.codeium_enabled = true
-          utils.notify("Codeium enabled")
+          require("tm10ymhp.utils").notify("Codeium enabled")
         end
       end,
       desc = "Toggle Codeium"

@@ -1,5 +1,3 @@
-local utils = require("tm10ymhp.utils")
-
 return {
   "neovim/nvim-lspconfig",
   -- event = "VeryLazy",
@@ -78,7 +76,7 @@ return {
     {
       '<leader>lr',
       function()
-        utils.notify('LSP: Restart')
+        require("tm10ymhp.utils").notify('LSP: Restart')
         vim.diagnostic.reset()
         vim.cmd("LspRestart")
       end,
@@ -87,7 +85,7 @@ return {
     {
       '<leader>lq',
       function()
-        utils.notify('LSP: Stop')
+        require("tm10ymhp.utils").notify('LSP: Stop')
         vim.diagnostic.reset()
         vim.cmd("LspStop")
       end,
@@ -96,7 +94,7 @@ return {
     {
       '<leader>ls',
       function()
-        utils.notify('LSP: Start')
+        require("tm10ymhp.utils").notify('LSP: Start')
         vim.cmd("LspStart")
       end,
       desc = 'LSP: Start',

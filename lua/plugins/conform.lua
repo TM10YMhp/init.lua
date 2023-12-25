@@ -1,5 +1,3 @@
-local utils = require("tm10ymhp.utils")
-
 return {
   "stevearc/conform.nvim",
   -- event = "BufWritePre",
@@ -23,10 +21,10 @@ return {
       function()
         if vim.g.disable_autoformat then
           vim.g.disable_autoformat = false
-          utils.notify("Autoformat enabled")
+          require("tm10ymhp.utils").notify("Autoformat enabled")
         else
           vim.g.disable_autoformat = true
-          utils.notify("Autoformat disabled")
+          require("tm10ymhp.utils").notify("Autoformat disabled")
         end
       end,
       desc = "Toggle Format On Save"
