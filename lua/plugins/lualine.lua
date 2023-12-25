@@ -2,69 +2,7 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function()
-    local template_diagnostic = function(sources)
-      return {
-        'diagnostics',
-        sources = { sources },
-        fmt = function(str) return str:gsub(':', '') end
-      }
-    end
-
-    local winbar_config = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = {
-        template_diagnostic('nvim_diagnostic'),
-        {
-          function()
-            local data = ''
-            local symbol = vim.bo.modified and '* ' or '> '
-
-            if vim.api.nvim_buf_get_option(0, 'buftype') == '' then
-              data = vim.fn.expand('%:~:.') or '[No Name]'
-            else
-              data = vim.fn.expand('%:t')
-            end
-
-            if data == '' then
-              data = '[No Name]'
-            end
-
-            return symbol..data
-          end,
-          padding = 0,
-          color = "Normal"
-        }
-      },
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {}
-    }
-
-    local function lsp_client_names()
-      local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-      local clients = vim.lsp.get_active_clients()
-
-      if next(clients) == nil then
-        return buf_ft
-      end
-      return '['..#clients..']'..buf_ft
-    end
-
-    local filesize = {
-      'filesize',
-      fmt = function(str) return str.upper(str) end
-    }
-
-    local function cursor_position()
-      if
-        vim.fn.getfsize(vim.fn.expand('%')) > 1024 * 1024
-      then
-        return "File too long"
-      else
-        return '%l:%v|%{virtcol("$")-1}'
-      end
-    end
+    local Util = require("tm10ymhp.lualine")
 
     return {
       options = {
@@ -83,7 +21,7 @@ return {
           { 'mode', fmt = function(str) return str:sub(1,1) end }
         },
         lualine_b = { 'b:gitsigns_head' },
-        lualine_c = { cursor_position },
+        lualine_c = { Util.cursor_position },
         lualine_x = {
           {
             'diff',
@@ -98,24 +36,24 @@ return {
               end
             end
           },
-          template_diagnostic('nvim_workspace_diagnostic'),
+          Util.template_diagnostic('nvim_workspace_diagnostic'),
           'o:encoding',
           'o:fileformat',
-          lsp_client_names
+          Util.lsp_client_names
         },
-        lualine_y = { filesize },
+        lualine_y = { Util.filesize },
         lualine_z = {'%L'},
       },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { cursor_position },
-        lualine_x = { filesize },
+        lualine_c = { Util.cursor_position },
+        lualine_x = { Util.filesize },
         lualine_y = {'%L'},
         lualine_z = {},
       },
-      winbar = winbar_config,
-      inactive_winbar = winbar_config
+      winbar = Util.winbar_config,
+      inactive_winbar = Util.winbar_config
     }
   end
 }
