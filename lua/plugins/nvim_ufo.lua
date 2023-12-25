@@ -66,8 +66,8 @@ return {
       fold_virt_text_handler = handler,
       preview = {
         win_config = {
-          -- border = "single",
-          border = { "", "─", "", "", "", "─", "", "" },
+          border = "single",
+          -- border = { "", "─", "", "", "", "─", "", "" },
           winblend = 0,
         },
         mappings = {
