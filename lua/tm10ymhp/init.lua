@@ -1,5 +1,3 @@
-local config_path = vim.fn.stdpath("config") .. "/lua/styles/"
-
 -- tm10ymhp
 vim.g.mapleader = ","
 
@@ -45,6 +43,8 @@ vim.filetype.add({
 })
 
 -- markdown_preview.nvim
+local config_path = vim.fn.stdpath("config") .. "/lua/styles/"
+
 vim.g.mkdp_auto_start = 0
 vim.g.mkdp_auto_close = 0
 vim.g.mkdp_echo_preview_url = 1
@@ -71,12 +71,6 @@ vim.g.floaterm_autohide = 2
 
 -- nvim-ts-context-commentstring
 vim.g.skip_ts_context_commentstring_module = true
-
--- nvim-ufo
-vim.o.foldcolumn = '1'
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
 
 -- flog
 vim.g.flog_default_opts = {
