@@ -1,5 +1,3 @@
-vim.cmd("autocmd!")
-
 local utils = require('tm10ymhp.utils')
 
 local augroup = vim.api.nvim_create_augroup('tm10ymhp', { clear = true })

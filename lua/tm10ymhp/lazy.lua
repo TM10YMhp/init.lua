@@ -106,18 +106,31 @@ require("lazy").setup({
   },
 })
 
+-- autocmds can be loaded lazily when not opening a file
+local lazy_autocmds = vim.fn.argc(-1) == 0
+if not lazy_autocmds then
+  require('tm10ymhp.autocmds')
+end
+
 -- startuptime
 vim.api.nvim_create_autocmd("User", {
   once = true,
-  pattern = "LazyVimStarted",
+  pattern = "VeryLazy",
   callback = function()
+    if lazy_autocmds then
+      require('tm10ymhp.autocmds')
+    end
+
+    require('tm10ymhp.keymaps')
+
     local stats = require("lazy").stats()
     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
     require("tm10ymhp.utils").notify(
-      "Neovim loaded "..stats.count.." plugins in "..ms.."ms"
+      "lazy.nvim loaded "..stats.loaded.."/"..stats.count.." plugins in "..ms.."ms"
     )
   end
 })
+
 -- nvim-lint
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
