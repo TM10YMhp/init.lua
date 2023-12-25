@@ -18,12 +18,12 @@ return {
     keys = {
       {
         "<leader>gl",
-        "<cmd>Flogsplit<cr>",
+        "<cmd>botright Flogsplit<cr>",
         desc = "Git Log",
       },
       {
         "<leader>gL",
-        "<cmd>Flogsplit -raw-args=--follow -path=%<cr>",
+        "<cmd>botright Flogsplit -raw-args=--follow -path=%<cr>",
         desc = "Git Log Curent File",
       },
     },

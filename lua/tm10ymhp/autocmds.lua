@@ -73,6 +73,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup,
+  pattern = { "qf" },
+  desc = "Open qf in vertical split",
+  command = "wincmd J",
+})
+
 local function augroup_create(name)
   return vim.api.nvim_create_augroup("tm10ymhp_" .. name, { clear = true })
 end
