@@ -7,11 +7,20 @@ return {
   },
   opts = {
     lsp = {
+      progress = {
+        throttle = 1000,
+      },
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true,
       },
+      signature = {
+        enabled = false,
+      },
+      hover = {
+        silent = true,
+      }
     },
     presets = {
       bottom_search = true,
@@ -20,9 +29,19 @@ return {
       inc_rename = true,
     },
     views = {
+      hover = {
+        border = {
+          style = "single",
+          padding = { 0, 0 },
+        },
+        position = {
+          row = 2,
+          col = 2,
+        }
+      },
       popupmenu = {
         border = {
-          padding = { 0, 1 },
+          padding = { 0, 0 },
         },
       },
       cmdline_popupmenu = {
@@ -30,6 +49,7 @@ return {
         zindex = 200,
         border = {
           style = "single",
+          padding = { 0, 0 },
         },
       },
       cmdline_output = {
@@ -44,7 +64,7 @@ return {
       cmdline_popup = {
         border = {
           style = "single",
-          padding = { 0, 1 },
+          padding = { 0, 0 },
         },
       },
       confirm = {
@@ -52,6 +72,18 @@ return {
           style = "single",
         },
       },
+      mini = {
+        position = {
+          row = -2,
+          col = 0
+        },
+        border = {
+          style = "single"
+        },
+        win_options = {
+          winblend = 0
+        }
+      }
     },
     cmdline = {
       format = {
