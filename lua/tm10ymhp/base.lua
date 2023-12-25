@@ -8,6 +8,8 @@ vim.opt.shortmess:append("IsWcC")
 -- vim.opt.shada = "'20,<50,s10,rdiffview:,rterm:,rgitsigns:,r/Temp/"
 vim.opt.shada = "'20,<50,s10"
 
+vim.opt.confirm = true
+
 vim.opt.iskeyword = "@,48-57,_,192-255,-"
 
 if vim.fn.has('clipboard') == 1 then
