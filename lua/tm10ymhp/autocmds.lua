@@ -45,15 +45,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup,
-  pattern = "qf",
-  desc = "Disable buflisted",
-  callback = function()
-    vim.bo.buflisted = false
-  end
-})
-
 vim.api.nvim_create_autocmd("BufEnter", {
   group = augroup,
   pattern = { "*" },
@@ -80,6 +71,49 @@ vim.api.nvim_create_autocmd("BufEnter", {
       vim.opt.eventignore = ""
     end
   end
+})
+
+local function augroup_create(name)
+  return vim.api.nvim_create_augroup("tm10ymhp_" .. name, { clear = true })
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup_create("close_with_q"),
+  pattern = {
+    "PlenaryTestPopup",
+    "help",
+    "lspinfo",
+    "man",
+    "notify",
+    "qf",
+    "query",
+    "spectre_panel",
+    "startuptime",
+    "tsplayground",
+    "neotest-output",
+    "checkhealth",
+    "neotest-summary",
+    "neotest-output-panel",
+    "floggraph",
+    "fugitive",
+  },
+  desc = "Close with q",
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  group = augroup_create("auto_create_dir"),
+  desc = "Auto create dir",
+  callback = function(event)
+    if event.match:match("^%w%w+://") then
+      return
+    end
+    local file = vim.loop.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+  end,
 })
 
 -- Determine if file is text. This is not 100% proof, but good enough.
