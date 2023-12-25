@@ -106,6 +106,18 @@ require("lazy").setup({
   },
 })
 
+-- startuptime
+vim.api.nvim_create_autocmd("User", {
+  once = true,
+  pattern = "LazyVimStarted",
+  callback = function()
+    local stats = require("lazy").stats()
+    local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+    require("tm10ymhp.utils").notify(
+      "Neovim loaded "..stats.count.." plugins in "..ms.."ms"
+    )
+  end
+})
 -- nvim-lint
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {

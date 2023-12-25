@@ -16,7 +16,6 @@ end
 function M.notify(msg, log_level, opts)
   local default_opts = { title = "TM10YMhp" }
 
-  pcall(require, 'notify')
   vim.notify(
     msg,
     log_level,
