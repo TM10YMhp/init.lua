@@ -19,6 +19,7 @@ require("lazy").setup({
     require("plugins.extras.dressing"),
     require("plugins.extras.markdown_preview"),
     require("plugins.extras.mini_files"),
+    require("plugins.extras.noice"),
     require("plugins.extras.nvim_bqf"),
     require("plugins.extras.nvim_notify"),
     require("plugins.extras.obsidian"),

@@ -46,7 +46,7 @@ return {
       })
     end,
     fps = 1,
-    top_down = false,
+    -- top_down = false,
   },
   config = function(_, opts)
     require("notify").setup(opts)
