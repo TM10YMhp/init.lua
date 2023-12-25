@@ -30,15 +30,6 @@ vim.opt.modeline = false
 vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.list = false
-vim.opt.listchars:append({
-  eol = '¬',
-  nbsp = '+',
-  space = ' ',
-  trail = '╱',
-  tab = '→ ',
-  extends = '…',
-  precedes = '…'
-})
 
 vim.opt.swapfile = false
 vim.opt.writebackup = false
