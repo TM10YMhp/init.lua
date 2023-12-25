@@ -133,7 +133,7 @@ vim.keymap.set('n', '<leader>us', '<cmd>set spell!<cr>', {
 vim.keymap.set('n', '<leader>uw', '<cmd>set wrap!<cr>', {
   desc = "Toggle Wrap Lines"
 })
-vim.keymap.set('n', '<leader>un', '<cmd>set number!<cr>', {
+vim.keymap.set('n', '<leader>uN', '<cmd>set number!<cr>', {
   desc = "Toogle Line Numbers"
 })
 vim.keymap.set("n", "<leader>uH", "<cmd>set termguicolors!<cr>", {
