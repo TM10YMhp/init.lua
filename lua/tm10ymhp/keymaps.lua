@@ -210,7 +210,10 @@ vim.keymap.set(
   { "o", "x" },
   "ip",
   ":<c-u>norm! `[v`]<cr>",
-  { desc = "inner paste textobj" }
+  {
+    desc = "inner paste textobj",
+    silent = true
+  }
 )
 
 -- Insert
