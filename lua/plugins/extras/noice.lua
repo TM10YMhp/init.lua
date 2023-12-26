@@ -1,6 +1,6 @@
 return {
   "folke/noice.nvim",
-  event = "LspAttach",
+  event = { "LspAttach", "InsertEnter" },
   dependencies = {
     "MunifTanjim/nui.nvim",
     "rcarriga/nvim-notify",
