@@ -1,10 +1,5 @@
 return {
   "voldikss/vim-floaterm",
-  init = function()
-    vim.g.floaterm_width = 0.85
-    vim.g.floaterm_height = 0.85
-    vim.g.floaterm_autohide = 2
-  end,
   keys = {
     {
       '<leader>ts',
