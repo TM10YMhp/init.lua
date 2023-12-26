@@ -18,9 +18,4 @@ return {
       }
     end
   },
-  {
-    "kevinhwang91/nvim-ufo",
-    dependencies = { "luukvbaal/statuscol.nvim" },
-    optional = true,
-  }
 }
