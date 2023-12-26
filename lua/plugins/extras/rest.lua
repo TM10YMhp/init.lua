@@ -14,6 +14,13 @@ end
 return {
   "rest-nvim/rest.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
+  init = function()
+    vim.filetype.add({
+      extension = {
+        http = "http"
+      }
+    })
+  end,
   opts = {
     result_split_horizontal = true,
     result = {
