@@ -8,7 +8,7 @@ return {
   },
   keys = {
     {
-      "<leader>fE",
+      "<leader>f",
       "<cmd>Neotree toggle<cr>",
       desc = "Explorer NeoTree",
     },

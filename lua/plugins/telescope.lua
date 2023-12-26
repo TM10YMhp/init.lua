@@ -4,9 +4,9 @@ return {
     cmd = "Telescope",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+      { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       {
-        "<leader>fF",
+        "<leader>sF",
         "<cmd>Telescope find_files cwd=%:p:h<cr>",
         desc = "Find Files (cwd)",
       },
@@ -205,21 +205,21 @@ return {
     "nvim-telescope/telescope-symbols.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
-      { "<leader>fs", "<cmd>Telescope symbols<cr>", desc = "Symbols" },
+      { "<leader>is", "<cmd>Telescope symbols<cr>", desc = "Insert Symbol" },
       {
-        "<leader>fe",
+        "<leader>ie",
         "<cmd>lua require'telescope.builtin'.symbols{sources={'emoji'}}<cr>",
-        desc = "Emoji",
+        desc = "Insert Emoji",
       },
       {
-        "<leader>fk",
+        "<leader>ik",
         "<cmd>lua require'telescope.builtin'.symbols{sources={'kaomoji'}}<cr>",
-        desc = "Kaomoji",
+        desc = "Insert Kaomoji",
       },
       {
-        "<leader>fg",
+        "<leader>ig",
         "<cmd>lua require'telescope.builtin'.symbols{sources={'gitmoji'}}<cr>",
-        desc = "Gitmoji",
+        desc = "Insert Gitmoji",
       },
     },
   },
