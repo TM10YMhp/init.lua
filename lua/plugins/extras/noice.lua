@@ -1,10 +1,7 @@
 return {
   "folke/noice.nvim",
   event = { "LspAttach", "InsertEnter" },
-  dependencies = {
-    "MunifTanjim/nui.nvim",
-    "rcarriga/nvim-notify",
-  },
+  dependencies = { "MunifTanjim/nui.nvim" },
   opts = {
     cmdline = { enabled = false },
     messages = { enabled = false },
@@ -13,7 +10,7 @@ return {
     smartmove = { enabled = false },
     lsp = {
       progress = {
-        throttle = 1000,
+        throttle = 3000,
         view = "notify"
       },
       override = {
@@ -37,7 +34,7 @@ return {
         },
       },
       spinner = {
-        name = "simpleDots"
+        name = "balloon"
       }
     },
     views = {
