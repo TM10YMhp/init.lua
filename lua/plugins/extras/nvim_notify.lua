@@ -58,7 +58,7 @@ return {
         function(state, win)
           local col = vim.opt.columns:get()
           if vim.g.neo_tree_is_open then
-            if not vim.g.neotree_win.position == "current" then
+            if not (vim.g.neotree_win.position == "current") then
               local width = vim.api.nvim_win_get_width(vim.g.neotree_win.winid)
               col = col - width - 1
             end
