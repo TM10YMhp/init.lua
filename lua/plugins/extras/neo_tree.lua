@@ -125,12 +125,10 @@ return {
       },
       filesystem = {
         hijack_netrw_behavior = "open_current",
-        use_libuv_file_watcher = false,
         filtered_items = {
           hide_dotfiles = false,
           -- hide_hidden = false,
         },
-        bind_to_cwd = false,
         follow_current_file = {
           enabled = true,
           leave_dirs_open = true,
@@ -141,6 +139,9 @@ return {
             ["F"] = "fuzzy_finder",
           }
         },
+        -- Windows fix
+        use_libuv_file_watcher = false,
+        bind_to_cwd = true,
       }
     }
   },
