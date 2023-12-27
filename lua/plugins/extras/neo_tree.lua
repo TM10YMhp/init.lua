@@ -39,6 +39,7 @@ return {
       popup_border_style = "single",
       -- enable_git_status = false,
       -- enable_diagnostics = false,
+      resize_timer_interval = -1,
       sources = {
         "filesystem",
         "buffers",
@@ -54,6 +55,7 @@ return {
           { source = "git_status", display_name = " Git " },
         },
         tabs_layout = "center",
+        separator = "|",
       },
       -- open_files_do_not_replace_types = {
       --   "terminal",
@@ -120,15 +122,21 @@ return {
         width = 35,
       },
       filesystem = {
+        use_libuv_file_watcher = false,
         filtered_items = {
           hide_dotfiles = false,
-          hide_hidden = false,
+          -- hide_hidden = false,
         },
         bind_to_cwd = false,
         follow_current_file = {
-          enabled = true
+          enabled = true,
+          leave_dirs_open = true,
         },
-        -- use_libuv_file_watcher = true -- broken in Windows
+        window = {
+          mappings = {
+            ["/"] = "none",
+          }
+        },
       }
     }
   },
