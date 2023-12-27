@@ -24,8 +24,6 @@ return {
       col = 1,
       style = "minimal",
       relative = "cursor",
-      width = 80,
-      height = 40,
     }
   },
   keys = {

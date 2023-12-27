@@ -26,7 +26,6 @@ require("lazy").setup({
     require("plugins.init"),
     require("plugins.lsp"),
     require("plugins.lualine"),
-    require("plugins.luasnip"),
     require("plugins.mini"),
     require("plugins.nvim_lint"),
     require("plugins.nvim_surround"),
@@ -36,6 +35,7 @@ require("lazy").setup({
     require("plugins.telescope"),
     require("plugins.treesitter"),
     require("plugins.trouble"),
+    --require("plugins.extras"),
 
     require("plugins.extras.cloak"),
     require("plugins.extras.codeium"),
@@ -49,7 +49,6 @@ require("lazy").setup({
     require("plugins.extras.obsidian"),
     require("plugins.extras.project"),
     require("plugins.extras.rest"),
-    require("plugins.extras.statuscol"),
   },
   dev = { path = "~/projects" },
   ui = {
