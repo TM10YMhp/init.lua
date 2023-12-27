@@ -39,6 +39,7 @@ return {
       popup_border_style = "single",
       -- enable_git_status = false,
       -- enable_diagnostics = false,
+      -- use_popups_for_input = false,
       resize_timer_interval = -1,
       sources = {
         "filesystem",

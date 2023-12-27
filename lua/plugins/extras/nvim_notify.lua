@@ -58,10 +58,26 @@ return {
         local col = vim.opt.columns:get()
         if
           vim.bo.filetype == "neo-tree" or
-          vim.bo.filetype == "neo-tree-popup" and
-          vim.api.nvim_win_get_width(0) < col
+          vim.bo.filetype == "neo-tree-popup"
         then
-          col = 0
+          if vim.api.nvim_win_get_position(0)[2] > 1 then
+            local neotree_width = vim.api.nvim_win_get_width(0)
+            local max_width = math.floor(vim.o.columns * 0.75)
+            local bottom = vim.opt.lines:get()
+              - (vim.opt.cmdheight:get() + (vim.opt.laststatus:get() > 0 and 1 or 0))
+            if neotree_width < max_width and vim.bo.filetype == "neo-tree-popup" then
+              if (bottom - 2) == vim.api.nvim_win_get_position(0)[1] then
+                col = col - neotree_width - 1
+                print("BOT")
+              else
+                col = col - 5
+                print("NOT")
+              end
+              vim.print({ bottom - 2, vim.api.nvim_win_get_position(0)[1] })
+            else
+              col = col - neotree_width - 1
+            end
+          end
         end
 
         local row = require("notify.stages.util").slot_after_previous(
@@ -88,7 +104,7 @@ return {
         priority = 50,
       })
     end,
-    -- fps = 2,
+    fps = 3,
     -- top_down = false,
   },
   config = function(_, opts)
