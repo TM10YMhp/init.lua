@@ -1,12 +1,12 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  event = function()
-    local bufname = vim.api.nvim_buf_get_name(0)
-    if vim.fn.isdirectory(bufname) == 1 then
-      -- api.tree.open({ path = bufname })
-      return {"BufEnter"}
-    end
-  end,
+  -- event = function()
+  --   local bufname = vim.api.nvim_buf_get_name(0)
+  --   if vim.fn.isdirectory(bufname) == 1 then
+  --     -- api.tree.open({ path = bufname })
+  --     return {"BufEnter"}
+  --   end
+  -- end,
   keys = {
     { '<leader>et', '<cmd>NvimTreeFindFileToggle!<cr>', desc = 'Explorer' }
   },

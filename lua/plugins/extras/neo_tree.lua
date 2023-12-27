@@ -3,12 +3,12 @@ return {
     'nvim-neo-tree/neo-tree.nvim',
     cmd = "Neotree",
     branch = "v3.x",
-    -- event = function()
-    --   local bufname = vim.api.nvim_buf_get_name(0)
-    --   if vim.fn.isdirectory(bufname) == 1 then
-    --     return { "BufEnter" }
-    --   end
-    -- end,
+    event = function()
+      local bufname = vim.api.nvim_buf_get_name(0)
+      if vim.fn.isdirectory(bufname) == 1 then
+        return { "BufEnter" }
+      end
+    end,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
@@ -124,7 +124,7 @@ return {
         width = 35,
       },
       filesystem = {
-        -- hijack_netrw_behavior = "open_current",
+        hijack_netrw_behavior = "open_current",
         use_libuv_file_watcher = false,
         filtered_items = {
           hide_dotfiles = false,
