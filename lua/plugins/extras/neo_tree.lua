@@ -16,7 +16,7 @@ return {
     },
     keys = {
       {
-        "<leader>ee",
+        "<leader>e",
         function()
           require("neo-tree.command").execute({
             toggle = true,
@@ -26,12 +26,12 @@ return {
         desc = "Explorer NeoTree",
       },
       {
-        "<leader>eg",
+        "<leader>ge",
         "<cmd>Neotree toggle git_status<cr>",
         desc = "Explorer NeoTree",
       },
       {
-        "<leader>eb",
+        "<leader>be",
         "<cmd>Neotree toggle buffers<cr>",
         desc = "Explorer NeoTree",
       },
