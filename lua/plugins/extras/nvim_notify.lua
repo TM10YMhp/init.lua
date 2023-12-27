@@ -45,7 +45,7 @@ return {
         end
         return {
           relative = "editor",
-          anchor = "NE",
+          anchor = "SE",
           width = state.message.width,
           height = state.message.height,
           col = vim.opt.columns:get(),
@@ -69,20 +69,6 @@ return {
           state.open_windows,
           "bottom_up"
         )
-        -- if vim.bo.filetype == "neo-tree-popup" then
-        --   -- local row = require("notify.stages.util").available_slot(
-        --   --   state.open_windows,
-        --   --   next_height,
-        --   --   "bottom_up"
-        --   -- )
-        --   local win_row = vim.api.nvim_win_get_position(win)[1]
-        --   print(row, win_row)
-        --   if not ((win_row - 1) == (row - 1)) then
-        --     row = win_row
-        --   else
-        --     row = win_row - 1
-        --   end
-        -- end
 
         return {
           col = col,
