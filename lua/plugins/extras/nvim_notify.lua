@@ -70,7 +70,7 @@ return {
                 col = col - neotree_width - 1
                 print("BOT")
               else
-                col = col - 5
+                col = col - 5 -- get the width of the neotree
                 print("NOT")
               end
               vim.print({ bottom - 2, vim.api.nvim_win_get_position(0)[1] })

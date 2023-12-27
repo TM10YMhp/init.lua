@@ -12,10 +12,11 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
+      "ahmedkhalf/project.nvim",
     },
     keys = {
       {
-        "<leader>nn",
+        "<leader>ee",
         function()
           require("neo-tree.command").execute({
             toggle = true,
@@ -25,12 +26,12 @@ return {
         desc = "Explorer NeoTree",
       },
       {
-        "<leader>ng",
+        "<leader>eg",
         "<cmd>Neotree toggle git_status<cr>",
         desc = "Explorer NeoTree",
       },
       {
-        "<leader>nb",
+        "<leader>eb",
         "<cmd>Neotree toggle buffers<cr>",
         desc = "Explorer NeoTree",
       },
@@ -40,7 +41,7 @@ return {
       -- enable_git_status = false,
       -- enable_diagnostics = false,
       -- use_popups_for_input = false,
-      resize_timer_interval = -1,
+      resize_timer_interval = 1500,
       sources = {
         "filesystem",
         "buffers",
@@ -123,6 +124,7 @@ return {
         width = 35,
       },
       filesystem = {
+        -- hijack_netrw_behavior = "open_current",
         use_libuv_file_watcher = false,
         filtered_items = {
           hide_dotfiles = false,
@@ -136,6 +138,7 @@ return {
         window = {
           mappings = {
             ["/"] = "none",
+            ["F"] = "fuzzy_finder",
           }
         },
       }

@@ -8,7 +8,7 @@ return {
     end
   end,
   keys = {
-    { '<leader>e', '<cmd>NvimTreeFindFileToggle!<cr>', desc = 'Explorer' }
+    { '<leader>et', '<cmd>NvimTreeFindFileToggle!<cr>', desc = 'Explorer' }
   },
   opts = function ()
     local api = require('nvim-tree.api')
