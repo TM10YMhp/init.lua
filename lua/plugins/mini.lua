@@ -30,20 +30,20 @@ return {
       },
     },
   },
-  {
-    "echasnovski/mini.tabline",
-    event = "VeryLazy",
-    opts = {
-      show_icons = false,
-      set_vim_settings = false,
-      tabpage_section = 'right'
-    },
-    config = function(_, opts)
-      require('mini.tabline').setup(opts)
-
-      vim.opt.showtabline = 2
-    end
-  },
+  -- {
+  --   "echasnovski/mini.tabline",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     show_icons = false,
+  --     set_vim_settings = false,
+  --     tabpage_section = 'right'
+  --   },
+  --   config = function(_, opts)
+  --     require('mini.tabline').setup(opts)
+  --
+  --     vim.opt.showtabline = 2
+  --   end
+  -- },
   {
     "echasnovski/mini.bracketed",
     keys = {
