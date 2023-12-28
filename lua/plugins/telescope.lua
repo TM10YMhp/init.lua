@@ -74,7 +74,7 @@ return {
               return true
             end,
           },
-          hl_result_eol = false,
+          -- hl_result_eol = false,
           dynamic_preview_title = true,
           prompt_prefix = "",
           color_devicons = false,
