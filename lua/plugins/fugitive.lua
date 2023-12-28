@@ -17,14 +17,19 @@ return {
     cmd = { "Flog", "Flogsplit", "Floggit" },
     keys = {
       {
-        "<leader>gl",
+        "<leader>gh",
         "<cmd>botright Flogsplit<cr>",
+        desc = "Git Log With Author",
+      },
+      {
+        "<leader>gl",
+        [[<cmd>botright Flogsplit -format=[%h]\ {%an}%d\ %s<cr>]],
         desc = "Git Log",
       },
       {
         "<leader>gL",
         "<cmd>botright Flogsplit -raw-args=--follow -path=%<cr>",
-        desc = "Git Log Curent File",
+        desc = "Git Log Current File",
       },
     },
   },
