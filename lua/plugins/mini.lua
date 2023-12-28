@@ -1,18 +1,23 @@
 return {
-  -- {
-  --   "echasnovski/mini.tabline",
-  --   event = "VeryLazy",
-  --   opts = {
-  --     show_icons = false,
-  --     set_vim_settings = false,
-  --     tabpage_section = 'right'
-  --   },
-  --   config = function(_, opts)
-  --     require('mini.tabline').setup(opts)
-  --
-  --     vim.opt.showtabline = 2
-  --   end
-  -- },
+  {
+    "echasnovski/mini.completion",
+    event = "InsertEnter",
+    opts = {
+      delay = { completion = 1000 * 60 * 5 },
+      window = {
+        info = { border = "single" },
+        signature = { border = "single" },
+      },
+      lsp_completion = {
+        auto_setup = false,
+      },
+      mappings = {
+        force_twostep = "",
+        force_fallback = "",
+      },
+      set_vim_settings = false
+    },
+  },
   {
     "echasnovski/mini.bracketed",
     keys = {
@@ -126,23 +131,4 @@ return {
       n_lines = 500
     }
   },
-  {
-    "echasnovski/mini.completion",
-    event = "InsertEnter",
-    opts = {
-      delay = { completion = 1000 * 60 * 5 },
-      window = {
-        info = { border = "single" },
-        signature = { border = "single" },
-      },
-      lsp_completion = {
-        auto_setup = false,
-      },
-      mappings = {
-        force_twostep = "",
-        force_fallback = "",
-      },
-      set_vim_settings = false
-    },
-  }
 }
