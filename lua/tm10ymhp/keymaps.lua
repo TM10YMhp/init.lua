@@ -79,35 +79,19 @@ vim.keymap.set('n', '<leader>bb',
   "<cmd>e #<cr>",
   { desc = "Switch to Other Buffer" }
 )
---- Delete Buffer
-vim.keymap.set('n', '<leader>bq', '<cmd>bd<cr>', {
+
+vim.keymap.set('n', '<leader>qq', '<cmd>bd<cr>', {
   desc = "Delete Buffer"
 })
-vim.keymap.set('n', '<leader>ba', '<cmd>silent! %bd<cr>', {
+vim.keymap.set('n', '<leader>qa', '<cmd>silent! %bd<cr>', {
   desc = "Delete All Buffers"
 })
--- vim.keymap.set('n', '<leader>bo',
---   "<cmd>%bd|e#|bw#<cr>",
---   { desc = "Delete All and Reopen" }
--- )
--- vim.keymap.set('n', '<leader>br', '<cmd>e<cr>', {
---   desc = "Reopen Buffer"
--- })
---- Wipeout Buffer
-vim.keymap.set('n', '<leader>bQ', '<cmd>bw<cr>', {
+vim.keymap.set('n', '<leader>qQ', '<cmd>bw<cr>', {
   desc = "Wipeout Buffer"
 })
-vim.keymap.set('n', '<leader>bA', '<cmd>silent! %bw<cr>', {
+vim.keymap.set('n', '<leader>qA', '<cmd>silent! %bw<cr>', {
   desc = "Wipeout All Buffers"
 })
--- vim.keymap.set('n', '<leader>bO',
---   "<cmd>let t=expand('%')|%bw|exe 'e '..t|unlet t<cr>",
---   { desc = "Wipeout All and Reopen" }
--- )
--- vim.keymap.set('n', '<leader>bR',
---   "<cmd>let t=expand('%')|bw|exe 'e '..t|unlet t<cr>",
---   { desc = "Wipeout and Reopen Buffer" }
--- )
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set('n', '<c-up>', '<cmd>resize +2<cr>', {
