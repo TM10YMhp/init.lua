@@ -13,18 +13,14 @@ return {
       parser_install_dir = vim.fn.stdpath("config"),
       ensure_installed = {
         "lua",
-        "javascript",
-        "typescript",
-        "css",
-        "tsx",
-        "astro",
+        "vimdoc",
         "markdown",
         "markdown_inline",
-        "vimdoc",
-        -- rest.nvim
-        "html",
-        "http",
-        "json",
+        -- "javascript",
+        -- "typescript",
+        -- "css",
+        -- "tsx",
+        -- "astro",
       },
       sync_install = true, -- async cpu cost
       auto_install = false,
@@ -37,7 +33,7 @@ return {
       },
     },
     config = function(_, opts)
-      require('nvim-treesitter.install').prefer_git = false
+      require("nvim-treesitter.install").prefer_git = false
       require("nvim-treesitter.configs").setup(opts)
     end
   },
