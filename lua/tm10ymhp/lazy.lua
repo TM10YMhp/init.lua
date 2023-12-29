@@ -122,6 +122,8 @@ vim.api.nvim_create_autocmd("User", {
       vim.opt.clipboard:prepend { "unnamed", "unnamedplus" }
     end
 
+    require('tm10ymhp.diagnostic')
+
     if lazy_autocmds then
       require('tm10ymhp.autocmds')
     end
