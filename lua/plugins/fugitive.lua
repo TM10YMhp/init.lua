@@ -18,12 +18,12 @@ return {
     keys = {
       {
         "<leader>gh",
-        "<cmd>botright Flogsplit<cr>",
+        "<cmd>botright Flogsplit -all<cr>",
         desc = "Git Log With Author",
       },
       {
         "<leader>gl",
-        [[<cmd>botright Flogsplit -format=[%h]\ {%an}%d\ %s<cr>]],
+        [[<cmd>botright Flogsplit -all -format=[%h]\ {%an}%d\ %s<cr>]],
         desc = "Git Log",
       },
       {
