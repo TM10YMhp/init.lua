@@ -20,6 +20,9 @@ vim.g.loaded_zip       = 1
 
 vim.g.markdown_recommended_style = 0
 
+-- startuptime
+vim.g.startuptime_tries = 10
+
 -- cloak.nvim
 vim.filetype.add({
   extension = {
