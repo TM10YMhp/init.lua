@@ -122,25 +122,6 @@ vim.api.nvim_create_autocmd("User", {
       vim.opt.clipboard:prepend { "unnamed", "unnamedplus" }
     end
 
-    function custom_winbar()
-      local data = ''
-      local symbol = vim.bo.modified and '* ' or '> '
-
-      if vim.api.nvim_buf_get_option(0, 'buftype') == '' then
-        data = vim.fn.expand('%:~:.') or '[No Name]'
-      else
-        data = vim.fn.expand('%:t')
-      end
-
-      if data == '' then
-        data = '[No Name]'
-      end
-
-      return symbol..data
-    end
-    vim.opt.winbar = "%!v:lua.custom_winbar()"
-
-
     require('tm10ymhp.diagnostic')
 
     if lazy_autocmds then

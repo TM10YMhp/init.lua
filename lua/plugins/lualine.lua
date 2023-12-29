@@ -35,6 +35,31 @@ return {
       fmt = function(str) return str.upper(str) end
     }
 
+    local winbar_config = {
+      lualine_c = {
+        {
+          function()
+            local data = ''
+            local symbol = vim.bo.modified and '* ' or '> '
+
+            if vim.api.nvim_buf_get_option(0, 'buftype') == '' then
+              data = vim.fn.expand('%:~:.') or '[No Name]'
+            else
+              data = vim.fn.expand('%:t')
+            end
+
+            if data == '' then
+              data = '[No Name]'
+            end
+
+            return symbol..data
+          end,
+          padding = 0,
+          color = "Normal",
+        }
+      }
+    }
+
     return {
       options = {
         icons_enabled = false,
@@ -43,8 +68,8 @@ return {
         globalstatus = true,
         refresh = {
           statusline = 1000,
-          tabline    = 1000,
-          winbar     = 1000,
+          tabline    = 0,
+          winbar     = 0,
         }
       },
       sections = {
@@ -83,6 +108,8 @@ return {
         lualine_y = {'%L'},
         lualine_z = {},
       },
+      winbar = winbar_config,
+      inactive_winbar = winbar_config,
     }
   end
 }
