@@ -99,8 +99,10 @@ return {
   {
     'nvim-neo-tree/neo-tree.nvim',
     optional = true,
-    opts = {
-      event_handlers = {
+    opts = function(_, opts)
+      opts.event_handlers = opts.event_handlers or {}
+
+      vim.list_extend(opts.event_handlers, {
         {
           event = "neo_tree_window_after_open",
           handler = function(args)
@@ -114,7 +116,7 @@ return {
             vim.g.neo_tree_is_open = false
           end,
         }
-      },
-    }
+      })
+    end
   }
 }
