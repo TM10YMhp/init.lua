@@ -118,6 +118,10 @@ vim.api.nvim_create_autocmd("User", {
   once = true,
   pattern = "VeryLazy",
   callback = function()
+    if vim.fn.has('clipboard') == 1 then
+      vim.opt.clipboard:prepend { "unnamed", "unnamedplus" }
+    end
+
     if lazy_autocmds then
       require('tm10ymhp.autocmds')
     end
