@@ -112,7 +112,7 @@ return {
           vimgrep_arguments = {
             "rg", "--color=never", "--no-heading", "--with-filename",
             "--line-number", "--column", "--hidden",
-            "--trim"
+            "--trim", "--fixed-strings"
           },
           mappings = {
             i = {
