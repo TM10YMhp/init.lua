@@ -182,3 +182,17 @@ vim.api.nvim_create_autocmd("FileType", {
     end, 1)
   end,
 })
+
+-- markdown_preview
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "markdown",
+  },
+  callback = function()
+    vim.defer_fn(function()
+      require("lazy").load({
+        plugins = { "markdown-preview.nvim" },
+      })
+    end, 1)
+  end,
+})

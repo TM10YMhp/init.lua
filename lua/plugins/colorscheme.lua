@@ -21,4 +21,15 @@ return {
       disable_nvimtree_bg = true,
     }
   },
+  {
+    "rebelot/kanagawa.nvim",
+    event = "VeryLazy",
+    opts = {
+      undercurl = false,
+      commentStyle   = { italic = false },
+      keywordStyle   = { italic = false },
+      statementStyle = { bold   = false },
+      transparent = true,
+    }
+  }
 }
