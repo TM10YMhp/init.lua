@@ -31,5 +31,5 @@ return {
       statementStyle = { bold   = false },
       transparent = true,
     }
-  }
+  },
 }

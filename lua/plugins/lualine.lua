@@ -2,7 +2,38 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function()
-    local Util = require("tm10ymhp.lualine")
+    local function template_diagnostic(sources)
+      return {
+        'diagnostics',
+        sources = { sources },
+        fmt = function(str) return str:gsub(':', '') end
+      }
+    end
+
+    local function lsp_client_names()
+      local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+      local clients = vim.lsp.get_active_clients()
+
+      if next(clients) == nil then
+        return buf_ft
+      end
+      return '['..#clients..']'..buf_ft
+    end
+
+    local function cursor_position()
+      if
+        vim.fn.getfsize(vim.fn.expand('%')) > 1024 * 1024
+      then
+        return "File too long"
+      else
+        return '%l:%v|%{virtcol("$")-1}'
+      end
+    end
+
+    local filesize = {
+      'filesize',
+      fmt = function(str) return str.upper(str) end
+    }
 
     return {
       options = {
@@ -21,7 +52,7 @@ return {
           { 'mode', fmt = function(str) return str:sub(1,1) end }
         },
         lualine_b = { 'b:gitsigns_head' },
-        lualine_c = { Util.cursor_position },
+        lualine_c = { cursor_position },
         lualine_x = {
           {
             'diff',
@@ -36,24 +67,22 @@ return {
               end
             end
           },
-          Util.template_diagnostic('nvim_workspace_diagnostic'),
+          template_diagnostic('nvim_workspace_diagnostic'),
           'o:encoding',
           'o:fileformat',
-          Util.lsp_client_names
+          lsp_client_names
         },
-        lualine_y = { Util.filesize },
+        lualine_y = { filesize },
         lualine_z = {'%L'},
       },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { Util.cursor_position },
-        lualine_x = { Util.filesize },
+        lualine_c = { cursor_position },
+        lualine_x = { filesize },
         lualine_y = {'%L'},
         lualine_z = {},
       },
-      winbar = Util.winbar_config,
-      inactive_winbar = Util.winbar_config
     }
   end
 }
