@@ -31,7 +31,7 @@ return {
           title = {{ record.title[1], "Notify" .. record.level .. "Border" }},
         })
       end,
-      minimum_width = 30,
+      minimum_width = 28,
       -- stages = "no_animation",
       stages = {
         function(state)
@@ -88,7 +88,7 @@ return {
           priority = 50,
         })
       end,
-      fps = 3,
+      fps = 2,
       -- top_down = false,
     },
     config = function(_, opts)
