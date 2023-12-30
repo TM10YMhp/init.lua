@@ -8,9 +8,10 @@ return {
     popupmenu = { enabled = false },
     notify = { enabled = false },
     smartmove = { enabled = false },
+    health = { checker = false },
     lsp = {
       progress = {
-        throttle = 3000,
+        throttle = 1000,
         view = "notify"
       },
       override = {
@@ -34,7 +35,8 @@ return {
         },
       },
       spinner = {
-        name = "balloon"
+        name = "simpleDots"
+        -- name = "balloon"
       }
     },
     views = {
@@ -59,6 +61,9 @@ return {
           row = 2,
           col = 2,
         }
+      },
+      notify = {
+        replace = true,
       },
     }
   }
