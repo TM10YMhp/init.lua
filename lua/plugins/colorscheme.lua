@@ -13,23 +13,13 @@ return {
     end
   },
   {
-    "Mofiqul/vscode.nvim",
+    "Shatur/neovim-ayu",
     event = "VeryLazy",
+    main = "ayu",
     opts = {
-      transparent = true,
-      italic_comments = false,
-      disable_nvimtree_bg = true,
-    }
-  },
-  {
-    "rebelot/kanagawa.nvim",
-    event = "VeryLazy",
-    opts = {
-      undercurl = false,
-      commentStyle   = { italic = false },
-      keywordStyle   = { italic = false },
-      statementStyle = { bold   = false },
-      transparent = true,
-    }
+      overrides = {
+        Comment = { fg = "#626a73" },
+      }
+    },
   },
 }
