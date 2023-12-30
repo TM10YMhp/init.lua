@@ -15,8 +15,6 @@ return {
 
         vim.cmd("ProjectRoot")
 
-        require("tm10ymhp.utils").notify("project.nvim loaded")
-
         vim.api.nvim_create_autocmd("User", {
           pattern = "LazyLoad",
           callback = function(event)
