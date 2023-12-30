@@ -89,7 +89,6 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
       "amarakon/nvim-cmp-buffer-lines",
     },
     opts = function ()
@@ -163,7 +162,6 @@ return {
               end
             }
           },
-          { name = 'path', max_item_count = 40 },
         }),
         formatting = {
           -- fields = { "kind", "abbr", "menu" },
