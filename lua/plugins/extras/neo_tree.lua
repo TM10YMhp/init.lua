@@ -10,9 +10,10 @@ return {
       end
     end,
     dependencies = {
+      "ahmedkhalf/project.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      "ahmedkhalf/project.nvim",
+      "s1n7ax/nvim-window-picker",
     },
     keys = {
       {
