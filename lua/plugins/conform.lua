@@ -1,3 +1,32 @@
+vim.api.nvim_create_autocmd("FileType", {
+  once = true,
+  pattern = {
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "css",
+    "scss",
+    "less",
+    "html",
+    "json",
+    "jsonc",
+    "yaml",
+    "markdown",
+    "graphql",
+    "handlebars",
+    "astro",
+  },
+  callback = function()
+    vim.defer_fn(function()
+      require("lazy").load({
+        plugins = { "conform.nvim" },
+      })
+    end, 1)
+  end,
+})
+
 return {
   "stevearc/conform.nvim",
   -- event = "BufWritePre",

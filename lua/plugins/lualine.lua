@@ -55,7 +55,7 @@ return {
             return symbol..data
           end,
           padding = 0,
-          color = "Normal",
+          color = "WinBar",
         }
       }
     }

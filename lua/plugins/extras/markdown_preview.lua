@@ -1,3 +1,17 @@
+vim.api.nvim_create_autocmd("FileType", {
+  once = true,
+  pattern = {
+    "markdown",
+  },
+  callback = function()
+    vim.defer_fn(function()
+      require("lazy").load({
+        plugins = { "markdown-preview.nvim" },
+      })
+    end, 1)
+  end,
+})
+
 return {
   "iamcco/markdown-preview.nvim",
   build = "cd app && npm install && git restore .",
