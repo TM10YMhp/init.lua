@@ -67,20 +67,20 @@ return {
                 vim.cmd("wincmd w")
               end
             end
-            local attempts = 0
-            while attempts < 4 and vim.bo.filetype == "neo-tree" do
-              attempts = attempts + 1
-              vim.cmd("wincmd w")
-            end
-            if vim.bo.filetype == "neo-tree" then
-              -- Neo-tree must be the only window, restore it's status as a sidebar
-              local winid = vim.api.nvim_get_current_win()
-              local width = require("neo-tree.utils").get_value(state, "window.width", 40)
-              vim.cmd("vsplit " .. path)
-              vim.api.nvim_win_set_width(winid, width)
-            else
+            -- local attempts = 0
+            -- while attempts < 4 and vim.bo.filetype == "neo-tree" do
+            --   attempts = attempts + 1
+            --   vim.cmd("wincmd w")
+            -- end
+            -- if vim.bo.filetype == "neo-tree" then
+            --   -- Neo-tree must be the only window, restore it's status as a sidebar
+            --   local winid = vim.api.nvim_get_current_win()
+            --   local width = require("neo-tree.utils").get_value(state, "window.width", 40)
+            --   vim.cmd("vsplit " .. path)
+            --   vim.api.nvim_win_set_width(winid, width)
+            -- else
               vim.cmd(open_cmd .. " " .. path)
-            end
+            -- end
 
             -- If you don't return this, it will proceed to open the file using built-in logic.
             return { handled = true }
