@@ -45,7 +45,6 @@ return {
             local state = args.state
             local path = args.path
             local open_cmd = args.open_cmd or "edit"
-            print(path)
 
             -- use last window if possible
             local suitable_window_found = false

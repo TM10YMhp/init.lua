@@ -8,6 +8,30 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = { "nvim-treesitter/nvim-treesitter-refactor" },
+    opts = {
+      refactor = {
+        smart_rename = {
+          enable = true,
+          keymaps = {
+            smart_rename = "grr",
+          },
+        },
+        navigation = {
+          enable = true,
+          keymaps = {
+            goto_definition = false,
+            list_definitions = false,
+            list_definitions_toc = false,
+            goto_next_usage = "<a-*>",
+            goto_previous_usage = "<a-#>",
+          },
+        },
+      },
+    }
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     opts = {
       parser_install_dir = vim.fn.stdpath("config"),

@@ -8,7 +8,6 @@ vim.api.nvim_create_autocmd("FileType", {
     "svelte",
   },
   callback = function()
-    print("ok")
     vim.defer_fn(function()
       require("lazy").load({
         plugins = { "nvim-lint" },
