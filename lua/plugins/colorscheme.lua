@@ -18,10 +18,6 @@ return {
     opts = {
       overrides = {
         Comment = { fg = "#626a73" },
-        TelescopeMatching      = { link = "Special" },
-        TelescopeSelection     = { link = "Visual" },
-        TelescopeCounter       = { link = "NonText" },
-        TelescopePromptCounter = { link = "NonText" },
       }
     },
     config = function(_, opts)
