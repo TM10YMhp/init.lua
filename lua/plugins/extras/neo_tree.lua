@@ -187,8 +187,15 @@ return {
         window = {
           mappings = {
             ["/"] = "none",
-            ["F"] = "fuzzy_finder",
+            ["f"] = "telescope",
           }
+        },
+        commands = {
+          telescope = function()
+            require("telescope.builtin").find_files({
+              prompt_title = "Neotree",
+            })
+          end,
         },
         -- Windows fix
         use_libuv_file_watcher = false,
