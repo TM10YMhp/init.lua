@@ -40,7 +40,6 @@ return {
         {
           function()
             local data = ''
-            local symbol = vim.bo.modified and '* ' or '> '
 
             if vim.api.nvim_buf_get_option(0, 'buftype') == '' then
               data = vim.fn.expand('%:~:.') or '[No Name]'
@@ -52,7 +51,7 @@ return {
               data = '[No Name]'
             end
 
-            return symbol..data
+            return '> '..data
           end,
           padding = 0,
           color = "WinBar",
