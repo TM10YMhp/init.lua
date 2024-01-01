@@ -38,7 +38,7 @@ vim.opt.shada = "'20,<50,s10"
 
 vim.opt.cursorline = true
 
--- vim.opt.iskeyword = "@,48-57,_,192-255,-"
+vim.opt.iskeyword = "@,48-57,_,192-255,-"
 
 vim.opt.conceallevel = 0
 
