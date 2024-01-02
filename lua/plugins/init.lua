@@ -1,5 +1,10 @@
 return {
   {
+    "tpope/vim-eunuch",
+    -- lazy = false,
+    event = "VeryLazy",
+  },
+  {
     "rhysd/git-messenger.vim",
     cmd = "GitMessenger",
     keys = {
