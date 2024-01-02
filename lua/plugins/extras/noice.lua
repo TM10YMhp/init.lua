@@ -57,10 +57,14 @@ return {
           style = "single",
           padding = { 0, 0 },
         },
+        size = {
+          max_height = 35,
+          max_width = 80,
+        },
         position = {
           row = 2,
           col = 2,
-        }
+        },
       },
       notify = {
         replace = true,
