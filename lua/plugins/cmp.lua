@@ -29,14 +29,15 @@ local kind_icons = {
 return {
   {
     "L3MON4D3/LuaSnip",
+    event = "VeryLazy",
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
       end
     },
-    config = function()
-      require("luasnip").setup({})
+    config = function(_, opts)
+      require("luasnip").setup(opts)
 
       -- https://github.com/L3MON4D3/LuaSnip/issues/656
       local luasnip = require("luasnip")

@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("FileType", {
       require("lazy").load({
         plugins = { "conform.nvim" },
       })
-    end, 1)
+    end, 10)
   end,
 })
 
