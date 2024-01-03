@@ -89,7 +89,10 @@ return {
     }
 
     local defaults = {
-      autostart = false
+      autostart = false,
+      on_attach = function(client, _)
+        client.server_capabilities.semanticTokensProvider = nil
+      end,
     }
 
     local has_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
