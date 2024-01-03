@@ -6,7 +6,6 @@ return {
     cmdline = { enabled = false },
     messages = { enabled = false },
     popupmenu = { enabled = false },
-    notify = { enabled = false },
     smartmove = { enabled = false },
     health = { checker = false },
     lsp = {
@@ -19,9 +18,7 @@ return {
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true,
       },
-      signature = {
-        enabled = false,
-      },
+      signature = { enabled = false },
       hover = {
         silent = true,
       }
