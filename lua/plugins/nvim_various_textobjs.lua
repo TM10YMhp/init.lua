@@ -39,6 +39,7 @@ return {
       doubleSquareBrackets = "D",
       mdlink = "l",
       mdFencedCodeBlock = "C",
+      mdEmphasis = "e",
       pyTripleQuotes = "y",
     }
 
