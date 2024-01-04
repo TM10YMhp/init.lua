@@ -35,6 +35,10 @@ vim.keymap.set('n', '<leader>wv',
   "<c-w>v",
   { desc = "Split window right" }
 )
+vim.keymap.set('n', '<leader>wp',
+  "<c-w>p",
+  { desc = "Switch to the previous window" }
+)
 
 -- Buffer
 vim.keymap.set('n', '<leader>bb',

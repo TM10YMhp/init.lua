@@ -36,6 +36,10 @@ vim.opt.virtualedit = "block"
 vim.opt.shortmess:append("IsWcC")
 vim.opt.shada = "'20,<50,s10"
 
+vim.opt.winminwidth = 5
+vim.opt.winheight = 5
+vim.opt.winminheight = 5
+
 vim.opt.cursorline = true
 
 vim.opt.iskeyword = "@,48-57,_,192-255,-"
