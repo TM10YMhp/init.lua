@@ -5,7 +5,20 @@ return {
     vim.g.floaterm_height = 0.85
     vim.g.floaterm_autohide = 2
   end,
+  cmd = "FloatermNew",
   keys = {
+    {
+      '<leader>tj',
+      [[<c-\><c-n><cmd>FloatermUpdate --wintype=split --height=0.35<cr>]],
+      mode = 't',
+      desc = "Update a split floaterm window"
+    },
+    {
+      '<leader>th',
+      [[<c-\><c-n><cmd>FloatermUpdate --wintype=vsplit --width=0.40<cr>]],
+      mode = 't',
+      desc = "Update a vsplit floaterm window"
+    },
     {
       '<leader>ts',
       ':FloatermSend<cr>',
@@ -16,6 +29,11 @@ return {
       '<leader>t"',
       "<cmd>FloatermNew --wintype=split --height=0.35<cr>",
       desc = "Open a split floaterm window"
+    },
+    {
+      '<leader>t%',
+      "<cmd>FloatermNew --wintype=vsplit --width=0.40<cr>",
+      desc = "Open a vsplit floaterm window"
     },
     {
       '<leader>tC',
@@ -44,7 +62,7 @@ return {
       desc = "Switch to the next floaterm instance"
     },
     {
-      '<leader>th',
+      '<leader>tt',
       '<cmd>FloatermToggle<cr>',
       desc = "Open or hide the floaterm window"
     },
@@ -68,7 +86,7 @@ return {
       desc = "Switch to the next floaterm instance"
     },
     {
-      '<leader>th',
+      '<leader>tt',
       [[<c-\><c-n><cmd>FloatermToggle<cr>]],
       mode = 't',
       desc = "Open or hide the floaterm window"
