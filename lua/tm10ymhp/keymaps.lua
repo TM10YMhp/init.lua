@@ -89,6 +89,9 @@ vim.keymap.set('n', '<leader>uN', '<cmd>set number!<cr>', {
 vim.keymap.set("n", "<leader>uH", "<cmd>set termguicolors!<cr>", {
   desc = "Toggle Termguicolors"
 })
+vim.keymap.set("n", "<leader>uD", vim.diagnostic.reset, {
+  desc = "Reset Diagnostics"
+})
 vim.keymap.set('n', '<leader>ul', '<cmd>Lazy<cr>', {
   desc = "Lazy"
 })
