@@ -42,6 +42,7 @@ return {
     event = "InsertEnter",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
+      require('nvim-ts-autotag').setup()
       require('nvim-ts-autotag.internal').attach()
     end
   },
