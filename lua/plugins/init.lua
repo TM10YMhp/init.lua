@@ -50,7 +50,7 @@ return {
     opts = {
       retirementAgeMins = 15,
       notificationOnAutoClose = true,
-      deleteBufferWhenFileDeleted = false,
+      deleteBufferWhenFileDeleted = true,
     }
   },
   {
