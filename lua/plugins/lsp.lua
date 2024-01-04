@@ -92,6 +92,9 @@ return {
       autostart = false,
       on_attach = function(client, _)
         client.server_capabilities.semanticTokensProvider = nil
+        client.server_capabilities.codeLensProvider = nil
+        client.server_capabilities.colorProvider = nil
+        client.server_capabilities.documentLinkProvider = nil
       end,
     }
 

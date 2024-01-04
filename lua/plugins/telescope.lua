@@ -4,38 +4,29 @@ return {
     cmd = "Telescope",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
+      { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search Word" },
+      { "<leader>uC", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme with preview" },
+
       { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-      {
-        "<leader>sF",
-        "<cmd>Telescope find_files cwd=%:p:h<cr>",
-        desc = "Find Files (cwd)",
-      },
+      { "<leader>sF", "<cmd>Telescope find_files cwd=%:p:h<cr>", desc = "Find Files (cwd)" },
       { "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
       { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
       { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Autocommands" },
       { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
       { "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Resume" },
-      {
-        "<leader>sk",
-        "<cmd>Telescope keymaps show_plug=false<cr>",
-        desc = "Key Maps",
-      },
-
-      {
-        "<leader>/",
-        "<cmd>Telescope current_buffer_fuzzy_find<cr>",
-        desc = "Search Word",
-      },
-      { "<leader>uC", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme with preview" },
+      { "<leader>sk", "<cmd>Telescope keymaps show_plug=false<cr>", desc = "Key Maps" },
       { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
-      { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
-      { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
-      { "<leader>cd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definitions" },
+
+      { "<leader>cd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
+      { "<leader>cD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
+
+      { "<leader>sd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definitions" },
       { "<leader>st", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definitions" },
       { "<leader>sR", "<cmd>Telescope lsp_references<cr>", desc = "Goto References" },
       { "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Goto Symbols" },
       { "<leader>sS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Goto Symbols (workspace)" },
+
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
     },
