@@ -24,4 +24,15 @@ return {
       require("ayu").setup(opts)
     end
   },
+  {
+    "miikanissi/modus-themes.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- variant = "deuteranopia",
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+      },
+    },
+  },
 }
