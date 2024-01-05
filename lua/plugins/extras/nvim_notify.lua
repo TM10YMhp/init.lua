@@ -1,7 +1,7 @@
 return {
   {
     "rcarriga/nvim-notify",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     keys = {
       {
         "<leader>un",
@@ -11,6 +11,12 @@ return {
         desc = "Dismiss all Notifications",
       },
     },
+    init = function()
+      vim.notify = function(...)
+        require("lazy").load({ plugins = { "nvim-notify" } })
+        return vim.notify(...)
+      end
+    end,
     opts = {
       timeout = 3000,
       icons = {

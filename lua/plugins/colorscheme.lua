@@ -35,4 +35,12 @@ return {
       },
     },
   },
+  {
+    "projekt0n/github-nvim-theme",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+      require("github-theme").setup(opts)
+    end
+  },
 }
