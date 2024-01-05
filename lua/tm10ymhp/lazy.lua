@@ -35,7 +35,6 @@ require("lazy").setup({
     require("plugins.nvim_various_textobjs"),
     require("plugins.telescope"),
     require("plugins.treesitter"),
-    require("plugins.trouble"),
 
     require("plugins.extras.cloak"),
     require("plugins.extras.codeium"),
@@ -49,6 +48,7 @@ require("lazy").setup({
     require("plugins.extras.obsidian"),
     require("plugins.extras.project"),
     require("plugins.extras.rest"),
+    require("plugins.extras.trouble"),
   },
   dev = { path = "~/projects" },
   ui = {
