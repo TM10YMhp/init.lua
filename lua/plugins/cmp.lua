@@ -29,7 +29,7 @@ local kind_icons = {
 return {
   {
     "L3MON4D3/LuaSnip",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
