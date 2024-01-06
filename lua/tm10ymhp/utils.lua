@@ -14,7 +14,7 @@ function M.is_large_file(filepath)
 end
 
 function M.notify(msg, log_level, opts)
-  local default_opts = { title = "TM10YMhp" }
+  local default_opts = { title = "Notification" }
 
   vim.notify(
     msg,
