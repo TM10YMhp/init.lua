@@ -102,6 +102,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "neotest-output-panel",
     "floggraph",
     "fugitive",
+    "fugitiveblame",
   },
   desc = "Close with q",
   callback = function(event)
