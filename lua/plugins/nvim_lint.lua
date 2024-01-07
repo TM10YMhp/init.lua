@@ -29,28 +29,33 @@ return {
       desc = "Lint",
     },
   },
-  config = function()
-    require("lint").linters_by_ft = {
+  opts = {
+    events = {
+      "BufWritePost",
+      "BufReadPost",
+      "InsertLeave",
+      "TextChanged",
+    },
+    linters_by_ft = {
       javascript      = { "eslint_d" },
       typescript      = { "eslint_d" },
       javascriptreact = { "eslint_d" },
       typescriptreact = { "eslint_d" },
       svelte          = { "eslint_d" },
-    }
+    },
+  },
+  config = function(_, opts)
+    local lint = require("lint")
 
-    vim.api.nvim_create_autocmd({
-      -- "BufEnter",
-      "BufReadPost",
-      "BufWritePost",
-      "InsertLeave",
-      "TextChanged",
-    }, {
-        group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
-        callback = function()
-          require("lint").try_lint()
-        end
-      })
+    lint.linters_by_ft = opts.linters_by_ft
 
-    require("lint").try_lint()
+    vim.api.nvim_create_autocmd(opts.events, {
+      group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+      callback = function()
+        lint.try_lint()
+      end
+    })
+
+    lint.try_lint()
   end
 }
