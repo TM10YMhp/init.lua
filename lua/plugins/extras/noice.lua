@@ -32,8 +32,8 @@ return {
         },
       },
       spinner = {
-        name = "simpleDots"
-        -- name = "balloon"
+        -- name = "simpleDots"
+        name = "balloon"
       }
     },
     views = {
