@@ -2,7 +2,20 @@ return {
   {
     "tpope/vim-eunuch",
     -- lazy = false,
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    cmd = {
+      "Unlink",
+      "Remove",
+      "Delete",
+      "Move", "Rename", "Copy", "Duplicate",
+      "Chmod",
+      "Mkdir",
+      "Cfind", "Clocate",
+      "Lfind", "Llocate",
+      "SudoWrite",
+      "SudoEdit",
+      "Wall", "W",
+    },
   },
   {
     "rhysd/git-messenger.vim",
