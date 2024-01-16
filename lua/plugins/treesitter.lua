@@ -39,7 +39,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
+    event = "InsertCharPre",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
       enable_rename = false,

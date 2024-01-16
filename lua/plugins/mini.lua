@@ -1,7 +1,7 @@
 return {
   {
     "echasnovski/mini.completion",
-    event = "InsertEnter",
+    event = "InsertCharPre",
     opts = {
       delay = { completion = 1000 * 60 * 5 },
       window = {
