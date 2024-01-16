@@ -38,7 +38,7 @@ return {
       htmlAttribute = "x",
       doubleSquareBrackets = "D",
       mdlink = "l",
-      mdFencedCodeBlock = "C",
+      mdFencedCodeBlock = "M",
       mdEmphasis = "e",
       pyTripleQuotes = "y",
     }

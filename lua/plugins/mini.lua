@@ -119,19 +119,30 @@ return {
       { "a", mode = { "o", "x" }, desc = "Around textobject" },
       { "i", mode = { "o", "x" }, desc = "Inside textobject" },
     },
-    opts = {
-      mappings = {
-        around_next = '',
-        inside_next = '',
-        around_last = '',
-        inside_last = '',
-        goto_left = '',
-        goto_right = '',
-      },
-      n_lines = 500,
-      custom_textobjects = {
-        t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
-      },
-    }
+    opts = function()
+      local spec_treesitter = require('mini.ai').gen_spec.treesitter
+
+      return {
+        mappings = {
+          around_next = '',
+          inside_next = '',
+          around_last = '',
+          inside_last = '',
+          goto_left = '',
+          goto_right = '',
+        },
+        n_lines = 500,
+        custom_textobjects = {
+          -- Need 'nvim-treesitter/nvim-treesitter-textobjects'
+          o = spec_treesitter({
+            a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+            i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+          }),
+          F = spec_treesitter({ a = '@function.outer', i = '@function.inner' }),
+          C = spec_treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
+          t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
+        },
+      }
+    end
   },
 }

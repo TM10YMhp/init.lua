@@ -9,6 +9,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     opts = {
       parser_install_dir = vim.fn.stdpath("config"),
       ensure_installed = {
