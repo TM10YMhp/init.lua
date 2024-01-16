@@ -128,7 +128,10 @@ return {
         goto_left = '',
         goto_right = '',
       },
-      n_lines = 500
+      n_lines = 500,
+      custom_textobjects = {
+        t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
+      },
     }
   },
 }
