@@ -47,19 +47,19 @@ return {
   },
   {
     "romainl/vim-cool",
-    event = "VeryLazy",
+    event = "CursorMoved",
     config = function()
       vim.opt.hlsearch = true
     end
   },
   {
     "Aasim-A/scrollEOF.nvim",
-    event = "VeryLazy",
+    event = "CursorMoved",
     opts = { insert_mode = true }
   },
   {
     "chrisgrieser/nvim-early-retirement",
-    event = "VeryLazy",
+    event = "BufLeave",
     opts = {
       retirementAgeMins = 15,
       notificationOnAutoClose = true,

@@ -14,7 +14,7 @@ return {
   },
   {
     "Shatur/neovim-ayu",
-    event = "VeryLazy",
+    event = "CmdlineEnter",
     opts = {
       overrides = {
         Comment = { fg = "#626a73" },
@@ -26,7 +26,7 @@ return {
   },
   {
     "miikanissi/modus-themes.nvim",
-    event = "VeryLazy",
+    event = "CmdlineEnter",
     opts = {
       -- variant = "deuteranopia",
       styles = {
@@ -37,7 +37,7 @@ return {
   },
   {
     "projekt0n/github-nvim-theme",
-    event = "VeryLazy",
+    event = "CmdlineEnter",
     opts = {},
     config = function(_, opts)
       require("github-theme").setup(opts)

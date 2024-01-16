@@ -5,7 +5,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search Word" },
-      { "<leader>uC", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme with preview" },
+      { "<leader>uC", ":Telescope colorscheme<cr>", desc = "Colorscheme with preview" },
 
       { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       { "<leader>sF", "<cmd>Telescope find_files cwd=%:p:h<cr>", desc = "Find Files (cwd)" },
@@ -236,7 +236,10 @@ return {
   {
     "alan-w-255/telescope-mru.nvim",
     dependencies = {
-      { "yegappan/mru", event = "VeryLazy" },
+      {
+        "yegappan/mru",
+        event = "BufLeave",
+      },
       "nvim-telescope/telescope.nvim",
     },
     keys = {
