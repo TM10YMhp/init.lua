@@ -13,14 +13,25 @@ function M.is_large_file(filepath)
   end
 end
 
-function M.notify(msg, log_level, opts)
+function M.notify(msg, level, opts)
   local default_opts = { title = "Notification" }
-
   vim.notify(
     msg,
-    log_level,
+    level or vim.log.levels.INFO,
     vim.tbl_extend("force", default_opts, opts or {})
   )
+end
+
+function M.error(msg, opts)
+  M.notify(msg, vim.log.levels.ERROR, opts or {})
+end
+
+function M.info(msg, opts)
+  M.notify(msg, vim.log.levels.INFO, opts or {})
+end
+
+function M.warn(msg, opts)
+  M.notify(msg, vim.log.levels.WARN, opts or {})
 end
 
 return M

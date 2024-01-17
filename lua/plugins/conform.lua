@@ -48,12 +48,13 @@ return {
     {
       "<leader>uf",
       function()
+        local utils = require("tm10ymhp.utils")
         if vim.g.disable_autoformat then
           vim.g.disable_autoformat = false
-          require("tm10ymhp.utils").notify("Autoformat enabled")
+          utils.info("Autoformat enabled")
         else
           vim.g.disable_autoformat = true
-          require("tm10ymhp.utils").notify("Autoformat disabled")
+          utils.info("Autoformat disabled")
         end
       end,
       desc = "Toggle Format On Save"

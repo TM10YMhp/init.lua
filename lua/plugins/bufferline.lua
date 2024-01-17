@@ -52,26 +52,18 @@ return {
           local _, element = commands.get_current_element_index(state)
           local utils = require("tm10ymhp.utils")
           if not element then
-            utils.notify("No buffer to toggle pin")
+            utils.info("No buffer to toggle pin")
             return
           end
 
           local groups = require("bufferline.groups")
           if groups._is_pinned(element) then
             groups.remove_element("pinned", element)
-            utils.notify(
-              "Unpinned: " .. element.name,
-              vim.log.levels.INFO,
-              { timeout = 1500 }
-            )
+            utils.info("Unpinned: " .. element.name)
             vim.b.ignore_early_retirement = false
           else
             groups.add_element("pinned", element)
-            utils.notify(
-              "Pinned: " .. element.name,
-              vim.log.levels.INFO,
-              { timeout = 1500 }
-            )
+            utils.info("Pinned: " .. element.name)
             vim.b.ignore_early_retirement = true
           end
           require("bufferline.ui").refresh()

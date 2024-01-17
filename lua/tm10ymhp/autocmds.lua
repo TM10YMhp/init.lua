@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
       vim.opt.eventignore = "CursorMoved,FileType"
 
-      utils.notify("File too long")
+      utils.info("File too long")
     else
       vim.opt.eventignore = ""
     end

@@ -57,7 +57,7 @@ return {
     {
       '<leader>lr',
       function()
-        require("tm10ymhp.utils").notify('LSP: Restart')
+        require("tm10ymhp.utils").info('LSP: Restart')
         vim.diagnostic.reset()
         vim.cmd("LspRestart")
       end,
@@ -66,7 +66,7 @@ return {
     {
       '<leader>lq',
       function()
-        require("tm10ymhp.utils").notify('LSP: Stop')
+        require("tm10ymhp.utils").info('LSP: Stop')
         vim.diagnostic.reset()
         vim.cmd("LspStop")
       end,
@@ -75,7 +75,7 @@ return {
     {
       '<leader>ls',
       function()
-        require("tm10ymhp.utils").notify('LSP: Start')
+        require("tm10ymhp.utils").info('LSP: Start')
         vim.cmd("LspStart")
       end,
       desc = 'LSP: Start',

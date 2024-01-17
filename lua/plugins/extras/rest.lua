@@ -1,8 +1,7 @@
 local is_http = function()
   if vim.bo.filetype ~= 'http' then
-    require("tm10ymhp.utils").notify(
-      'RestNvim is only supported for HTTP requests',
-      vim.log.levels.ERROR
+    require("tm10ymhp.utils").error(
+      'RestNvim is only supported for HTTP requests'
     )
 
     return false

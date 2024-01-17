@@ -132,7 +132,7 @@ vim.api.nvim_create_autocmd("User", {
 
     local stats = require("lazy").stats()
     local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-    require("tm10ymhp.utils").notify(
+    require("tm10ymhp.utils").info(
       "lazy.nvim loaded "..stats.loaded.."/"..stats.count.." plugins in "..ms.."ms"
     )
   end

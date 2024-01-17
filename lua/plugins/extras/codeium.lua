@@ -44,12 +44,13 @@ return {
     {
       "<leader>ua",
       function()
+        local utils = require("tm10ymhp.utils")
         if vim.g.codeium_enabled then
           vim.g.codeium_enabled = false
-          require("tm10ymhp.utils").notify("Codeium disabled")
+          utils.info("Codeium disabled")
         else
           vim.g.codeium_enabled = true
-          require("tm10ymhp.utils").notify("Codeium enabled")
+          utils.info("Codeium enabled")
         end
       end,
       desc = "Toggle Codeium"
