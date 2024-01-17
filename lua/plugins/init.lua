@@ -58,15 +58,6 @@ return {
     opts = { insert_mode = true }
   },
   {
-    "chrisgrieser/nvim-early-retirement",
-    event = "BufLeave",
-    opts = {
-      retirementAgeMins = 15,
-      notificationOnAutoClose = true,
-      deleteBufferWhenFileDeleted = false,
-    }
-  },
-  {
     "epwalsh/pomo.nvim",
     cmd = { "TimerStart", "TimerRepeat" },
     opts = {

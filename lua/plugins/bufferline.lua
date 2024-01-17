@@ -31,13 +31,51 @@ return {
     },
   },
   {
+    "chrisgrieser/nvim-early-retirement",
+    event = "BufLeave",
+    opts = {
+      retirementAgeMins = 15,
+      notificationOnAutoClose = true,
+      deleteBufferWhenFileDeleted = false,
+    }
+  },
+  {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
     dependencies = { "echasnovski/mini.bufremove" },
     keys = {
       {
         "<leader>bp",
-        "<Cmd>BufferLineTogglePin<CR>",
+        function()
+          local state = require("bufferline.state")
+          local commands = require("bufferline.commands")
+          local _, element = commands.get_current_element_index(state)
+          local utils = require("tm10ymhp.utils")
+          if not element then
+            utils.notify("No buffer to toggle pin")
+            return
+          end
+
+          local groups = require("bufferline.groups")
+          if groups._is_pinned(element) then
+            groups.remove_element("pinned", element)
+            utils.notify(
+              "Unpinned: " .. element.name,
+              vim.log.levels.INFO,
+              { timeout = 1500 }
+            )
+            vim.b.ignore_early_retirement = false
+          else
+            groups.add_element("pinned", element)
+            utils.notify(
+              "Pinned: " .. element.name,
+              vim.log.levels.INFO,
+              { timeout = 1500 }
+            )
+            vim.b.ignore_early_retirement = true
+          end
+          require("bufferline.ui").refresh()
+        end,
         desc = "Toggle pin",
       },
       {
@@ -60,16 +98,8 @@ return {
         "<Cmd>BufferLineCloseLeft<CR>",
         desc = "Delete buffers to the left",
       },
-      {
-        "[b",
-        "<cmd>BufferLineCyclePrev<cr>",
-        desc = "Prev buffer",
-      },
-      {
-        "]b",
-        "<cmd>BufferLineCycleNext<cr>",
-        desc = "Next buffer",
-      },
+      { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+      { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
     },
     opts = function()
       local bufferline = require('bufferline')
