@@ -81,7 +81,7 @@ return {
       require('mini.trailspace').setup()
 
       vim.api.nvim_create_autocmd('FileType', {
-        pattern = {'lazy', 'floggraph'},
+        pattern = { 'lazy', 'floggraph', 'dashboard' },
         callback = function(data)
           vim.b[data.buf].minitrailspace_disable = true
           vim.api.nvim_buf_call(data.buf, MiniTrailspace.unhighlight)

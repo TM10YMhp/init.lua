@@ -21,7 +21,14 @@ return {
   {
     "kevinhwang91/nvim-ufo",
     dependencies = { "kevinhwang91/promise-async" },
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    event = function()
+      local bufname = vim.api.nvim_buf_get_name(0)
+      if bufname == "" then
+        return { "BufLeave" }
+      end
+      return { "VeryLazy" }
+    end,
     keys = {
       {
         'zR',

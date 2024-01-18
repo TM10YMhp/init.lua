@@ -71,7 +71,8 @@ return {
           winbar     = 0,
         },
         disabled_filetypes = {
-          winbar = { 'dashboard' },
+          statusline = {},
+          winbar = {},
         },
       },
       sections = {
