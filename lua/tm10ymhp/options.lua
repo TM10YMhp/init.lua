@@ -76,6 +76,7 @@ vim.opt.rulerformat = [[%l:%c%V|%L]]
 vim.opt.ruler = false
 
 vim.opt.foldopen:remove("hor")
+vim.opt.foldenable = false
 
 vim.opt.complete = "."
 vim.opt.completeopt = "menu,menuone,noinsert,noselect"

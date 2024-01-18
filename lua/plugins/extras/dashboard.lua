@@ -51,23 +51,25 @@ return {
         button.key_format = "  %s"
       end
 
-      -- close Lazy and re-open when the dashboard is ready
-      if vim.o.filetype == "lazy" then
-        vim.cmd.close()
-        vim.api.nvim_create_autocmd("User", {
-          pattern = "DashboardLoaded",
-          callback = function()
-            require("lazy").show()
-          end,
-        })
-      end
-
       return opts
     end,
     config = function(_, opts)
       require('dashboard').setup(opts)
-      vim.cmd('Dashboard')
-      vim.b.minitrailspace_disable = true
+
+      -- close Lazy and re-open when the dashboard is ready
+      if vim.o.filetype == "lazy" and vim.fn.argc(0) == 0 then
+        vim.schedule(function()
+          vim.cmd.close()
+          vim.cmd('Dashboard')
+          vim.b.minitrailspace_disable = true
+          vim.defer_fn(function()
+            require("lazy").show()
+          end, 10)
+        end)
+      else
+        vim.cmd('Dashboard')
+        vim.b.minitrailspace_disable = true
+      end
     end,
   },
   {

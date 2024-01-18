@@ -36,11 +36,14 @@ return {
     },
   },
   {
-    "projekt0n/github-nvim-theme",
+    "folke/tokyonight.nvim",
     event = "CmdlineEnter",
-    opts = {},
-    config = function(_, opts)
-      require("github-theme").setup(opts)
-    end
+    opts = {
+      style = "moon",
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+      }
+    }
   },
 }
