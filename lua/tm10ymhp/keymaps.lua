@@ -1,3 +1,8 @@
+-- Disable
+vim.keymap.set('n', 'ZZ', '<nop>')
+vim.keymap.set('n', 'ZQ', '<nop>')
+vim.keymap.set('n', '<c-z>', '<nop>')
+
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", {
   expr = true, desc = "Next search result"
@@ -102,14 +107,6 @@ vim.keymap.set('n', '<leader>ui', vim.show_pos, {
   desc = "Inspect pos"
 })
 
--- Buffers
-vim.keymap.set('n', '<s-tab>', '<cmd>bp<cr>', {
-  desc = "Prev buffer"
-})
-vim.keymap.set('n', '<tab>', '<cmd>bn<cr>', {
-  desc = "Next buffer"
-})
-
 -- Tabs
 vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
 vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
@@ -140,11 +137,6 @@ vim.keymap.set('n', '<leader>ci', 'mqHmwgg=G`wzt`q', {
 vim.keymap.set('x', '<leader>ci', '=', {
   desc = "Fix indentation"
 })
-
--- Disable
-vim.keymap.set('n', 'ZZ', '<nop>')
-vim.keymap.set('n', 'ZQ', '<nop>')
-vim.keymap.set('n', '<c-z>', '<nop>')
 
 -- Extras
 vim.keymap.set("x", "J", "omzJ`z")

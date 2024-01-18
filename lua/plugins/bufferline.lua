@@ -37,6 +37,8 @@ return {
       retirementAgeMins = 15,
       notificationOnAutoClose = true,
       deleteBufferWhenFileDeleted = false,
+      ignoreAltFile = false,
+      minimumBufferNum = 1,
     }
   },
   {
@@ -92,6 +94,8 @@ return {
       },
       { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
       { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+      { "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+      { "<Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
     },
     opts = function()
       local bufferline = require('bufferline')
