@@ -24,32 +24,26 @@ vim.keymap.set("o", "N", "'nN'[v:searchforward]", {
 })
 
 -- Windows
-vim.keymap.set('n', '<leader>wd',
-  "<c-w>c",
-  { desc = "Delete window" }
-)
-vim.keymap.set('n', '<leader>wo',
-  "<c-w>o",
-  { desc = "Delete other windows" }
-)
-vim.keymap.set('n', '<leader>ws',
-  "<c-w>s",
-  { desc = "Split window below" }
-)
-vim.keymap.set('n', '<leader>wv',
-  "<c-w>v",
-  { desc = "Split window right" }
-)
-vim.keymap.set('n', '<leader>wp',
-  "<c-w>p",
-  { desc = "Switch to the previous window" }
-)
+vim.keymap.set('n', '<leader>wd', "<c-w>c", {
+  desc = "Delete window",
+})
+vim.keymap.set('n', '<leader>wo', "<c-w>o", {
+  desc = "Delete other windows",
+})
+vim.keymap.set('n', '<leader>ws', "<c-w>s", {
+  desc = "Split window below",
+})
+vim.keymap.set('n', '<leader>wv', "<c-w>v", {
+  desc = "Split window right",
+})
+vim.keymap.set('n', '<leader>wp', "<c-w>p", {
+  desc = "Switch to the previous window",
+})
 
 -- Buffer
-vim.keymap.set('n', '<leader>bb',
-  "<cmd>e #<cr>",
-  { desc = "Switch to Other Buffer" }
-)
+vim.keymap.set('n', '<leader>bb', "<cmd>e #<cr>", {
+  desc = "Switch to Other Buffer",
+})
 
 vim.keymap.set('n', '<leader>qq', '<cmd>bd<cr>', {
   desc = "Delete Buffer"
@@ -78,42 +72,25 @@ vim.keymap.set('n', '<c-right>', '<cmd>vertical resize +2<cr>', {
   desc = "Increase window width"
 })
 
--- Utility
-vim.keymap.set('n', '<leader>uo', '<cmd>set list!<cr>', {
-  desc = "Toggle List Mode"
-})
-vim.keymap.set('n', '<leader>us', '<cmd>set spell!<cr>', {
-  desc = "Toggle Spelling"
-})
-vim.keymap.set('n', '<leader>uw', '<cmd>set wrap!<cr>', {
-  desc = "Toggle Wrap Lines"
-})
-vim.keymap.set('n', '<leader>uN', '<cmd>set number!<cr>', {
-  desc = "Toogle Line Numbers"
-})
-vim.keymap.set("n", "<leader>uH", "<cmd>set termguicolors!<cr>", {
-  desc = "Toggle Termguicolors"
-})
-vim.keymap.set("n", "<leader>uD", vim.diagnostic.reset, {
-  desc = "Reset Diagnostics"
-})
-vim.keymap.set('n', '<leader>ul', '<cmd>Lazy<cr>', {
-  desc = "Lazy"
-})
-vim.keymap.set('n', '<leader>um', '<cmd>Mason<cr>', {
-  desc = "Mason"
-})
-vim.keymap.set('n', '<leader>ui', vim.show_pos, {
-  desc = "Inspect pos"
-})
-
 -- Tabs
-vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-vim.keymap.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-vim.keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", {
+  desc = "New Tab",
+})
+vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", {
+  desc = "Close Tab",
+})
+vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", {
+  desc = "Last Tab",
+})
+vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", {
+  desc = "First Tab",
+})
+vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnext<cr>", {
+  desc = "Next Tab",
+})
+vim.keymap.set("n", "<leader><tab><s-tab>", "<cmd>tabprevious<cr>", {
+  desc = "Previous Tab",
+})
 
 -- Substitute
 vim.keymap.set('n', [[\\]], [[:%s///gc<left><left><left>]], {
@@ -151,41 +128,73 @@ vim.keymap.set('x', '/', [[<esc>/\%V]], {
   desc = "Search within a range"
 })
 
-vim.keymap.set(
-  { "o", "x" },
-  "ip",
-  ":<c-u>norm! `[v`]<cr>",
-  {
-    desc = "inner paste textobj",
-    silent = true
-  }
-)
+vim.keymap.set({ "o", "x" }, "ip", ":<c-u>norm! `[v`]<cr>", {
+  desc = "inner paste textobj", silent = true,
+})
 
 -- Insert
-vim.keymap.set(
-  "n",
-  "<leader>ic",
+vim.keymap.set("n", "<leader>ic",
   function()
     local date = os.date("%y.%m%d.%H%M")
     vim.api.nvim_put({ date }, "", true, true)
   end,
   { desc = "Insert custom date" }
 )
-vim.keymap.set(
-  "n",
-  "<leader>id",
+vim.keymap.set("n", "<leader>id",
   function()
     local date = os.date("%Y-%m-%d")
     vim.api.nvim_put({ date }, "", true, true)
   end,
   { desc = "Insert date" }
 )
-vim.keymap.set(
-  "n",
-  "<leader>it",
+vim.keymap.set("n", "<leader>it",
   function()
     local date = os.date("%H:%M:%S")
     vim.api.nvim_put({ date }, "", true, true)
   end,
   { desc = "Insert time" }
 )
+
+-- Utility
+local utils = require("tm10ymhp.utils")
+
+vim.keymap.set('n', '<leader>uo', '<cmd>set list!<cr>', {
+  desc = "Toggle List Mode"
+})
+vim.keymap.set('n', '<leader>us', '<cmd>set spell!<cr>', {
+  desc = "Toggle Spelling"
+})
+vim.keymap.set('n', '<leader>uw', '<cmd>set wrap!<cr>', {
+  desc = "Toggle Wrap Lines"
+})
+vim.keymap.set('n', '<leader>uN', '<cmd>set number!<cr>', {
+  desc = "Toogle Line Numbers"
+})
+vim.keymap.set("n", "<leader>uH",
+  function()
+    if vim.opt.termguicolors:get() then
+      vim.opt.termguicolors = false
+      utils.notify("Disabled termguicolors")
+    else
+      vim.opt.termguicolors = true
+      utils.notify("Enabled termguicolors")
+    end
+  end,
+  { desc = "Toggle Termguicolors" }
+)
+vim.keymap.set("n", "<leader>uD",
+  function()
+    vim.diagnostic.reset()
+    utils.notify("Reset diagnostics")
+  end,
+  { desc = "Reset Diagnostics" }
+)
+vim.keymap.set('n', '<leader>ul', '<cmd>Lazy<cr>', {
+  desc = "Lazy"
+})
+vim.keymap.set('n', '<leader>um', '<cmd>Mason<cr>', {
+  desc = "Mason"
+})
+vim.keymap.set('n', '<leader>ui', vim.show_pos, {
+  desc = "Inspect pos"
+})
