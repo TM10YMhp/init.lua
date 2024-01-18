@@ -16,7 +16,7 @@ return {
         "the creator of Vim",
       }, "\n")
 
-      logo = string.rep("\n", 6) .. logo .. "\n\n"
+      logo = string.rep("\n", 5) .. logo .. "\n\n"
 
       local opts = {
         theme = "doom",
