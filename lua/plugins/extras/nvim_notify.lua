@@ -34,7 +34,7 @@ return {
       end,
       on_open = function(win, record)
         vim.api.nvim_win_set_config(win, {
-          title = {{ record.title[1], "Notify" .. record.level .. "Border" }},
+          title = {{ record.title[1], "Notify" .. record.level .. "Title" }},
         })
       end,
       minimum_width = 28,

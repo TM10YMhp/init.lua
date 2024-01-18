@@ -1,15 +1,3 @@
-local is_http = function()
-  if vim.bo.filetype ~= 'http' then
-    require("tm10ymhp.utils").error(
-      'RestNvim is only supported for HTTP requests'
-    )
-
-    return false
-  end
-
-  return true
-end
-
 vim.filetype.add({
   extension = {
     http = "http"
@@ -30,21 +18,27 @@ return {
       {
         '<leader>rr',
         function()
-          if is_http() then require("rest-nvim").run() end
+          if require("tm10ymhp.utils").is_http() then
+            require("rest-nvim").run()
+          end
         end,
         desc = "RestNvim Run"
       },
       {
         '<leader>rl',
         function()
-          if is_http() then require("rest-nvim").last() end
+          if require("tm10ymhp.utils").is_http() then
+            require("rest-nvim").last()
+          end
         end,
         desc = "RestNvim Last"
       },
       {
         '<leader>rp',
         function()
-          if is_http() then require("rest-nvim").run(true) end
+          if require("tm10ymhp.utils").is_http() then
+            require("rest-nvim").run(true)
+          end
         end,
         desc = "RestNvim Preview"
       },
@@ -61,7 +55,7 @@ return {
 
       vim.list_extend(opts.ensure_installed, {
         "http",
-        "http",
+        "html",
         "json",
       })
     end

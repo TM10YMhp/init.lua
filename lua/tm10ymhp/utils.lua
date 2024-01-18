@@ -1,5 +1,16 @@
 local M = {}
 
+function M.is_http()
+  if vim.bo.filetype ~= 'http' then
+    M.error(table.concat({
+      'RestNvim is only available for filetype "http"',
+      'current filetype: "' .. vim.bo.filetype .. '")',
+    }, "\n"))
+    return false
+  end
+  return true
+end
+
 function M.is_large_file(filepath)
   if
     -- vim.fn.strwidth(filepath) > 300 or
