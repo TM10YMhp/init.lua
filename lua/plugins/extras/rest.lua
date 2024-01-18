@@ -10,17 +10,16 @@ local is_http = function()
   return true
 end
 
+vim.filetype.add({
+  extension = {
+    http = "http"
+  }
+})
+
 return {
   {
     "rest-nvim/rest.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    init = function()
-      vim.filetype.add({
-        extension = {
-          http = "http"
-        }
-      })
-    end,
     opts = {
       result_split_horizontal = true,
       result = {
