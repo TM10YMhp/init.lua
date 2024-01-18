@@ -69,7 +69,10 @@ return {
           statusline = 1000,
           tabline    = 0,
           winbar     = 0,
-        }
+        },
+        disabled_filetypes = {
+          winbar = { 'dashboard' },
+        },
       },
       sections = {
         lualine_a = {

@@ -93,7 +93,7 @@ return {
     "echasnovski/mini.jump2d",
     keys = {
       {
-        "<cr>",
+        "<leader>f",
         "<cmd>lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)<CR>",
         mode = { "n", "x" },
         desc = "Start 2d jumping",
