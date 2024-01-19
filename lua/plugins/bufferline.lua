@@ -92,8 +92,6 @@ return {
         "<Cmd>BufferLineCloseLeft<CR>",
         desc = "Delete buffers to the left",
       },
-      { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-      { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
       { "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
       { "<Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
     },
