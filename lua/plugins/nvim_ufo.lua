@@ -115,6 +115,12 @@ return {
       vim.o.foldenable = true
 
       require('ufo').setup(opts)
+
+      if vim.bo.filetype == 'dashboard' then
+        require("ufo").detach()
+        vim.opt_local.foldenable = false
+        vim.opt_local.foldcolumn = "0"
+      end
     end
   }
 }

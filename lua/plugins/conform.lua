@@ -39,7 +39,7 @@ return {
         require("conform").format({
           lsp_fallback = false,
           async = false,
-          timeout_ms = 2000
+          timeout_ms = 3000
         })
       end,
       mode = { "n", "x" },
