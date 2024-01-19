@@ -1,8 +1,6 @@
 return {
   {
     "tpope/vim-eunuch",
-    -- lazy = false,
-    -- event = "VeryLazy",
     cmd = {
       "Unlink",
       "Remove",
@@ -16,6 +14,13 @@ return {
       "SudoEdit",
       "Wall", "W",
     },
+  },
+  {
+    "tpope/vim-sleuth",
+    event = "VeryLazy",
+    config = function()
+      vim.cmd("silent Sleuth")
+    end
   },
   {
     "rhysd/git-messenger.vim",
@@ -42,7 +47,7 @@ return {
     "dstein64/vim-startuptime",
     cmd = "StartupTime",
     init = function()
-      vim.g.startuptime_tries = 10
+      vim.g.startuptime_tries = 8
     end
   },
   {
@@ -64,11 +69,7 @@ return {
       notifiers = {
         {
           name = "Default",
-          opts = {
-            sticky = true,
-            title_icon = "",
-            text_icon = "",
-          },
+          opts = { sticky = true, title_icon = "", text_icon = "" },
         },
       }
     }
@@ -95,35 +96,6 @@ return {
       -- Then make sure set-clipboard is set to on: set -s set-clipboard on.
 
       require('osc52').setup(opts)
-    end
-  },
-  {
-    "s1n7ax/nvim-window-picker",
-    keys = {
-      {
-        "<leader>ww",
-        function()
-          local picked_window_id =
-            require("window-picker").pick_window() or
-            vim.api.nvim_get_current_win()
-
-          vim.api.nvim_set_current_win(picked_window_id)
-        end,
-        desc = "Pick Window",
-      }
-    },
-    opts = {
-      hint = "statusline-winbar",
-    },
-    config = function(_, opts)
-      require("window-picker").setup(opts)
-    end
-  },
-  {
-    "tpope/vim-sleuth",
-    event = "VeryLazy",
-    config = function()
-      vim.cmd("silent Sleuth")
     end
   },
 }

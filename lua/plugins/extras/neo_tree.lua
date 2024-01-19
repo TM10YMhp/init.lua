@@ -1,5 +1,25 @@
 return {
   {
+    "s1n7ax/nvim-window-picker",
+    keys = {
+      {
+        "<leader>ww",
+        function()
+          local picked_window_id =
+            require("window-picker").pick_window() or
+            vim.api.nvim_get_current_win()
+
+          vim.api.nvim_set_current_win(picked_window_id)
+        end,
+        desc = "Pick Window",
+      }
+    },
+    opts = { hint = "statusline-winbar" },
+    config = function(_, opts)
+      require("window-picker").setup(opts)
+    end
+  },
+  {
     'nvim-neo-tree/neo-tree.nvim',
     cmd = "Neotree",
     branch = "v3.x",
@@ -44,7 +64,7 @@ return {
           handler = function(args)
             local state = args.state
             local path = args.path
-            local open_cmd = args.open_cmd or "edit"
+            local open_cmd = args.open_cmd ~= "b" and args.open_cmd or "edit"
 
             -- use last window if possible
             local suitable_window_found = false
@@ -186,8 +206,22 @@ return {
         },
         window = {
           mappings = {
+            ["w"] = function(state)
+              local node = state.tree:get_node()
+              local success, picker = pcall(require, "window-picker")
+              if not success then
+                print("You'll need to install window-picker to use this command: https://github.com/s1n7ax/nvim-window-picker")
+                return
+              end
+              local picked_window_id = picker.pick_window()
+              if picked_window_id then
+                vim.api.nvim_set_current_win(picked_window_id)
+                vim.cmd("edit " .. vim.fn.fnameescape(node.path))
+              end
+            end,
             ["/"] = "none",
             ["f"] = "telescope",
+            ["F"] = "filter_on_submit",
           }
         },
         commands = {
