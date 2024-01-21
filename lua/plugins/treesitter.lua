@@ -49,7 +49,6 @@ return {
     config = function(_, opts)
       require('nvim-ts-autotag').setup(opts)
       require('nvim-ts-autotag.internal').attach()
-      vim.notify("nvim-ts-autotag loaded")
     end
   },
   {
