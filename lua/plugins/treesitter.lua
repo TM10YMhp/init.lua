@@ -17,10 +17,10 @@ return {
         "vimdoc",
         "markdown",
         "markdown_inline",
-        -- "javascript",
-        -- "typescript",
+        "javascript",
+        "typescript",
+        "tsx",
         -- "css",
-        -- "tsx",
         -- "astro",
       },
       sync_install = true, -- async cpu cost
@@ -40,7 +40,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    event = "InsertCharPre",
+    event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
       enable_rename = false,
@@ -48,6 +48,8 @@ return {
     },
     config = function(_, opts)
       require('nvim-ts-autotag').setup(opts)
+
+      -- use Filetype to enable autotag
       require('nvim-ts-autotag.internal').attach()
     end
   },
