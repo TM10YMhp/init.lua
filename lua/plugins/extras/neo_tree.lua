@@ -206,19 +206,7 @@ return {
         },
         window = {
           mappings = {
-            ["w"] = function(state)
-              local node = state.tree:get_node()
-              local success, picker = pcall(require, "window-picker")
-              if not success then
-                print("You'll need to install window-picker to use this command: https://github.com/s1n7ax/nvim-window-picker")
-                return
-              end
-              local picked_window_id = picker.pick_window()
-              if picked_window_id then
-                vim.api.nvim_set_current_win(picked_window_id)
-                vim.cmd("edit " .. vim.fn.fnameescape(node.path))
-              end
-            end,
+            ["w"] = "open_window_picker",
             ["/"] = "none",
             ["F"] = "filter_on_submit",
             ["f"] = "telescope_find",
@@ -261,6 +249,19 @@ return {
       end
 
       opts.commands = {
+        open_window_picker = function(state)
+          local node = state.tree:get_node()
+          local success, picker = pcall(require, "window-picker")
+          if not success then
+            print("You'll need to install window-picker to use this command: https://github.com/s1n7ax/nvim-window-picker")
+            return
+          end
+          local picked_window_id = picker.pick_window()
+          if picked_window_id then
+            vim.api.nvim_set_current_win(picked_window_id)
+            vim.cmd("edit " .. vim.fn.fnameescape(node.path))
+          end
+        end,
         telescope_find = function(state)
           local node = state.tree:get_node()
           local path = node:get_id()
