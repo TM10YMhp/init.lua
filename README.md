@@ -44,6 +44,26 @@ Si encuentra algun problema o tiene alguna sugerencia, por favor abre un issue y
 
 ### 1. Descargar configuracion
 
+- Eliminar archivos de Neovim actuales
+
+```bash
+# recomendado
+
+## Windows
+rm -rf ~/AppData/Local/nvim/
+## Linux
+rm -rf ~/.config/nvim/
+
+# opcional pero recomendado
+
+## Windows
+rm -rf ~/AppData/Local/nvim-data/
+## Linux
+rm -rf ~/.local/share/nvim/
+rm -rf ~/.local/state/nvim/
+rm -rf ~/.cache/nvim/
+```
+
 - Posicionarse en el directorio
 
 ```bash
