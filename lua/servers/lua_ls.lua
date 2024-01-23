@@ -6,14 +6,14 @@ return {
     return {
       settings = {
         Lua = {
-          runtime = { version = 'LuaJIT' },
+          runtime = { version = "LuaJIT" },
           telemetry = { enable = false },
           completion = {
             showWord = "Disable",
-            workspaceWord = false
-          }
-        }
-      }
+            workspaceWord = false,
+          },
+        },
+      },
     }
-  end
+  end,
 }

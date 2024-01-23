@@ -1,23 +1,24 @@
-local utils = require('tm10ymhp.utils')
+local utils = require("tm10ymhp.utils")
 
-local augroup = vim.api.nvim_create_augroup('tm10ymhp', { clear = true })
+local augroup = vim.api.nvim_create_augroup("tm10ymhp", { clear = true })
 
-vim.api.nvim_create_autocmd('TermOpen', {
+vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "term://*",
   group = augroup,
-  desc = 'Config terminal',
+  desc = "Config terminal",
   callback = function()
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
-    vim.opt_local.signcolumn = 'no'
+    vim.opt_local.signcolumn = "no"
     vim.opt_local.cursorline = false
-  end
+    vim.opt_local.scrolloff = 0
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*/node_modules/*",
   group = augroup,
-  desc = 'Disable diagnostics in node_modules',
+  desc = "Disable diagnostics in node_modules",
   callback = function()
     vim.diagnostic.disable(0)
   end,
@@ -25,13 +26,13 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup,
-  desc = 'Highlight on yank',
+  desc = "Highlight on yank",
   callback = function()
     vim.highlight.on_yank({
-      higroup = 'IncSearch',
-      timeout = 100
+      higroup = "IncSearch",
+      timeout = 100,
     })
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -41,7 +42,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt.conceallevel = 0
     vim.opt.formatoptions = "qjr"
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -49,11 +50,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*" },
   desc = "Large file handling",
   callback = function()
-    if utils.is_large_file(vim.fn.expand('%')) then
+    if utils.is_large_file(vim.fn.expand("%")) then
       vim.cmd([[syntax clear]])
-      vim.opt_local.foldmethod = 'manual'
-      vim.opt_local.bufhidden = 'unload'
-      vim.opt_local.buftype = 'nowrite'
+      vim.opt_local.foldmethod = "manual"
+      vim.opt_local.bufhidden = "unload"
+      vim.opt_local.buftype = "nowrite"
       vim.opt_local.modifiable = false
       vim.opt_local.undolevels = -1
       vim.opt_local.swapfile = false
@@ -69,7 +70,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     else
       vim.opt.eventignore = ""
     end
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -107,7 +108,12 @@ vim.api.nvim_create_autocmd("FileType", {
   desc = "Close with q",
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+    vim.keymap.set(
+      "n",
+      "q",
+      "<cmd>close<cr>",
+      { buffer = event.buf, silent = true }
+    )
   end,
 })
 
