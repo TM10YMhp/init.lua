@@ -32,6 +32,13 @@ return {
     },
   },
   opts = {
+    formatters = {
+      stylua = {
+        prepend_args = {
+          "--config-path=" .. vim.fn.stdpath("config") .. "/.stylua.toml",
+        },
+      },
+    },
     -- stylua: ignore
     formatters_by_ft = {
       lua             = { "stylua" },
