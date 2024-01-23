@@ -10,11 +10,11 @@ return {
         require("conform").format({
           lsp_fallback = false,
           async = false,
-          timeout_ms = 3000
+          timeout_ms = 3000,
         })
       end,
       mode = { "n", "x" },
-      desc = "Conform: Format"
+      desc = "Conform: Format",
     },
     {
       "<leader>uf",
@@ -28,11 +28,14 @@ return {
           utils.info("Autoformat disabled")
         end
       end,
-      desc = "Toggle Format On Save"
-    }
+      desc = "Toggle Format On Save",
+    },
   },
   opts = {
+    -- stylua: ignore
     formatters_by_ft = {
+      lua             = { "stylua" },
+
       javascript      = { "prettier" },
       javascriptreact = { "prettier" },
       typescript      = { "prettier" },
@@ -64,8 +67,9 @@ return {
       return {
         lsp_fallback = false,
         async = false,
-        timeout_ms = 1000
+        quiet = false,
+        timeout_ms = 1000,
       }
     end,
-  }
+  },
 }
