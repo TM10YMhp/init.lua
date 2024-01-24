@@ -3,8 +3,8 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = { "RRethy/nvim-treesitter-endwise" },
     opts = {
-      endwise = { enable = true }
-    }
+      endwise = { enable = true },
+    },
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -36,22 +36,32 @@ return {
     config = function(_, opts)
       require("nvim-treesitter.install").prefer_git = false
       require("nvim-treesitter.configs").setup(opts)
-    end
+    end,
   },
   {
     "windwp/nvim-ts-autotag",
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+    keys = {
+      {
+        "<leader>ut",
+        function()
+          require("tm10ymhp.utils").info('Autotag: Attach')
+          require("nvim-ts-autotag.internal").attach()
+        end,
+        desc = "Manually attach Autotag",
+      },
+    },
     opts = {
       enable_rename = false,
       enable_close_on_slash = false,
     },
     config = function(_, opts)
-      require('nvim-ts-autotag').setup(opts)
+      require("nvim-ts-autotag").setup(opts)
 
       -- use Filetype to enable autotag
-      require('nvim-ts-autotag.internal').attach()
-    end
+      require("nvim-ts-autotag.internal").attach()
+    end,
   },
   {
     "Wansmer/treesj",
