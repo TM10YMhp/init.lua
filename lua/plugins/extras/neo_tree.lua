@@ -206,13 +206,14 @@ return {
           leave_dirs_open = true,
         },
         window = {
+          -- stylua: ignore
           mappings = {
-            ["w"] = "open_window_picker",
             ["/"] = "none",
-            ["tf"] = "telescope_find",
-            ["tF"] = "telescope_find_root",
-            ["tg"] = "telescope_grep",
-            ["tG"] = "telescope_grep_root",
+            ["w"] = "open_window_picker",
+            ["f"] = "telescope_find",
+            ["F"] = "telescope_find_root",
+            ["g"] = "telescope_grep",
+            ["G"] = "telescope_grep_root",
           },
         },
         -- Windows fix
