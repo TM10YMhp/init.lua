@@ -1,29 +1,30 @@
+-- stylua: ignore
 local kind_icons = {
-  Text = 't',
-  Method = 'm',
-  Function = 'f',
-  Constructor = 'c',
-  Field = 'd',
-  Variable = 'v',
-  Class = 'C',
-  Interface = 'I',
-  Module = 'M',
-  Property = 'p',
-  Unit = 'u',
-  Value = 'l',
-  Enum = 'E',
-  Keyword = 'k',
-  Snippet = 's',
-  Color = 'o',
-  File = 'F',
-  Reference = 'r',
-  Folder = 'D',
-  EnumMember = 'e',
-  Constant = 'n',
-  Struct = 'S',
-  Event = 'e',
-  Operator = 'O',
-  TypeParameter = 'P',
+  Text          = "t",
+  Method        = "m",
+  Function      = "f",
+  Constructor   = "c",
+  Field         = "d",
+  Variable      = "v",
+  Class         = "C",
+  Interface     = "I",
+  Module        = "M",
+  Property      = "p",
+  Unit          = "u",
+  Value         = "l",
+  Enum          = "E",
+  Keyword       = "k",
+  Snippet       = "s",
+  Color         = "o",
+  File          = "F",
+  Reference     = "r",
+  Folder        = "D",
+  EnumMember    = "e",
+  Constant      = "n",
+  Struct        = "S",
+  Event         = "e",
+  Operator      = "O",
+  TypeParameter = "P",
 }
 
 return {
@@ -34,7 +35,7 @@ return {
       "rafamadriz/friendly-snippets",
       config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
-      end
+      end,
     },
     config = function(_, opts)
       require("luasnip").setup(opts)
@@ -65,7 +66,7 @@ return {
           end
         end,
       })
-    end
+    end,
   },
   {
     "windwp/nvim-autopairs",
@@ -92,7 +93,7 @@ return {
       "hrsh7th/cmp-buffer",
       "amarakon/nvim-cmp-buffer-lines",
     },
-    opts = function ()
+    opts = function()
       local cmp = require("cmp")
 
       return {
@@ -110,57 +111,58 @@ return {
         },
         preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
-          ['<C-s>'] = cmp.mapping.complete(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ["<C-s>"] = cmp.mapping.complete(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<S-CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           }),
-          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-d>'] = cmp.mapping.scroll_docs(4),
-          ['<Tab>'] = cmp.mapping.select_next_item({
-            behavior = cmp.SelectBehavior.Select
+          ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-d>"] = cmp.mapping.scroll_docs(4),
+          ["<Tab>"] = cmp.mapping.select_next_item({
+            behavior = cmp.SelectBehavior.Select,
           }),
-          ['<S-Tab>'] = cmp.mapping.select_prev_item({
-            behavior = cmp.SelectBehavior.Select
+          ["<S-Tab>"] = cmp.mapping.select_prev_item({
+            behavior = cmp.SelectBehavior.Select,
           }),
-          ['<C-g>'] = function()
+          ["<C-g>"] = function()
             if cmp.visible_docs() then
               cmp.close_docs()
             else
               cmp.open_docs()
             end
           end,
-          ['<C-l>'] = cmp.mapping.complete({
+          ["<C-l>"] = cmp.mapping.complete({
             config = {
               sources = {
                 {
                   name = "buffer-lines",
                   max_item_count = 20,
-                  option = { leading_whitespace = false }
-                }
-              }
-            }
+                  option = { leading_whitespace = false },
+                },
+              },
+            },
           }),
         }),
         sources = cmp.config.sources({
-          { name = 'nvim_lsp', max_item_count = 40 },
-          { name = 'luasnip', max_item_count = 10 },
+          { name = "nvim_lsp", max_item_count = 40 },
+          { name = "luasnip", max_item_count = 10 },
           {
-            name = 'buffer',
+            name = "buffer",
             max_item_count = 20,
             option = {
               get_bufnrs = function()
                 local buf = vim.api.nvim_get_current_buf()
                 local byte_size = vim.api.nvim_buf_get_offset(
-                  buf, vim.api.nvim_buf_line_count(buf)
+                  buf,
+                  vim.api.nvim_buf_line_count(buf)
                 )
                 if byte_size > 1024 * 1024 then -- 1 Megabyte max
                   return {}
                 end
                 return { buf }
-              end
-            }
+              end,
+            },
           },
         }),
         formatting = {
@@ -173,7 +175,7 @@ return {
 
             return item
           end,
-          expandable_indicator = false
+          expandable_indicator = false,
         },
         experimental = { ghost_text = false },
         sorting = {
@@ -192,7 +194,7 @@ return {
           },
         },
         window = {
-          documentation = { border = "single" }
+          documentation = { border = "single" },
         },
         matching = {
           disallow_fuzzy_matching = true,
@@ -202,6 +204,6 @@ return {
           disallow_prefix_unmatching = true,
         },
       }
-    end
+    end,
   },
 }

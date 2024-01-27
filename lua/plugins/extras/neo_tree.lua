@@ -5,22 +5,21 @@ return {
       {
         "<leader>ww",
         function()
-          local picked_window_id =
-            require("window-picker").pick_window() or
-            vim.api.nvim_get_current_win()
+          local picked_window_id = require("window-picker").pick_window()
+            or vim.api.nvim_get_current_win()
 
           vim.api.nvim_set_current_win(picked_window_id)
         end,
         desc = "Pick Window",
-      }
+      },
     },
     opts = { hint = "statusline-winbar" },
     config = function(_, opts)
       require("window-picker").setup(opts)
-    end
+    end,
   },
   {
-    'nvim-neo-tree/neo-tree.nvim',
+    "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
     branch = "v3.x",
     event = function()
@@ -72,7 +71,8 @@ return {
             if nt.config.open_files_in_last_window then
               local prior_window = nt.get_prior_window()
               if prior_window > 0 then
-                local success = pcall(vim.api.nvim_set_current_win, prior_window)
+                local success =
+                  pcall(vim.api.nvim_set_current_win, prior_window)
                 if success then
                   suitable_window_found = true
                 end
@@ -99,12 +99,12 @@ return {
             --   vim.cmd("vsplit " .. path)
             --   vim.api.nvim_win_set_width(winid, width)
             -- else
-              vim.cmd(open_cmd .. " " .. path)
+            vim.cmd(open_cmd .. " " .. path)
             -- end
 
             -- If you don't return this, it will proceed to open the file using built-in logic.
             return { handled = true }
-          end
+          end,
         },
       },
       popup_border_style = "single",
@@ -150,12 +150,13 @@ return {
           folder_closed = "",
           folder_open = "",
           folder_empty = "",
-          default = ""
+          default = "",
         },
         name = {
           trailing_slash = true,
         },
         git_status = {
+          -- stylua: ignore
           symbols = {
             -- Change type
             added     = "",
@@ -168,7 +169,7 @@ return {
             unstaged  = "M",
             staged    = "A",
             conflict  = "C",
-          }
+          },
         },
         file_size = {
           enabled = true,
@@ -208,44 +209,65 @@ return {
           mappings = {
             ["w"] = "open_window_picker",
             ["/"] = "none",
-            ["F"] = "filter_on_submit",
-            ["f"] = "telescope_find",
-            ["g"] = "telescope_grep",
-          }
+            ["tf"] = "telescope_find",
+            ["tF"] = "telescope_find_root",
+            ["tg"] = "telescope_grep",
+            ["tG"] = "telescope_grep_root",
+          },
         },
         -- Windows fix
         use_libuv_file_watcher = false,
         bind_to_cwd = true,
       },
-    }
+    },
   },
   {
-    'nvim-neo-tree/neo-tree.nvim',
+    "nvim-neo-tree/neo-tree.nvim",
     optional = true,
     opts = function(_, opts)
-      local function getTelescopeOpts(state, path)
+      local function getTelescopeNode(state, path, builtin_name)
         return {
           cwd = path,
           search_dirs = { path },
-          -- attach_mappings = function (prompt_bufnr, map)
-          --   local actions = require "telescope.actions"
-          --   actions.select_default:replace(function()
-          --     actions.close(prompt_bufnr)
-          --     local action_state = require "telescope.actions.state"
-          --     local selection = action_state.get_selected_entry()
-          --     local filename = selection.filename
-          --     if (filename == nil) then
-          --       filename = selection[1]
-          --     end
-          --     -- any way to open the file without triggering
-          --     -- auto-close event of neo-tree?
-          --     require("neo-tree.sources.filesystem").navigate(
-          --       state, state.path, filename
-          --     )
-          --   end)
-          --   return true
-          -- end
+          prompt_title = builtin_name .. " | <CR> Open | <C-s> Navigate",
+          attach_mappings = function(prompt_bufnr, map)
+            local actions = require("telescope.actions")
+            local telescope_actions =
+              require("telescope.actions.mt").transform_mod({
+                navigate = function(prompt_bufnr)
+                  actions.close(prompt_bufnr)
+                  local action_state = require("telescope.actions.state")
+                  local selection = action_state.get_selected_entry()
+                  local filename = selection.filename
+                  if filename == nil then
+                    filename = selection[1]
+                  end
+                  require("neo-tree.sources.filesystem").navigate(
+                    state,
+                    state.path,
+                    filename
+                  )
+                end,
+              })
+
+            map({ "i", "n" }, "<C-s>", telescope_actions.navigate)
+
+            return true
+          end,
         }
+      end
+
+      local function getTelescopeBuiltin(builtin_name, state, path)
+        local builtin = {
+          live_grep = require("telescope.builtin").live_grep,
+          find_files = require("telescope.builtin").find_files,
+        }
+        local _builtin_name = builtin_name == "live_grep" and "Live Grep"
+          or "Find Files"
+
+        return builtin[builtin_name](
+          getTelescopeNode(state, path, _builtin_name)
+        )
       end
 
       opts.commands = {
@@ -253,7 +275,10 @@ return {
           local node = state.tree:get_node()
           local success, picker = pcall(require, "window-picker")
           if not success then
-            print("You'll need to install window-picker to use this command: https://github.com/s1n7ax/nvim-window-picker")
+            print(table.concat({
+              "You'll need to install window-picker to use this command:",
+              "https://github.com/s1n7ax/nvim-window-picker",
+            }, " "))
             return
           end
           local picked_window_id = picker.pick_window()
@@ -268,7 +293,11 @@ return {
           if vim.fn.isdirectory(path) == 0 then
             path = node._parent_id
           end
-          require('telescope.builtin').find_files(getTelescopeOpts(state, path))
+          getTelescopeBuiltin("find_files", state, path)
+        end,
+        telescope_find_root = function(state)
+          local path = state.tree.nodes.root_ids[1]
+          getTelescopeBuiltin("find_files", state, path)
         end,
         telescope_grep = function(state)
           local node = state.tree:get_node()
@@ -276,19 +305,21 @@ return {
           if vim.fn.isdirectory(path) == 0 then
             path = node._parent_id
           end
-          require('telescope.builtin').live_grep(getTelescopeOpts(state, path))
+          getTelescopeBuiltin("live_grep", state, path)
+        end,
+        telescope_grep_root = function(state)
+          local path = state.tree.nodes.root_ids[1]
+          getTelescopeBuiltin("live_grep", state, path)
         end,
       }
-    end
+    end,
   },
   {
     "nvim-lualine/lualine.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.options.disabled_filetypes.winbar = vim.list_extend(
-        opts.options.disabled_filetypes.winbar,
-        { "neo-tree" }
-      )
+      opts.options.disabled_filetypes.winbar =
+        vim.list_extend(opts.options.disabled_filetypes.winbar, { "neo-tree" })
     end,
-  }
+  },
 }

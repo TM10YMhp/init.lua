@@ -15,6 +15,7 @@ return {
       ensure_installed = {
         "lua",
         "vimdoc",
+        "jsonc",
         "markdown",
         "markdown_inline",
         "javascript",
@@ -46,7 +47,7 @@ return {
       {
         "<leader>ut",
         function()
-          require("tm10ymhp.utils").info('Autotag: Attach')
+          require("tm10ymhp.utils").info("Autotag: Attach")
           require("nvim-ts-autotag.internal").attach()
         end,
         desc = "Manually attach Autotag",
