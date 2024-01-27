@@ -25,7 +25,9 @@ return {
   keys = {
     {
       "<leader>cl",
-      function() require("lint").try_lint() end,
+      function()
+        require("lint").try_lint()
+      end,
       desc = "Lint",
     },
   },
@@ -36,6 +38,7 @@ return {
       "InsertLeave",
       "TextChanged",
     },
+    -- stylua: ignore
     linters_by_ft = {
       javascript      = { "eslint_d" },
       typescript      = { "eslint_d" },
@@ -53,9 +56,9 @@ return {
       group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
       callback = function()
         lint.try_lint()
-      end
+      end,
     })
 
     lint.try_lint()
-  end
+  end,
 }
