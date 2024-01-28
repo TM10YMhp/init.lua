@@ -4,28 +4,80 @@ return {
     cmd = "Telescope",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search Word" },
-      { "<leader>uC", ":Telescope colorscheme<cr>", desc = "Colorscheme with preview" },
+      {
+        "<leader>/",
+        "<cmd>Telescope current_buffer_fuzzy_find<cr>",
+        desc = "Search Word",
+      },
+      {
+        "<leader>uC",
+        ":Telescope colorscheme<cr>",
+        desc = "Colorscheme with preview",
+      },
 
       { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-      { "<leader>sF", "<cmd>Telescope find_files cwd=%:p:h<cr>", desc = "Find Files (cwd)" },
+      {
+        "<leader>sF",
+        "<cmd>Telescope find_files cwd=%:p:h<cr>",
+        desc = "Find Files (cwd)",
+      },
       { "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
       { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
-      { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Autocommands" },
+      {
+        "<leader>sa",
+        "<cmd>Telescope autocommands<cr>",
+        desc = "Autocommands",
+      },
       { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
       { "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Resume" },
-      { "<leader>sk", "<cmd>Telescope keymaps show_plug=false<cr>", desc = "Key Maps" },
-      { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
+      {
+        "<leader>sk",
+        "<cmd>Telescope keymaps show_plug=false<cr>",
+        desc = "Key Maps",
+      },
+      {
+        "<leader>sH",
+        "<cmd>Telescope highlights<cr>",
+        desc = "Search Highlight Groups",
+      },
 
-      { "<leader>cd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
-      { "<leader>cD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
+      {
+        "<leader>cd",
+        "<cmd>Telescope diagnostics bufnr=0<cr>",
+        desc = "Document Diagnostics",
+      },
+      {
+        "<leader>cD",
+        "<cmd>Telescope diagnostics<cr>",
+        desc = "Workspace Diagnostics",
+      },
 
-      { "<leader>sd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definitions" },
-      { "<leader>st", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definitions" },
-      { "<leader>sR", "<cmd>Telescope lsp_references<cr>", desc = "Goto References" },
-      { "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Goto Symbols" },
-      { "<leader>sS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Goto Symbols (workspace)" },
+      {
+        "<leader>sd",
+        "<cmd>Telescope lsp_definitions<cr>",
+        desc = "Goto Definitions",
+      },
+      {
+        "<leader>st",
+        "<cmd>Telescope lsp_type_definitions<cr>",
+        desc = "Goto Type Definitions",
+      },
+      {
+        "<leader>sR",
+        "<cmd>Telescope lsp_references<cr>",
+        desc = "Goto References",
+      },
+      {
+        "<leader>ss",
+        "<cmd>Telescope lsp_document_symbols<cr>",
+        desc = "Goto Symbols",
+      },
+      {
+        "<leader>sS",
+        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+        desc = "Goto Symbols (workspace)",
+      },
 
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
@@ -52,12 +104,14 @@ return {
           preview = {
             hide_on_startup = true,
             filetype_hook = function(filepath, bufnr, opts)
-              if require('tm10ymhp.utils').is_large_file(filepath) then
+              if require("tm10ymhp.utils").is_large_file(filepath) then
                 require("telescope.previewers.utils").set_preview_message(
                   bufnr,
                   opts.winid,
-                  string.format("File too long (%s bytes)",
-                  vim.fn.getfsize(filepath))
+                  string.format(
+                    "File too long (%s bytes)",
+                    vim.fn.getfsize(filepath)
+                  )
                 )
                 return false
               end
@@ -83,6 +137,7 @@ return {
             ".class$",
           },
           border = true,
+          -- stylua: ignore
           borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
           layout_strategy = "vertical",
           sorting_strategy = "ascending",
@@ -97,62 +152,68 @@ return {
             },
             vertical = {
               preview_height = 0.6,
-              mirror = true
-            }
+              mirror = true,
+            },
           },
           vimgrep_arguments = {
-            "rg", "--color=never", "--no-heading", "--with-filename",
-            "--line-number", "--column", "--hidden",
-            "--trim", "--fixed-strings"
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--hidden",
+            "--trim",
+            "--fixed-strings",
           },
           mappings = {
             i = {
               ["<C-p>"] = action_layout.toggle_preview,
               ["<M-q>"] = open_selected,
-              ["<C-Down>"] = require('telescope.actions').cycle_history_next,
-              ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
+              ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+              ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
             },
             n = {
               ["<C-p>"] = action_layout.toggle_preview,
               ["<M-q>"] = open_selected,
-            }
+            },
           },
           history = {
             limit = 100,
             cycle_wrap = true,
-          }
+          },
         },
         pickers = {
           find_files = { hidden = true },
           diagnostics = {
             path_display = { tail = true },
             preview = { hide_on_startup = false },
-            sort_by = "severity"
+            sort_by = "severity",
           },
           lsp_definitions = {
             path_display = { tail = true },
             preview = { hide_on_startup = false },
-            jump_type = 'never',
+            jump_type = "never",
             show_line = false,
           },
           lsp_references = {
             path_display = { tail = true },
             preview = { hide_on_startup = false },
-            jump_type = 'never',
+            jump_type = "never",
             show_line = false,
           },
           lsp_type_definitions = {
             path_display = { tail = true },
             preview = { hide_on_startup = false },
-            jump_type = 'never',
+            jump_type = "never",
             show_line = false,
           },
           lsp_dynamic_workspace_symbols = {
-            path_display = { tail = true }
+            path_display = { tail = true },
           },
           colorscheme = {
-            layout_strategy = 'horizontal',
-            enable_preview = true
+            layout_strategy = "horizontal",
+            enable_preview = true,
           },
           git_commits = { preview = { hide_on_startup = false } },
           git_status = { preview = { hide_on_startup = false } },
@@ -162,11 +223,11 @@ return {
           git_stash = { preview = { hide_on_startup = false } },
           keymaps = {
             modes = { "", "n", "v", "s", "x", "o", "!", "i", "l", "c", "t" },
-            layout_config = { width = 80 }
+            layout_config = { width = 80 },
           },
           current_buffer_fuzzy_find = {
-            skip_empty_lines = true
-          }
+            skip_empty_lines = true,
+          },
         },
       }
     end,
@@ -174,8 +235,8 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      build = 'make',
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
     },
     opts = {
       extensions = {
@@ -183,14 +244,14 @@ return {
           fuzzy = false,
           override_generic_sorter = true,
           override_file_sorter = true,
-          case_mode = "smart_case"
-        }
-      }
+          case_mode = "smart_case",
+        },
+      },
     },
     config = function(_, opts)
       require("telescope").setup(opts)
       require("telescope").load_extension("fzf")
-    end
+    end,
   },
   {
     "nvim-telescope/telescope-symbols.nvim",
@@ -220,10 +281,8 @@ return {
       "nvim-telescope/telescope.nvim",
       opts = {
         extensions = {
-          undo = {
-            use_delta = false,
-          }
-        }
+          undo = { use_delta = false },
+        },
       },
     },
     keys = {
@@ -231,15 +290,12 @@ return {
     },
     config = function()
       require("telescope").load_extension("undo")
-    end
+    end,
   },
   {
     "alan-w-255/telescope-mru.nvim",
     dependencies = {
-      {
-        "yegappan/mru",
-        event = "BufLeave",
-      },
+      { "yegappan/mru", event = "BufRead" },
       "nvim-telescope/telescope.nvim",
     },
     keys = {
@@ -247,7 +303,7 @@ return {
     },
     config = function()
       require("telescope").load_extension("mru")
-    end
+    end,
   },
   {
     "nvim-telescope/telescope-live-grep-args.nvim",
@@ -257,19 +313,28 @@ return {
         extensions = {
           live_grep_args = {
             vimgrep_arguments = {
-              "rg", "--color=never", "--no-heading", "--with-filename",
-              "--line-number", "--column", "--hidden",
-              "--trim"
-            }
-          }
-        }
+              "rg",
+              "--color=never",
+              "--no-heading",
+              "--with-filename",
+              "--line-number",
+              "--column",
+              "--hidden",
+              "--trim",
+            },
+          },
+        },
       },
     },
     keys = {
-      { "<leader>sG", "<cmd>Telescope live_grep_args<cr>", desc = "Live Grep Args" },
+      {
+        "<leader>sG",
+        "<cmd>Telescope live_grep_args<cr>",
+        desc = "Live Grep Args",
+      },
     },
     config = function()
       require("telescope").load_extension("live_grep_args")
-    end
+    end,
   },
 }
