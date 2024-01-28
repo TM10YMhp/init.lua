@@ -19,12 +19,13 @@ return {
     end,
     opts = {
       timeout = 3000,
+      -- stylua: ignore
       icons = {
         DEBUG = "D",
         ERROR = "E",
         INFO  = "I",
         TRACE = "T",
-        WARN  = "W"
+        WARN  = "W",
       },
       max_height = function()
         return math.floor(vim.o.lines * 0.75)
@@ -34,7 +35,7 @@ return {
       end,
       on_open = function(win, record)
         vim.api.nvim_win_set_config(win, {
-          title = {{ record.title[1], "Notify" .. record.level .. "Title" }},
+          title = { { record.title[1], "Notify" .. record.level .. "Title" } },
         })
       end,
       minimum_width = 28,
@@ -63,7 +64,7 @@ return {
         end,
         function(state, win)
           local col = vim.opt.columns:get()
-          if vim.g.neo_tree_is_open then
+          if vim.g.neotree_is_open then
             if vim.g.neotree_win.position == "right" then
               local width = vim.api.nvim_win_get_width(vim.g.neotree_win.winid)
               col = col - width - 1
@@ -100,10 +101,10 @@ return {
     config = function(_, opts)
       require("notify").setup(opts)
       vim.notify = require("notify")
-    end
+    end,
   },
   {
-    'nvim-neo-tree/neo-tree.nvim',
+    "nvim-neo-tree/neo-tree.nvim",
     optional = true,
     opts = function(_, opts)
       opts.event_handlers = opts.event_handlers or {}
@@ -113,16 +114,16 @@ return {
           event = "neo_tree_window_after_open",
           handler = function(args)
             vim.g.neotree_win = args
-            vim.g.neo_tree_is_open = true
+            vim.g.neotree_is_open = true
           end,
         },
         {
           event = "neo_tree_window_before_close",
           handler = function()
-            vim.g.neo_tree_is_open = false
+            vim.g.neotree_is_open = false
           end,
-        }
+        },
       })
-    end
-  }
+    end,
+  },
 }
