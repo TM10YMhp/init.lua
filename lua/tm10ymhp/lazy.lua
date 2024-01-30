@@ -111,7 +111,7 @@ require("lazy").setup({
 -- autocmds can be loaded lazily when not opening a file
 local lazy_autocmds = vim.fn.argc(-1) == 0
 if not lazy_autocmds then
-  require('tm10ymhp.autocmds')
+  require("tm10ymhp.autocmds")
 end
 
 -- startuptime
@@ -119,26 +119,31 @@ vim.api.nvim_create_autocmd("User", {
   once = true,
   pattern = "VeryLazy",
   callback = function()
-    if vim.fn.has('clipboard') == 1 then
-      vim.opt.clipboard:prepend { "unnamed", "unnamedplus" }
+    if vim.fn.has("clipboard") == 1 then
+      vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
     end
 
-    require('tm10ymhp.diagnostic')
+    require("tm10ymhp.diagnostic")
 
     if lazy_autocmds then
-      require('tm10ymhp.autocmds')
+      require("tm10ymhp.autocmds")
     end
 
-    require('tm10ymhp.keymaps')
-
+    require("tm10ymhp.keymaps")
 
     local bufname = vim.api.nvim_buf_get_name(0)
     if bufname ~= "" then
       local stats = require("lazy").stats()
       local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
       require("tm10ymhp.utils").info(
-        "lazy.nvim loaded "..stats.loaded.."/"..stats.count.." plugins in "..ms.."ms"
+        "lazy.nvim loaded "
+          .. stats.loaded
+          .. "/"
+          .. stats.count
+          .. " plugins in "
+          .. ms
+          .. "ms"
       )
     end
-  end
+  end,
 })

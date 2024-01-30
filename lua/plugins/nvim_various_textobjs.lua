@@ -6,25 +6,25 @@ return {
         "ii",
         "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>",
         mode = { "o", "x" },
-        desc = "inner-inner indentation textobj"
+        desc = "inner-inner indentation textobj",
       },
       {
-        "ai" ,
+        "ai",
         "<cmd>lua require('various-textobjs').indentation('outer', 'inner')<CR>",
         mode = { "o", "x" },
-        desc = "outer-inner indentation textobj"
+        desc = "outer-inner indentation textobj",
       },
       {
-        "iI" ,
+        "iI",
         "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>",
         mode = { "o", "x" },
-        desc = "inner-inner indentation textobj"
+        desc = "inner-inner indentation textobj",
       },
       {
-        "aI" ,
+        "aI",
         "<cmd>lua require('various-textobjs').indentation('outer', 'outer')<CR>",
         mode = { "o", "x" },
-        desc = "outer-outer indentation textobj"
+        desc = "outer-outer indentation textobj",
       },
     }
 
@@ -49,26 +49,25 @@ return {
         "a" .. map,
         "<cmd>lua require('various-textobjs')." .. objName .. "('outer')<CR>",
         mode = { "o", "x" },
-        desc = "outer" .. name
+        desc = "outer" .. name,
       })
 
       table.insert(mappings, {
         "i" .. map,
         "<cmd>lua require('various-textobjs')." .. objName .. "('inner')<CR>",
         mode = { "o", "x" },
-        desc = "inner" .. name
+        desc = "inner" .. name,
       })
     end
 
     local oneMaps = {
       visibleInWindow = "gw",
       restOfIndentation = "R",
-      restOfParagraph = "r",
       restOfWindow = "gW",
       column = "|",
       entireBuffer = "gG", -- G + gg
       url = "iu",
-      multiCommentedLines = "ic"
+      multiCommentedLines = "ic",
     }
 
     for objName, map in pairs(oneMaps) do
@@ -76,7 +75,7 @@ return {
         map,
         "<cmd>lua require('various-textobjs')." .. objName .. "()<CR>",
         mode = { "o", "x" },
-        desc = objName .. " textobj"
+        desc = objName .. " textobj",
       })
     end
 
