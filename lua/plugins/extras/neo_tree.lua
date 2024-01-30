@@ -289,6 +289,9 @@ return {
           end
         end,
         telescope_find = function(state)
+          if state.tree == nil then
+            return
+          end
           local node = state.tree:get_node()
           local path = node:get_id()
           if vim.fn.isdirectory(path) == 0 then
@@ -297,10 +300,16 @@ return {
           getTelescopeBuiltin("find_files", state, path)
         end,
         telescope_find_root = function(state)
+          if state.tree == nil then
+            return
+          end
           local path = state.tree.nodes.root_ids[1]
           getTelescopeBuiltin("find_files", state, path)
         end,
         telescope_grep = function(state)
+          if state.tree == nil then
+            return
+          end
           local node = state.tree:get_node()
           local path = node:get_id()
           if vim.fn.isdirectory(path) == 0 then
@@ -309,6 +318,9 @@ return {
           getTelescopeBuiltin("live_grep", state, path)
         end,
         telescope_grep_root = function(state)
+          if state.tree == nil then
+            return
+          end
           local path = state.tree.nodes.root_ids[1]
           getTelescopeBuiltin("live_grep", state, path)
         end,
