@@ -295,7 +295,13 @@ return {
   {
     "alan-w-255/telescope-mru.nvim",
     dependencies = {
-      { "yegappan/mru", event = "BufRead" },
+      {
+        "yegappan/mru",
+        event = "VeryLazy",
+        config = function()
+          vim.cmd("doautocmd BufRead")
+        end,
+      },
       "nvim-telescope/telescope.nvim",
     },
     keys = {
