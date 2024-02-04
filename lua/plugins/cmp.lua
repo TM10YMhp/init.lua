@@ -137,7 +137,7 @@ return {
               sources = {
                 {
                   name = "buffer-lines",
-                  max_item_count = 20,
+                  max_item_count = 15,
                   option = { leading_whitespace = false },
                 },
               },
@@ -149,7 +149,7 @@ return {
           { name = "luasnip", max_item_count = 10 },
           {
             name = "buffer",
-            max_item_count = 20,
+            max_item_count = 15,
             option = {
               get_bufnrs = function()
                 local buf = vim.api.nvim_get_current_buf()
