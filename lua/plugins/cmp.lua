@@ -106,8 +106,8 @@ return {
           end,
         },
         view = {
-          -- entries = "native",
-          -- docs = { auto_open = false }
+          entries = "native",
+          -- docs = { auto_open = false },
         },
         preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
