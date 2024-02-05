@@ -7,7 +7,7 @@ return {
         "<leader>gb",
         ":G blame<cr>",
         mode = { "n", "x" },
-        desc = "Git Blame"
+        desc = "Git Blame",
       },
     },
   },
@@ -28,11 +28,16 @@ return {
       },
       {
         "<leader>gl",
-        [[<cmd>botright Flogsplit -all -format=[%h]\ {%an}%d\ %s<cr>]],
+        [[<cmd>botright Flogsplit -format=[%h]\ {%an}%d\ %s<cr>]],
         desc = "Git Log",
       },
       {
         "<leader>gL",
+        [[<cmd>botright Flogsplit -all -format=[%h]\ {%an}%d\ %s<cr>]],
+        desc = "Git Log All",
+      },
+      {
+        "<leader>gf",
         "<cmd>botright Flogsplit -raw-args=--follow -path=%<cr>",
         desc = "Git Log Current File",
       },

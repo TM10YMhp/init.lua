@@ -81,16 +81,13 @@ return {
     end,
   },
   {
-    "hrsh7th/cmp-nvim-lsp",
-    event = "LspAttach",
-  },
-  {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
       "amarakon/nvim-cmp-buffer-lines",
     },
     opts = function()
