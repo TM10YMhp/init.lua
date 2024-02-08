@@ -1,9 +1,9 @@
 return {
   {
     "echasnovski/mini.completion",
-    event = "InsertCharPre",
+    event = "InsertEnter",
     opts = {
-      delay = { completion = 1000 * 60 * 5 },
+      delay = { completion = 1000 * 60 * 10 },
       window = {
         info = { border = "single" },
         signature = { border = "single" },
@@ -15,7 +15,7 @@ return {
         force_twostep = "",
         force_fallback = "",
       },
-      set_vim_settings = false
+      set_vim_settings = false,
     },
   },
   {
@@ -24,6 +24,7 @@ return {
       { "]", mode = { "n", "x", "o" }, desc = "forward" },
       { "[", mode = { "n", "x", "o" }, desc = "backward" },
     },
+    -- stylua: ignore
     opts = {
       buffer     = { suffix = 'b', options = {} },
       comment    = { suffix = 'c', options = {} },
@@ -39,7 +40,7 @@ return {
       undo       = { suffix = 'u', options = {} },
       window     = { suffix = 'w', options = {} },
       yank       = { suffix = 'y', options = {} },
-    }
+    },
   },
   {
     "echasnovski/mini.align",
@@ -47,7 +48,7 @@ return {
       { "ga", mode = { "n", "x" }, desc = "Align" },
       { "gA", mode = { "n", "x" }, desc = "Align with preview" },
     },
-    config = true
+    config = true,
   },
   {
     "echasnovski/mini.move",
@@ -62,32 +63,32 @@ return {
       { "<M-h>", mode = "x", desc = "Move left" },
       { "<M-l>", mode = "x", desc = "Move right" },
     },
-    config = true
+    config = true,
   },
   {
     "echasnovski/mini.trailspace",
     event = "VeryLazy",
     keys = {
       {
-        '<leader>ct',
+        "<leader>ct",
         function()
           MiniTrailspace.trim()
           MiniTrailspace.trim_last_lines()
         end,
-        desc = "Trim All"
-      }
+        desc = "Trim All",
+      },
     },
     config = function()
-      require('mini.trailspace').setup()
+      require("mini.trailspace").setup()
 
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = { 'lazy', 'floggraph', 'dashboard' },
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "lazy", "floggraph", "dashboard" },
         callback = function(data)
           vim.b[data.buf].minitrailspace_disable = true
           vim.api.nvim_buf_call(data.buf, MiniTrailspace.unhighlight)
         end,
       })
-    end
+    end,
   },
   {
     "echasnovski/mini.jump2d",
@@ -97,21 +98,21 @@ return {
         "<cmd>lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)<CR>",
         mode = { "n", "x" },
         desc = "Start 2d jumping",
-      }
+      },
     },
     opts = {
-      mappings = { start_jumping = "" }
+      mappings = { start_jumping = "" },
     },
   },
   {
     "echasnovski/mini.jump",
     keys = {
-      { "f", mode = { "n", "x", "o" }, desc = 'Jump forward' },
-      { "F", mode = { "n", "x", "o" }, desc = 'Jump backward' },
-      { "t", mode = { "n", "x", "o" }, desc = 'Jump forward till' },
-      { "T", mode = { "n", "x", "o" }, desc = 'Jump backward till' },
+      { "f", mode = { "n", "x", "o" }, desc = "Jump forward" },
+      { "F", mode = { "n", "x", "o" }, desc = "Jump backward" },
+      { "t", mode = { "n", "x", "o" }, desc = "Jump forward till" },
+      { "T", mode = { "n", "x", "o" }, desc = "Jump backward till" },
     },
-    opts = { delay = { highlight = 0 } }
+    opts = { delay = { highlight = 0 } },
   },
   {
     "echasnovski/mini.ai",
@@ -120,16 +121,16 @@ return {
       { "i", mode = { "o", "x" }, desc = "Inside textobject" },
     },
     opts = function()
-      local spec_treesitter = require('mini.ai').gen_spec.treesitter
+      local spec_treesitter = require("mini.ai").gen_spec.treesitter
 
       return {
         mappings = {
-          around_next = '',
-          inside_next = '',
-          around_last = '',
-          inside_last = '',
-          goto_left = '',
-          goto_right = '',
+          around_next = "",
+          inside_next = "",
+          around_last = "",
+          inside_last = "",
+          goto_left = "",
+          goto_right = "",
         },
         n_lines = 500,
         custom_textobjects = {
@@ -138,11 +139,11 @@ return {
             a = { "@block.outer", "@conditional.outer", "@loop.outer" },
             i = { "@block.inner", "@conditional.inner", "@loop.inner" },
           }),
-          F = spec_treesitter({ a = '@function.outer', i = '@function.inner' }),
+          F = spec_treesitter({ a = "@function.outer", i = "@function.inner" }),
           C = spec_treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
           t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
         },
       }
-    end
+    end,
   },
 }
