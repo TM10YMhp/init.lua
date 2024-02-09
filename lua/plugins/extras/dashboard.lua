@@ -1,6 +1,6 @@
 return {
   {
-    'nvimdev/dashboard-nvim',
+    "nvimdev/dashboard-nvim",
     event = function()
       local bufname = vim.api.nvim_buf_get_name(0)
       if bufname == "" then
@@ -8,6 +8,10 @@ return {
       end
     end,
     cmd = "Dashboard",
+    dependencies = {
+      "rubiin/fortune.nvim",
+      opts = { max_width = 42 },
+    },
     opts = function()
       local logo = table.concat({
         "Welcome to my Neovim setup",
@@ -16,7 +20,7 @@ return {
         "the creator of Vim",
       }, "\n")
 
-      logo = string.rep("\n", 5) .. logo .. "\n\n"
+      logo = string.rep("\n", 2) .. logo .. "\n\n"
 
       local opts = {
         theme = "doom",
@@ -39,10 +43,19 @@ return {
           footer = function()
             local stats = require("lazy").stats()
             local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-            return {
+            local fortune = require("fortune").get_fortune()
+            local info = {
               "",
-              "lazy.nvim loaded "..stats.loaded.."/"..stats.count.." plugins in "..ms.."ms"
+              "lazy.nvim loaded "
+                .. stats.loaded
+                .. "/"
+                .. stats.count
+                .. " plugins in "
+                .. ms
+                .. "ms",
+              "",
             }
+            return vim.list_extend(info, fortune)
           end,
         },
       }
@@ -55,20 +68,20 @@ return {
       return opts
     end,
     config = function(_, opts)
-      require('dashboard').setup(opts)
+      require("dashboard").setup(opts)
 
       -- close Lazy and re-open when the dashboard is ready
       if vim.o.filetype == "lazy" and vim.fn.argc(0) == 0 then
         vim.schedule(function()
           vim.cmd.close()
-          vim.cmd('Dashboard')
+          vim.cmd("Dashboard")
           vim.b.minitrailspace_disable = true
           vim.defer_fn(function()
             require("lazy").show()
           end, 10)
         end)
       else
-        vim.cmd('Dashboard')
+        vim.cmd("Dashboard")
         vim.b.minitrailspace_disable = true
       end
     end,
@@ -77,10 +90,8 @@ return {
     "nvim-lualine/lualine.nvim",
     optional = true,
     opts = function(_, opts)
-      opts.options.disabled_filetypes.winbar = vim.list_extend(
-        opts.options.disabled_filetypes.winbar,
-        { "dashboard" }
-      )
+      opts.options.disabled_filetypes.winbar =
+        vim.list_extend(opts.options.disabled_filetypes.winbar, { "dashboard" })
     end,
-  }
+  },
 }
