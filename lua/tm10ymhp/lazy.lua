@@ -147,3 +147,16 @@ vim.api.nvim_create_autocmd("User", {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+  once = true,
+  callback = function()
+    -- This is a modification of mini.completion
+    -- Only displays signature information
+    require("tm10ymhp.mini_signature").setup({
+      window = {
+        signature = { border = "single" },
+      },
+    })
+  end,
+})
