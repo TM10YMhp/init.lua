@@ -104,11 +104,21 @@ return {
         },
         view = {
           entries = "native",
-          -- docs = { auto_open = false },
+          docs = { auto_open = false },
         },
         preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
-          ["<C-s>"] = cmp.mapping.complete(),
+          ["<C-s>"] = function()
+            if cmp.visible() then
+              if cmp.visible_docs() then
+                cmp.close_docs()
+              else
+                cmp.open_docs()
+              end
+            else
+              cmp.complete()
+            end
+          end,
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<S-CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
@@ -122,13 +132,6 @@ return {
           ["<S-Tab>"] = cmp.mapping.select_prev_item({
             behavior = cmp.SelectBehavior.Select,
           }),
-          ["<C-g>"] = function()
-            if cmp.visible_docs() then
-              cmp.close_docs()
-            else
-              cmp.open_docs()
-            end
-          end,
           ["<C-l>"] = cmp.mapping.complete({
             config = {
               sources = {
