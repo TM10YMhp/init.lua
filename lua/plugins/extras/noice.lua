@@ -1,6 +1,6 @@
 return {
   "folke/noice.nvim",
-  event = { "LspAttach", "InsertEnter" },
+  event = { "LspAttach" },
   dependencies = { "MunifTanjim/nui.nvim" },
   opts = {
     cmdline = { enabled = false },
@@ -11,7 +11,7 @@ return {
     lsp = {
       progress = {
         throttle = 1000,
-        view = "notify"
+        view = "notify",
       },
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -21,7 +21,7 @@ return {
       signature = { enabled = false },
       hover = {
         silent = true,
-      }
+      },
     },
     format = {
       level = {
@@ -33,21 +33,21 @@ return {
       },
       spinner = {
         -- name = "simpleDots"
-        name = "balloon"
-      }
+        name = "balloon",
+      },
     },
     views = {
       mini = {
         position = {
           row = -2,
-          col = 0
+          col = 0,
         },
         border = {
-          style = "single"
+          style = "single",
         },
         win_options = {
-          winblend = 0
-        }
+          winblend = 0,
+        },
       },
       hover = {
         border = {
@@ -66,6 +66,6 @@ return {
       notify = {
         replace = true,
       },
-    }
-  }
+    },
+  },
 }

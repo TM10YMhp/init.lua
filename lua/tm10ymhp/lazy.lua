@@ -148,7 +148,7 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
-vim.api.nvim_create_autocmd("InsertEnter", {
+vim.api.nvim_create_autocmd("LspAttach", {
   once = true,
   callback = function()
     -- This is a modification of mini.completion
