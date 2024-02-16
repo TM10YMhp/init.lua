@@ -102,10 +102,10 @@ return {
             require("luasnip").lsp_expand(args.body)
           end,
         },
-        view = {
-          entries = "native",
-          docs = { auto_open = false },
-        },
+        -- view = {
+        --   entries = "native",
+        --   -- docs = { auto_open = false },
+        -- },
         preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
           ["<C-s>"] = function()

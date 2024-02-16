@@ -38,6 +38,11 @@ return {
           "--config-path=" .. vim.fn.stdpath("config") .. "/.stylua.toml",
         },
       },
+      prettier = {
+        prepend_args = {
+          "--plugin=prettier-plugin-astro",
+        },
+      },
     },
     -- stylua: ignore
     formatters_by_ft = {
