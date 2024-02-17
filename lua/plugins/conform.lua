@@ -39,9 +39,13 @@ return {
         },
       },
       prettier = {
-        prepend_args = {
-          "--plugin=prettier-plugin-astro",
-        },
+        prepend_args = function(self, ctx)
+          if vim.endswith(ctx.filename, ".astro") then
+            return {
+              "--plugin=prettier-plugin-astro",
+            }
+          end
+        end,
       },
     },
     -- stylua: ignore
@@ -79,7 +83,7 @@ return {
         lsp_fallback = false,
         async = false,
         quiet = false,
-        timeout_ms = 1000,
+        timeout_ms = 800,
       }
     end,
   },

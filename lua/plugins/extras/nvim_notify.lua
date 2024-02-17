@@ -10,6 +10,11 @@ return {
         end,
         desc = "Dismiss all Notifications",
       },
+      {
+        "<leader>sn",
+        "<cmd>Telescope notify<cr>",
+        desc = "Search Notifications",
+      },
     },
     init = function()
       vim.notify = function(...)
