@@ -23,6 +23,8 @@ return {
     { "williamboman/mason-lspconfig.nvim", config = true },
     "b0o/SchemaStore.nvim",
     { "folke/neodev.nvim", opts = {} },
+    { "dmmulroy/ts-error-translator.nvim", opts = {} },
+    { "deathbeam/lspecho.nvim", opts = { decay = 3000 } },
   },
   keys = {
     { "K", vim.lsp.buf.hover, desc = "LSP: Hover" },

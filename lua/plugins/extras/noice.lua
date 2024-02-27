@@ -10,6 +10,7 @@ return {
     health = { checker = false },
     lsp = {
       progress = {
+        enabled = false,
         throttle = 1000,
         view = "notify",
       },

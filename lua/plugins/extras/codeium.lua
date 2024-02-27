@@ -9,6 +9,15 @@ return {
     vim.g.codeium_no_map_tap = true
   end,
   keys = {
+    -- stylua: ignore
+    {
+      "<M-c>",
+      function() return vim.fn['codeium#Chat']() end,
+      desc = "Codeium: Chat - Telemetry",
+      expr = true,
+      silent = true,
+    },
+    -- stylua: ignore
     {
       "<M-y>",
       function() return vim.fn['codeium#Accept']() end,
@@ -17,6 +26,7 @@ return {
       expr = true,
       silent = true,
     },
+    -- stylua: ignore
     {
       "<M-e>",
       function() return vim.fn['codeium#Clear']() end,
@@ -25,6 +35,7 @@ return {
       expr = true,
       silent = true,
     },
+    -- stylua: ignore
     {
       "<M-n>",
       function() return vim.fn['codeium#CycleOrComplete']() end,
@@ -33,6 +44,7 @@ return {
       expr = true,
       silent = true,
     },
+    -- stylua: ignore
     {
       "<M-p>",
       function() return vim.fn['codeium#CycleCompletions'](-1) end,
@@ -53,16 +65,16 @@ return {
           utils.info("Codeium enabled")
         end
       end,
-      desc = "Toggle Codeium"
+      desc = "Toggle Codeium",
     },
   },
   config = function()
-    vim.api.nvim_create_autocmd('ColorScheme', {
-      group = vim.api.nvim_create_augroup('Codeium', { clear = true }),
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      group = vim.api.nvim_create_augroup("Codeium", { clear = true }),
       desc = "Set Codeium Suggestion highlight",
       callback = function()
-        vim.api.nvim_set_hl(0, 'CodeiumSuggestion', { link = "Comment" })
-      end
+        vim.api.nvim_set_hl(0, "CodeiumSuggestion", { link = "Comment" })
+      end,
     })
-  end
+  end,
 }

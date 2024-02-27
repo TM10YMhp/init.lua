@@ -36,7 +36,7 @@ return {
     },
     keys = {
       {
-        "<leader>e",
+        "<leader>ee",
         function()
           require("neo-tree.command").execute({
             toggle = true,
@@ -44,6 +44,16 @@ return {
           })
         end,
         desc = "Explorer NeoTree",
+      },
+      {
+        "<leader>eE",
+        function()
+          require("neo-tree.command").execute({
+            toggle = true,
+            dir = vim.fn.expand("%:p:h"),
+          })
+        end,
+        desc = "Explorer NeoTree from current file",
       },
       {
         "<leader>ge",
