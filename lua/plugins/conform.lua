@@ -20,6 +20,20 @@ return {
       "<leader>uf",
       function()
         local utils = require("tm10ymhp.utils")
+        if vim.b.disable_autoformat then
+          vim.b.disable_autoformat = false
+          utils.info("Buffer: Autoformat enabled")
+        else
+          vim.b.disable_autoformat = true
+          utils.info("Buffer: Autoformat disabled")
+        end
+      end,
+      desc = "Buffer: Toggle Format On Save",
+    },
+    {
+      "<leader>uF",
+      function()
+        local utils = require("tm10ymhp.utils")
         if vim.g.disable_autoformat then
           vim.g.disable_autoformat = false
           utils.info("Autoformat enabled")
@@ -69,7 +83,7 @@ return {
       astro           = { "prettier" },
     },
     format_on_save = function(bufnr)
-      if vim.g.disable_autoformat then
+      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
         return
       end
 

@@ -36,7 +36,7 @@ return {
     },
     keys = {
       {
-        "<leader>ee",
+        "<leader>se",
         function()
           require("neo-tree.command").execute({
             toggle = true,
@@ -46,7 +46,7 @@ return {
         desc = "Explorer NeoTree",
       },
       {
-        "<leader>eE",
+        "<leader>sE",
         function()
           require("neo-tree.command").execute({
             toggle = true,
@@ -67,56 +67,6 @@ return {
       },
     },
     opts = {
-      event_handlers = {
-        {
-          event = "file_open_requested",
-          handler = function(args)
-            local state = args.state
-            local path = args.path
-            local open_cmd = args.open_cmd ~= "b" and args.open_cmd or "edit"
-
-            -- use last window if possible
-            local suitable_window_found = false
-            local nt = require("neo-tree")
-            if nt.config.open_files_in_last_window then
-              local prior_window = nt.get_prior_window()
-              if prior_window > 0 then
-                local success =
-                  pcall(vim.api.nvim_set_current_win, prior_window)
-                if success then
-                  suitable_window_found = true
-                end
-              end
-            end
-
-            -- find a suitable window to open the file in
-            if not suitable_window_found then
-              if state.window.position == "right" then
-                vim.cmd("wincmd t")
-              else
-                vim.cmd("wincmd w")
-              end
-            end
-            -- local attempts = 0
-            -- while attempts < 4 and vim.bo.filetype == "neo-tree" do
-            --   attempts = attempts + 1
-            --   vim.cmd("wincmd w")
-            -- end
-            -- if vim.bo.filetype == "neo-tree" then
-            --   -- Neo-tree must be the only window, restore it's status as a sidebar
-            --   local winid = vim.api.nvim_get_current_win()
-            --   local width = require("neo-tree.utils").get_value(state, "window.width", 40)
-            --   vim.cmd("vsplit " .. path)
-            --   vim.api.nvim_win_set_width(winid, width)
-            -- else
-            vim.cmd(open_cmd .. " " .. path)
-            -- end
-
-            -- If you don't return this, it will proceed to open the file using built-in logic.
-            return { handled = true }
-          end,
-        },
-      },
       popup_border_style = "single",
       -- enable_git_status = false,
       -- enable_diagnostics = false,
@@ -220,7 +170,6 @@ return {
           -- stylua: ignore
           mappings = {
             ["/"] = "none",
-            ["w"] = "open_window_picker",
             ["f"] = "telescope_find",
             ["F"] = "telescope_find_root",
             ["g"] = "telescope_grep",
@@ -283,22 +232,6 @@ return {
       end
 
       opts.commands = {
-        open_window_picker = function(state)
-          local node = state.tree:get_node()
-          local success, picker = pcall(require, "window-picker")
-          if not success then
-            print(table.concat({
-              "You'll need to install window-picker to use this command:",
-              "https://github.com/s1n7ax/nvim-window-picker",
-            }, " "))
-            return
-          end
-          local picked_window_id = picker.pick_window()
-          if picked_window_id then
-            vim.api.nvim_set_current_win(picked_window_id)
-            vim.cmd("edit " .. vim.fn.fnameescape(node.path))
-          end
-        end,
         telescope_find = function(state)
           if state.tree == nil then
             return
