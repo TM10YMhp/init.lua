@@ -1,7 +1,7 @@
 vim.filetype.add({
   extension = {
-    http = "http"
-  }
+    http = "http",
+  },
 })
 
 return {
@@ -12,40 +12,40 @@ return {
       result_split_horizontal = true,
       result = {
         show_curl_command = true,
-      }
+      },
     },
     keys = {
       {
-        '<leader>rr',
+        "<leader>rr",
         function()
           if require("tm10ymhp.utils").is_http() then
             require("rest-nvim").run()
           end
         end,
-        desc = "RestNvim Run"
+        desc = "RestNvim Run",
       },
       {
-        '<leader>rl',
+        "<leader>rl",
         function()
           if require("tm10ymhp.utils").is_http() then
             require("rest-nvim").last()
           end
         end,
-        desc = "RestNvim Last"
+        desc = "RestNvim Last",
       },
       {
-        '<leader>rp',
+        "<leader>rp",
         function()
           if require("tm10ymhp.utils").is_http() then
             require("rest-nvim").run(true)
           end
         end,
-        desc = "RestNvim Preview"
+        desc = "RestNvim Preview",
       },
     },
     config = function(_, opts)
       require("rest-nvim").setup(opts)
-    end
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -58,6 +58,6 @@ return {
         "html",
         "json",
       })
-    end
-  }
+    end,
+  },
 }
