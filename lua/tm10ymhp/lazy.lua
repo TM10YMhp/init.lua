@@ -64,7 +64,7 @@ require("lazy").setup({
       init = "",
       import = "",
       keys = "",
-      lazy = "(H)",
+      lazy = "(H) ",
       loaded = "●",
       not_loaded = "○",
       plugin = "",
