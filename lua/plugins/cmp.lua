@@ -173,6 +173,16 @@ return {
 
             -- item.menu = "("..entry.source.name..")"
 
+            function trim(text)
+              local max = math.floor(vim.o.columns * 0.5)
+              if text and text:len() > max then
+                text = text:sub(1, max) .. "..."
+              end
+              return text
+            end
+
+            item.abbr = trim(item.abbr)
+
             return item
           end,
           expandable_indicator = false,
