@@ -5,12 +5,12 @@ return {
     branch = "dev",
     event = "UIEnter",
     opts = {
-      termguicolors = false
+      termguicolors = false,
     },
     config = function(_, opts)
       require("serene").setup(opts)
       vim.cmd.colorscheme("serene")
-    end
+    end,
   },
   {
     "Shatur/neovim-ayu",
@@ -18,11 +18,11 @@ return {
     opts = {
       overrides = {
         Comment = { fg = "#626a73" },
-      }
+      },
     },
     config = function(_, opts)
       require("ayu").setup(opts)
-    end
+    end,
   },
   {
     "miikanissi/modus-themes.nvim",
@@ -43,7 +43,7 @@ return {
       styles = {
         comments = { italic = false },
         keywords = { italic = false },
-      }
-    }
+      },
+    },
   },
 }

@@ -20,6 +20,7 @@ require("lazy").setup({
     require("plugins.comment"),
     require("plugins.conform"),
     require("plugins.diffview"),
+    require("plugins.flash"),
     require("plugins.floaterm"),
     require("plugins.fugitive"),
     require("plugins.gitsigns"),

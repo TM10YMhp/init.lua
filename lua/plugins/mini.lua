@@ -1,23 +1,4 @@
 return {
-  -- {
-  --   "echasnovski/mini.completion",
-  --   event = "InsertEnter",
-  --   opts = {
-  --     delay = { completion = 1000 * 60 * 10 },
-  --     window = {
-  --       info = { border = "single" },
-  --       signature = { border = "single" },
-  --     },
-  --     lsp_completion = {
-  --       auto_setup = false,
-  --     },
-  --     mappings = {
-  --       force_twostep = "",
-  --       force_fallback = "",
-  --     },
-  --     set_vim_settings = false,
-  --   },
-  -- },
   {
     "echasnovski/mini.bracketed",
     keys = {
@@ -90,30 +71,6 @@ return {
       })
     end,
   },
-  -- {
-  --   "echasnovski/mini.jump2d",
-  --   keys = {
-  --     {
-  --       "<leader>f",
-  --       "<cmd>lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)<CR>",
-  --       mode = { "n", "x" },
-  --       desc = "Start 2d jumping",
-  --     },
-  --   },
-  --   opts = {
-  --     mappings = { start_jumping = "" },
-  --   },
-  -- },
-  -- {
-  --   "echasnovski/mini.jump",
-  --   keys = {
-  --     { "f", mode = { "n", "x", "o" }, desc = "Jump forward" },
-  --     { "F", mode = { "n", "x", "o" }, desc = "Jump backward" },
-  --     { "t", mode = { "n", "x", "o" }, desc = "Jump forward till" },
-  --     { "T", mode = { "n", "x", "o" }, desc = "Jump backward till" },
-  --   },
-  --   opts = { delay = { highlight = 0 } },
-  -- },
   {
     "echasnovski/mini.ai",
     keys = {
