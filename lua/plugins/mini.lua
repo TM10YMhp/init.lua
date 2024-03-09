@@ -90,30 +90,30 @@ return {
       })
     end,
   },
-  {
-    "echasnovski/mini.jump2d",
-    keys = {
-      {
-        "<leader>f",
-        "<cmd>lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)<CR>",
-        mode = { "n", "x" },
-        desc = "Start 2d jumping",
-      },
-    },
-    opts = {
-      mappings = { start_jumping = "" },
-    },
-  },
-  {
-    "echasnovski/mini.jump",
-    keys = {
-      { "f", mode = { "n", "x", "o" }, desc = "Jump forward" },
-      { "F", mode = { "n", "x", "o" }, desc = "Jump backward" },
-      { "t", mode = { "n", "x", "o" }, desc = "Jump forward till" },
-      { "T", mode = { "n", "x", "o" }, desc = "Jump backward till" },
-    },
-    opts = { delay = { highlight = 0 } },
-  },
+  -- {
+  --   "echasnovski/mini.jump2d",
+  --   keys = {
+  --     {
+  --       "<leader>f",
+  --       "<cmd>lua MiniJump2d.start(MiniJump2d.builtin_opts.single_character)<CR>",
+  --       mode = { "n", "x" },
+  --       desc = "Start 2d jumping",
+  --     },
+  --   },
+  --   opts = {
+  --     mappings = { start_jumping = "" },
+  --   },
+  -- },
+  -- {
+  --   "echasnovski/mini.jump",
+  --   keys = {
+  --     { "f", mode = { "n", "x", "o" }, desc = "Jump forward" },
+  --     { "F", mode = { "n", "x", "o" }, desc = "Jump backward" },
+  --     { "t", mode = { "n", "x", "o" }, desc = "Jump forward till" },
+  --     { "T", mode = { "n", "x", "o" }, desc = "Jump backward till" },
+  --   },
+  --   opts = { delay = { highlight = 0 } },
+  -- },
   {
     "echasnovski/mini.ai",
     keys = {
