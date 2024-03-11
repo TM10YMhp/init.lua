@@ -15,23 +15,10 @@ return {
   {
     "Shatur/neovim-ayu",
     event = "CmdlineEnter",
+    name = "ayu",
     opts = {
       overrides = {
         Comment = { fg = "#626a73" },
-      },
-    },
-    config = function(_, opts)
-      require("ayu").setup(opts)
-    end,
-  },
-  {
-    "miikanissi/modus-themes.nvim",
-    event = "CmdlineEnter",
-    opts = {
-      -- variant = "deuteranopia",
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
       },
     },
   },
@@ -43,6 +30,52 @@ return {
       styles = {
         comments = { italic = false },
         keywords = { italic = false },
+      },
+    },
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    event = "CmdlineEnter",
+    opts = {
+      commentStyle = { italic = false },
+      keywordStyle = { italic = false },
+    },
+  },
+  {
+    "arturgoms/moonbow.nvim",
+    event = "CmdlineEnter",
+  },
+  {
+    "catppuccin/nvim",
+    event = "CmdlineEnter",
+    name = "catppuccin",
+    opts = {
+      no_italic = true,
+      integrations = {
+        aerial = true,
+        alpha = true,
+        cmp = true,
+        dashboard = true,
+        flash = true,
+        gitsigns = true,
+        headlines = true,
+        illuminate = true,
+        indent_blankline = { enabled = true },
+        leap = true,
+        lsp_trouble = true,
+        mason = true,
+        markdown = true,
+        mini = true,
+        navic = { enabled = true, custom_bg = "lualine" },
+        neotest = true,
+        neotree = true,
+        noice = true,
+        notify = true,
+        semantic_tokens = true,
+        telescope = true,
+        treesitter = true,
+        treesitter_context = true,
+        which_key = true,
       },
     },
   },
