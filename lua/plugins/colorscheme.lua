@@ -23,6 +23,10 @@ return {
     },
   },
   {
+    "samharju/synthweave.nvim",
+    event = "CmdlineEnter",
+  },
+  {
     "folke/tokyonight.nvim",
     event = "CmdlineEnter",
     opts = {
@@ -40,10 +44,6 @@ return {
       commentStyle = { italic = false },
       keywordStyle = { italic = false },
     },
-  },
-  {
-    "arturgoms/moonbow.nvim",
-    event = "CmdlineEnter",
   },
   {
     "catppuccin/nvim",
