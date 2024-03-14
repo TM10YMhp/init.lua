@@ -52,6 +52,9 @@ return {
     },
   },
   opts = {
+    label = {
+      current = false,
+    },
     highlight = {
       backdrop = false,
     },

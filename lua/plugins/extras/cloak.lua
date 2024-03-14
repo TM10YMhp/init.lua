@@ -14,10 +14,10 @@ vim.filetype.add({
 
 return {
   "laytan/cloak.nvim",
-  ft = "dotenv",
+  ft = { "dotenv", "TelescopePrompt" },
   keys = {
     {
-      '<leader>uc',
+      "<leader>uc",
       function()
         local cloak = require("cloak")
         local utils = require("tm10ymhp.utils")
@@ -30,17 +30,17 @@ return {
         end
       end,
       desc = "Toggle Cloak",
-    }
+    },
   },
   opts = {
     enabled = true,
-    cloak_character = '*',
-    highlight_group = 'Comment',
+    cloak_character = "*",
+    highlight_group = "Comment",
     patterns = {
       {
         file_pattern = ".env*",
         cloak_pattern = "=.+",
-      }
-    }
+      },
+    },
   },
 }
