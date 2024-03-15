@@ -59,6 +59,9 @@ return {
       backdrop = false,
     },
     modes = {
+      search = {
+        enabled = false,
+      },
       char = {
         highlight = {
           backdrop = false,
