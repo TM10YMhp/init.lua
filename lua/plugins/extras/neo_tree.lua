@@ -170,10 +170,10 @@ return {
           -- stylua: ignore
           mappings = {
             ["/"] = "none",
-            ["f"] = "telescope_find",
-            ["F"] = "telescope_find_root",
-            ["g"] = "telescope_grep",
-            ["G"] = "telescope_grep_root",
+            ["F"] = "telescope_find",
+            ["f"] = "telescope_find_root",
+            ["G"] = "telescope_grep",
+            ["g"] = "telescope_grep_root",
           },
         },
         -- Windows fix

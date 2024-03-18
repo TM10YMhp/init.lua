@@ -30,15 +30,17 @@ return {
         },
         config = {
           header = vim.split(logo, "\n"),
+          -- stylua: ignore
           center = {
-            { action = "Telescope find_files", desc = "Find file", key = "f" },
-            { action = "ene | startinsert", desc = "New file", key = "n" },
-            { action = "Telescope mru", desc = "Recent files", key = "o" },
-            { action = "Telescope live_grep", desc = "Find text", key = "g" },
-            { action = "Telescope projects", desc = "Projects", key = "p" },
-            { action = "Lazy", desc = "Lazy", key = "l" },
-            { action = "qa", desc = "Quit", key = "q" },
-            { action = "bd", desc = "Close", key = "d" },
+            { action = "Telescope find_files", desc = "Find file",    key = "f" },
+            { action = "ene | startinsert",    desc = "New file",     key = "n" },
+            { action = "Neotree",              desc = "Explorer",     key = "e" },
+            { action = "Telescope mru",        desc = "Recent files", key = "o" },
+            { action = "Telescope live_grep",  desc = "Find text",    key = "g" },
+            { action = "Telescope projects",   desc = "Projects",     key = "p" },
+            { action = "Lazy",                 desc = "Lazy",         key = "l" },
+            { action = "qa",                   desc = "Quit",         key = "q" },
+            { action = "bd",                   desc = "Close",        key = "d" },
           },
           footer = function()
             local stats = require("lazy").stats()

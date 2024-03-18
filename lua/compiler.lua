@@ -18,7 +18,6 @@ local filenames = {
   "plugins/mini",
   "plugins/nvim_lint",
   "plugins/nvim_surround",
-  -- "plugins/nvim_tree",
   "plugins/nvim_ufo",
   "plugins/nvim_various_textobjs",
   "plugins/perf",
