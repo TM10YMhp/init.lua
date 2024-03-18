@@ -8,6 +8,7 @@ return {
   {
     "rest-nvim/rest.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    tag = "v1.2.1",
     opts = {
       result_split_horizontal = true,
       result = {
