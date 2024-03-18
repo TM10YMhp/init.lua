@@ -34,6 +34,7 @@ require("lazy").setup({
     -- require("plugins.nvim_tree"),
     require("plugins.nvim_ufo"),
     require("plugins.nvim_various_textobjs"),
+    require("plugins.perf"),
     require("plugins.telescope"),
     require("plugins.treesitter"),
 
