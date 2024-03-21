@@ -59,6 +59,11 @@ return {
         desc = "Goto Definitions",
       },
       {
+        "<leader>si",
+        "<cmd>Telescope lsp_implementations<cr>",
+        desc = "Goto Implementations",
+      },
+      {
         "<leader>st",
         "<cmd>Telescope lsp_type_definitions<cr>",
         desc = "Goto Type Definitions",
@@ -191,6 +196,12 @@ return {
             sort_by = "severity",
           },
           lsp_definitions = {
+            path_display = { tail = true },
+            preview = { hide_on_startup = false },
+            jump_type = "never",
+            show_line = false,
+          },
+          lsp_implementations = {
             path_display = { tail = true },
             preview = { hide_on_startup = false },
             jump_type = "never",

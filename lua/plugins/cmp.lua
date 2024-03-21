@@ -97,16 +97,6 @@ return {
         completion = {
           completeopt = "menu,menuone,noinsert,noselect",
         },
-        snippet = {
-          expand = function(args)
-            -- require("luasnip").lsp_expand(args.body)
-            vim.snippet.expand(args.body)
-          end,
-        },
-        -- view = {
-        --   entries = "native",
-        --   -- docs = { auto_open = false },
-        -- },
         preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
           ["<C-s>"] = function()
@@ -170,8 +160,11 @@ return {
           -- fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
             item.kind = kind_icons[item.kind] or "?"
-            item.menu = ""
+            if entry.source.name == "nvim_lsp" then
+              item.kind = item.kind:upper()
+            end
 
+            item.menu = ""
             -- item.menu = "("..entry.source.name..")"
 
             function trim(text)
