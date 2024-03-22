@@ -160,7 +160,7 @@ return {
           -- fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
             item.kind = kind_icons[item.kind] or "?"
-            if entry.source.name == "nvim_lsp" then
+            if item.kind == "Text" and entry.source.name == "nvim_lsp" then
               item.kind = item.kind:upper()
             end
 
