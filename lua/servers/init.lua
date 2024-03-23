@@ -5,4 +5,5 @@ return {
   "astro",
   "svelte",
   "cssls",
+  "angularls",
 }
