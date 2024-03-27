@@ -6,4 +6,5 @@ return {
   "svelte",
   "cssls",
   "angularls",
+  "csharp_ls",
 }

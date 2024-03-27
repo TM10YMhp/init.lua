@@ -97,11 +97,11 @@ return {
         completion = {
           completeopt = "menu,menuone,noinsert,noselect",
         },
-        -- snippet = {
-        --   expand = function(args)
-        --     require("luasnip").lsp_expand(args.body)
-        --   end,
-        -- },
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
+        },
         preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
           ["<C-s>"] = function()

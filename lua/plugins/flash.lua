@@ -1,14 +1,13 @@
 return {
   "folke/flash.nvim",
-  -- event = "VeryLazy",
   keys = {
-    "/",
-    "?",
+    -- "/",
+    -- "?",
     "f",
     "F",
     "t",
     "T",
-    ";",
+    -- ";",
     -- ",",
     {
       "<leader>fs",
@@ -50,11 +49,30 @@ return {
       end,
       desc = "Toggle Flash Search",
     },
+    {
+      "<leader>/",
+      [[/<cmd>lua require("flash").toggle()<cr>]],
+      desc = "Flash Search Forward",
+    },
+    {
+      "<leader>?",
+      [[?<cmd>lua require("flash").toggle()<cr>]],
+      desc = "Flash Search Backward",
+    },
+    {
+      "<leader>/",
+      mode = "x",
+      [[<esc>/\%V<cmd>lua require("flash").toggle()<cr>]],
+      desc = "Flash Search Forward within range",
+    },
+    {
+      "<leader>?",
+      mode = "x",
+      [[<esc>?\%V<cmd>lua require("flash").toggle()<cr>]],
+      desc = "Flash Search Backward within range",
+    },
   },
   opts = {
-    label = {
-      current = false,
-    },
     highlight = {
       backdrop = false,
     },
@@ -70,4 +88,17 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    require("flash").setup(opts)
+
+    local augroup =
+      vim.api.nvim_create_augroup("plugins.flash", { clear = true })
+    vim.api.nvim_create_autocmd("CmdlineLeave", {
+      group = augroup,
+      pattern = { "/", "?" },
+      callback = function()
+        require("flash").toggle(false)
+      end,
+    })
+  end,
 }

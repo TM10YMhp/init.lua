@@ -1,17 +1,5 @@
 return {
   {
-    "zeioth/garbage-day.nvim",
-    dependencies = "neovim/nvim-lspconfig",
-    event = "LspAttach",
-    opts = {
-      grace_period = 60 * 15,
-      wakeup_delay = 1000 * 60 * 15,
-      -- notifications = true,
-      -- grace_period = 10,
-      -- wakeup_delay = 1000 * 15,
-    },
-  },
-  {
     "tpope/vim-eunuch",
     -- stylua: ignore
     cmd = {

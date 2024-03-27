@@ -5,7 +5,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       {
-        "<leader>/",
+        "<leader>sw",
         "<cmd>Telescope current_buffer_fuzzy_find<cr>",
         desc = "Search Word",
       },
