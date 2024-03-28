@@ -1,30 +1,31 @@
+-- https://code.visualstudio.com/docs/editor/intellisense#_types-of-completions
 -- stylua: ignore
 local kind_icons = {
-  Text          = "t",
+  Text          = "w",
   Method        = "m",
-  Function      = "f",
-  Constructor   = "c",
-  Field         = "d",
+  Function      = "m",
+  Constructor   = "m",
+  Field         = "f",
   Variable      = "v",
-  Class         = "C",
+  Class         = "c",
   Interface     = "I",
   Module        = "M",
   Property      = "p",
   Unit          = "u",
-  Value         = "l",
+  Value         = "E",
   Enum          = "E",
   Keyword       = "k",
   Snippet       = "s",
-  Color         = "o",
+  Color         = "C",
   File          = "F",
   Reference     = "r",
   Folder        = "D",
-  EnumMember    = "e",
-  Constant      = "n",
+  EnumMember    = "E",
+  Constant      = "C",
   Struct        = "S",
   Event         = "e",
-  Operator      = "O",
-  TypeParameter = "P",
+  Operator      = "o",
+  TypeParameter = "T",
 }
 
 return {
@@ -162,18 +163,23 @@ return {
           },
         }),
         formatting = {
-          -- fields = { "kind", "abbr", "menu" },
+          fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
             item.kind = kind_icons[item.kind] or "?"
-            if item.kind == "Text" and entry.source.name == "nvim_lsp" then
-              item.kind = item.kind:upper()
-            end
+            -- item.kind = "(" .. item.kind .. ")"
 
-            item.menu = ""
+            -- item.menu = ""
+            item.menu = ({
+              buffer = "[Buffer]",
+              nvim_lsp = "[LSP]",
+              luasnip = "[LuaSnip]",
+              nvim_lua = "[Lua]",
+              latex_symbols = "[LaTeX]",
+            })[entry.source.name]
             -- item.menu = "("..entry.source.name..")"
 
             function trim(text)
-              local max = math.floor(vim.o.columns * 0.5)
+              local max = math.floor(0.45 * vim.o.columns)
               if text and text:len() > max then
                 text = text:sub(1, max) .. "..."
               end

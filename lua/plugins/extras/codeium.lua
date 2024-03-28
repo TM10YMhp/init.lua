@@ -76,5 +76,7 @@ return {
         vim.api.nvim_set_hl(0, "CodeiumSuggestion", { link = "Comment" })
       end,
     })
+
+    vim.fn["codeium#command#StartLanguageServer"]()
   end,
 }
