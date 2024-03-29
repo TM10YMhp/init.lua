@@ -171,11 +171,11 @@ return {
 
             -- item.menu = ""
             item.menu = ({
-              buffer = "[Buffer]",
+              buffer = "[Buf]",
               nvim_lsp = "[LSP]",
-              luasnip = "[LSnip]",
+              luasnip = "[Snip]",
               nvim_lua = "[Lua]",
-              latex_symbols = "[LaTeX]",
+              latex_symbols = "[LTX]",
             })[entry.source.name]
             -- item.menu = "("..entry.source.name..")"
 
