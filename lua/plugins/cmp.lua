@@ -165,21 +165,22 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
-            item.kind = kind_icons[item.kind] or "?"
+            item.kind = " " .. kind_icons[item.kind] .. " " or "?"
+            -- item.kind = kind_icons[item.kind] or "?"
             -- item.kind = "(" .. item.kind .. ")"
 
             -- item.menu = ""
             item.menu = ({
               buffer = "[Buffer]",
               nvim_lsp = "[LSP]",
-              luasnip = "[LuaSnip]",
+              luasnip = "[LSnip]",
               nvim_lua = "[Lua]",
               latex_symbols = "[LaTeX]",
             })[entry.source.name]
             -- item.menu = "("..entry.source.name..")"
 
             function trim(text)
-              local max = math.floor(0.45 * vim.o.columns)
+              local max = math.floor(0.4 * vim.o.columns)
               if text and text:len() > max then
                 text = text:sub(1, max) .. "..."
               end
@@ -210,6 +211,12 @@ return {
         },
         window = {
           documentation = { border = "single" },
+          completion = {
+            border = "single",
+            winhighlight = "Normal:None,FloatBorder:None,Search:None",
+            col_offset = -4,
+            side_padding = 0,
+          },
         },
         matching = {
           disallow_fuzzy_matching = true,
