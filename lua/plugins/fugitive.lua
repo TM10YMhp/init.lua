@@ -9,6 +9,11 @@ return {
         mode = { "n", "x" },
         desc = "Git Blame",
       },
+      {
+        "<leader>gg",
+        "<cmd>G<cr>",
+        desc = "Git",
+      },
     },
   },
   {

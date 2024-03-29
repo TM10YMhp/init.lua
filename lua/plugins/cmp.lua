@@ -166,8 +166,6 @@ return {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
             item.kind = " " .. kind_icons[item.kind] .. " " or "?"
-            -- item.kind = kind_icons[item.kind] or "?"
-            -- item.kind = "(" .. item.kind .. ")"
 
             -- item.menu = ""
             item.menu = ({
@@ -176,13 +174,14 @@ return {
               luasnip = "[Snip]",
               nvim_lua = "[Lua]",
               latex_symbols = "[LTX]",
-            })[entry.source.name]
-            -- item.menu = "("..entry.source.name..")"
+              obsidian = "[Obs]",
+              obsidian_new = "[New]",
+            })[entry.source.name] or "[" .. entry.source.name .. "]"
 
             function trim(text)
-              local max = math.floor(0.4 * vim.o.columns)
+              local max = math.floor(0.35 * vim.o.columns)
               if text and text:len() > max then
-                text = text:sub(1, max) .. "..."
+                text = text:sub(1, max) .. "…"
               end
               return text
             end
@@ -210,11 +209,14 @@ return {
           },
         },
         window = {
-          documentation = { border = "single" },
+          documentation = {
+            -- border = "single",
+            winhighlight = "FloatBorder:CursorLine,NormalFloat:CursorLine",
+          },
           completion = {
-            border = "single",
-            winhighlight = "Normal:None,FloatBorder:None,Search:None",
-            col_offset = -4,
+            -- border = "single",
+            winhighlight = "Normal:CursorLine,FloatBorder:CursorLine,CursorLine:Visual,Search:None",
+            col_offset = -3,
             side_padding = 0,
           },
         },
