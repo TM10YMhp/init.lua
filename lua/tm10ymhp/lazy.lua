@@ -50,7 +50,6 @@ require("lazy").setup({
     require("plugins.extras.nvim_notify"),
     require("plugins.extras.obsidian"),
     require("plugins.extras.rest"),
-    require("plugins.extras.trouble"),
     require("plugins.extras.tw_values"),
   },
   dev = { path = "~/projects" },
