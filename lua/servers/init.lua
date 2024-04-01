@@ -7,4 +7,5 @@ return {
   "cssls",
   "angularls",
   "csharp_ls",
+  "prismals",
 }

@@ -19,6 +19,15 @@ return {
     },
     -- stylua: ignore
     {
+      "<Tab>",
+      function() return vim.fn['codeium#Accept']() end,
+      mode = "i",
+      desc = "Codeium: Accept",
+      expr = true,
+      silent = true,
+    },
+    -- stylua: ignore
+    {
       "<M-y>",
       function() return vim.fn['codeium#Accept']() end,
       mode = "i",

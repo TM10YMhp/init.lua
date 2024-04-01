@@ -174,6 +174,10 @@ return {
             ["f"] = "telescope_find_root",
             ["G"] = "telescope_grep",
             ["g"] = "telescope_grep_root",
+            -- ["P"] = {
+            --   "toggle_preview",
+            --   config = { use_float = false, use_image_nvim = true },
+            -- },
           },
         },
         -- Windows fix

@@ -123,10 +123,10 @@ return {
           }),
           ["<C-u>"] = cmp.mapping.scroll_docs(-4),
           ["<C-d>"] = cmp.mapping.scroll_docs(4),
-          ["<Tab>"] = cmp.mapping.select_next_item({
+          ["<M-j>"] = cmp.mapping.select_next_item({
             behavior = cmp.SelectBehavior.Select,
           }),
-          ["<S-Tab>"] = cmp.mapping.select_prev_item({
+          ["<M-k>"] = cmp.mapping.select_prev_item({
             behavior = cmp.SelectBehavior.Select,
           }),
           ["<C-l>"] = cmp.mapping.complete({
@@ -140,6 +140,10 @@ return {
               },
             },
           }),
+          ["<C-CR>"] = function(fallback)
+            cmp.abort()
+            fallback()
+          end,
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp", max_item_count = 40 },
