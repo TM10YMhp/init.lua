@@ -116,11 +116,11 @@ return {
 
       require("ufo").setup(opts)
 
-      -- if vim.bo.filetype == "dashboard" then
-      --   require("ufo").detach()
-      --   vim.opt_local.foldenable = false
-      --   vim.opt_local.foldcolumn = "0"
-      -- end
+      if vim.bo.filetype == "dashboard" then
+        require("ufo").detach()
+        vim.opt_local.foldenable = false
+        vim.opt_local.foldcolumn = "0"
+      end
 
       vim.api.nvim_create_autocmd("FileType", {
         pattern = {

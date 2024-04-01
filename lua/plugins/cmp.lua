@@ -206,7 +206,7 @@ return {
             cmp.config.compare.score,
             -- cmp.config.compare.recently_used,
             cmp.config.compare.locality,
-            -- cmp.config.compare.kind,
+            cmp.config.compare.kind,
             -- cmp.config.compare.sort_text,
             cmp.config.compare.length,
             cmp.config.compare.order,
@@ -214,12 +214,9 @@ return {
         },
         window = {
           documentation = {
-            -- border = "single",
-            winhighlight = "FloatBorder:CursorLine,NormalFloat:CursorLine",
+            winhighlight = "FloatBorder:Pmenu,NormalFloat:Pmenu",
           },
           completion = {
-            -- border = "single",
-            winhighlight = "Normal:CursorLine,FloatBorder:CursorLine,CursorLine:Visual,Search:None",
             col_offset = -3,
             side_padding = 0,
           },
