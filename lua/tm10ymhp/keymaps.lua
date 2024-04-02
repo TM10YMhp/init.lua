@@ -172,9 +172,10 @@ vim.keymap.set("n", "<leader>it",
 -- Utility
 local utils = require("tm10ymhp.utils")
 
-vim.keymap.set("n", "<c-s>", "<cmd>write<cr>", {
-  desc = "Save",
-})
+vim.keymap.set("n", "<c-s>", function()
+  vim.cmd.write()
+  utils.notify("Saved")
+end, { desc = "Save" })
 vim.keymap.set("n", "<leader>uo", "<cmd>set list!<cr>", {
   desc = "Toggle List Mode",
 })
