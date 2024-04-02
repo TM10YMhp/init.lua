@@ -49,6 +49,7 @@ require("lazy").setup({
     require("plugins.extras.nvim_lint"),
     require("plugins.extras.nvim_notify"),
     require("plugins.extras.obsidian"),
+    require("plugins.extras.pomo"),
     require("plugins.extras.rest"),
     require("plugins.extras.tw_values"),
   },
