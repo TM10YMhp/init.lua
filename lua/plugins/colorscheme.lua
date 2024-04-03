@@ -13,6 +13,16 @@ return {
     end,
   },
   {
+    "eldritch-theme/eldritch.nvim",
+    event = "CmdlineEnter",
+    opts = {
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+      },
+    },
+  },
+  {
     "Shatur/neovim-ayu",
     event = "CmdlineEnter",
     name = "ayu",

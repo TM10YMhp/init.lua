@@ -41,7 +41,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    event = "VeryLazy",
+    event = "InsertEnter",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     keys = {
       {
@@ -50,7 +50,7 @@ return {
           require("tm10ymhp.utils").info("Autotag: Attach")
           require("nvim-ts-autotag.internal").attach()
         end,
-        desc = "Manually attach Autotag",
+        desc = "Manually Attach Autotag",
       },
     },
     opts = {

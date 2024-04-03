@@ -223,8 +223,14 @@ return {
             path_display = { tail = true },
           },
           colorscheme = {
-            layout_strategy = "horizontal",
+            layout_strategy = "bottom_pane",
+            theme = "ivy",
+            borderchars = {
+              -- stylua: ignore
+              preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+            },
             enable_preview = true,
+            results_title = false,
           },
           git_commits = { preview = { hide_on_startup = false } },
           git_status = { preview = { hide_on_startup = false } },
