@@ -13,6 +13,17 @@ return {
 
       { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       {
+        "<leader>sA",
+        function()
+          require("telescope.builtin").find_files({
+            prompt_title = "Find Files <All>",
+            file_ignore_patterns = {},
+            no_ignore = true,
+          })
+        end,
+        desc = "Find Files <All>",
+      },
+      {
         "<leader>sF",
         "<cmd>Telescope find_files cwd=%:p:h<cr>",
         desc = "Find Files (cwd)",
