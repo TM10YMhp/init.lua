@@ -25,7 +25,9 @@ return {
       },
       {
         "<leader>bD",
-        function() require("mini.bufremove").delete(0, true) end,
+        function()
+          require("mini.bufremove").delete(0, true)
+        end,
         desc = "Delete Buffer (Force) New",
       },
     },
@@ -39,7 +41,7 @@ return {
       deleteBufferWhenFileDeleted = false,
       ignoreAltFile = false,
       minimumBufferNum = 1,
-    }
+    },
   },
   {
     "akinsho/bufferline.nvim",
@@ -96,13 +98,13 @@ return {
       { "<Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
     },
     opts = function()
-      local bufferline = require('bufferline')
+      local bufferline = require("bufferline")
 
       return {
         options = {
           style_preset = {
             bufferline.style_preset.no_bold,
-            bufferline.style_preset.no_italic
+            bufferline.style_preset.no_italic,
           },
           close_command = function(n)
             require("mini.bufremove").delete(n, false)
@@ -112,10 +114,10 @@ return {
           end,
           indicator = { style = "none" },
           buffer_close_icon = "x",
-          modified_icon = '*',
+          modified_icon = "*",
           close_icon = "x",
-          left_trunc_marker = '<',
-          right_trunc_marker = '>',
+          left_trunc_marker = "<",
+          right_trunc_marker = ">",
           truncate_names = false,
           tab_size = 0,
           diagnostics = "nvim_lsp",
@@ -124,7 +126,7 @@ return {
             local s = " "
             for e, n in pairs(diagnostics_dict) do
               local sym = e == "error" and "E "
-              or (e == "warning" and "W " or "H " )
+                or (e == "warning" and "W " or "H ")
               s = s .. n .. sym
             end
             return vim.trim(s)
@@ -140,6 +142,6 @@ return {
           hover = { enabled = false },
         },
       }
-    end
-  }
+    end,
+  },
 }
