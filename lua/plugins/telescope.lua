@@ -9,11 +9,7 @@ return {
         "<cmd>Telescope current_buffer_fuzzy_find<cr>",
         desc = "Search Word",
       },
-      {
-        "<leader>uC",
-        ":Telescope colorscheme<cr>",
-        desc = "Colorscheme with preview",
-      },
+      { "<leader>sC", ":Telescope colorscheme<cr>", desc = "Colorscheme" },
 
       { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       {
@@ -175,12 +171,22 @@ return {
             i = {
               ["<C-p>"] = action_layout.toggle_preview,
               ["<M-q>"] = open_selected,
-              ["<C-Down>"] = require("telescope.actions").cycle_history_next,
-              ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
+              ["<C-Down>"] = actions.cycle_history_next,
+              ["<C-Up>"] = actions.cycle_history_prev,
+              --
+              ["<PageUp>"] = false,
+              ["<PageDown>"] = false,
+              ["<M-u>"] = actions.results_scrolling_up,
+              ["<M-d>"] = actions.results_scrolling_down,
             },
             n = {
               ["<C-p>"] = action_layout.toggle_preview,
               ["<M-q>"] = open_selected,
+              --
+              ["<PageUp>"] = false,
+              ["<PageDown>"] = false,
+              ["<M-u>"] = actions.results_scrolling_up,
+              ["<M-d>"] = actions.results_scrolling_down,
             },
           },
           history = {
@@ -358,6 +364,26 @@ return {
     },
     config = function()
       require("telescope").load_extension("live_grep_args")
+    end,
+  },
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      opts = {
+        extensions = {
+          frecency = {
+            path_display = { truncate = true },
+            show_scores = true,
+          },
+        },
+      },
+    },
+    keys = {
+      { "<leader>sq", "<cmd>Telescope frecency<cr>", desc = "Frecency" },
+    },
+    config = function()
+      require("telescope").load_extension("frecency")
     end,
   },
 }
