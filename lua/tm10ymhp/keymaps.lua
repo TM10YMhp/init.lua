@@ -176,20 +176,20 @@ vim.keymap.set("n", "<c-s>", function()
   vim.cmd.write()
   utils.notify("Saved")
 end, { desc = "Save" })
-vim.keymap.set("n", "<leader>uo", "<cmd>set list!<cr>", {
+vim.keymap.set("n", "<leader>to", "<cmd>set list!<cr>", {
   desc = "Toggle List Mode",
 })
-vim.keymap.set("n", "<leader>us", "<cmd>set spell!<cr>", {
+vim.keymap.set("n", "<leader>ts", "<cmd>set spell!<cr>", {
   desc = "Toggle Spelling",
 })
-vim.keymap.set("n", "<leader>uw", "<cmd>set wrap!<cr>", {
+vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<cr>", {
   desc = "Toggle Wrap Lines",
 })
-vim.keymap.set("n", "<leader>uN", "<cmd>set number!<cr>", {
+vim.keymap.set("n", "<leader>tn", "<cmd>set number!<cr>", {
   desc = "Toogle Line Numbers",
 })
 -- stylua: ignore start
-vim.keymap.set("n", "<leader>uH",
+vim.keymap.set("n", "<leader>tC",
   function()
     if vim.opt.termguicolors:get() then
       vim.opt.termguicolors = false

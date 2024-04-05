@@ -17,7 +17,7 @@ return {
   ft = { "dotenv", "TelescopePrompt" },
   keys = {
     {
-      "<leader>uc",
+      "<leader>tc",
       function()
         local cloak = require("cloak")
         local utils = require("tm10ymhp.utils")

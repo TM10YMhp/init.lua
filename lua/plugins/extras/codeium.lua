@@ -63,7 +63,7 @@ return {
       silent = true,
     },
     {
-      "<leader>ua",
+      "<leader>ti",
       function()
         local utils = require("tm10ymhp.utils")
         if vim.g.codeium_enabled then

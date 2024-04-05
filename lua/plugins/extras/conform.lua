@@ -17,7 +17,7 @@ return {
       desc = "Conform: Format",
     },
     {
-      "<leader>uf",
+      "<leader>tf",
       function()
         local utils = require("tm10ymhp.utils")
         if vim.b.disable_autoformat then
@@ -31,7 +31,7 @@ return {
       desc = "Buffer: Toggle Format On Save",
     },
     {
-      "<leader>uF",
+      "<leader>tF",
       function()
         local utils = require("tm10ymhp.utils")
         if vim.g.disable_autoformat then

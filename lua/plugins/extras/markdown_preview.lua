@@ -23,20 +23,20 @@ return {
     vim.g.mkdp_echo_preview_url = 1
     vim.g.mkdp_refresh_slow = 1
     vim.g.mkdp_preview_options = {
-      disable_sync_scroll = 1
+      disable_sync_scroll = 1,
     }
     vim.g.mkdp_markdown_css = config_path .. "markdown.css"
     vim.g.mkdp_highlight_css = config_path .. "highlight.css"
-    vim.g.mkdp_page_title = ' ${name} '
-    vim.g.mkdp_theme = 'dark'
+    vim.g.mkdp_page_title = " ${name} "
+    vim.g.mkdp_theme = "dark"
     vim.g.mkdp_combine_preview = 1
     vim.g.mkdp_combine_preview_auto_refresh = 1
   end,
   keys = {
     {
-      "<leader>up",
-      vim.fn['mkdp#util#toggle_preview'],
+      "<leader>tp",
+      vim.fn["mkdp#util#toggle_preview"],
       desc = "Toggle Markdown Preview",
     },
-  }
+  },
 }

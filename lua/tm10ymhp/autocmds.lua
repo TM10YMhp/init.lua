@@ -68,6 +68,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "floggraph",
     "fugitive",
     "fugitiveblame",
+    "httpResult",
   },
   desc = "Close with q",
   callback = function(event)

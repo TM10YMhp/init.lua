@@ -1,3 +1,12 @@
+local enabled_lint = false
+local linters_by_ft = {
+  javascript = { "eslint_d" },
+  typescript = { "eslint_d" },
+  javascriptreact = { "eslint_d" },
+  typescriptreact = { "eslint_d" },
+  svelte = { "eslint_d" },
+}
+
 vim.api.nvim_create_autocmd("FileType", {
   once = true,
   pattern = {
@@ -30,6 +39,23 @@ return {
       end,
       desc = "Lint",
     },
+    {
+      "<leader>tl",
+      function()
+        if enabled_lint then
+          require("lint").linters_by_ft = {}
+          vim.diagnostic.reset()
+          require("tm10ymhp.utils").info("Lint: Disabled")
+        else
+          require("lint").linters_by_ft = linters_by_ft
+          -- vim.diagnostic.reset()
+          require("lint").try_lint()
+          require("tm10ymhp.utils").info("Lint: Enabled")
+        end
+        enabled_lint = not enabled_lint
+      end,
+      desc = "Toggle Lint",
+    },
   },
   opts = {
     events = {
@@ -40,11 +66,11 @@ return {
     },
     -- stylua: ignore
     linters_by_ft = {
-      javascript      = { "eslint_d" },
-      typescript      = { "eslint_d" },
-      javascriptreact = { "eslint_d" },
-      typescriptreact = { "eslint_d" },
-      svelte          = { "eslint_d" },
+      -- javascript      = { "eslint_d" },
+      -- typescript      = { "eslint_d" },
+      -- javascriptreact = { "eslint_d" },
+      -- typescriptreact = { "eslint_d" },
+      -- svelte          = { "eslint_d" },
     },
   },
   config = function(_, opts)
