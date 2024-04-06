@@ -327,25 +327,6 @@ return {
     end,
   },
   {
-    "alan-w-255/telescope-mru.nvim",
-    dependencies = {
-      {
-        "yegappan/mru",
-        event = "VeryLazy",
-        config = function()
-          vim.cmd("doautocmd BufRead")
-        end,
-      },
-      "nvim-telescope/telescope.nvim",
-    },
-    keys = {
-      { "<leader>so", "<cmd>Telescope mru<cr>", desc = "MRU" },
-    },
-    config = function()
-      require("telescope").load_extension("mru")
-    end,
-  },
-  {
     "nvim-telescope/telescope-live-grep-args.nvim",
     dependencies = {
       "nvim-telescope/telescope.nvim",
@@ -375,6 +356,25 @@ return {
     },
     config = function()
       require("telescope").load_extension("live_grep_args")
+    end,
+  },
+  {
+    "alan-w-255/telescope-mru.nvim",
+    dependencies = {
+      {
+        "yegappan/mru",
+        event = "VeryLazy",
+        config = function()
+          vim.cmd("doautocmd BufRead")
+        end,
+      },
+      "nvim-telescope/telescope.nvim",
+    },
+    keys = {
+      { "<leader>so", "<cmd>Telescope mru<cr>", desc = "MRU" },
+    },
+    config = function()
+      require("telescope").load_extension("mru")
     end,
   },
   {
