@@ -46,17 +46,17 @@ return {
     for objName, map in pairs(innerOuterMaps) do
       local name = " " .. objName .. " textobj"
       table.insert(mappings, {
-        "a" .. map,
-        "<cmd>lua require('various-textobjs')." .. objName .. "('outer')<CR>",
-        mode = { "o", "x" },
-        desc = "outer" .. name,
-      })
-
-      table.insert(mappings, {
         "i" .. map,
         "<cmd>lua require('various-textobjs')." .. objName .. "('inner')<CR>",
         mode = { "o", "x" },
         desc = "inner" .. name,
+      })
+
+      table.insert(mappings, {
+        "a" .. map,
+        "<cmd>lua require('various-textobjs')." .. objName .. "('outer')<CR>",
+        mode = { "o", "x" },
+        desc = "outer" .. name,
       })
     end
 

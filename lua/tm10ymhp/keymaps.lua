@@ -113,8 +113,11 @@ vim.keymap.set(
 )
 
 -- Code
-vim.keymap.set({ "n", "x" }, "<leader>cs", ":retab<cr>", {
+vim.keymap.set({ "n", "x" }, "<leader>cS", ":set noexpandtab | retab!<cr>", {
   desc = "Replace tabs with spaces",
+})
+vim.keymap.set({ "n", "x" }, "<leader>cs", ":set expandtab | retab!<cr>", {
+  desc = "Replace spaces with tabs",
 })
 vim.keymap.set("n", "<leader>ci", "mqHmwgg=G`wzt`q", {
   desc = "Fix indentation",
@@ -170,11 +173,9 @@ vim.keymap.set("n", "<leader>it",
 -- stylua: ignore end
 
 -- Utility
-local utils = require("tm10ymhp.utils")
-
 vim.keymap.set("n", "<c-s>", function()
   vim.cmd.write()
-  utils.notify("Saved")
+  require("tm10ymhp.utils").info("Saved")
 end, { desc = "Save" })
 vim.keymap.set("n", "<leader>to", "<cmd>set list!<cr>", {
   desc = "Toggle List Mode",
@@ -193,10 +194,10 @@ vim.keymap.set("n", "<leader>tC",
   function()
     if vim.opt.termguicolors:get() then
       vim.opt.termguicolors = false
-      utils.notify("Disabled termguicolors")
+      require("tm10ymhp.utils").info("Disabled termguicolors")
     else
       vim.opt.termguicolors = true
-      utils.notify("Enabled termguicolors")
+      require("tm10ymhp.utils").info("Enabled termguicolors")
     end
   end,
   { desc = "Toggle Termguicolors" }
@@ -204,7 +205,7 @@ vim.keymap.set("n", "<leader>tC",
 vim.keymap.set("n", "<leader>uD",
   function()
     vim.diagnostic.reset()
-    utils.notify("Reset diagnostics")
+    require("tm10ymhp.utils").info("Reset diagnostics")
   end,
   { desc = "Reset Diagnostics" }
 )

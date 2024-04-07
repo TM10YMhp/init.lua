@@ -365,7 +365,7 @@ return {
         "yegappan/mru",
         event = "VeryLazy",
         config = function()
-          vim.cmd("doautocmd BufRead")
+          vim.cmd("doautocmd MRUAutoCmds BufRead")
         end,
       },
       "nvim-telescope/telescope.nvim",
