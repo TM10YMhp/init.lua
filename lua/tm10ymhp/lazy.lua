@@ -41,7 +41,6 @@ require("lazy").setup({
     require("plugins.extras.codeium"),
     require("plugins.extras.conform"),
     require("plugins.extras.dashboard"),
-    require("plugins.extras.devdocs"),
     require("plugins.extras.dressing"),
     require("plugins.extras.markdown_preview"),
     require("plugins.extras.mini_files"),
