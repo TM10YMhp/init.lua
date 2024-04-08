@@ -9,7 +9,12 @@ return {
         "<cmd>Telescope current_buffer_fuzzy_find<cr>",
         desc = "Search Word",
       },
-      { "<leader>sC", ":Telescope colorscheme<cr>", desc = "Colorscheme" },
+      {
+        "<leader>sc",
+        ":Telescope colorscheme<cr>",
+        desc = "Colorscheme",
+        silent = true,
+      },
 
       { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       {
@@ -35,7 +40,7 @@ return {
         "<cmd>Telescope autocommands<cr>",
         desc = "Autocommands",
       },
-      { "<leader>sc", "<cmd>Telescope commands<cr>", desc = "Commands" },
+      { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
       { "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Resume" },
       {
