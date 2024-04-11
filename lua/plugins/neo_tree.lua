@@ -153,7 +153,7 @@ return {
       },
       window = {
         position = "right",
-        width = 35,
+        width = 33,
       },
       filesystem = {
         hijack_netrw_behavior = "open_current",

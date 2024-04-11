@@ -13,10 +13,14 @@ return {
           trace = "off",
           useSyntaxServer = "never",
         },
+        preferences = {
+          disableSuggestions = true,
+          useLabelDetailsInCompletionEntries = false,
+        },
       },
       -- settings = {
       --   --completions = { completeFunctionCalls = true },
-      -- }
+      -- },
     }
   end,
 }
