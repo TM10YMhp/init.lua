@@ -1,4 +1,4 @@
-local enabled_lint = false
+local enabled_lint = true
 local linters_by_ft = {
   javascript = { "eslint_d" },
   typescript = { "eslint_d" },
@@ -66,11 +66,11 @@ return {
     },
     -- stylua: ignore
     linters_by_ft = {
-      -- javascript      = { "eslint_d" },
-      -- typescript      = { "eslint_d" },
-      -- javascriptreact = { "eslint_d" },
-      -- typescriptreact = { "eslint_d" },
-      -- svelte          = { "eslint_d" },
+      javascript      = { "eslint_d" },
+      typescript      = { "eslint_d" },
+      javascriptreact = { "eslint_d" },
+      typescriptreact = { "eslint_d" },
+      svelte          = { "eslint_d" },
     },
   },
   config = function(_, opts)

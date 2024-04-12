@@ -18,11 +18,11 @@ return {
 
       { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       {
-        "<leader>sA",
+        "<leader>sa",
         function()
           require("telescope.builtin").find_files({
             prompt_title = "Find Files <All>",
-            file_ignore_patterns = {},
+            -- file_ignore_patterns = {},
             no_ignore = true,
           })
         end,
@@ -36,7 +36,7 @@ return {
       { "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
       { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
       {
-        "<leader>sa",
+        "<leader>sA",
         "<cmd>Telescope autocommands<cr>",
         desc = "Autocommands",
       },
