@@ -382,24 +382,4 @@ return {
       require("telescope").load_extension("mru")
     end,
   },
-  {
-    "nvim-telescope/telescope-frecency.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      opts = {
-        extensions = {
-          frecency = {
-            path_display = { truncate = true },
-            show_scores = true,
-          },
-        },
-      },
-    },
-    keys = {
-      { "<leader>sq", "<cmd>Telescope frecency<cr>", desc = "Frecency" },
-    },
-    config = function()
-      require("telescope").load_extension("frecency")
-    end,
-  },
 }
