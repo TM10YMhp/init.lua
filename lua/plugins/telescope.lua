@@ -182,6 +182,9 @@ return {
             "--hidden",
             "--trim",
             "--fixed-strings",
+            -- windows path separator
+            "--path-separator",
+            "/",
           },
           mappings = {
             i = {
