@@ -214,7 +214,16 @@ return {
           },
         },
         pickers = {
-          find_files = { hidden = true },
+          find_files = {
+            hidden = true,
+            -- windows path separator
+            find_command = {
+              "rg",
+              "--files",
+              "--path-separator",
+              "/",
+            },
+          },
           diagnostics = {
             path_display = { tail = true },
             preview = { hide_on_startup = false },
