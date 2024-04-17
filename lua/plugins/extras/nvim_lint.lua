@@ -1,10 +1,11 @@
 local enabled_lint = true
+-- stylua: ignore
 local linters_by_ft = {
-  javascript = { "eslint_d" },
-  typescript = { "eslint_d" },
+  javascript      = { "eslint_d" },
+  typescript      = { "eslint_d" },
   javascriptreact = { "eslint_d" },
   typescriptreact = { "eslint_d" },
-  svelte = { "eslint_d" },
+  svelte          = { "eslint_d" },
 }
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -34,9 +35,7 @@ return {
   keys = {
     {
       "<leader>cl",
-      function()
-        require("lint").try_lint()
-      end,
+      "<cmd>lua require('lint').try_lint()<cr>",
       desc = "Lint",
     },
     {
@@ -58,20 +57,8 @@ return {
     },
   },
   opts = {
-    events = {
-      "BufWritePost",
-      "BufReadPost",
-      "InsertLeave",
-      "TextChanged",
-    },
-    -- stylua: ignore
-    linters_by_ft = {
-      javascript      = { "eslint_d" },
-      typescript      = { "eslint_d" },
-      javascriptreact = { "eslint_d" },
-      typescriptreact = { "eslint_d" },
-      svelte          = { "eslint_d" },
-    },
+    events = { "BufWritePost", "BufReadPost", "InsertLeave", "TextChanged" },
+    linters_by_ft = linters_by_ft,
   },
   config = function(_, opts)
     local lint = require("lint")
