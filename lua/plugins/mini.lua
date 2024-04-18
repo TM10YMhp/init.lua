@@ -69,6 +69,13 @@ return {
           vim.api.nvim_buf_call(data.buf, MiniTrailspace.unhighlight)
         end,
       })
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        callback = function(data)
+          MiniTrailspace.trim()
+          MiniTrailspace.trim_last_lines()
+        end,
+      })
     end,
   },
   {
