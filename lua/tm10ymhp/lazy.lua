@@ -50,7 +50,6 @@ require("lazy").setup({
     require("plugins.extras.obsidian"),
     require("plugins.extras.pomo"),
     require("plugins.extras.rest"),
-    require("plugins.extras.tw_values"),
   },
   dev = { path = "~/projects" },
   ui = {

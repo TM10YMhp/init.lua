@@ -4,12 +4,6 @@ return {
     cmd = { "Git", "G" },
     keys = {
       {
-        "<leader>gb",
-        ":G blame<cr>",
-        mode = { "n", "x" },
-        desc = "Git Blame",
-      },
-      {
         "<leader>gg",
         "<cmd>G<cr>",
         desc = "Git",
@@ -46,6 +40,25 @@ return {
         "<cmd>botright Flogsplit -raw-args=--follow -path=%<cr>",
         desc = "Git Log Current File",
       },
+    },
+  },
+  {
+    "FabijanZulj/blame.nvim",
+    cmd = { "BlameToggle" },
+    keys = {
+      {
+        "<leader>gB",
+        "<cmd>BlameToggle window<cr>",
+        desc = "Git Blame Window",
+      },
+      {
+        "<leader>gb",
+        "<cmd>BlameToggle virtual<cr>",
+        desc = "Git Blame Virtual",
+      },
+    },
+    opts = {
+      date_format = "%y.%m%d.%H%M|%S",
     },
   },
 }
