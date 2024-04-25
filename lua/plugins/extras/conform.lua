@@ -65,6 +65,8 @@ return {
     -- stylua: ignore
     formatters_by_ft = {
       cs              = { "clang-format" },
+      c               = { "clang-format" },
+      cpp             = { "clang-format" },
       lua             = { "stylua" },
       javascript      = { "biome" },
       javascriptreact = { "biome" },

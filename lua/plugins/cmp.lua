@@ -214,6 +214,7 @@ return {
         },
         window = {
           documentation = {
+            border = "single",
             winhighlight = "FloatBorder:Pmenu,NormalFloat:Pmenu",
           },
           completion = {

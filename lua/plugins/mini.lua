@@ -71,7 +71,11 @@ return {
       })
 
       vim.api.nvim_create_autocmd("BufWritePre", {
-        callback = function(data)
+        callback = function(ev)
+          if vim.g.disable_autoformat or vim.b[ev.buf].disable_autoformat then
+            return
+          end
+
           MiniTrailspace.trim()
           MiniTrailspace.trim_last_lines()
         end,
