@@ -146,7 +146,17 @@ return {
           end,
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp", max_item_count = 40 },
+          {
+            name = "nvim_lsp",
+            max_item_count = 40,
+            entry_filter = function(entry, ctx)
+              if entry:get_kind() == 15 then
+                return false
+              end
+
+              return true
+            end,
+          },
           { name = "luasnip", max_item_count = 10 },
           {
             name = "buffer",
