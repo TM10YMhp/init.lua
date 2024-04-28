@@ -105,7 +105,7 @@ return {
         },
         preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
-          ["<C-s>"] = function()
+          ["<C-space>"] = function()
             if cmp.visible() then
               if cmp.visible_docs() then
                 cmp.close_docs()
