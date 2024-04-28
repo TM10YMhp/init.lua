@@ -23,6 +23,9 @@ return {
   {
     "marko-cerovac/material.nvim",
     event = "CmdlineEnter",
+    init = function()
+      vim.g.material_style = "deep ocean"
+    end,
     opts = {
       high_visibility = {
         darker = true,
