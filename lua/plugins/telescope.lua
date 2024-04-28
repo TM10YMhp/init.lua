@@ -165,10 +165,10 @@ return {
             preview_cutoff = 0,
             prompt_position = "top",
             horizontal = {
-              preview_width = 0.6,
+              preview_width = 0.65,
             },
             vertical = {
-              preview_height = 0.6,
+              preview_height = 0.65,
               mirror = true,
             },
           },

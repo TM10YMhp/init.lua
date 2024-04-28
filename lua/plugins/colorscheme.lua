@@ -13,6 +13,14 @@ return {
     end,
   },
   {
+    "scottmckendry/cyberdream.nvim",
+    event = "CmdlineEnter",
+    opts = {
+      transparent = true,
+      borderless_telescope = false,
+    },
+  },
+  {
     "eldritch-theme/eldritch.nvim",
     event = "CmdlineEnter",
     opts = {
