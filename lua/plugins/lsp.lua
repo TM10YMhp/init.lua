@@ -32,7 +32,7 @@ return {
     { "<c-w>d", vim.diagnostic.open_float, desc = "LSP: Line Diagnostics" },
     { "K", vim.lsp.buf.hover, desc = "LSP: Hover" },
     {
-      "<c-s>",
+      "<c-k>",
       vim.lsp.buf.signature_help,
       mode = { "n", "i" },
       desc = "LSP: Signature Help",
