@@ -40,7 +40,7 @@ return {
         function()
           require("neo-tree.command").execute({
             toggle = true,
-            dir = vim.loop.cwd(),
+            -- dir = vim.loop.cwd(),
           })
         end,
         desc = "Explorer NeoTree",
@@ -53,7 +53,7 @@ return {
             dir = vim.fn.expand("%:p:h"),
           })
         end,
-        desc = "Explorer NeoTree from current file",
+        desc = "Explorer NeoTree in current file",
       },
       {
         "<leader>ge",
@@ -182,7 +182,7 @@ return {
           },
         },
         -- Windows fix
-        use_libuv_file_watcher = false,
+        use_libuv_file_watcher = true,
         bind_to_cwd = true,
       },
     },

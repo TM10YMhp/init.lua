@@ -139,14 +139,14 @@ return {
         { event = events.FILE_MOVED, handler = on_move },
         { event = events.FILE_RENAMED, handler = on_move },
         {
-          event = "neo_tree_window_after_open",
+          event = events.NEO_TREE_WINDOW_AFTER_OPEN,
           handler = function(args)
             vim.g.neotree_win = args
             vim.g.neotree_is_open = true
           end,
         },
         {
-          event = "neo_tree_window_before_close",
+          event = events.NEO_TREE_WINDOW_BEFORE_CLOSE,
           handler = function()
             vim.g.neotree_is_open = false
           end,
