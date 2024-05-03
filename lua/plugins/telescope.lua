@@ -42,7 +42,7 @@ return {
       },
       { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-      { "<leader>sr", "<cmd>Telescope resume<cr>", desc = "Resume" },
+      { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
       {
         "<leader>sk",
         "<cmd>Telescope keymaps show_plug=false<cr>",
@@ -81,7 +81,7 @@ return {
         desc = "Goto Type Definitions",
       },
       {
-        "<leader>sR",
+        "<leader>sr",
         "<cmd>Telescope lsp_references<cr>",
         desc = "Goto References",
       },
@@ -224,6 +224,14 @@ return {
               "/",
             },
           },
+          buffers = {
+            path_display = {
+              truncate = true,
+              filename_first = {
+                reverse_directories = true,
+              },
+            },
+          },
           diagnostics = {
             path_display = { tail = true },
             preview = { hide_on_startup = false },
@@ -237,13 +245,13 @@ return {
           },
           lsp_implementations = {
             path_display = { tail = true },
-            preview = { hide_on_startup = false },
+            -- preview = { hide_on_startup = false },
             jump_type = "never",
             show_line = false,
           },
           lsp_references = {
             path_display = { tail = true },
-            preview = { hide_on_startup = false },
+            -- preview = { hide_on_startup = false },
             jump_type = "never",
             show_line = false,
           },

@@ -19,7 +19,22 @@ return {
         },
       },
       -- settings = {
-      --   --completions = { completeFunctionCalls = true },
+      --   tsserver = {
+      --     typescript = {
+      --       implementationsCodeLens = { enabled = true },
+      --       referencesCodeLens = {
+      --         enabled = true,
+      --         showOnAllFunctions = true,
+      --       },
+      --     },
+      --     javascript = {
+      --       implementationsCodeLens = { enabled = true },
+      --       referencesCodeLens = {
+      --         enabled = true,
+      --         showOnAllFunctions = true,
+      --       },
+      --     },
+      --   },
       -- },
     }
   end,
