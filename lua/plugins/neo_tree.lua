@@ -169,6 +169,7 @@ return {
         window = {
           -- stylua: ignore
           mappings = {
+            ["space"] = "none",
             ["/"] = "none",
             ["F"] = "telescope_find",
             ["f"] = "telescope_find_root",
