@@ -198,6 +198,15 @@ vim.keymap.set("n", "<leader>tq",
   end,
   { desc = "Toggle Quickfix" }
 )
+vim.keymap.set("n", "<leader>tQ",
+  function()
+    local win = vim.api.nvim_get_current_win()
+    local qf_winid = vim.fn.getloclist(win, { winid = 0 }).winid
+    local action = qf_winid > 0 and 'lclose' or 'lopen'
+    vim.cmd(action)
+  end,
+  { desc = "Toggle LocList" }
+)
 vim.keymap.set("n", "<leader>tC",
   function()
     if vim.opt.termguicolors:get() then
