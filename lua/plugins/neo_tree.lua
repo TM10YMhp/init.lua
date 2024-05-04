@@ -200,7 +200,7 @@ return {
             local actions = require("telescope.actions")
             local telescope_actions =
               require("telescope.actions.mt").transform_mod({
-                navigate = function(prompt_bufnr)
+                navigate = function()
                   actions.close(prompt_bufnr)
                   local action_state = require("telescope.actions.state")
                   local selection = action_state.get_selected_entry()
@@ -211,7 +211,8 @@ return {
                   require("neo-tree.sources.filesystem").navigate(
                     state,
                     state.path,
-                    filename
+                    -- TODO: fix this
+                    filename:gsub("/", "\\")
                   )
                 end,
               })
