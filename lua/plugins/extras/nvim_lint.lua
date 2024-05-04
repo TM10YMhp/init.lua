@@ -72,6 +72,19 @@ return {
       end,
     })
 
-    lint.try_lint()
+    local oldEslintConfig =
+      vim.fn.split(vim.fn.glob(vim.uv.cwd() .. "/.eslintrc.*"))
+    local newEslintConfig =
+      vim.fn.split(vim.fn.glob(vim.uv.cwd() .. "/eslint.config.*"))
+
+    local existsEslintConfig =
+      not vim.tbl_isempty(vim.list_extend(oldEslintConfig, newEslintConfig))
+
+    if existsEslintConfig then
+      lint.try_lint()
+    else
+      lint.linters_by_ft = {}
+      require("tm10ymhp.utils").info("Lint: Not found eslint config")
+    end
   end,
 }
