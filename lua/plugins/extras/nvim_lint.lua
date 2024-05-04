@@ -85,6 +85,7 @@ return {
     else
       lint.linters_by_ft = {}
       require("tm10ymhp.utils").info("Lint: Not found eslint config")
+      enabled_lint = false
     end
   end,
 }

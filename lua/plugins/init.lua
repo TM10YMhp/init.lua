@@ -1,5 +1,12 @@
 return {
   {
+    "rareitems/printer.nvim",
+    keys = { { "<leader>cp", mode = { "n", "v" } } },
+    opts = {
+      keymap = "<leader>cp",
+    },
+  },
+  {
     "dmmulroy/tsc.nvim",
     cmd = "TSC",
     config = function()
@@ -20,6 +27,7 @@ return {
 
       require("tsc").setup({
         bin_path = "tsc.CMD",
+        flags = { watch = true },
       })
     end,
   },

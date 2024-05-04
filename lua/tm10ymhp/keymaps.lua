@@ -190,6 +190,14 @@ vim.keymap.set("n", "<leader>tn", "<cmd>set number!<cr>", {
   desc = "Toogle Line Numbers",
 })
 -- stylua: ignore start
+vim.keymap.set("n", "<leader>tq",
+  function()
+    local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
+    local action = qf_winid > 0 and 'cclose' or 'copen'
+    vim.cmd('botright '..action)
+  end,
+  { desc = "Toggle Quickfix" }
+)
 vim.keymap.set("n", "<leader>tC",
   function()
     if vim.opt.termguicolors:get() then
