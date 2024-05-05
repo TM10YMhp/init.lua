@@ -45,6 +45,7 @@ require("lazy").setup({
     require("plugins.extras.markdown_preview"),
     require("plugins.extras.mini_files"),
     require("plugins.extras.nvim_bqf"),
+    require("plugins.extras.nvim_jdtls"),
     require("plugins.extras.nvim_lint"),
     require("plugins.extras.nvim_notify"),
     require("plugins.extras.obsidian"),

@@ -1,25 +1,27 @@
-local jdtls_path =
-  require("mason-registry").get_package("jdtls"):get_install_path()
-local workspace_path = vim.fn.stdpath("data") .. "/.cache/jdtls/workspace/"
-
-local os = "linux"
-if vim.fn.has("win32") == 1 then
-  os = "win"
-elseif vim.fn.has("mac") == 1 then
-  os = "mac"
-end
-
-local path_to_lsp_server = jdtls_path .. "/config_" .. os
-local path_jar =
-  vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
-
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace_dir = workspace_path .. project_name
-
 return {
-  "jdtls",
-  setup = function()
-    return {
+  "mfussenegger/nvim-jdtls",
+  event = "LspAttach *.java",
+  config = function()
+    local jdtls = require("jdtls")
+    local jdtls_path =
+      require("mason-registry").get_package("jdtls"):get_install_path()
+    local workspace_path = vim.fn.stdpath("data") .. "/.cache/jdtls/workspace/"
+
+    local os = "linux"
+    if vim.fn.has("win32") == 1 then
+      os = "win"
+    elseif vim.fn.has("mac") == 1 then
+      os = "mac"
+    end
+
+    local path_to_lsp_server = jdtls_path .. "/config_" .. os
+    local path_jar =
+      vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
+
+    local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+    local workspace_dir = workspace_path .. project_name
+
+    local config = {
       cmd = {
         "java",
         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -27,6 +29,7 @@ return {
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
+        "-javaagent:" .. jdtls_path .. "/lombok.jar",
         "-Xmx1G",
         "--add-modules=ALL-SYSTEM",
         "--add-opens",
@@ -40,7 +43,7 @@ return {
         "-data",
         workspace_dir,
       },
-      root_dir = require("lspconfig").util.root_pattern(
+      root_dir = require("jdtls.setup").find_root({
         ".git",
         "mvnw",
         "gradlew",
@@ -51,8 +54,8 @@ return {
         "settings.gradle.kts", -- Gradle
         -- Multi-module projects
         "build.gradle",
-        "build.gradle.kts"
-      ),
+        "build.gradle.kts",
+      }),
       settings = {
         java = {
           eclipse = { downloadSources = true },
@@ -67,5 +70,7 @@ return {
         },
       },
     }
+
+    jdtls.start_or_attach(config)
   end,
 }

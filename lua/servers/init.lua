@@ -8,4 +8,5 @@ return {
   "angularls",
   "csharp_ls",
   "prismals",
+  "jdtls",
 }
