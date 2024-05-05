@@ -1,5 +1,38 @@
 return {
   {
+    "andrewferrier/debugprint.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    keys = {
+      "gbp",
+      "gbP",
+      "gbv",
+      "gbV",
+      "gbo",
+      "gbO",
+      { "gbv", mode = "x" },
+      { "gbV", mode = "x" },
+    },
+    cmd = { "ToggleCommentDebugPrints", "DeleteDebugPrints" },
+    opts = {
+      keymaps = {
+        normal = {
+          plain_below = "gbp",
+          plain_above = "gbP",
+          variable_below = "gbv",
+          variable_above = "gbV",
+          textobj_below = "gbo",
+          textobj_above = "gbO",
+          toggle_comment_debug_prints = "gbc",
+          delete_debug_prints = "gbd",
+        },
+        visual = {
+          variable_below = "gbv",
+          variable_above = "gbV",
+        },
+      },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     dependencies = { "RRethy/nvim-treesitter-endwise" },
     opts = {

@@ -17,7 +17,6 @@ require("lazy").setup({
     require("plugins.bufferline"),
     require("plugins.cmp"),
     require("plugins.colorscheme"),
-    require("plugins.comment"),
     require("plugins.diffview"),
     require("plugins.faster"),
     require("plugins.flash"),
@@ -51,6 +50,7 @@ require("lazy").setup({
     require("plugins.extras.obsidian"),
     require("plugins.extras.pomo"),
     require("plugins.extras.rest"),
+    require("plugins.extras.tsc"),
   },
   dev = { path = "~/projects" },
   ui = {

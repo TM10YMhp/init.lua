@@ -1,5 +1,29 @@
 return {
   {
+    "echasnovski/mini.comment",
+    keys = {
+      "gcc",
+      { "gc", mode = { "n", "x", "o" } },
+    },
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      init = function()
+        vim.g.skip_ts_context_commentstring_module = true
+      end,
+      opts = {
+        enable_autocmd = false,
+      },
+    },
+    opts = {
+      options = {
+        custom_commentstring = function()
+          return require("ts_context_commentstring").calculate_commentstring()
+            or vim.bo.commentstring
+        end,
+      },
+    },
+  },
+  {
     "echasnovski/mini.bracketed",
     keys = {
       { "]", mode = { "n", "x", "o" }, desc = "forward" },
