@@ -53,7 +53,7 @@ return {
       {
         "zK",
         "<cmd>lua require('ufo').peekFoldedLinesUnderCursor()<cr>",
-        desc = "Peek folds under cursor",
+        desc = "Peek folds under cursor (Preview)",
       },
     },
     opts = function()
