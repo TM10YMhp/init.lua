@@ -182,7 +182,7 @@ return {
           },
         },
         -- Windows fix
-        use_libuv_file_watcher = true,
+        use_libuv_file_watcher = false,
         bind_to_cwd = true,
       },
     },
