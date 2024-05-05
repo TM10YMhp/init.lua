@@ -236,3 +236,12 @@ vim.keymap.set("n", "<leader>um", "<cmd>Mason<cr>", {
 vim.keymap.set("n", "<leader>ui", vim.show_pos, {
   desc = "Inspect pos",
 })
+
+vim.keymap.set(
+  "n",
+  "<leader>cc",
+  [[<cmd>%s/\s*\/\*\_.\{-}\*\/\n\|\/\/.*\n//g<cr>]],
+  {
+    desc = "Delete all comments (javascript, typescript)",
+  }
+)
