@@ -240,7 +240,7 @@ vim.keymap.set("n", "<leader>ui", vim.show_pos, {
 vim.keymap.set(
   "n",
   "<leader>cc",
-  [[<cmd>%s/\s*\/\*\_.\{-}\*\/\n\|\s*\/\/.*\n//g<cr>]],
+  [[<cmd>%s/\s*\/\*\_.\{-}\*\/\n\|^\s*\/\/.*\n\|\s*\/\/.*//g<cr>]],
   {
     desc = "Delete all comments (javascript, typescript)",
   }
