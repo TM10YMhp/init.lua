@@ -27,8 +27,8 @@ return {
     { "deathbeam/lspecho.nvim", opts = { decay = 3000 } },
   },
   keys = {
-    { "crr", vim.lsp.buf.code_action, desc = "LSP: Code Action" },
-    { "crn", vim.lsp.buf.rename, desc = "LSP: Rename" },
+    { "<leader>ca", vim.lsp.buf.code_action, desc = "LSP: Code Action" },
+    { "<leader>cr", vim.lsp.buf.rename, desc = "LSP: Rename" },
     { "<c-w>d", vim.diagnostic.open_float, desc = "LSP: Line Diagnostics" },
     { "K", vim.lsp.buf.hover, desc = "LSP: Hover" },
     {

@@ -58,12 +58,12 @@ return {
       {
         "<leader>ge",
         "<cmd>Neotree toggle git_status<cr>",
-        desc = "Explorer NeoTree",
+        desc = "Git Explorer",
       },
       {
         "<leader>be",
         "<cmd>Neotree toggle buffers<cr>",
-        desc = "Explorer NeoTree",
+        desc = "Buffer Explorer",
       },
     },
     opts = {

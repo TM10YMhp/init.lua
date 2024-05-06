@@ -96,8 +96,8 @@ return {
         desc = "Goto Symbols (workspace)",
       },
 
-      { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
-      { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status" },
+      { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Git Commits" },
+      { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Git Status" },
     },
     opts = function()
       local actions = require("telescope.actions")
