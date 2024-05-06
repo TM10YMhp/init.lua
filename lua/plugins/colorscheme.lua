@@ -13,6 +13,20 @@ return {
     end,
   },
   {
+    "ellisonleao/gruvbox.nvim",
+    event = "CmdlineEnter",
+    opts = {
+      italic = {
+        strings = false,
+        emphasis = false,
+        comments = false,
+        operators = false,
+        folds = false,
+      },
+      contrast = "hard",
+    },
+  },
+  {
     "scottmckendry/cyberdream.nvim",
     event = "CmdlineEnter",
     opts = {

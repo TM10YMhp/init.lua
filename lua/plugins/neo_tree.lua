@@ -181,7 +181,7 @@ return {
             },
           },
         },
-        -- Windows fix
+        -- NOTE: libuv crash in Windows
         use_libuv_file_watcher = false,
         bind_to_cwd = true,
       },
