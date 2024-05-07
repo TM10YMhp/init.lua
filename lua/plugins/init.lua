@@ -21,6 +21,21 @@ return {
         keyword = "",
         after = "",
       },
+      search = {
+        command = "rg",
+        args = {
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--hidden",
+          "--trim",
+          -- windows path separator
+          "--path-separator",
+          "/",
+        },
+      },
     },
   },
   {

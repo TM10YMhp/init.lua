@@ -179,7 +179,7 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
-            item.kind = " " .. kind_icons[item.kind] .. " " or "?"
+            item.kind = kind_icons[item.kind] or "?"
 
             -- item.menu = ""
             item.menu = ({
@@ -196,6 +196,9 @@ return {
               local max = math.floor(0.35 * vim.o.columns)
               if text and text:len() > max then
                 text = text:sub(1, max) .. "…"
+              else
+                local padding = string.rep(" ", 5 - text:len())
+                text = text .. padding
               end
               return text
             end
@@ -228,8 +231,9 @@ return {
             winhighlight = "FloatBorder:Pmenu,NormalFloat:Pmenu",
           },
           completion = {
+            border = "single",
             col_offset = -3,
-            side_padding = 0,
+            -- side_padding = 0,
           },
         },
         matching = {
