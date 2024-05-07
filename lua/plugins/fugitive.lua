@@ -8,6 +8,11 @@ return {
         "<cmd>G<cr>",
         desc = "Git",
       },
+      {
+        "<leader>gb",
+        "<cmd>G blame --date=format:'%y.%m%d.%H%M|%S'<cr>",
+        desc = "Git Blame",
+      },
     },
   },
   {
@@ -40,25 +45,6 @@ return {
         "<cmd>botright Flogsplit -raw-args=--follow -path=%<cr>",
         desc = "Git Log Current File",
       },
-    },
-  },
-  {
-    "FabijanZulj/blame.nvim",
-    cmd = { "BlameToggle" },
-    keys = {
-      {
-        "<leader>gB",
-        "<cmd>BlameToggle window<cr>",
-        desc = "Git Blame Window",
-      },
-      {
-        "<leader>gb",
-        "<cmd>BlameToggle virtual<cr>",
-        desc = "Git Blame Virtual",
-      },
-    },
-    opts = {
-      date_format = "%y.%m%d.%H%M|%S",
     },
   },
 }

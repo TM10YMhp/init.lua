@@ -12,7 +12,6 @@ return {
       { "gbv", mode = "x" },
       { "gbV", mode = "x" },
     },
-    cmd = { "ToggleCommentDebugPrints", "DeleteDebugPrints" },
     opts = {
       keymaps = {
         normal = {
@@ -22,14 +21,19 @@ return {
           variable_above = "gbV",
           textobj_below = "gbo",
           textobj_above = "gbO",
-          toggle_comment_debug_prints = "gbc",
-          delete_debug_prints = "gbd",
         },
         visual = {
           variable_below = "gbv",
           variable_above = "gbV",
         },
       },
+      commands = {
+        toggle_comment_debug_prints = "",
+        delete_debug_prints = "",
+      },
+      display_counter = false,
+      display_snippet = false,
+      print_tag = "Debug",
     },
   },
   {
