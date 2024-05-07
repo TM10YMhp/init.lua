@@ -4,7 +4,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = { "TodoTelescope", "TodoQuickFix", "TodoTrouble", "TodoLocList" },
     keys = {
-      { "<leader>sT", "<cmd>TodoTelescope<cr>", desc = "Find Todo" },
+      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Find Todo" },
     },
     opts = {
       signs = false,

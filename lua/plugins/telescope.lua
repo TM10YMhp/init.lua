@@ -68,32 +68,32 @@ return {
       {
         "<leader>sd",
         "<cmd>Telescope lsp_definitions<cr>",
-        desc = "Goto Definitions",
+        desc = "LSP: Goto Definitions",
       },
       {
         "<leader>si",
         "<cmd>Telescope lsp_implementations<cr>",
-        desc = "Goto Implementations",
+        desc = "LSP: Goto Implementations",
       },
       {
-        "<leader>st",
+        "<leader>sD",
         "<cmd>Telescope lsp_type_definitions<cr>",
-        desc = "Goto Type Definitions",
+        desc = "LSP: Goto Type Definitions",
       },
       {
         "<leader>sr",
         "<cmd>Telescope lsp_references<cr>",
-        desc = "Goto References",
+        desc = "LSP: Goto References",
       },
       {
         "<leader>ss",
         "<cmd>Telescope lsp_document_symbols<cr>",
-        desc = "Goto Symbols",
+        desc = "LSP: Goto Symbols",
       },
       {
         "<leader>sS",
         "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-        desc = "Goto Symbols (workspace)",
+        desc = "LSP: Goto Symbols (workspace)",
       },
 
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Git Commits" },
