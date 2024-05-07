@@ -1,5 +1,29 @@
 return {
   {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = { "TodoTelescope", "TodoQuickFix", "TodoTrouble", "TodoLocList" },
+    keys = {
+      { "<leader>sT", "<cmd>TodoTelescope<cr>", desc = "Find Todo" },
+    },
+    opts = {
+      signs = false,
+      keywords = {
+        FIX = { icon = "F" },
+        TODO = { icon = "T" },
+        HACK = { icon = "H" },
+        WARN = { icon = "W" },
+        PERF = { icon = "P" },
+        NOTE = { icon = "N" },
+        TEST = { icon = "T" },
+      },
+      highlight = {
+        keyword = "",
+        after = "",
+      },
+    },
+  },
+  {
     "kawre/neotab.nvim",
     event = "InsertEnter",
     opts = {
