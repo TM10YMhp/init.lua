@@ -245,3 +245,11 @@ vim.keymap.set(
     desc = "Delete all comments (javascript, typescript)",
   }
 )
+vim.keymap.set(
+  "x",
+  "<leader>cc",
+  [[:s/\s*\/\*\_.\{-}\*\/\n\|^\s*\/\/.*\n\|\s*\/\/.*//g<cr>]],
+  {
+    desc = "Delete all comments (javascript, typescript)",
+  }
+)
