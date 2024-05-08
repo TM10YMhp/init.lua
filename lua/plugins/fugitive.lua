@@ -19,11 +19,6 @@ return {
     "rbong/vim-flog",
     dependencies = { "tpope/vim-fugitive" },
     cmd = { "Flog", "Flogsplit", "Floggit" },
-    init = function()
-      vim.g.flog_default_opts = {
-        max_count = 1000,
-      }
-    end,
     keys = {
       {
         "<leader>gh",
@@ -46,5 +41,8 @@ return {
         desc = "Git Log Current File",
       },
     },
+    config = function()
+      vim.g.flog_default_opts = { max_count = 500 }
+    end,
   },
 }

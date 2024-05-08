@@ -54,8 +54,9 @@ return {
       desc = "Harpoon: Nav File 5",
     },
   },
-  opts = {},
-  config = function(_, opts)
-    require("harpoon"):setup(opts)
-  end,
+  opts = {
+    settings = {
+      save_on_toggle = true,
+    },
+  },
 }
