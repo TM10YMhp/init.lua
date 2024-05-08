@@ -44,17 +44,17 @@ return {
         workspace_dir,
       },
       root_dir = require("jdtls.setup").find_root({
-        ".git",
         "mvnw",
         "gradlew",
-        --
+        -- Multi-module projects
+        ".git",
+        "build.gradle",
+        "build.gradle.kts",
+        -- Single-module projects
         "build.xml", -- Ant
         "pom.xml", -- Maven
         "settings.gradle", -- Gradle
         "settings.gradle.kts", -- Gradle
-        -- Multi-module projects
-        "build.gradle",
-        "build.gradle.kts",
       }),
       settings = {
         java = {

@@ -79,6 +79,7 @@ return {
         alpha = true,
         cmp = true,
         dashboard = true,
+        diffview = true,
         flash = true,
         gitsigns = true,
         headlines = true,
