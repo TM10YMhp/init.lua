@@ -127,6 +127,7 @@ return {
           "nvcheatsheet",
           "neo-tree",
           "dashboard",
+          "dbui",
         },
         callback = function()
           vim.schedule(function()

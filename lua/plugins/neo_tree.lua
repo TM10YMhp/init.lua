@@ -277,12 +277,4 @@ return {
       }
     end,
   },
-  {
-    "nvim-lualine/lualine.nvim",
-    optional = true,
-    opts = function(_, opts)
-      opts.options.disabled_filetypes.winbar =
-        vim.list_extend(opts.options.disabled_filetypes.winbar, { "neo-tree" })
-    end,
-  },
 }

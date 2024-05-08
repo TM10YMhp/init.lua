@@ -74,7 +74,7 @@ return {
         },
         disabled_filetypes = {
           statusline = {},
-          winbar = {},
+          winbar = { "dbui", "neo-tree", "dashboard" },
         },
       },
       sections = {
