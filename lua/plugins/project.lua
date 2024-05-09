@@ -1,3 +1,4 @@
+-- FIX: path problems in Windows
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
