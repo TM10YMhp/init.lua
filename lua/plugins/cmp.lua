@@ -228,9 +228,9 @@ return {
         window = {
           documentation = {
             border = "single",
-            winhighlight = "FloatBorder:Pmenu,NormalFloat:Pmenu",
           },
           completion = {
+            winhighlight = "CursorLine:PmenuSel,Search:None",
             border = "single",
             col_offset = -3,
             -- side_padding = 0,
