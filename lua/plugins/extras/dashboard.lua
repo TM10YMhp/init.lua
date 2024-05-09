@@ -15,7 +15,7 @@ return {
     local logo = table.concat({
       "Welcome to my Neovim setup",
       "",
-      "Inspired by the vision of Bram Moolenar",
+      "Inspired by the legacy of Bram Moolenaar",
       "the creator of Vim",
     }, "\n")
 
