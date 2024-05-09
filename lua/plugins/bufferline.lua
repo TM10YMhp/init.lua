@@ -138,6 +138,7 @@ return {
           max_prefix_length = 100,
           move_wraps_at_ends = false,
           separator_style = { "", "" },
+          enforce_regular_tabs = false,
           always_show_bufferline = true,
           hover = { enabled = false },
         },
