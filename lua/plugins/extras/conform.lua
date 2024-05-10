@@ -67,7 +67,6 @@ return {
       cs              = { "clang-format" },
       c               = { "clang-format" },
       cpp             = { "clang-format" },
-      java            = { "clang-format" },
       lua             = { "stylua" },
       json            = { "biome" },
       jsonc           = { "biome" },
