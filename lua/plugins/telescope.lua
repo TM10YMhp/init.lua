@@ -245,13 +245,13 @@ return {
           },
           lsp_implementations = {
             path_display = { tail = true },
-            -- preview = { hide_on_startup = false },
+            preview = { hide_on_startup = false },
             jump_type = "never",
             show_line = false,
           },
           lsp_references = {
             path_display = { tail = true },
-            -- preview = { hide_on_startup = false },
+            preview = { hide_on_startup = false },
             jump_type = "never",
             show_line = false,
           },
