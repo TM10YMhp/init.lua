@@ -111,7 +111,8 @@ return {
         actions.select_default(pb) -- the normal enter behaviour
         for _, j in pairs(multi) do
           if j.path ~= nil then -- is it a file -> open it as well:
-            vim.cmd(string.format("%s %s", "edit", j.path))
+            local path = j.path:gsub("/", "\\")
+            vim.cmd("edit " .. path)
           end
         end
       end
