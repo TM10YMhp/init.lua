@@ -194,7 +194,6 @@ return {
       local function getTelescopeNode(state, path, builtin_name)
         return {
           cwd = path,
-          search_dirs = { path },
           prompt_title = builtin_name .. " | <CR> Open | <C-s> Navigate",
           attach_mappings = function(prompt_bufnr, map)
             local actions = require("telescope.actions")
