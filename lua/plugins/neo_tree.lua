@@ -176,7 +176,6 @@ return {
       local function getTelescopeNode(state, path, builtin_name)
         return {
           cwd = path,
-          search_dirs = { path },
           prompt_title = builtin_name .. " | <CR> Open | <C-s> Navigate",
           attach_mappings = function(prompt_bufnr, map)
             local actions = require("telescope.actions")
@@ -190,10 +189,11 @@ return {
                   if filename == nil then
                     filename = selection[1]
                   end
+                  filename = path .. "\\" .. filename
                   require("neo-tree.sources.filesystem").navigate(
                     state,
                     state.path,
-                    -- TODO: fix this
+                    -- TODO: check this
                     filename:gsub("/", "\\")
                   )
                 end,
