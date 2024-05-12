@@ -72,12 +72,7 @@ return {
       -- enable_diagnostics = false,
       -- use_popups_for_input = false,
       resize_timer_interval = 1500,
-      sources = {
-        "filesystem",
-        "buffers",
-        "git_status",
-        "document_symbols",
-      },
+      sources = { "filesystem", "buffers", "git_status", "document_symbols" },
       source_selector = {
         winbar = true,
         statusline = false,
@@ -90,17 +85,8 @@ return {
         tabs_layout = "center",
         separator = "|",
       },
-      -- open_files_do_not_replace_types = {
-      --   "terminal",
-      --   "Trouble",
-      --   "trouble",
-      --   "qf",
-      --   "Outline",
-      -- },
       default_component_configs = {
-        container = {
-          enable_character_fade = false,
-        },
+        container = { enable_character_fade = false },
         indent = {
           padding = 0,
           expander_collapsed = ">",
@@ -112,9 +98,7 @@ return {
           folder_empty = "",
           default = "",
         },
-        name = {
-          trailing_slash = true,
-        },
+        name = { trailing_slash = true },
         git_status = {
           -- stylua: ignore
           symbols = {
@@ -131,30 +115,15 @@ return {
             conflict  = "C",
           },
         },
-        file_size = {
-          enabled = true,
-          required_width = 64,
-        },
-        type = {
-          enabled = true,
-          required_width = 122,
-        },
-        last_modified = {
-          enabled = true,
-          required_width = 88,
-        },
-        created = {
-          enabled = true,
-          required_width = 110,
-        },
-        symlink_target = {
-          enabled = false,
-        },
+        -- stylua: ignore start
+        file_size      = { enabled = true, required_width = 64 },
+        type           = { enabled = true, required_width = 122 },
+        last_modified  = { enabled = true, required_width = 88 },
+        created        = { enabled = true, required_width = 110 },
+        symlink_target = { enabled = false },
+        -- stylua: ignore end
       },
-      window = {
-        position = "right",
-        width = 33,
-      },
+      window = { position = "right", width = 33 },
       filesystem = {
         hijack_netrw_behavior = "open_current",
         filtered_items = {
@@ -162,10 +131,7 @@ return {
           hide_gitignored = false,
           hide_hidden = false,
         },
-        follow_current_file = {
-          enabled = true,
-          leave_dirs_open = true,
-        },
+        follow_current_file = { enabled = true, leave_dirs_open = true },
         window = {
           -- stylua: ignore
           mappings = {
@@ -191,9 +157,26 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     optional = true,
     opts = function(_, opts)
+      local default_renderers = require("neo-tree.defaults").renderers
+
+      -- NOTE: remove icons
+      table.remove(default_renderers.directory, 2)
+      table.remove(default_renderers.file, 2)
+
+      opts.renderers = {
+        directory = default_renderers.directory,
+        file = default_renderers.file,
+      }
+    end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    optional = true,
+    opts = function(_, opts)
       local function getTelescopeNode(state, path, builtin_name)
         return {
           cwd = path,
+          search_dirs = { path },
           prompt_title = builtin_name .. " | <CR> Open | <C-s> Navigate",
           attach_mappings = function(prompt_bufnr, map)
             local actions = require("telescope.actions")
