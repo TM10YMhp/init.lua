@@ -20,6 +20,7 @@ return {
     require("tsc").setup({
       bin_path = "tsc.CMD",
       flags = { watch = true },
+      use_diagnostics = true,
     })
   end,
 }
