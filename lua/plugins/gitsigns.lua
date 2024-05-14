@@ -85,12 +85,12 @@ return {
       desc = "Reset Buffer",
     },
     {
-      "<leader>hd",
+      "<leader>dd",
       "<cmd>Gitsigns diffthis<cr>",
       desc = "Diff This",
     },
     {
-      "<leader>hD",
+      "<leader>dD",
       "<cmd>Gitsigns diffthis ~<cr>",
       desc = "Diff This ~",
     },
