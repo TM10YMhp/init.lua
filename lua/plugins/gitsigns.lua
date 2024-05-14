@@ -84,5 +84,15 @@ return {
       "<cmd>exe 'Gitsigns reset_buffer'|Gitsigns refresh<cr>",
       desc = "Reset Buffer",
     },
+    {
+      "<leader>hd",
+      "<cmd>Gitsigns diffthis<cr>",
+      desc = "Diff This",
+    },
+    {
+      "<leader>hD",
+      "<cmd>Gitsigns diffthis ~<cr>",
+      desc = "Diff This ~",
+    },
   },
 }
