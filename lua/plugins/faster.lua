@@ -9,7 +9,7 @@ return {
           "illuminate",
           "matchparen",
           "lsp",
-          "treesitter",
+          -- "treesitter",
           "indent_blankline",
           "vimopts",
           "syntax",

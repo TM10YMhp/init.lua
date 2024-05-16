@@ -16,7 +16,7 @@ vim.opt.fillchars = {
   eob = " ",
 }
 vim.opt.virtualedit = "block"
-vim.opt.shortmess:append("IsWcC")
+vim.opt.shortmess:append("IsWc")
 vim.opt.shada = "'20,<50,s10"
 
 vim.opt.winminwidth = 5
@@ -32,7 +32,6 @@ vim.opt.iskeyword = "@,48-57,_,192-255,-"
 vim.opt.conceallevel = 0
 
 vim.opt.diffopt:append("horizontal,foldcolumn:0")
-vim.opt.modeline = false
 
 vim.opt.wildmode = "longest:full,full"
 

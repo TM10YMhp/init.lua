@@ -31,7 +31,6 @@ return {
   keys = {
     { "<leader>ca", vim.lsp.buf.code_action, desc = "LSP: Code Action" },
     { "<leader>cr", vim.lsp.buf.rename, desc = "LSP: Rename" },
-    { "<c-w>d", vim.diagnostic.open_float, desc = "LSP: Line Diagnostics" },
     { "K", vim.lsp.buf.hover, desc = "LSP: Hover" },
     {
       "<c-k>",
@@ -41,7 +40,11 @@ return {
     },
     { "<leader>cf", vim.lsp.buf.format, desc = "LSP: Format" },
     { "<leader>li", "<cmd>LspInfo<cr>", desc = "LSP: Info" },
-    { "<leader>ll", "<cmd>LspLog<cr>", desc = "LSP: Log" },
+    {
+      "<leader>ll",
+      "<cmd>edit " .. vim.lsp.get_log_path() .. "<cr>",
+      desc = "LSP: Log",
+    },
     {
       "<leader>lwa",
       vim.lsp.buf.add_workspace_folder,

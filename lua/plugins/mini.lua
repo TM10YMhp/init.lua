@@ -1,18 +1,13 @@
 return {
   {
     "echasnovski/mini.comment",
-    keys = {
-      "gcc",
-      { "gc", mode = { "n", "x", "o" } },
-    },
+    keys = { "gcc", { "gc", mode = { "n", "x", "o" } } },
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
       init = function()
         vim.g.skip_ts_context_commentstring_module = true
       end,
-      opts = {
-        enable_autocmd = false,
-      },
+      opts = { enable_autocmd = false },
     },
     opts = {
       options = {

@@ -51,7 +51,6 @@ return {
       parser_install_dir = vim.fn.stdpath("config"),
       ensure_installed = {
         "lua",
-        "vimdoc",
         "jsonc",
         "markdown",
         "markdown_inline",
@@ -60,6 +59,9 @@ return {
         "tsx",
         -- "css",
         -- "astro",
+        -- "c",
+        -- "cpp",
+        -- "angular",
       },
       sync_install = true, -- async cpu cost
       auto_install = false,

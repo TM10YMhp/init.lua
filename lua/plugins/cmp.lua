@@ -31,18 +31,18 @@ local kind_icons = {
 return {
   {
     "L3MON4D3/LuaSnip",
-    -- event = "VeryLazy",
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
       end,
     },
-    config = function(_, opts)
-      require("luasnip").setup(opts)
+    config = function()
+      local luasnip = require("luasnip")
+
+      luasnip.setup()
 
       -- https://github.com/L3MON4D3/LuaSnip/issues/656
-      local luasnip = require("luasnip")
       vim.api.nvim_create_autocmd("ModeChanged", {
         group = vim.api.nvim_create_augroup(
           "UnlinkLuaSnipSnippetOnModeChange",
@@ -73,8 +73,8 @@ return {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     dependencies = { "hrsh7th/nvim-cmp" },
-    config = function(_, opts)
-      require("nvim-autopairs").setup(opts)
+    config = function()
+      require("nvim-autopairs").setup()
 
       -- setup cmp for autopairs
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
@@ -85,10 +85,9 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      "L3MON4D3/LuaSnip",
+      "hrsh7th/cmp-nvim-lsp",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-nvim-lsp",
       "amarakon/nvim-cmp-buffer-lines",
     },
     opts = function()
@@ -97,11 +96,6 @@ return {
       return {
         completion = {
           completeopt = "menu,menuone,noinsert,noselect",
-        },
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
         },
         preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
