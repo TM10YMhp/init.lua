@@ -39,7 +39,8 @@ local config = {
     "-data",
     workspace_dir,
   },
-  root_dir = require("jdtls.setup").find_root({
+  -- root_dir = require("jdtls.setup").find_root({
+  root_dir = vim.fs.root(0, {
     "mvnw",
     "gradlew",
     -- Multi-module projects
