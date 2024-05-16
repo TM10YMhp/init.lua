@@ -67,7 +67,6 @@ return {
       column = "|",
       entireBuffer = "gG", -- G + gg
       url = "iu",
-      multiCommentedLines = "ic",
     }
 
     for objName, map in pairs(oneMaps) do
