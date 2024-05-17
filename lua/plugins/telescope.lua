@@ -255,6 +255,7 @@ return {
             preview = { hide_on_startup = false },
             jump_type = "never",
             show_line = false,
+            include_declarations = false,
           },
           lsp_type_definitions = {
             path_display = { tail = true },

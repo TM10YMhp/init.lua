@@ -219,6 +219,18 @@ vim.keymap.set("n", "<leader>tC",
   end,
   { desc = "Toggle Termguicolors" }
 )
+vim.keymap.set("n", "<leader>th",
+  function()
+    if vim.lsp.inlay_hint.is_enabled() then
+      vim.lsp.inlay_hint.enable(false)
+      require("tm10ymhp.utils").info("Disabled Inlay Hint")
+    else
+      vim.lsp.inlay_hint.enable(true)
+      require("tm10ymhp.utils").info("Enabled Inlay Hint")
+    end
+  end,
+  { desc = "Toogle Inlay Hint" }
+)
 vim.keymap.set("n", "<leader>uD",
   function()
     vim.diagnostic.reset()

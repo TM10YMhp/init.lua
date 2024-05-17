@@ -18,24 +18,43 @@ return {
           useLabelDetailsInCompletionEntries = false,
         },
       },
-      -- settings = {
-      --   tsserver = {
-      --     typescript = {
-      --       implementationsCodeLens = { enabled = true },
-      --       referencesCodeLens = {
-      --         enabled = true,
-      --         showOnAllFunctions = true,
-      --       },
-      --     },
-      --     javascript = {
-      --       implementationsCodeLens = { enabled = true },
-      --       referencesCodeLens = {
-      --         enabled = true,
-      --         showOnAllFunctions = true,
-      --       },
-      --     },
-      --   },
-      -- },
+      settings = {
+        typescript = {
+          -- implementationsCodeLens = { enabled = true },
+          -- referencesCodeLens = {
+          --   enabled = true,
+          --   showOnAllFunctions = true,
+          -- },
+          inlayHints = {
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
+        },
+        javascript = {
+          -- implementationsCodeLens = { enabled = true },
+          -- referencesCodeLens = {
+          --   enabled = true,
+          --   showOnAllFunctions = true,
+          -- },
+          inlayHints = {
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
+        },
+        -- },
+      },
     }
   end,
 }
