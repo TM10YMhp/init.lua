@@ -267,6 +267,7 @@ return {
           },
           colorscheme = {
             layout_strategy = "bottom_pane",
+            preview = { hide_on_startup = true },
             theme = "ivy",
             borderchars = {
               -- stylua: ignore

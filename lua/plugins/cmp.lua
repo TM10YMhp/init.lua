@@ -184,6 +184,7 @@ return {
               latex_symbols = "[LTX]",
               obsidian = "[Obs]",
               obsidian_new = "[New]",
+              ["buffer-lines"] = "[BufL]",
             })[entry.source.name] or "[" .. entry.source.name .. "]"
 
             function trim(text)
