@@ -8,11 +8,10 @@ return {
       keys = {
         { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
       },
-      opts = {
-        -- silent_chdir = false,
-      },
-      config = function(_, opts)
-        require("project_nvim").setup(opts)
+      config = function()
+        require("project_nvim").setup({
+          -- silent_chdir = false,
+        })
 
         vim.cmd("ProjectRoot")
 

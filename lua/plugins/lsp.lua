@@ -1,8 +1,5 @@
--- NOTE: https://github.com/withastro/language-tools/issues/802
--- install astro-language-server 2.6.3
 return {
   "neovim/nvim-lspconfig",
-  -- event = "VeryLazy",
   cmd = { "LspLog", "LspStart", "LspInfo" },
   dependencies = {
     {
