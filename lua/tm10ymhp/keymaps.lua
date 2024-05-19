@@ -3,32 +3,6 @@ vim.keymap.set("n", "ZZ", "<nop>")
 vim.keymap.set("n", "ZQ", "<nop>")
 vim.keymap.set("n", "<c-z>", "<nop>")
 
--- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-vim.keymap.set("n", "n", "'Nn'[v:searchforward].'zv'", {
-  expr = true,
-  desc = "Next search result",
-})
-vim.keymap.set("x", "n", "'Nn'[v:searchforward]", {
-  expr = true,
-  desc = "Next search result",
-})
-vim.keymap.set("o", "n", "'Nn'[v:searchforward]", {
-  expr = true,
-  desc = "Next search result",
-})
-vim.keymap.set("n", "N", "'nN'[v:searchforward].'zv'", {
-  expr = true,
-  desc = "Prev search result",
-})
-vim.keymap.set("x", "N", "'nN'[v:searchforward]", {
-  expr = true,
-  desc = "Prev search result",
-})
-vim.keymap.set("o", "N", "'nN'[v:searchforward]", {
-  expr = true,
-  desc = "Prev search result",
-})
-
 -- Windows
 vim.keymap.set("n", "<leader>wd", "<c-w>c", {
   desc = "Delete window",
@@ -127,6 +101,8 @@ vim.keymap.set("x", "<leader>ci", "=", {
 })
 
 -- Extras
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "J", "omzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
