@@ -1,22 +1,11 @@
-vim.api.nvim_create_autocmd("FileType", {
-  once = true,
-  pattern = {
-    "markdown",
-  },
-  callback = function()
-    vim.defer_fn(function()
-      require("lazy").load({
-        plugins = { "markdown-preview.nvim" },
-      })
-    end, 10)
-  end,
-})
-
 return {
   "iamcco/markdown-preview.nvim",
   build = "cd app && npm install && git restore .",
+  cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
   init = function()
     local config_path = vim.fn.stdpath("config") .. "/lua/styles/"
+
+    vim.g.mkdp_command_for_global = 1
 
     vim.g.mkdp_auto_start = 0
     vim.g.mkdp_auto_close = 0
@@ -39,4 +28,7 @@ return {
       desc = "Toggle Markdown Preview",
     },
   },
+  config = function()
+    vim.cmd("doautocmd mkdp_init BufEnter")
+  end,
 }

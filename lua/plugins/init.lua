@@ -43,7 +43,7 @@ return {
     keys = {
       { "<leader>gm", "<cmd>GitMessenger<cr>", desc = "Git Messenger" },
     },
-    init = function()
+    config = function()
       vim.g.git_messenger_floating_win_opts = {
         border = "single",
         row = 1,
