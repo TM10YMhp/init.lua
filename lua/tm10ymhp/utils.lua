@@ -32,7 +32,7 @@ function M.on_rename(from, to)
             newUri = vim.uri_from_fname(to),
           },
         },
-      }, 1000, 0)
+      }, 3000, 0)
       if resp and resp.result ~= nil then
         vim.lsp.util.apply_workspace_edit(resp.result, client.offset_encoding)
       end
