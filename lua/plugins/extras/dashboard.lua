@@ -3,7 +3,7 @@ return {
   event = function()
     local bufname = vim.api.nvim_buf_get_name(0)
     if bufname == "" then
-      return { "VeryLazy" }
+      return { "VimEnter" }
     end
   end,
   cmd = "Dashboard",
