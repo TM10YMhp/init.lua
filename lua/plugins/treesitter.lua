@@ -54,12 +54,8 @@ return {
         desc = "Manually Attach Autotag",
       },
     },
-    opts = {
-      enable_rename = false,
-      enable_close_on_slash = false,
-    },
-    config = function(_, opts)
-      require("nvim-ts-autotag").setup(opts)
+    config = function()
+      require("nvim-ts-autotag").setup()
 
       -- use Filetype to enable autotag
       require("nvim-ts-autotag.internal").attach()
