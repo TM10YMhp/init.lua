@@ -99,7 +99,8 @@ return {
         },
         preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert({
-          ["<C-s>"] = function()
+          -- https://github.com/neovim/neovim/issues/8435#issuecomment-2119332145
+          ["<C-space>"] = function()
             if cmp.visible() then
               if cmp.visible_docs() then
                 cmp.close_docs()
