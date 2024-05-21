@@ -11,6 +11,7 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     opts = {
+      -- https://thevaluable.dev/tree-sitter-neovim-overview/
       parser_install_dir = vim.fn.stdpath("config"),
       ensure_installed = {
         "lua",
