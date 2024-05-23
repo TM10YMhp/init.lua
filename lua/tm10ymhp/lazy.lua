@@ -19,7 +19,6 @@ require("lazy").setup({
     require("plugins.colorscheme"),
     require("plugins.diffview"),
     require("plugins.faster"),
-    require("plugins.flash"),
     require("plugins.floaterm"),
     require("plugins.fugitive"),
     require("plugins.gitsigns"),
