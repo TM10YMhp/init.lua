@@ -1,6 +1,5 @@
 return {
   "Exafunction/codeium.vim",
-  -- event = "VeryLazy", -- Await Auth
   event = "InsertEnter",
   cmd = "Codeium",
   init = function()
@@ -9,57 +8,50 @@ return {
     vim.g.codeium_no_map_tap = true
   end,
   keys = {
-    -- stylua: ignore
     {
       "<M-c>",
-      function() return vim.fn['codeium#Chat']() end,
+      -- TODO: check this
+      "codeium#Chat()",
       desc = "Codeium: Chat - Telemetry",
       expr = true,
       silent = true,
     },
-    -- stylua: ignore
     {
       "<Tab>",
-      function() return vim.fn['codeium#Accept']() end,
+      "codeium#Accept()",
       mode = "i",
       desc = "Codeium: Accept",
       expr = true,
       silent = true,
     },
-    -- stylua: ignore
     {
       "<M-y>",
-      function() return vim.fn['codeium#Accept']() end,
+      vim.fn["codeium#Accept"],
       mode = "i",
       desc = "Codeium: Accept",
       expr = true,
       silent = true,
     },
-    -- stylua: ignore
     {
       "<M-e>",
-      function() return vim.fn['codeium#Clear']() end,
+      "codeium#Clear()",
       mode = "i",
       desc = "Codeium: Clear",
       expr = true,
       silent = true,
     },
-    -- stylua: ignore
     {
       "<M-n>",
-      function() return vim.fn['codeium#CycleOrComplete']() end,
+      "<cmd>call codeium#CycleOrComplete()<cr>",
       mode = "i",
       desc = "Codeium: Next Completion",
-      expr = true,
       silent = true,
     },
-    -- stylua: ignore
     {
       "<M-p>",
-      function() return vim.fn['codeium#CycleCompletions'](-1) end,
+      "<cmd>call codeium#CycleCompletions(-1)<cr>",
       mode = "i",
       desc = "Codeium: Prev Completion",
-      expr = true,
       silent = true,
     },
     {

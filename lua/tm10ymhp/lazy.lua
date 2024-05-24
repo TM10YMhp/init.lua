@@ -154,8 +154,10 @@ vim.api.nvim_create_autocmd("User", {
 vim.api.nvim_create_autocmd("LspAttach", {
   once = true,
   callback = function()
-    -- This is a modification of mini.completion
-    -- Only displays signature information
+    --[[
+    This is a modification of mini.completion
+    Only displays signature information
+    --]]
     require("tm10ymhp.mini_signature").setup({
       window = {
         signature = { border = "single" },

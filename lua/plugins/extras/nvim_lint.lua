@@ -47,7 +47,6 @@ return {
           require("tm10ymhp.utils").info("Lint: Disabled")
         else
           require("lint").linters_by_ft = linters_by_ft
-          -- vim.diagnostic.reset()
           require("lint").try_lint()
           require("tm10ymhp.utils").info("Lint: Enabled")
         end
