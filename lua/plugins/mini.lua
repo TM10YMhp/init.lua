@@ -128,6 +128,33 @@ return {
         mode = { "n", "o", "x" },
         desc = "Start 2d jumping",
       },
+      {
+        "<c-s>",
+        function()
+          vim.api.nvim_input("<cr>")
+
+          vim.schedule(function()
+            local pattern = vim.fn.getreg("/")
+
+            if pattern:sub(1, 2) == [[\<]] and pattern:sub(-2) == [[\>]] then
+              pattern = "%f[A-Za-z]" .. pattern:sub(3, -3) .. "%f[^A-Za-z]"
+            end
+
+            if pattern:sub(1, 2) == [[\V]] then
+              pattern = pattern:sub(3):gsub([[\]], "")
+            end
+
+            -- vim.print(pattern)
+
+            MiniJump2d.start({
+              allowed_lines = { blank = false, fold = false },
+              spotter = MiniJump2d.gen_pattern_spotter(pattern),
+            })
+          end)
+        end,
+        mode = { "c" },
+        desc = "Start 2d jumping",
+      },
     },
     opts = {
       mappings = { start_jumping = "" },
