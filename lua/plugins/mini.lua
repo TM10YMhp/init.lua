@@ -115,17 +115,6 @@ return {
       }
     end,
   },
-  -- TODO: search alternative
-  {
-    "echasnovski/mini.jump",
-    keys = {
-      { "f", mode = { "n", "o", "x" }, desc = "Jump forward" },
-      { "F", mode = { "n", "o", "x" }, desc = "Jump backward" },
-      { "t", mode = { "n", "o", "x" }, desc = "Jump forward till" },
-      { "T", mode = { "n", "o", "x" }, desc = "Jump backward till" },
-    },
-    opts = { delay = { highlight = 0 } },
-  },
   {
     "echasnovski/mini.jump2d",
     keys = {

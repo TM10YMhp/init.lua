@@ -1,5 +1,18 @@
 return {
   {
+    "jinh0/eyeliner.nvim",
+    keys = {
+      { "f", mode = { "n", "o", "x" }, desc = "Jump forward" },
+      { "F", mode = { "n", "o", "x" }, desc = "Jump backward" },
+      { "t", mode = { "n", "o", "x" }, desc = "Jump forward till" },
+      { "T", mode = { "n", "o", "x" }, desc = "Jump backward till" },
+    },
+    opts = {
+      highlight_on_key = true,
+      match = "[a-zA-Z0-9]",
+    },
+  },
+  {
     "backdround/improved-search.nvim",
     keys = {
       {
