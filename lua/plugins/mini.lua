@@ -1,3 +1,4 @@
+-- TODO: better descriptions
 return {
   {
     "echasnovski/mini.bracketed",
@@ -114,9 +115,15 @@ return {
       }
     end,
   },
+  -- TODO: search alternative
   {
     "echasnovski/mini.jump",
-    keys = { "f", "F", "t", "T" },
+    keys = {
+      { "f", mode = { "n", "o", "x" }, desc = "Jump forward" },
+      { "F", mode = { "n", "o", "x" }, desc = "Jump backward" },
+      { "t", mode = { "n", "o", "x" }, desc = "Jump forward till" },
+      { "T", mode = { "n", "o", "x" }, desc = "Jump backward till" },
+    },
     opts = { delay = { highlight = 0 } },
   },
   {
