@@ -26,15 +26,15 @@ return {
     { "deathbeam/lspecho.nvim", opts = { decay = 3000 } },
   },
   keys = {
-    { "<leader>ca", vim.lsp.buf.code_action, desc = "LSP: Code Action" },
     { "<leader>cr", vim.lsp.buf.rename, desc = "LSP: Rename" },
-    { "K", vim.lsp.buf.hover, desc = "LSP: Hover" },
+    { "<leader>ca", vim.lsp.buf.code_action, desc = "LSP: Code Action" },
     {
       "<c-k>",
       vim.lsp.buf.signature_help,
       mode = { "n", "i" },
       desc = "LSP: Signature Help",
     },
+    { "K", vim.lsp.buf.hover, desc = "LSP: Hover" },
     { "<leader>cf", vim.lsp.buf.format, desc = "LSP: Format" },
     { "<leader>li", "<cmd>LspInfo<cr>", desc = "LSP: Info" },
     {
