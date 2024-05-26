@@ -2,9 +2,42 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function()
+    local extract_color_from_hllist =
+      require("lualine.utils.utils").extract_color_from_hllist
+
     local function template_diagnostic(sources)
       return {
         "diagnostics",
+        diagnostics_color = {
+          error = {
+            fg = extract_color_from_hllist(
+              { "fg", "sp" },
+              { "DiagnosticError", "LspDiagnosticsDefaultError", "DiffDelete" },
+              "NONE"
+            ),
+          },
+          warn = {
+            fg = extract_color_from_hllist(
+              { "fg", "sp" },
+              { "DiagnosticWarn", "LspDiagnosticsDefaultWarning", "DiffText" },
+              "NONE"
+            ),
+          },
+          info = {
+            fg = extract_color_from_hllist(
+              { "fg", "sp" },
+              { "DiagnosticInfo", "LspDiagnosticsDefaultInformation", "Normal" },
+              "NONE"
+            ),
+          },
+          hint = {
+            fg = extract_color_from_hllist(
+              { "fg", "sp" },
+              { "DiagnosticHint", "LspDiagnosticsDefaultHint", "DiffChange" },
+              "NONE"
+            ),
+          },
+        },
         sources = { sources },
         fmt = function(str)
           return str:gsub(":", "")
@@ -91,6 +124,35 @@ return {
         lualine_x = {
           {
             "diff",
+            diff_color = {
+              added = {
+                fg = extract_color_from_hllist("fg", {
+                  "LuaLineDiffAdd",
+                  "GitSignsAdd",
+                  "GitGutterAdd",
+                  "DiffAdded",
+                  "DiffAdd",
+                }, "NONE"),
+              },
+              modified = {
+                fg = extract_color_from_hllist("fg", {
+                  "LuaLineDiffChange",
+                  "GitSignsChange",
+                  "GitGutterChange",
+                  "DiffChanged",
+                  "DiffChange",
+                }, "NONE"),
+              },
+              removed = {
+                fg = extract_color_from_hllist("fg", {
+                  "LuaLineDiffDelete",
+                  "GitSignsDelete",
+                  "GitGutterDelete",
+                  "DiffRemoved",
+                  "DiffDelete",
+                }, "NONE"),
+              },
+            },
             source = function()
               local gitsigns = vim.b.gitsigns_status_dict
               if gitsigns then
