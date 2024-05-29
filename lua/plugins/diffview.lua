@@ -18,26 +18,26 @@ return {
   opts = {
     use_icons = false,
     signs = {
-      fold_closed = ">",
-      fold_open = "v",
+      fold_closed = "> ",
+      fold_open = "v ",
       done = "✓",
     },
     view = {
-      default = {
-        layout = "diff2_vertical",
-      },
       merge_tool = {
         layout = "diff3_mixed",
-      },
-      file_history = {
-        layout = "diff2_vertical",
       },
     },
     file_panel = {
       win_config = {
-        position = "right",
-        width = 30,
+        position = "bottom",
+        height = 16,
       },
+    },
+    hooks = {
+      diff_buf_read = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.list = false
+      end,
     },
     keymaps = {
       view = {

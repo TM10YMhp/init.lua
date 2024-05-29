@@ -32,7 +32,7 @@ vim.opt.iskeyword = "@,48-57,_,192-255,-"
 
 vim.opt.conceallevel = 0
 
-vim.opt.diffopt:append("horizontal,foldcolumn:0")
+vim.opt.diffopt:append({ "horizontal", "followwrap" })
 
 vim.opt.wildmode = "longest:full,full"
 
