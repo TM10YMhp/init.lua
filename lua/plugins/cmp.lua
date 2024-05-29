@@ -94,6 +94,11 @@ return {
       local cmp = require("cmp")
 
       return {
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
+        },
         completion = {
           completeopt = "menu,menuone,noinsert,noselect",
         },
