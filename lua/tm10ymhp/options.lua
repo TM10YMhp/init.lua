@@ -1,5 +1,6 @@
 -- globals
 vim.g.mapleader = ","
+vim.g.maplocalleader = "_"
 
 vim.g.markdown_recommended_style = 0
 

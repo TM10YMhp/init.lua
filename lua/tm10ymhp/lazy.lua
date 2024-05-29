@@ -85,6 +85,9 @@ require("lazy").setup({
     },
   },
   throttle = 1000,
+  diff = {
+    cmd = "diffview.nvim",
+  },
   checker = {
     enable = false,
   },

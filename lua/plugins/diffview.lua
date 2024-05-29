@@ -1,10 +1,19 @@
 return {
   "sindrets/diffview.nvim",
+  cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
   keys = {
     { "<leader>do", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
     { "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
-    { "<leader>dh", "<cmd>DiffviewFileHistory<cr>", desc = "DiffviewFileHistory" },
-    { "<leader>dH", "<cmd>DiffviewFileHistory %<cr>", desc = "DiffviewFileHistory" },
+    {
+      "<leader>dh",
+      "<cmd>DiffviewFileHistory<cr>",
+      desc = "DiffviewFileHistory",
+    },
+    {
+      "<leader>dH",
+      "<cmd>DiffviewFileHistory %<cr>",
+      desc = "DiffviewFileHistory",
+    },
   },
   opts = {
     use_icons = false,
@@ -28,7 +37,7 @@ return {
       win_config = {
         position = "right",
         width = 30,
-      }
+      },
     },
     keymaps = {
       view = {
@@ -40,5 +49,5 @@ return {
         ["]x"] = false,
       },
     },
-  }
+  },
 }
