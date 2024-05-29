@@ -35,11 +35,78 @@ return {
   {
     "echasnovski/mini.bracketed",
     keys = {
-      { "]", mode = { "n", "x", "o" }, desc = "forward" },
-      { "[", mode = { "n", "x", "o" }, desc = "backward" },
+      { "[B", desc = "Buffer first" },
+      { "]B", desc = "Buffer last" },
+      { "]b", desc = "Buffer forward" },
+      { "[b", desc = "Buffer backward" },
+
+      { "[C", mode = { "n", "x", "o" }, desc = "Comment first" },
+      { "]C", mode = { "n", "x", "o" }, desc = "Comment last" },
+      { "]c", mode = { "n", "x", "o" }, desc = "Comment forward" },
+      { "[c", mode = { "n", "x", "o" }, desc = "Comment backward" },
+
+      { "[X", mode = { "n", "x", "o" }, desc = "Conflict first" },
+      { "]X", mode = { "n", "x", "o" }, desc = "Conflict last" },
+      { "]x", mode = { "n", "x", "o" }, desc = "Conflict forward" },
+      { "[x", mode = { "n", "x", "o" }, desc = "Conflict backward" },
+
+      { "[E", mode = { "n", "x", "o" }, desc = "Diagnostic first" },
+      { "]E", mode = { "n", "x", "o" }, desc = "Diagnostic last" },
+      { "]e", mode = { "n", "x", "o" }, desc = "Diagnostic forward" },
+      { "[e", mode = { "n", "x", "o" }, desc = "Diagnostic backward" },
+
+      { "[F", desc = "File first" },
+      { "]F", desc = "File last" },
+      { "]f", desc = "File forward" },
+      { "[f", desc = "File backward" },
+
+      { "[I", mode = { "n", "x", "o" }, desc = "Indent first" },
+      { "]I", mode = { "n", "x", "o" }, desc = "Indent last" },
+      { "]i", mode = { "n", "x", "o" }, desc = "Indent forward" },
+      { "[i", mode = { "n", "x", "o" }, desc = "Indent backward" },
+
+      { "[J", mode = { "n", "o" }, desc = "Jump first" },
+      { "]J", mode = { "n", "o" }, desc = "Jump last" },
+      { "]j", mode = { "n", "o" }, desc = "Jump forward" },
+      { "[j", mode = { "n", "o" }, desc = "Jump backward" },
+
+      { "[O", desc = "Oldfile first" },
+      { "]O", desc = "Oldfile last" },
+      { "]o", desc = "Oldfile forward" },
+      { "[o", desc = "Oldfile backward" },
+
+      { "[L", desc = "Location first" },
+      { "]L", desc = "Location last" },
+      { "]l", desc = "Location forward" },
+      { "[l", desc = "Location backward" },
+
+      { "[Q", desc = "Quickfix first" },
+      { "]Q", desc = "Quickfix last" },
+      { "]q", desc = "Quickfix forward" },
+      { "[q", desc = "Quickfix backward" },
+
+      { "[T", mode = { "n", "x", "o" }, desc = "Treesitter first" },
+      { "]T", mode = { "n", "x", "o" }, desc = "Treesitter last" },
+      { "]t", mode = { "n", "x", "o" }, desc = "Treesitter forward" },
+      { "[t", mode = { "n", "x", "o" }, desc = "Treesitter backward" },
+
+      { "[U", desc = "Undo first" },
+      { "]U", desc = "Undo last" },
+      { "]u", desc = "Undo forward" },
+      { "[u", desc = "Undo backward" },
+
+      { "[W", desc = "Window first" },
+      { "]W", desc = "Window last" },
+      { "]w", desc = "Window forward" },
+      { "[w", desc = "Window backward" },
+
+      { "[Y", desc = "Yank first" },
+      { "]Y", desc = "Yank last" },
+      { "]y", desc = "Yank forward" },
+      { "[y", desc = "Yank backward" },
     },
-    -- stylua: ignore
     opts = {
+      -- stylua: ignore start
       buffer     = { suffix = 'b', options = {} },
       comment    = { suffix = 'c', options = {} },
       conflict   = { suffix = 'x', options = {} },
@@ -47,13 +114,14 @@ return {
       file       = { suffix = 'f', options = {} },
       indent     = { suffix = 'i', options = { change_type = 'diff'} },
       jump       = { suffix = 'j', options = {} },
-      location   = { suffix = 'l', options = {} },
       oldfile    = { suffix = 'o', options = {} },
+      location   = { suffix = 'l', options = {} },
       quickfix   = { suffix = 'q', options = {} },
       treesitter = { suffix = 't', options = {} },
       undo       = { suffix = 'u', options = {} },
       window     = { suffix = 'w', options = {} },
       yank       = { suffix = 'y', options = {} },
+      -- stylua: ignore end
     },
   },
   {
