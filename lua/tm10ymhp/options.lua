@@ -18,7 +18,7 @@ vim.opt.fillchars = {
 }
 vim.opt.virtualedit = "block"
 vim.opt.shortmess:append("IsWc")
-vim.opt.shada = "'20,<50,s10"
+vim.opt.shada = { "'20", "<50", "s10" }
 
 vim.opt.winminwidth = 5
 vim.opt.winheight = 5
@@ -28,13 +28,13 @@ vim.opt.previewheight = 25
 
 vim.opt.cursorline = true
 
-vim.opt.iskeyword = "@,48-57,_,192-255,-"
+vim.opt.iskeyword:append({ "-" })
 
 vim.opt.conceallevel = 0
 
-vim.opt.diffopt:append({ "horizontal", "followwrap" })
+vim.opt.diffopt:append({ "followwrap" })
 
-vim.opt.wildmode = "longest:full,full"
+vim.opt.wildmode = { "longest:full", "full" }
 
 vim.opt.swapfile = false
 vim.opt.writebackup = false
@@ -63,7 +63,7 @@ vim.opt.ruler = false
 vim.opt.foldopen:remove("hor")
 
 vim.opt.complete = "."
-vim.opt.completeopt = "menu,menuone,noinsert,noselect"
+vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
 
 vim.opt.tabstop = 4
 vim.opt.expandtab = true

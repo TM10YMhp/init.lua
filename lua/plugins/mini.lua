@@ -1,5 +1,5 @@
--- TODO: better descriptions
 return {
+  -- TODO: better descriptions
   {
     "echasnovski/mini.ai",
     keys = {
@@ -34,77 +34,53 @@ return {
   },
   {
     "echasnovski/mini.bracketed",
-    keys = {
-      { "[B", desc = "Buffer first" },
-      { "]B", desc = "Buffer last" },
-      { "]b", desc = "Buffer forward" },
-      { "[b", desc = "Buffer backward" },
+    keys = function()
+      local mappings = {}
 
-      { "[C", mode = { "n", "x", "o" }, desc = "Comment first" },
-      { "]C", mode = { "n", "x", "o" }, desc = "Comment last" },
-      { "]c", mode = { "n", "x", "o" }, desc = "Comment forward" },
-      { "[c", mode = { "n", "x", "o" }, desc = "Comment backward" },
+      local variants = {
+        -- stylua: ignore start
+        buffer     = { suffix = "b" },
+        file       = { suffix = "f" },
+        oldfile    = { suffix = "o" },
+        location   = { suffix = "l" },
+        quickfix   = { suffix = "q" },
+        undo       = { suffix = "u" },
+        window     = { suffix = "w" },
+        yank       = { suffix = "y" },
+        jump       = { suffix = "j", mode = { "n", "o" } },
+        comment    = { suffix = "c", mode = { "n", "x", "o" } },
+        conflict   = { suffix = "x", mode = { "n", "x", "o" } },
+        diagnostic = { suffix = "e", mode = { "n", "x", "o" } },
+        indent     = { suffix = "i", mode = { "n", "x", "o" } },
+        treesitter = { suffix = "t", mode = { "n", "x", "o" } },
+        -- stylua: ignore end
+      }
 
-      { "[X", mode = { "n", "x", "o" }, desc = "Conflict first" },
-      { "]X", mode = { "n", "x", "o" }, desc = "Conflict last" },
-      { "]x", mode = { "n", "x", "o" }, desc = "Conflict forward" },
-      { "[x", mode = { "n", "x", "o" }, desc = "Conflict backward" },
+      for key, value in pairs(variants) do
+        local low, up = value.suffix:lower(), value.suffix:upper()
+        local key = key:gsub("^%l", string.upper)
+        local mode = value.mode or { "n" }
 
-      { "[E", mode = { "n", "x", "o" }, desc = "Diagnostic first" },
-      { "]E", mode = { "n", "x", "o" }, desc = "Diagnostic last" },
-      { "]e", mode = { "n", "x", "o" }, desc = "Diagnostic forward" },
-      { "[e", mode = { "n", "x", "o" }, desc = "Diagnostic backward" },
+        table.insert(
+          mappings,
+          { "[" .. up, mode = vim.deepcopy(mode), desc = key .. " first" }
+        )
+        table.insert(
+          mappings,
+          { "]" .. up, mode = vim.deepcopy(mode), desc = key .. " last" }
+        )
+        table.insert(
+          mappings,
+          { "[" .. low, mode = vim.deepcopy(mode), desc = key .. " backward" }
+        )
+        table.insert(
+          mappings,
+          { "]" .. low, mode = vim.deepcopy(mode), desc = key .. " forward" }
+        )
+      end
 
-      { "[F", desc = "File first" },
-      { "]F", desc = "File last" },
-      { "]f", desc = "File forward" },
-      { "[f", desc = "File backward" },
-
-      { "[I", mode = { "n", "x", "o" }, desc = "Indent first" },
-      { "]I", mode = { "n", "x", "o" }, desc = "Indent last" },
-      { "]i", mode = { "n", "x", "o" }, desc = "Indent forward" },
-      { "[i", mode = { "n", "x", "o" }, desc = "Indent backward" },
-
-      { "[J", mode = { "n", "o" }, desc = "Jump first" },
-      { "]J", mode = { "n", "o" }, desc = "Jump last" },
-      { "]j", mode = { "n", "o" }, desc = "Jump forward" },
-      { "[j", mode = { "n", "o" }, desc = "Jump backward" },
-
-      { "[O", desc = "Oldfile first" },
-      { "]O", desc = "Oldfile last" },
-      { "]o", desc = "Oldfile forward" },
-      { "[o", desc = "Oldfile backward" },
-
-      { "[L", desc = "Location first" },
-      { "]L", desc = "Location last" },
-      { "]l", desc = "Location forward" },
-      { "[l", desc = "Location backward" },
-
-      { "[Q", desc = "Quickfix first" },
-      { "]Q", desc = "Quickfix last" },
-      { "]q", desc = "Quickfix forward" },
-      { "[q", desc = "Quickfix backward" },
-
-      { "[T", mode = { "n", "x", "o" }, desc = "Treesitter first" },
-      { "]T", mode = { "n", "x", "o" }, desc = "Treesitter last" },
-      { "]t", mode = { "n", "x", "o" }, desc = "Treesitter forward" },
-      { "[t", mode = { "n", "x", "o" }, desc = "Treesitter backward" },
-
-      { "[U", desc = "Undo first" },
-      { "]U", desc = "Undo last" },
-      { "]u", desc = "Undo forward" },
-      { "[u", desc = "Undo backward" },
-
-      { "[W", desc = "Window first" },
-      { "]W", desc = "Window last" },
-      { "]w", desc = "Window forward" },
-      { "[w", desc = "Window backward" },
-
-      { "[Y", desc = "Yank first" },
-      { "]Y", desc = "Yank last" },
-      { "]y", desc = "Yank forward" },
-      { "[y", desc = "Yank backward" },
-    },
+      return mappings
+    end,
     opts = {
       -- stylua: ignore start
       buffer     = { suffix = 'b', options = {} },
