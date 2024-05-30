@@ -157,6 +157,23 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     optional = true,
     opts = function(_, opts)
+      local function on_move(data)
+        require("tm10ymhp.utils").on_rename(data.source, data.destination)
+      end
+
+      opts.event_handlers = opts.event_handlers or {}
+
+      local events = require("neo-tree.events")
+      vim.list_extend(opts.event_handlers or {}, {
+        { event = events.FILE_MOVED, handler = on_move },
+        { event = events.FILE_RENAMED, handler = on_move },
+      })
+    end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    optional = true,
+    opts = function(_, opts)
       local default_renderers = require("neo-tree.defaults").renderers
 
       -- NOTE: remove icons

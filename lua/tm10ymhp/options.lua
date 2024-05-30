@@ -15,6 +15,7 @@ vim.opt.fillchars = {
   fold = " ",
   foldsep = " ",
   eob = " ",
+  diff = ".",
 }
 vim.opt.virtualedit = "block"
 vim.opt.shortmess:append("IsWc")
