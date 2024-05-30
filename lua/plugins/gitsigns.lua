@@ -27,6 +27,15 @@ return {
       relative = "cursor",
     },
   },
+  config = function(_, opts)
+    require("gitsigns").setup(opts)
+
+    -- HACK: solved bug on exit in Windows
+    vim.api.nvim_clear_autocmds({
+      event = "DirChanged",
+      group = "gitsigns",
+    })
+  end,
   keys = {
     {
       "<leader>tg",

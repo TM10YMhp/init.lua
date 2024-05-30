@@ -2,6 +2,7 @@ return {
   "dmmulroy/tsc.nvim",
   cmd = "TSC",
   config = function()
+    -- HACK: accept jsconfig.json
     require("tsc.utils").find_tsconfigs = function()
       local tsconfig = vim.fn.findfile("tsconfig.json", ".;")
       local jsconfig = vim.fn.findfile("jsconfig.json", ".;")
