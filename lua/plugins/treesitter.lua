@@ -44,7 +44,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
+    event = "InsertCharPre",
     keys = {
       {
         "<leader>ut",

@@ -23,6 +23,7 @@ require("lazy").setup({
     require("plugins.fugitive"),
     require("plugins.gitsigns"),
     require("plugins.harpoon"),
+    require("plugins.improved_search"),
     require("plugins.init"),
     require("plugins.lsp"),
     require("plugins.lualine"),
@@ -34,6 +35,7 @@ require("lazy").setup({
     require("plugins.project"),
     require("plugins.telescope"),
     require("plugins.treesitter"),
+    require("plugins.ts_comments"),
 
     require("plugins.extras.cloak"),
     require("plugins.extras.codeium"),

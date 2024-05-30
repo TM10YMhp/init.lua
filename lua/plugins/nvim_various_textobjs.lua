@@ -29,7 +29,7 @@ return {
     }
 
     local innerOuterMaps = {
-      number = "n",
+      number = "N",
       value = "v",
       key = "k",
       subword = "S", -- lowercase taken for sentence textobj
@@ -37,7 +37,7 @@ return {
       chainMember = "m",
       htmlAttribute = "x",
       doubleSquareBrackets = "D",
-      mdlink = "l",
+      mdlink = "L",
       mdFencedCodeBlock = "M",
       mdEmphasis = "e",
       pyTripleQuotes = "y",

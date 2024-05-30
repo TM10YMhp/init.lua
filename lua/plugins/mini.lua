@@ -1,22 +1,31 @@
 return {
-  -- TODO: better descriptions
+  -- TODO: custom_textobjects nvim_various_textobjs
   {
     "echasnovski/mini.ai",
     keys = {
-      { "a", mode = { "o", "x" }, desc = "Around textobject" },
-      { "i", mode = { "o", "x" }, desc = "Inside textobject" },
+      { "a", mode = { "x", "o" }, desc = "Around textobject" },
+      { "i", mode = { "x", "o" }, desc = "Inside textobject" },
+      { "g[", mode = { "n", "x", "o" }, desc = 'Move to left "around"' },
+      { "g]", mode = { "n", "x", "o" }, desc = 'Move to right "around"' },
     },
     opts = function()
       local spec_treesitter = require("mini.ai").gen_spec.treesitter
 
       return {
         mappings = {
-          around_next = "",
-          inside_next = "",
-          around_last = "",
-          inside_last = "",
-          goto_left = "",
-          goto_right = "",
+          -- Main textobject prefixes
+          around = "a",
+          inside = "i",
+
+          -- Next/last textobjects
+          around_next = "an",
+          inside_next = "in",
+          around_last = "al",
+          inside_last = "il",
+
+          -- Move cursor to corresponding edge of `a` textobject
+          goto_left = "g[",
+          goto_right = "g]",
         },
         n_lines = 500,
         custom_textobjects = {
