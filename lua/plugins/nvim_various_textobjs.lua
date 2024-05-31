@@ -6,25 +6,19 @@ return {
         "ii",
         "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>",
         mode = { "o", "x" },
-        desc = "inner-inner indentation textobj",
+        desc = "Indentation",
       },
       {
         "ai",
         "<cmd>lua require('various-textobjs').indentation('outer', 'inner')<CR>",
         mode = { "o", "x" },
-        desc = "outer-inner indentation textobj",
-      },
-      {
-        "iI",
-        "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>",
-        mode = { "o", "x" },
-        desc = "inner-inner indentation textobj",
+        desc = "Indentation",
       },
       {
         "aI",
         "<cmd>lua require('various-textobjs').indentation('outer', 'outer')<CR>",
         mode = { "o", "x" },
-        desc = "outer-outer indentation textobj",
+        desc = "Indentation",
       },
     }
 
@@ -43,7 +37,7 @@ return {
       pyTripleQuotes = "y",
     }
     for objName, map in pairs(innerOuterMaps) do
-      local name = " " .. objName .. " textobj"
+      local name = " " .. objName
       table.insert(mappings, {
         "i" .. map,
         "<cmd>lua require('various-textobjs')." .. objName .. "('inner')<CR>",
@@ -73,7 +67,7 @@ return {
         map,
         "<cmd>lua require('various-textobjs')." .. objName .. "()<CR>",
         mode = { "o", "x" },
-        desc = objName .. " textobj",
+        desc = objName,
       })
     end
 
