@@ -43,27 +43,19 @@ return {
   },
   {
     "echasnovski/mini.bracketed",
-    keys = function()
+    keys = function(self)
       local mappings = {}
 
-      local variants = {
+      local variants = vim.tbl_deep_extend("force", self.opts, {
         -- stylua: ignore start
-        buffer     = { suffix = "b" },
-        file       = { suffix = "f" },
-        oldfile    = { suffix = "o" },
-        location   = { suffix = "l" },
-        quickfix   = { suffix = "q" },
-        undo       = { suffix = "u" },
-        window     = { suffix = "w" },
-        yank       = { suffix = "y" },
-        jump       = { suffix = "j", mode = { "n", "o" } },
-        comment    = { suffix = "c", mode = { "n", "x", "o" } },
-        conflict   = { suffix = "x", mode = { "n", "x", "o" } },
-        diagnostic = { suffix = "e", mode = { "n", "x", "o" } },
-        indent     = { suffix = "i", mode = { "n", "x", "o" } },
-        treesitter = { suffix = "t", mode = { "n", "x", "o" } },
+        jump       = { mode = { "n", "o" } },
+        comment    = { mode = { "n", "x", "o" } },
+        conflict   = { mode = { "n", "x", "o" } },
+        diagnostic = { mode = { "n", "x", "o" } },
+        indent     = { mode = { "n", "x", "o" } },
+        treesitter = { mode = { "n", "x", "o" } },
         -- stylua: ignore end
-      }
+      })
 
       for key, value in pairs(variants) do
         local low, up = value.suffix:lower(), value.suffix:upper()

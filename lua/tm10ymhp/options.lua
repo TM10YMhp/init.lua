@@ -18,7 +18,7 @@ vim.opt.fillchars = {
   diff = ".",
 }
 vim.opt.virtualedit = "block"
-vim.opt.shortmess:append("IsWc")
+vim.opt.shortmess:append({ I = true, s = true, W = true, c = true })
 vim.opt.shada = { "'20", "<50", "s10" }
 
 vim.opt.winminwidth = 5
