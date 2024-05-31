@@ -32,7 +32,7 @@ return {
 
     -- HACK: solved bug on exit in Windows
     vim.api.nvim_clear_autocmds({
-      event = "DirChanged",
+      event = { "DirChanged", "BufWritePost" },
       group = "gitsigns",
     })
   end,

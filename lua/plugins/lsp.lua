@@ -34,7 +34,14 @@ return {
       mode = { "n", "i" },
       desc = "LSP: Signature Help",
     },
-    { "K", vim.lsp.buf.hover, desc = "LSP: Hover" },
+    {
+      "K",
+      function()
+        -- NOTE: https://github.com/neovim/neovim/blob/master/runtime/lua/vim/lsp.lua#L382-L383
+        vim.lsp.buf.hover()
+      end,
+      desc = "LSP: Hover",
+    },
     { "<leader>cf", vim.lsp.buf.format, desc = "LSP: Format" },
     { "<leader>li", "<cmd>LspInfo<cr>", desc = "LSP: Info" },
     {
