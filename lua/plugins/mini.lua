@@ -1,46 +1,4 @@
 return {
-  -- TODO: custom_textobjects nvim_various_textobjs
-  {
-    "echasnovski/mini.ai",
-    keys = {
-      { "a", mode = { "x", "o" }, desc = "Around textobject" },
-      { "i", mode = { "x", "o" }, desc = "Inside textobject" },
-      { "g[", mode = { "n", "x", "o" }, desc = 'Move to left "around"' },
-      { "g]", mode = { "n", "x", "o" }, desc = 'Move to right "around"' },
-    },
-    opts = function()
-      local spec_treesitter = require("mini.ai").gen_spec.treesitter
-
-      return {
-        mappings = {
-          -- Main textobject prefixes
-          around = "a",
-          inside = "i",
-
-          -- Next/last textobjects
-          around_next = "an",
-          inside_next = "in",
-          around_last = "al",
-          inside_last = "il",
-
-          -- Move cursor to corresponding edge of `a` textobject
-          goto_left = "g[",
-          goto_right = "g]",
-        },
-        n_lines = 500,
-        custom_textobjects = {
-          -- Need 'nvim-treesitter/nvim-treesitter-textobjects'
-          o = spec_treesitter({
-            a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-            i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-          }),
-          F = spec_treesitter({ a = "@function.outer", i = "@function.inner" }),
-          C = spec_treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
-          t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
-        },
-      }
-    end,
-  },
   {
     "echasnovski/mini.bracketed",
     keys = function(self)

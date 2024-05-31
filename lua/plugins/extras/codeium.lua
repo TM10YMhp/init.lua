@@ -74,7 +74,7 @@ return {
       group = vim.api.nvim_create_augroup("Codeium", { clear = true }),
       desc = "Set Codeium Suggestion highlight",
       callback = function()
-        vim.api.nvim_set_hl(0, "CodeiumSuggestion", { link = "NonText" })
+        vim.api.nvim_set_hl(0, "CodeiumSuggestion", { link = "Comment" })
       end,
     })
 

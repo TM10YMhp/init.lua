@@ -21,6 +21,7 @@ return {
             if event.data == "telescope.nvim" then
               require("telescope").load_extension("projects")
             end
+            return true
           end,
         })
       end,

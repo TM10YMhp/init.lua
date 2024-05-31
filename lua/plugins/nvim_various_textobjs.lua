@@ -29,17 +29,17 @@ return {
     }
 
     local innerOuterMaps = {
-      number = "N",
+      -- number = "N",
       value = "v",
-      key = "k",
-      subword = "S", -- lowercase taken for sentence textobj
+      key = "K",
+      -- subword = "S", -- lowercase taken for sentence textobj
       closedFold = "z", -- z is the common prefix for folds
       chainMember = "m",
       htmlAttribute = "x",
       doubleSquareBrackets = "D",
       mdlink = "L",
       mdFencedCodeBlock = "M",
-      mdEmphasis = "e",
+      -- mdEmphasis = "e", -- TODO: check this
       pyTripleQuotes = "y",
     }
 
@@ -65,8 +65,8 @@ return {
       restOfIndentation = "R",
       restOfWindow = "gW",
       column = "|",
-      entireBuffer = "gG", -- G + gg
-      url = "iu",
+      -- entireBuffer = "gG", -- G + gg
+      -- url = "iu",
     }
 
     for objName, map in pairs(oneMaps) do
