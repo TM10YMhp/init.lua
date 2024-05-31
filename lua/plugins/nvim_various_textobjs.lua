@@ -29,20 +29,19 @@ return {
     }
 
     local innerOuterMaps = {
-      -- number = "N",
+      -- number = "d",
       value = "v",
-      key = "K",
-      -- subword = "S", -- lowercase taken for sentence textobj
+      -- key = "K",
+      -- subword = "e", -- lowercase taken for sentence textobj
       closedFold = "z", -- z is the common prefix for folds
       chainMember = "m",
       htmlAttribute = "x",
       doubleSquareBrackets = "D",
       mdlink = "L",
       mdFencedCodeBlock = "M",
-      -- mdEmphasis = "e", -- TODO: check this
+      mdEmphasis = "E",
       pyTripleQuotes = "y",
     }
-
     for objName, map in pairs(innerOuterMaps) do
       local name = " " .. objName .. " textobj"
       table.insert(mappings, {
@@ -60,15 +59,15 @@ return {
       })
     end
 
+    -- NOTE: keep
     local oneMaps = {
       visibleInWindow = "gw",
       restOfIndentation = "R",
       restOfWindow = "gW",
       column = "|",
-      -- entireBuffer = "gG", -- G + gg
-      -- url = "iu",
+      entireBuffer = "gG", -- G + gg
+      -- url = "gl",
     }
-
     for objName, map in pairs(oneMaps) do
       table.insert(mappings, {
         map,

@@ -1,62 +1,45 @@
+-- TODO: which key
+-- local i = {
+--   [" "] = "Whitespace",
+--   ['"'] = 'Balanced "',
+--   ["'"] = "Balanced '",
+--   ["`"] = "Balanced `",
+--   ["("] = "Balanced (",
+--   [")"] = "Balanced ) including white-space",
+--   [">"] = "Balanced > including white-space",
+--   ["<"] = "Balanced <",
+--   ["]"] = "Balanced ] including white-space",
+--   ["["] = "Balanced [",
+--   ["}"] = "Balanced } including white-space",
+--   ["{"] = "Balanced {",
+--   ["?"] = "User Prompt",
+--   _ = "Underscore",
+--   a = "Argument",
+--   b = "Balanced ), ], }",
+--   d = "Digit(s)",
+--   f = "Function",
+--   q = "Quote `, \", '",
+--   t = "Tag",
+--   n = "Next",
+--   l = "Last",
+--   u = "URL",
+--   e = "Word in CamelCase & snake_case",
+-- }
+--
+-- local a = vim.deepcopy(i)
+-- for k, v in pairs(a) do
+--   a[k] = v:gsub(" including.*", "")
+-- end
+
 -- TODO: custom_textobjects nvim_various_textobjs
 return {
   "echasnovski/mini.ai",
-  keys = function()
-    local i = {
-      [" "] = "Whitespace",
-      ['"'] = 'Balanced "',
-      ["'"] = "Balanced '",
-      ["`"] = "Balanced `",
-      ["("] = "Balanced (",
-      [")"] = "Balanced ) including white-space",
-      [">"] = "Balanced > including white-space",
-      ["<"] = "Balanced <",
-      ["]"] = "Balanced ] including white-space",
-      ["["] = "Balanced [",
-      ["}"] = "Balanced } including white-space",
-      ["{"] = "Balanced {",
-      ["?"] = "User Prompt",
-      _ = "Underscore",
-      a = "Argument",
-      b = "Balanced ), ], }",
-      d = "Digit(s)",
-      -- e = "Word in CamelCase & snake_case",
-      f = "Function",
-      q = "Quote `, \", '",
-      t = "Tag",
-      n = "Next",
-      l = "Last",
-      u = "URL",
-      g = "Entire Buffer",
-      e = "Word in CamelCase & snake_case",
-      -- k = "Key",
-    }
-
-    local a = vim.deepcopy(i)
-    for k, v in pairs(a) do
-      a[k] = v:gsub(" including.*", "")
-    end
-
-    local mappings = {
-      { "g[", mode = { "n", "x", "o" }, desc = 'Move to left "around"' },
-      { "g]", mode = { "n", "x", "o" }, desc = 'Move to right "around"' },
-    }
-
-    for key, name in pairs(i) do
-      table.insert(
-        mappings,
-        { "i" .. key, mode = { "x", "o" }, desc = "Inside " .. name }
-      )
-    end
-    for key, name in pairs(a) do
-      table.insert(
-        mappings,
-        { "a" .. key, mode = { "x", "o" }, desc = "Around " .. name }
-      )
-    end
-
-    return mappings
-  end,
+  keys = {
+    { "a", mode = { "x", "o" }, desc = "Around textobject" },
+    { "i", mode = { "x", "o" }, desc = "Inside textobject" },
+    { "g[", mode = { "n", "x", "o" }, desc = 'Move to left "around"' },
+    { "g]", mode = { "n", "x", "o" }, desc = 'Move to right "around"' },
+  },
   opts = function()
     local spec_treesitter = require("mini.ai").gen_spec.treesitter
 
@@ -91,15 +74,6 @@ return {
           local pattern = scope == "i" and { "%d+" } or { "%-?%d*%.?%d+" }
           return pattern
         end,
-        u = { "%l%l%l-://[A-Za-z0-9_%-/.#%%=?&'@+]+" },
-        g = function() -- Whole buffer, similar to `gg` and 'G' motion
-          local from = { line = 1, col = 1 }
-          local to = {
-            line = vim.fn.line("$"),
-            col = math.max(vim.fn.getline("$"):len(), 1),
-          }
-          return { from = from, to = to }
-        end,
         e = { -- Word with case
           {
             "%u[%l%d]+%f[^%l%d]",
@@ -109,13 +83,26 @@ return {
           },
           "^().*()$",
         },
-        -- TODO: WIP
-        -- k = { "%f[%S]%S.- ?[:=] ?", "^().*()$" },
-        -- k = function(scope)
-        --   local pattern = scope == "i" and { "%f[%S]%S*[:=]?", "^().*()$" }
-        --     or { "%f[%S]%S.- ?[:=] ?", "^().*()$" }
-        --   return pattern
-        -- end,
+        u = { "%l%l%l-://[A-Za-z0-9_%-/.#%%=?&'@+]+" },
+        k = function(scope)
+          local res = {}
+          for i = 1, vim.api.nvim_buf_line_count(0) do
+            local cur_line = vim.fn.getline(i)
+            local _, _, G1, G2, _, G4 = cur_line:find("()%S.-()( ?[:=] ?)()")
+
+            if G1 and G2 then
+              local region = {
+                from = { line = i, col = G1 },
+                to = {
+                  line = i,
+                  col = (scope == "a" and G4) and G4 - 1 or G2 - 1,
+                },
+              }
+              table.insert(res, region)
+            end
+          end
+          return res
+        end,
       },
     }
   end,
