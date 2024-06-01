@@ -62,8 +62,8 @@ return {
         end,
       },
     },
-    -- stylua: ignore
     formatters_by_ft = {
+      -- stylua: ignore start
       cs              = { "clang-format" },
       c               = { "clang-format" },
       cpp             = { "clang-format" },
@@ -84,6 +84,7 @@ return {
       graphql         = { "prettier" },
       handlebars      = { "prettier" },
       astro           = { "prettier" },
+      -- stylua: ignore end
     },
     format_on_save = function(bufnr)
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then

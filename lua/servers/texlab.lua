@@ -11,6 +11,7 @@ return {
               "-synctex=1",
               "%f",
               "-outdir=build",
+              "-pdflatex=xelatex",
             },
             onSave = true,
           },

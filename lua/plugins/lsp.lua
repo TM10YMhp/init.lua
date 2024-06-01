@@ -21,7 +21,18 @@ return {
     },
     { "williamboman/mason-lspconfig.nvim", config = true },
     "b0o/SchemaStore.nvim",
-    { "folke/neodev.nvim", opts = {} },
+    {
+      "folke/lazydev.nvim",
+      dependencies = { "Bilal2453/luvit-meta" },
+      opts = function()
+        -- BUG: `vim.env.LAZY` does not work
+        return {
+          library = {
+            vim.env.LAZY .. "/luvit-meta/library",
+          },
+        }
+      end,
+    },
     { "dmmulroy/ts-error-translator.nvim", opts = {} },
     { "deathbeam/lspecho.nvim", opts = { decay = 3000 } },
   },
@@ -106,7 +117,7 @@ return {
     local dir = "servers"
     local config_path = vim.fn.stdpath("config") .. "/lua/"
     local files =
-      vim.fn.split(vim.fn.glob(config_path .. dir .. "/*.lua", "\n"))
+      vim.fn.split(vim.fn.glob(config_path .. dir .. "/*.lua", true))
 
     for _, file in pairs(files) do
       local name_file = vim.fn.fnamemodify(file, ":t:r")
