@@ -70,6 +70,68 @@ return {
           end
           return res
         end,
+        v = function(scope)
+          local res = {}
+          for i = 1, vim.api.nvim_buf_line_count(0) do
+            local cur_line = vim.fn.getline(i)
+            local _, _, G3, _, G1, G2 =
+              cur_line:find("()(%s*%f[!<>~=:][=:]%s*)()[^=:].*()")
+
+            if G1 and G2 then
+              local valueEndCol = (scope == "i" and cur_line:find("[,;]$"))
+                  and G2 - 2
+                or G2 - 1
+              local region = {
+                from = {
+                  line = i,
+                  col = (scope == "a" and G3) and G3 or G1,
+                },
+                to = {
+                  line = i,
+                  col = valueEndCol,
+                },
+              }
+              table.insert(res, region)
+            end
+          end
+          return res
+        end,
+        x = function(scope)
+          local res = {}
+          for i = 1, vim.api.nvim_buf_line_count(0) do
+            local cur_line = vim.fn.getline(i)
+            local beginCol = 0
+            local endCol = 0
+
+            repeat
+              beginCol, endCol, _, G1, G2 =
+                cur_line:find([[(%w+=["'{])().-()(["'}])]], endCol)
+
+              if beginCol and endCol then
+                if scope == "i" then
+                  beginCol = G1
+                  endCol = G2 - 1
+                end
+
+                local region = {
+                  from = {
+                    line = i,
+                    col = beginCol,
+                  },
+                  to = {
+                    line = i,
+                    col = endCol,
+                  },
+                }
+                table.insert(res, region)
+              end
+            until (endCol and (cur_line:len() < endCol)) or not beginCol
+          end
+          return res
+          -- <Formik onSubmit="handleLogin" initialValues={initialValues} aaaa
+          --   validate={formikZodValidator(loginSchema)}
+          -- >
+        end,
       },
     }
   end,
