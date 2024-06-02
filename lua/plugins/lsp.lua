@@ -20,18 +20,16 @@ return {
       },
     },
     { "williamboman/mason-lspconfig.nvim", config = true },
-    "b0o/SchemaStore.nvim",
+    { "b0o/SchemaStore.nvim" },
+    -- FIX: WIP Experimental
     {
       "folke/lazydev.nvim",
       dependencies = { "Bilal2453/luvit-meta" },
-      opts = function()
-        -- BUG: `vim.env.LAZY` does not work
-        return {
-          library = {
-            vim.env.LAZY .. "/luvit-meta/library",
-          },
-        }
-      end,
+      opts = {
+        library = {
+          "/luvit-meta/library",
+        },
+      },
     },
     { "dmmulroy/ts-error-translator.nvim", opts = {} },
     { "deathbeam/lspecho.nvim", opts = { decay = 3000 } },
@@ -61,17 +59,17 @@ return {
       desc = "LSP: Log",
     },
     {
-      "<leader>lwa",
+      "<leader>ka",
       vim.lsp.buf.add_workspace_folder,
       desc = "LSP: Add Workspace Folder",
     },
     {
-      "<leader>lwr",
+      "<leader>kr",
       vim.lsp.buf.remove_workspace_folder,
       desc = "LSP: Remove Workspace Folder",
     },
     {
-      "<leader>lwl",
+      "<leader>kl",
       "<cmd>lua vim.print(vim.lsp.buf.list_workspace_folders())<cr>",
       desc = "LSP: List Workspace Folders",
     },
@@ -107,7 +105,13 @@ return {
 
     require("lspconfig.ui.windows").default_options = { border = "single" }
 
-    local defaults = { autostart = false }
+    local defaults = {
+      autostart = false,
+      flags = {
+        allow_incremental_sync = false,
+        debounce_text_changes = 500,
+      },
+    }
 
     local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
     if has_cmp then
