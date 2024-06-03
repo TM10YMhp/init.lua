@@ -43,6 +43,9 @@ return {
         end,
         e = { -- Word with case
           {
+            "%f[%S][%u%d]+%f[^%u%d]",
+            "%f[%P][%u%d]+%f[^%u%d]",
+
             "%u[%l%d]+%f[^%l%d]",
             "%f[%S][%l%d]+%f[^%l%d]",
             "%f[%P][%l%d]+%f[^%l%d]",
@@ -128,9 +131,6 @@ return {
             until (endCol and (cur_line:len() < endCol)) or not beginCol
           end
           return res
-          -- <Formik onSubmit="handleLogin" initialValues={initialValues} aaaa
-          --   validate={formikZodValidator(loginSchema)}
-          -- >
         end,
       },
     }
