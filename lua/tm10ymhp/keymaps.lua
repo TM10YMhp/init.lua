@@ -185,7 +185,7 @@ vim.keymap.set("n", "<leader>tQ",
 )
 vim.keymap.set("n", "<leader>tC",
   function()
-    if vim.opt.termguicolors:get() then
+    if vim.o.termguicolors then
       vim.opt.termguicolors = false
       require("tm10ymhp.utils").info("Disabled termguicolors")
     else
@@ -197,7 +197,7 @@ vim.keymap.set("n", "<leader>tC",
 )
 vim.keymap.set("n", "<leader>th",
   function()
-    if vim.lsp.inlay_hint.is_enabled() then
+    if vim.lsp.inlay_hint.is_enabled({}) then
       vim.lsp.inlay_hint.enable(false)
       require("tm10ymhp.utils").info("Disabled Inlay Hint")
     else

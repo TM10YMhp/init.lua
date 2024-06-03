@@ -24,10 +24,12 @@ return {
     -- FIX: WIP Experimental
     {
       "folke/lazydev.nvim",
-      dependencies = { "Bilal2453/luvit-meta" },
+      dependencies = {
+        "Bilal2453/luvit-meta", -- optional `vim.uv` typings
+      },
       opts = {
         library = {
-          "/luvit-meta/library",
+          "luvit-meta/library",
         },
       },
     },
