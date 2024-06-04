@@ -29,7 +29,8 @@ return {
       },
       opts = {
         library = {
-          "luvit-meta/library",
+          -- Only load luvit types when the `vim.uv` word is found
+          { path = "luvit-meta/library", words = { "vim%.uv" } },
         },
       },
     },

@@ -176,7 +176,7 @@ return {
     opts = function(_, opts)
       local default_renderers = require("neo-tree.defaults").renderers
 
-      -- NOTE: remove icons
+      -- remove icons
       table.remove(default_renderers.directory, 2)
       table.remove(default_renderers.file, 2)
 
