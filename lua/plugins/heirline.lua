@@ -4,7 +4,9 @@ return {
   opts = {
     opts = {
       disable_winbar_cb = function()
-        return vim.fn.win_gettype() == "popup" or vim.o.filetype == "neo-tree"
+        return vim.fn.win_gettype() == "popup"
+          or not vim.list_contains({ "", "help" }, vim.o.buftype)
+          or vim.list_contains({ "dashboard" }, vim.o.filetype)
       end,
     },
     winbar = {
@@ -34,6 +36,8 @@ return {
   config = function(_, opts)
     require("heirline").setup(opts)
 
-    vim.opt_local.winbar = "%{%v:lua.require'heirline'.eval_winbar()%}"
+    if not opts.opts.disable_winbar_cb() then
+      vim.opt_local.winbar = "%{%v:lua.require'heirline'.eval_winbar()%}"
+    end
   end,
 }
