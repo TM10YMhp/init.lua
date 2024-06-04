@@ -68,30 +68,6 @@ return {
       end,
     }
 
-    local winbar_config = {
-      lualine_c = {
-        {
-          function()
-            local data = ""
-
-            if vim.api.nvim_buf_get_option(0, "buftype") == "" then
-              data = vim.fn.expand("%:~:.") or "[No Name]"
-            else
-              data = vim.fn.expand("%:t")
-            end
-
-            if data == "" then
-              data = "[No Name]"
-            end
-
-            return "> " .. data
-          end,
-          padding = 0,
-          color = "WinBar",
-        },
-      },
-    }
-
     return {
       options = {
         icons_enabled = false,
@@ -100,12 +76,9 @@ return {
         globalstatus = true,
         refresh = {
           statusline = 1000,
-          tabline = 0,
-          winbar = 0,
         },
         disabled_filetypes = {
           statusline = {},
-          winbar = { "dbui", "neo-tree", "dashboard" },
         },
       },
       sections = {
@@ -172,8 +145,6 @@ return {
         lualine_y = { "%L" },
         lualine_z = {},
       },
-      winbar = winbar_config,
-      inactive_winbar = winbar_config,
     }
   end,
 }
