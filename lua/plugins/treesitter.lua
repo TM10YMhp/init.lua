@@ -15,6 +15,7 @@ return {
       parser_install_dir = vim.fn.stdpath("config"),
       ensure_installed = {
         "lua",
+        "vimdoc",
         "jsonc",
         "markdown",
         "markdown_inline",
