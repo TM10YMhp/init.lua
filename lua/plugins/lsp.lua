@@ -26,6 +26,17 @@ return {
       "folke/lazydev.nvim",
       dependencies = {
         "Bilal2453/luvit-meta", -- optional `vim.uv` typings
+        {
+          "hrsh7th/nvim-cmp",
+          opts = function(_, opts)
+            opts.sources = opts.sources or {}
+            table.insert(opts.sources, {
+              name = "lazydev",
+              max_item_count = 40,
+              group_index = 0,
+            })
+          end,
+        },
       },
       opts = {
         library = {

@@ -73,12 +73,17 @@ return {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     dependencies = { "hrsh7th/nvim-cmp" },
-    config = function()
-      require("nvim-autopairs").setup()
+    opts = {
+      enable_moveright = false,
+    },
+    config = function(_, opts)
+      require("nvim-autopairs").setup(opts)
 
       -- setup cmp for autopairs
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      local cmp = require("cmp")
+
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
   {
@@ -146,8 +151,6 @@ return {
           end,
         }),
         sources = cmp.config.sources({
-          -- NOTE: WIP
-          { name = "lazydev", max_item_count = 40, group_index = 0 },
           {
             name = "nvim_lsp",
             max_item_count = 40,
