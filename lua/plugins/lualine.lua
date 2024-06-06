@@ -76,9 +76,8 @@ return {
         globalstatus = true,
         refresh = {
           statusline = 1000,
-        },
-        disabled_filetypes = {
-          statusline = {},
+          tabline = 0,
+          winbar = 0,
         },
       },
       sections = {

@@ -26,6 +26,7 @@ require("lazy").setup({
     require("plugins.heirline"),
     require("plugins.improved_search"),
     require("plugins.init"),
+    require("plugins.lazydev"),
     require("plugins.lsp"),
     require("plugins.lualine"),
     require("plugins.mini"),
