@@ -73,9 +73,7 @@ return {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     dependencies = { "hrsh7th/nvim-cmp" },
-    opts = {
-      enable_moveright = false,
-    },
+    opts = {},
     config = function(_, opts)
       require("nvim-autopairs").setup(opts)
 
