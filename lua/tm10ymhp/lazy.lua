@@ -36,6 +36,7 @@ require("lazy").setup({
     require("plugins.nvim_ufo"),
     require("plugins.nvim_various_textobjs"),
     require("plugins.project"),
+    require("plugins.statuscol"),
     require("plugins.telescope"),
     require("plugins.treesitter"),
     require("plugins.ts_comments"),
