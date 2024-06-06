@@ -14,6 +14,7 @@ return {
             namespace = { "diagnostic/signs" },
             foldclosed = true,
           },
+          condition = { builtin.not_empty },
         },
         {
           text = { builtin.lnumfunc, " " },
