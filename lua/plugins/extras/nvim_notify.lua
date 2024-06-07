@@ -1,6 +1,6 @@
 return {
   "rcarriga/nvim-notify",
-  -- event = "VeryLazy",
+  event = "VeryLazy",
   keys = {
     {
       "<leader>un",
@@ -15,22 +15,17 @@ return {
       desc = "Search Notifications",
     },
   },
-  init = function()
-    vim.notify = function(...)
-      require("lazy").load({ plugins = { "nvim-notify" } })
-      return vim.notify(...)
-    end
-  end,
   opts = {
     timeout = 3000,
-      -- stylua: ignore
-      icons = {
-        DEBUG = "D",
-        ERROR = "E",
-        INFO  = "I",
-        TRACE = "T",
-        WARN  = "W",
-      },
+    icons = {
+      -- stylua: ignore start
+      DEBUG = "D",
+      ERROR = "E",
+      INFO  = "I",
+      TRACE = "T",
+      WARN  = "W",
+      -- stylua: ignore end
+    },
     max_height = function()
       return math.floor(vim.o.lines * 0.75)
     end,
