@@ -2,6 +2,8 @@ return {
   "Exafunction/codeium.vim",
   event = "InsertEnter",
   cmd = "Codeium",
+  -- TODO: https://github.com/Exafunction/codeium.vim/issues/376
+  commit = "289eb72",
   init = function()
     vim.g.codeium_enabled = true
     vim.g.codeium_disable_bindings = 1
