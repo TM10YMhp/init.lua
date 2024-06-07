@@ -134,10 +134,16 @@ return {
           }),
           ["<C-l>"] = cmp.mapping.complete({
             config = {
+              formatting = {
+                format = function(entry, item)
+                  item.kind = kind_icons[item.kind] or "?"
+                  return item
+                end,
+              },
               sources = {
                 {
                   name = "buffer-lines",
-                  max_item_count = 15,
+                  max_item_count = 40,
                   option = { leading_whitespace = false },
                 },
               },
