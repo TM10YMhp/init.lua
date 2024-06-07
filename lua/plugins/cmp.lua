@@ -158,12 +158,8 @@ return {
           {
             name = "nvim_lsp",
             max_item_count = 40,
-            entry_filter = function(entry, ctx)
-              if entry:get_kind() == 15 then
-                return false
-              end
-
-              return true
+            entry_filter = function(entry)
+              return cmp.lsp.CompletionItemKind.Snippet ~= entry:get_kind()
             end,
           },
           { name = "luasnip", max_item_count = 10 },
