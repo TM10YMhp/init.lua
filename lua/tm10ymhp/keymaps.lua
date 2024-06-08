@@ -123,30 +123,19 @@ vim.keymap.set({ "o", "x" }, "ip", ":<c-u>norm! `[v`]<cr>", {
   silent = true,
 })
 
--- stylua: ignore start
 -- Insert
-vim.keymap.set("n", "<leader>ic",
-  function()
-    local date = os.date("%y.%m%d.%H%M")
-    vim.api.nvim_put({ date }, "", true, true)
-  end,
-  { desc = "Insert custom date" }
-)
-vim.keymap.set("n", "<leader>id",
-  function()
-    local date = os.date("%Y-%m-%d")
-    vim.api.nvim_put({ date }, "", true, true)
-  end,
-  { desc = "Insert date" }
-)
-vim.keymap.set("n", "<leader>it",
-  function()
-    local date = os.date("%H:%M:%S")
-    vim.api.nvim_put({ date }, "", true, true)
-  end,
-  { desc = "Insert time" }
-)
--- stylua: ignore end
+vim.keymap.set("n", "<leader>ic", function()
+  local date = os.date("%y.%m%d.%H%M")
+  vim.api.nvim_put({ date }, "", true, true)
+end, { desc = "Insert custom date" })
+vim.keymap.set("n", "<leader>id", function()
+  local date = os.date("%Y-%m-%d")
+  vim.api.nvim_put({ date }, "", true, true)
+end, { desc = "Insert date" })
+vim.keymap.set("n", "<leader>it", function()
+  local date = os.date("%H:%M:%S")
+  vim.api.nvim_put({ date }, "", true, true)
+end, { desc = "Insert time" })
 
 -- Utility
 vim.keymap.set("n", "<c-s>", function()
@@ -165,56 +154,37 @@ vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<cr>", {
 vim.keymap.set("n", "<leader>tn", "<cmd>set number!<cr>", {
   desc = "Toogle Line Numbers",
 })
--- stylua: ignore start
-vim.keymap.set("n", "<leader>tq",
-  function()
-    local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
-    local action = qf_winid > 0 and 'cclose' or 'copen'
-    vim.cmd('botright '..action)
-  end,
-  { desc = "Toggle Quickfix" }
-)
-vim.keymap.set("n", "<leader>tQ",
-  function()
-    local win = vim.api.nvim_get_current_win()
-    local qf_winid = vim.fn.getloclist(win, { winid = 0 }).winid
-    local action = qf_winid > 0 and 'lclose' or 'lopen'
-    vim.cmd(action)
-  end,
-  { desc = "Toggle LocList" }
-)
-vim.keymap.set("n", "<leader>tC",
-  function()
-    if vim.o.termguicolors then
-      vim.opt.termguicolors = false
-      require("tm10ymhp.utils").info("Disabled termguicolors")
-    else
-      vim.opt.termguicolors = true
-      require("tm10ymhp.utils").info("Enabled termguicolors")
-    end
-  end,
-  { desc = "Toggle Termguicolors" }
-)
-vim.keymap.set("n", "<leader>th",
-  function()
-    if vim.lsp.inlay_hint.is_enabled({}) then
-      vim.lsp.inlay_hint.enable(false)
-      require("tm10ymhp.utils").info("Disabled Inlay Hint")
-    else
-      vim.lsp.inlay_hint.enable(true)
-      require("tm10ymhp.utils").info("Enabled Inlay Hint")
-    end
-  end,
-  { desc = "Toogle Inlay Hint" }
-)
-vim.keymap.set("n", "<leader>uD",
-  function()
-    vim.diagnostic.reset()
-    require("tm10ymhp.utils").info("Reset diagnostics")
-  end,
-  { desc = "Reset Diagnostics" }
-)
--- stylua: ignore end
+vim.keymap.set("n", "<leader>tC", function()
+  vim.o.termguicolors = not vim.o.termguicolors
+  require("tm10ymhp.utils").info(
+    (vim.o.termguicolors and "Enabled" or "Disabled") .. " termguicolors"
+  )
+end, { desc = "Toggle Termguicolors" })
+vim.keymap.set("n", "<leader>th", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  require("tm10ymhp.utils").info(
+    (vim.lsp.inlay_hint.is_enabled() and "Enabled" or "Disabled")
+      .. " Inlay Hint"
+  )
+end, { desc = "Toogle Inlay Hint" })
+
+vim.keymap.set("n", "<leader>uD", function()
+  vim.diagnostic.reset()
+  require("tm10ymhp.utils").info("Reset diagnostics")
+end, { desc = "Reset Diagnostics" })
+
+vim.keymap.set("n", "<leader>xq", function()
+  local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
+  local action = qf_winid > 0 and "cclose" or "copen"
+  vim.cmd("botright " .. action)
+end, { desc = "Toggle Quickfix" })
+vim.keymap.set("n", "<leader>xl", function()
+  local win = vim.api.nvim_get_current_win()
+  local qf_winid = vim.fn.getloclist(win, { winid = 0 }).winid
+  local action = qf_winid > 0 and "lclose" or "lopen"
+  vim.cmd(action)
+end, { desc = "Toggle LocList" })
+
 vim.keymap.set("n", "<leader>ul", "<cmd>Lazy<cr>", {
   desc = "Lazy",
 })
