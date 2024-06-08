@@ -1,6 +1,7 @@
 -- TODO: custom_textobjects nvim_various_textobjs
 return {
   "echasnovski/mini.ai",
+  dependencies = { "echasnovski/mini.extra", config = true },
   keys = {
     { "a", mode = { "x", "o" }, desc = "Around textobject" },
     { "i", mode = { "x", "o" }, desc = "Inside textobject" },
@@ -9,6 +10,7 @@ return {
   },
   opts = function()
     local spec_treesitter = require("mini.ai").gen_spec.treesitter
+    local gen_ai_spec = require("mini.extra").gen_ai_spec
 
     return {
       mappings = {
@@ -28,6 +30,8 @@ return {
       },
       n_lines = 500,
       custom_textobjects = {
+        g = gen_ai_spec.buffer(),
+        n = gen_ai_spec.number(),
         -- Need 'nvim-treesitter/nvim-treesitter-textobjects'
         o = spec_treesitter({
           a = { "@block.outer", "@conditional.outer", "@loop.outer" },
@@ -36,11 +40,6 @@ return {
         F = spec_treesitter({ a = "@function.outer", i = "@function.inner" }),
         C = spec_treesitter({ a = "@class.outer", i = "@class.inner" }, {}),
         t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
-        d = function(scope)
-          -- NOTE: http://lua-users.org/wiki/FrontierPattern
-          local pattern = scope == "i" and { "%d+" } or { "%-?%d*%.?%d+" }
-          return pattern
-        end,
         e = { -- Word with case
           {
             "%f[%S][%u%d]+%f[^%u%d]",

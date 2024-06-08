@@ -64,7 +64,7 @@ return {
       restOfIndentation = "R",
       restOfWindow = "gW",
       column = "|",
-      entireBuffer = "gG", -- G + gg
+      -- entireBuffer = "gG", -- G + gg
       -- url = "gl",
     }
     for objName, map in pairs(oneMaps) do
