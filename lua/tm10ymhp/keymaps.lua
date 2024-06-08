@@ -4,6 +4,14 @@ vim.keymap.set("n", "ZQ", "<nop>")
 vim.keymap.set("n", "<c-z>", "<nop>")
 
 -- Windows
+vim.keymap.set(
+  "n",
+  "<leader>wm",
+  '<cmd>lua require("tm10ymhp.utils").maximize()<cr>',
+  {
+    desc = "Toggle Maximize",
+  }
+)
 vim.keymap.set("n", "<leader>wd", "<c-w>c", {
   desc = "Delete window",
 })
