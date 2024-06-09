@@ -41,5 +41,7 @@ return {
       desc = "Add a surrounding pair around the cursor (insert mode)",
     },
   },
-  config = true,
+  opts = {
+    move_cursor = "sticky",
+  },
 }

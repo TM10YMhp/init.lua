@@ -43,7 +43,7 @@ return {
     opts = {
       -- stylua: ignore start
       buffer     = { suffix = 'b', options = {} },
-      comment    = { suffix = 'c', options = {} },
+      comment    = { suffix = 'g', options = {} },
       conflict   = { suffix = 'x', options = {} },
       diagnostic = { suffix = 'e', options = {} },
       file       = { suffix = 'f', options = {} },

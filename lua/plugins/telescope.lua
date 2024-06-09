@@ -289,6 +289,10 @@ return {
           },
           current_buffer_fuzzy_find = {
             skip_empty_lines = true,
+            tiebreak = function(current_entry, existing_entry)
+              -- returning true means preferring current entry
+              return current_entry.lnum < existing_entry.lnum
+            end,
           },
         },
       }
