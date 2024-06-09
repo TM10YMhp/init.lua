@@ -10,6 +10,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.opt_local.signcolumn = "no"
     vim.opt_local.cursorline = false
     vim.opt_local.scrolloff = 0
+    vim.opt_local.foldcolumn = "0"
   end,
 })
 

@@ -5,6 +5,7 @@ return {
     local builtin = require("statuscol.builtin")
 
     return {
+      bt_ignore = { "terminal" },
       relculright = false,
       segments = {
         { text = { builtin.foldfunc } },
