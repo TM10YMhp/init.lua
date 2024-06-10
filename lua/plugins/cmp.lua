@@ -1,6 +1,6 @@
 -- https://code.visualstudio.com/docs/editor/intellisense#_types-of-completions
--- stylua: ignore
 local kind_icons = {
+  -- stylua: ignore start
   Text          = "w",
   Method        = "m",
   Function      = "m",
@@ -26,6 +26,21 @@ local kind_icons = {
   Event         = "e",
   Operator      = "o",
   TypeParameter = "T",
+  Codeium       = "A",
+  -- stylua: ignore end
+}
+local item_icons = {
+  -- stylua: ignore start
+  buffer           = "Buf",
+  nvim_lsp         = "LSP",
+  luasnip          = "Snip",
+  nvim_lua         = "Lua",
+  latex_symbols    = "LTX",
+  obsidian         = "Obs",
+  obsidian_new     = "New",
+  ["buffer-lines"] = "BufL",
+  codeium          = "AI",
+  -- stylua: ignore end
 }
 
 return {
@@ -118,6 +133,8 @@ return {
               cmp.complete()
             end
           end,
+          ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+          ["<S-Tab>"] = cmp.mapping.confirm({ select = true }),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<S-CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
@@ -185,17 +202,9 @@ return {
           format = function(entry, item)
             item.kind = kind_icons[item.kind] or "?"
 
-            -- item.menu = ""
-            item.menu = ({
-              buffer = "[Buf]",
-              nvim_lsp = "[LSP]",
-              luasnip = "[Snip]",
-              nvim_lua = "[Lua]",
-              latex_symbols = "[LTX]",
-              obsidian = "[Obs]",
-              obsidian_new = "[New]",
-              ["buffer-lines"] = "[BufL]",
-            })[entry.source.name] or "[" .. entry.source.name .. "]"
+            item.menu = "["
+              .. (item_icons[entry.source.name] or entry.source.name)
+              .. "]"
 
             function trim(text)
               local max = math.floor(0.35 * vim.o.columns)
@@ -214,7 +223,7 @@ return {
           end,
           expandable_indicator = false,
         },
-        experimental = { ghost_text = false },
+        experimental = { ghost_text = { hl_group = "NonText" } },
         sorting = {
           priority_weight = 2,
           comparators = {
