@@ -31,15 +31,13 @@ local kind_icons = {
 return {
   {
     "L3MON4D3/LuaSnip",
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
-    },
+    dependencies = { "rafamadriz/friendly-snippets" },
     config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+
       local luasnip = require("luasnip")
 
+      -- luasnip.filetype_extend("all", { "loremipsum" })
       luasnip.setup()
 
       -- https://github.com/L3MON4D3/LuaSnip/issues/656
