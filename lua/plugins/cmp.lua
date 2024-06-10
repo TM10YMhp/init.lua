@@ -37,6 +37,7 @@ return {
 
       local luasnip = require("luasnip")
 
+      -- TODO: check this
       -- luasnip.filetype_extend("all", { "loremipsum" })
       luasnip.setup()
 
@@ -84,7 +85,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "saadparwaiz1/cmp_luasnip",
@@ -237,7 +238,6 @@ return {
             winhighlight = "CursorLine:PmenuSel,Search:None",
             border = "single",
             col_offset = -3,
-            -- side_padding = 0,
           },
         },
         matching = {
@@ -248,6 +248,33 @@ return {
           disallow_prefix_unmatching = true,
         },
       }
+    end,
+    config = function(_, opts)
+      local cmp = require("cmp")
+
+      cmp.setup(opts)
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          {
+            name = "buffer",
+            max_item_count = 40,
+            option = {
+              get_bufnrs = function()
+                local buf = vim.api.nvim_get_current_buf()
+                local byte_size = vim.api.nvim_buf_get_offset(
+                  buf,
+                  vim.api.nvim_buf_line_count(buf)
+                )
+                if byte_size > 1024 * 1024 then -- 1 Megabyte max
+                  return {}
+                end
+                return { buf }
+              end,
+            },
+          },
+        },
+      })
     end,
   },
 }
