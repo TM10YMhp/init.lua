@@ -82,11 +82,43 @@ local config = {
   capabilities = require("cmp_nvim_lsp").default_capabilities(),
 }
 
+local get_java_bufnrs = function()
+  local res = {}
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    local name = vim.api.nvim_buf_get_name(bufnr)
+    local ext = name:match("^.+%.(.+)$")
+    if ext == "java" then
+      table.insert(res, bufnr)
+    end
+  end
+
+  return res
+end
+
 if vim.g.my_jdtls_autostart then
   jdtls.start_or_attach(config)
 end
 
 vim.api.nvim_buf_create_user_command(0, "LspStart", function()
   vim.g.my_jdtls_autostart = true
-  jdtls.start_or_attach(config)
+
+  local bufnrs = get_java_bufnrs()
+  if #bufnrs == 0 then
+    require("tm10ymhp.utils").info("JDTLS: No java files found")
+    return
+  end
+
+  for _, bufnr in ipairs(bufnrs) do
+    jdtls.start_or_attach(config, nil, {
+      bufnr = bufnr,
+    })
+  end
+  require("tm10ymhp.utils").info(
+    "JDTLS: started for " .. #bufnrs .. " java files"
+  )
+end, {})
+
+vim.api.nvim_buf_create_user_command(0, "LspStop", function()
+  vim.g.my_jdtls_autostart = false
+  vim.lsp.stop_client(vim.lsp.get_clients())
 end, {})
