@@ -85,11 +85,17 @@ local config = {
 local get_java_bufnrs = function()
   local res = {}
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if not vim.api.nvim_buf_is_loaded(bufnr) then
+      goto continue
+    end
+
     local name = vim.api.nvim_buf_get_name(bufnr)
     local ext = name:match("^.+%.(.+)$")
     if ext == "java" then
       table.insert(res, bufnr)
     end
+
+    ::continue::
   end
 
   return res
