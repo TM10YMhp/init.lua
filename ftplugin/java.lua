@@ -17,6 +17,32 @@ local path_jar =
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = workspace_path .. project_name
 
+local root_files = {
+  -- Multi-module projects
+  {
+    ".git",
+    "mvnw",
+    "gradlew",
+    -- "build.gradle",
+    -- "build.gradle.kts",
+  },
+  -- Single-module projects
+  {
+    "build.xml", -- Ant
+    "pom.xml", -- Maven
+    "settings.gradle", -- Gradle
+    "settings.gradle.kts", -- Gradle
+  },
+}
+local root_dir = (function()
+  for _, patterns in ipairs(root_files) do
+    local root = require("jdtls.setup").find_root(patterns)
+    if root then
+      return root
+    end
+  end
+end)()
+
 local config = {
   cmd = {
     "java",
@@ -39,19 +65,7 @@ local config = {
     "-data",
     workspace_dir,
   },
-  root_dir = require("jdtls.setup").find_root({
-    "mvnw",
-    "gradlew",
-    -- Multi-module projects
-    ".git",
-    "build.gradle",
-    "build.gradle.kts",
-    -- Single-module projects
-    "build.xml", -- Ant
-    "pom.xml", -- Maven
-    "settings.gradle", -- Gradle
-    "settings.gradle.kts", -- Gradle
-  }),
+  root_dir = root_dir,
   settings = {
     java = {
       eclipse = { downloadSources = true },
