@@ -115,7 +115,7 @@ vim.api.nvim_buf_create_user_command(0, "LspStart", function()
   end
 
   for _, bufnr in ipairs(bufnrs) do
-    jdtls.start_or_attach(config, nil, {
+    jdtls.start_or_attach(config, {}, {
       bufnr = bufnr,
     })
   end
