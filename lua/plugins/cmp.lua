@@ -262,6 +262,7 @@ return {
       local cmp = require("cmp")
 
       cmp.setup(opts)
+
       cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
@@ -283,6 +284,21 @@ return {
             },
           },
         },
+      })
+
+      -- HACK: disabled nvim-cmp for command mode wildmenu
+      -- https://github.com/hrsh7th/nvim-cmp/discussions/1731#discussion-5751566
+      vim.api.nvim_create_autocmd({ "CmdLineEnter" }, {
+        pattern = { ":" },
+        callback = function()
+          local current = vim.api.nvim_get_keymap("c")
+
+          for _, v in pairs(current) do
+            if v.desc == "cmp.utils.keymap.set_map" then
+              vim.keymap.del("c", v.lhs)
+            end
+          end
+        end,
       })
     end,
   },
