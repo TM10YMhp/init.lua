@@ -143,8 +143,6 @@ return {
               pattern = pattern:sub(3):gsub([[\]], "")
             end
 
-            -- vim.print(pattern)
-
             MiniJump2d.start({
               allowed_lines = { blank = false, fold = false },
               spotter = MiniJump2d.gen_pattern_spotter(pattern),
@@ -152,6 +150,13 @@ return {
           end)
         end,
         mode = { "c" },
+        desc = "Start 2d jumping",
+      },
+      {
+        "<leader>/",
+        function()
+          vim.api.nvim_input("//<c-s>")
+        end,
         desc = "Start 2d jumping",
       },
     },
