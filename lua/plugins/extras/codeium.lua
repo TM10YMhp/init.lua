@@ -9,10 +9,9 @@ return {
   },
   opts = function(_, opts)
     opts.sources = opts.sources or {}
-    table.insert(opts.sources, 1, {
+    table.insert(opts.sources, 2, {
       name = "codeium",
       group_index = 1,
-      priority = 100,
     })
   end,
 }
