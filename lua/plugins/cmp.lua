@@ -288,7 +288,7 @@ return {
 
       -- HACK: disabled nvim-cmp for command mode wildmenu
       -- https://github.com/hrsh7th/nvim-cmp/discussions/1731#discussion-5751566
-      vim.api.nvim_create_autocmd({ "CmdLineEnter" }, {
+      vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
         pattern = { ":" },
         callback = function()
           local current = vim.api.nvim_get_keymap("c")
