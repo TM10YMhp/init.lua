@@ -80,7 +80,7 @@ return {
     {
       "<leader>lr",
       function()
-        require("tm10ymhp.utils").info("LSP: Restart")
+        SereneNvim.info("LSP: Restart")
         vim.diagnostic.reset()
         vim.cmd("LspRestart")
       end,
@@ -89,7 +89,7 @@ return {
     {
       "<leader>lq",
       function()
-        require("tm10ymhp.utils").info("LSP: Stop")
+        SereneNvim.info("LSP: Stop")
         vim.diagnostic.reset()
         vim.cmd("LspStop")
       end,
@@ -98,7 +98,7 @@ return {
     {
       "<leader>ls",
       function()
-        require("tm10ymhp.utils").info("LSP: Start")
+        SereneNvim.info("LSP: Start")
         vim.cmd("LspStart")
       end,
       desc = "LSP: Start",

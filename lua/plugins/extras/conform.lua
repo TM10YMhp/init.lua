@@ -19,21 +19,17 @@ return {
     {
       "<leader>tf",
       function()
-        local utils = require("tm10ymhp.utils")
-        if vim.b.disable_autoformat then
-          vim.b.disable_autoformat = false
-          utils.info("Buffer: Autoformat enabled")
-        else
-          vim.b.disable_autoformat = true
-          utils.info("Buffer: Autoformat disabled")
-        end
+        local state = vim.b.disable_autoformat
+        vim.b.disable_autoformat = not vim.b.disable_autoformat
+        SereneNvim.info(
+          "Buffer: Autoformat " .. (state and "Enabled" or "Disabled")
+        )
       end,
       desc = "Buffer: Toggle Format On Save",
     },
     {
       "<leader>tF",
       function()
-        local utils = require("tm10ymhp.utils")
         if vim.g.disable_autoformat then
           vim.g.disable_autoformat = false
           utils.info("Autoformat enabled")

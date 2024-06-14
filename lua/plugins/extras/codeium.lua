@@ -78,13 +78,12 @@ return {
 --     {
 --       "<leader>ti",
 --       function()
---         local utils = require("tm10ymhp.utils")
 --         if vim.g.codeium_enabled then
 --           vim.g.codeium_enabled = false
---           utils.info("Codeium disabled")
+--           SereneNvim.info("Codeium disabled")
 --         else
 --           vim.g.codeium_enabled = true
---           utils.info("Codeium enabled")
+--           SereneNvim.info("Codeium enabled")
 --         end
 --       end,
 --       desc = "Toggle Codeium",

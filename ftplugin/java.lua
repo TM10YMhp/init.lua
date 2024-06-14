@@ -110,7 +110,7 @@ vim.api.nvim_buf_create_user_command(0, "LspStart", function()
 
   local bufnrs = get_java_bufnrs()
   if #bufnrs == 0 then
-    require("tm10ymhp.utils").info("JDTLS: No java files found")
+    SereneNvim.info("JDTLS: No java files found")
     return
   end
 
@@ -119,9 +119,7 @@ vim.api.nvim_buf_create_user_command(0, "LspStart", function()
       bufnr = bufnr,
     })
   end
-  require("tm10ymhp.utils").info(
-    "JDTLS: started for " .. #bufnrs .. " java files"
-  )
+  SereneNvim.info("JDTLS: started for " .. #bufnrs .. " java files")
 end, {})
 
 vim.api.nvim_buf_create_user_command(0, "LspStop", function()

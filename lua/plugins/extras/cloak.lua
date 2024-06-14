@@ -20,12 +20,11 @@ return {
       "<leader>tc",
       function()
         local cloak = require("cloak")
-        local utils = require("tm10ymhp.utils")
         if cloak.opts.enabled then
-          utils.info("Cloak disabled")
+          SereneNvim.info("Cloak Disabled")
           cloak.disable()
         else
-          utils.info("Cloak enabled")
+          SereneNvim.info("Cloak Enabled")
           cloak.enable()
         end
       end,

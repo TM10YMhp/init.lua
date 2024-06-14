@@ -44,11 +44,11 @@ return {
         if enabled_lint then
           require("lint").linters_by_ft = {}
           vim.diagnostic.reset()
-          require("tm10ymhp.utils").info("Lint: Disabled")
+          SereneNvim.info("Lint: Disabled")
         else
           require("lint").linters_by_ft = linters_by_ft
           require("lint").try_lint()
-          require("tm10ymhp.utils").info("Lint: Enabled")
+          SereneNvim.info("Lint: Enabled")
         end
         enabled_lint = not enabled_lint
       end,
@@ -83,7 +83,7 @@ return {
       lint.try_lint()
     else
       lint.linters_by_ft = {}
-      require("tm10ymhp.utils").info("Lint: Not found eslint config")
+      SereneNvim.info("Lint: Not found eslint config")
       enabled_lint = false
     end
   end,

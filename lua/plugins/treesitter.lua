@@ -50,7 +50,7 @@ return {
       {
         "<leader>ut",
         function()
-          require("tm10ymhp.utils").info("Autotag: Attach")
+          SereneNvim("Autotag: Attach")
           require("nvim-ts-autotag.internal").attach()
         end,
         desc = "Manually Attach Autotag",

@@ -148,7 +148,7 @@ end, { desc = "Insert time" })
 -- Utility
 vim.keymap.set("n", "<c-s>", function()
   vim.cmd.write()
-  require("tm10ymhp.utils").info("Saved")
+  SereneNvim.info("Saved")
 end, { desc = "Save" })
 vim.keymap.set("n", "<leader>to", "<cmd>set list!<cr>", {
   desc = "Toggle List Mode",
@@ -164,13 +164,13 @@ vim.keymap.set("n", "<leader>tn", "<cmd>set number!<cr>", {
 })
 vim.keymap.set("n", "<leader>tC", function()
   vim.o.termguicolors = not vim.o.termguicolors
-  require("tm10ymhp.utils").info(
+  SereneNvim.info(
     (vim.o.termguicolors and "Enabled" or "Disabled") .. " termguicolors"
   )
 end, { desc = "Toggle Termguicolors" })
 vim.keymap.set("n", "<leader>th", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-  require("tm10ymhp.utils").info(
+  SereneNvim.info(
     (vim.lsp.inlay_hint.is_enabled() and "Enabled" or "Disabled")
       .. " Inlay Hint"
   )
@@ -178,7 +178,7 @@ end, { desc = "Toogle Inlay Hint" })
 
 vim.keymap.set("n", "<leader>uD", function()
   vim.diagnostic.reset()
-  require("tm10ymhp.utils").info("Reset diagnostics")
+  SereneNvim.info("Reset diagnostics")
 end, { desc = "Reset Diagnostics" })
 
 vim.keymap.set("n", "<leader>xq", function()
