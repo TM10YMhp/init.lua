@@ -2,6 +2,10 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function()
+    -- PERF: we don't need this
+    local lualine_require = require("lualine_require")
+    lualine_require.require = require
+
     local filesize = {
       "filesize",
       fmt = function(str)
