@@ -2,12 +2,12 @@ local M = {}
 
 _G.SereneNvim = M
 
--- setmetatable(M, {
---   __index = function(t, k)
---     t[k] = H[k]
---     return H[k]
---   end,
--- })
+setmetatable(M, {
+  __index = function(t, k)
+    t[k] = require("tm10ymhp.util." .. k)
+    return t[k]
+  end,
+})
 
 M.notify = function(msg, level, opts)
   local default_opts = { title = "Notification" }

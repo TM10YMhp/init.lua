@@ -64,27 +64,6 @@ function M.is_large_file(filepath)
   end
 end
 
-function M.notify(msg, level, opts)
-  local default_opts = { title = "Notification" }
-  vim.notify(
-    msg,
-    level or vim.log.levels.INFO,
-    vim.tbl_extend("force", default_opts, opts or {})
-  )
-end
-
-function M.error(msg, opts)
-  M.notify(msg, vim.log.levels.ERROR, opts or {})
-end
-
-function M.info(msg, opts)
-  M.notify(msg, vim.log.levels.INFO, opts or {})
-end
-
-function M.warn(msg, opts)
-  M.notify(msg, vim.log.levels.WARN, opts or {})
-end
-
 ---@type {k:string, v:any}[]
 M._maximized = nil
 ---@param state boolean?
