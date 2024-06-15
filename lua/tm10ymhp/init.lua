@@ -2,6 +2,13 @@ local M = {}
 
 _G.SereneNvim = M
 
+-- setmetatable(M, {
+--   __index = function(t, k)
+--     t[k] = H[k]
+--     return H[k]
+--   end,
+-- })
+
 M.notify = function(msg, level, opts)
   local default_opts = { title = "Notification" }
 

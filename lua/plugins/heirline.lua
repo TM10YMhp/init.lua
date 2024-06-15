@@ -14,7 +14,7 @@ return {
         init = function(self)
           local data = ""
 
-          if vim.api.nvim_buf_get_option(0, "buftype") == "" then
+          if vim.api.nvim_get_option_value("buftype", {}) == "" then
             data = vim.fn.expand("%:~:.") or "[No Name]"
           else
             data = vim.fn.expand("%:t")
