@@ -37,10 +37,10 @@ return {
             { action = "Telescope mru",        desc = "Recent files", key = "o" },
             { action = "Telescope live_grep",  desc = "Find text",    key = "g" },
             { action = "Telescope projects",   desc = "Projects",     key = "p" },
-            { action = "Lazy",                 desc = "Lazy",         key = "l" },
             { action = "Mason",                desc = "Mason",        key = "m" },
-            { action = "qa",                   desc = "Quit",         key = "q" },
+            { action = "Lazy",                 desc = "Lazy",         key = "l" },
             { action = "bd",                   desc = "Close",        key = "d" },
+            { action = "qa",                   desc = "Quit",         key = "q" },
           },
         footer = function()
           local stats = require("lazy").stats()
