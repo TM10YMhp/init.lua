@@ -87,9 +87,13 @@ local config = {
     bundles = {
       vim.fn.glob(
         jda_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar",
-        1
+        true
       ),
     },
+  },
+  flags = {
+    allow_incremental_sync = false,
+    debounce_text_changes = 500,
   },
 }
 
@@ -153,7 +157,7 @@ jdtls.setup_dap({ hotcodereplace = "auto" })
 
 vim.keymap.set(
   "n",
-  "<leader>da",
+  "<leader>Da",
   "<cmd>lua require'dap'.continue()<CR>",
   { desc = "Debug: Start" }
 )
