@@ -19,6 +19,13 @@ M.lsp_client_names = function()
   return "[" .. #clients .. "]" .. buf_ft
 end
 
+M.filesize = {
+  "filesize",
+  fmt = function(str)
+    return str.upper(str)
+  end,
+}
+
 M.cursor_position = function()
   if vim.fn.getfsize(vim.fn.expand("%")) > 1024 * 1024 then
     return "Bigfile"

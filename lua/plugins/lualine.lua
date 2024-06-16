@@ -6,13 +6,6 @@ return {
     local lualine_require = require("lualine_require")
     lualine_require.require = require
 
-    local filesize = {
-      "filesize",
-      fmt = function(str)
-        return str.upper(str)
-      end,
-    }
-
     return {
       options = {
         icons_enabled = false,
@@ -27,12 +20,8 @@ return {
       },
       sections = {
         lualine_a = {
-          {
-            "mode",
-            fmt = function(str)
-              return str:sub(1, 1)
-            end,
-          },
+          -- stylua: ignore
+          { "mode", fmt = function(str) return str:sub(1, 1) end },
         },
         lualine_b = { "b:gitsigns_head" },
         lualine_c = { SereneNvim.lualine.cursor_position },
@@ -43,14 +32,14 @@ return {
           "o:fileformat",
           SereneNvim.lualine.lsp_client_names,
         },
-        lualine_y = { filesize },
+        lualine_y = { SereneNvim.lualine.filesize },
         lualine_z = { "%L" },
       },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
         lualine_c = { SereneNvim.lualine.cursor_position },
-        lualine_x = { filesize },
+        lualine_x = { SereneNvim.lualine.filesize },
         lualine_y = { "%L" },
         lualine_z = {},
       },

@@ -10,7 +10,7 @@ return {
       end,
     },
     winbar = {
-      SereneNvim.heirline.absolute_path(),
+      SereneNvim.heirline.absolute_path,
     },
   },
   config = function(_, opts)
