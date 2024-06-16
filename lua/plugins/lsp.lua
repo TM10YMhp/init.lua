@@ -23,6 +23,7 @@ return {
     { "b0o/SchemaStore.nvim" },
     { "dmmulroy/ts-error-translator.nvim", opts = {} },
     { "deathbeam/lspecho.nvim", opts = { decay = 3000 } },
+    { "mfussenegger/nvim-dap" },
   },
   keys = {
     {

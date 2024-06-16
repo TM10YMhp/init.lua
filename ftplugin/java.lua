@@ -3,6 +3,9 @@ local jdtls_path =
   require("mason-registry").get_package("jdtls"):get_install_path()
 local workspace_path = vim.fn.stdpath("data") .. "/.cache/jdtls/workspace/"
 
+local jda_path =
+  require("mason-registry").get_package("java-debug-adapter"):get_install_path()
+
 local os = "linux"
 if vim.fn.has("win32") == 1 then
   os = "win"
@@ -80,6 +83,14 @@ local config = {
     },
   },
   capabilities = require("cmp_nvim_lsp").default_capabilities(),
+  init_options = {
+    bundles = {
+      vim.fn.glob(
+        jda_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar",
+        1
+      ),
+    },
+  },
 }
 
 local get_java_bufnrs = function()
@@ -126,3 +137,23 @@ vim.api.nvim_buf_create_user_command(0, "LspStop", function()
   vim.g.my_jdtls_autostart = false
   vim.lsp.stop_client(vim.lsp.get_clients())
 end, {})
+
+local dap = require("dap")
+dap.configurations.java = {
+  {
+    type = "java",
+    request = "attach",
+    name = "Debug (Attach) - Remote",
+    hostName = "127.0.0.1",
+    port = 5005,
+  },
+}
+
+jdtls.setup_dap({ hotcodereplace = "auto" })
+
+vim.keymap.set(
+  "n",
+  "<leader>da",
+  "<cmd>lua require'dap'.continue()<CR>",
+  { desc = "Debug: Start" }
+)
