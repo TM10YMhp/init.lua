@@ -80,6 +80,7 @@ return {
       graphql         = { "prettier" },
       handlebars      = { "prettier" },
       astro           = { "prettier" },
+      java            = { "google-java-format" },
       -- stylua: ignore end
     },
     format_on_save = function(bufnr)
