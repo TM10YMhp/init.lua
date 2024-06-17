@@ -133,6 +133,7 @@ return {
           show_buffer_icons = false,
           show_buffer_close_icons = false,
           show_close_icon = false,
+          show_tab_indicators = false, -- NOTE: use custom area
           show_duplicate_prefix = true,
           max_prefix_length = 100,
           move_wraps_at_ends = false,
@@ -140,6 +141,32 @@ return {
           enforce_regular_tabs = false,
           always_show_bufferline = true,
           hover = { enabled = false },
+          custom_areas = {
+            right = function()
+              local current_tabpage = vim.api.nvim_get_current_tabpage()
+              local list_tabpages = vim.api.nvim_list_tabpages()
+              local tabpages = {}
+
+              if #vim.api.nvim_list_tabpages() <= 1 then
+                return
+              end
+
+              for i = 1, #list_tabpages do
+                local text = " " .. i .. " "
+                local link = current_tabpage == list_tabpages[i]
+                    and "BufferLineTabSelected"
+                  or "BufferLineTab"
+
+                table.insert(tabpages, { text = text, link = link })
+
+                if i < #list_tabpages then
+                  table.insert(tabpages, { text = "|", link = "BufferLineTab" })
+                end
+              end
+
+              return tabpages
+            end,
+          },
         },
       }
     end,
