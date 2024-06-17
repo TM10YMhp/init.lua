@@ -53,7 +53,7 @@ return {
       local luasnip = require("luasnip")
 
       -- TODO: check this
-      -- luasnip.filetype_extend("all", { "loremipsum" })
+      luasnip.filetype_extend("all", { "loremipsum" })
       luasnip.setup()
 
       -- https://github.com/L3MON4D3/LuaSnip/issues/656

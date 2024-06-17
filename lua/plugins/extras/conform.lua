@@ -8,7 +8,7 @@ return {
       "<leader>cF",
       function()
         require("conform").format({
-          lsp_fallback = false,
+          lsp_format = "never",
           async = false,
           timeout_ms = 3000,
         })
@@ -94,7 +94,7 @@ return {
       end
 
       return {
-        lsp_fallback = false,
+        lsp_format = "never",
         async = false,
         quiet = false,
         timeout_ms = 800,
