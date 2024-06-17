@@ -17,9 +17,10 @@ return {
           },
           condition = { builtin.not_empty },
         },
+        { text = { builtin.lnumfunc } },
         {
-          text = { builtin.lnumfunc, " " },
-          condition = { true, builtin.not_empty },
+          text = { " " },
+          condition = { builtin.not_empty },
         },
       },
     }
