@@ -1,3 +1,6 @@
+local default_args =
+  require("lspconfig.server_configurations.texlab").default_config.settings.texlab.build.args
+
 return {
   "texlab",
   setup = function()
@@ -5,14 +8,10 @@ return {
       settings = {
         texlab = {
           build = {
-            args = {
-              "-pdf",
-              "-interaction=nonstopmode",
-              "-synctex=1",
-              "%f",
+            args = vim.list_extend(default_args, {
               "-outdir=build",
               "-pdflatex=xelatex",
-            },
+            }),
             onSave = true,
           },
         },
