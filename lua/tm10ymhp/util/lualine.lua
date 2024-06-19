@@ -1,3 +1,5 @@
+local lualine_utils = require("lualine.utils.utils")
+
 local get_hl_from_hllist = function(hllist)
   for _, hl_name in ipairs(hllist) do
     if vim.fn.hlexists(hl_name) ~= 0 then
@@ -66,28 +68,46 @@ M.workspace_diagnostics = {
 
 M.diff = {
   "diff",
+  -- HACK: reload diff colors
+  reload_color = {
+    added = {
+      fg = function()
+        return lualine_utils.extract_color_from_hllist("fg", {
+          "LuaLineDiffAdd",
+          "GitSignsAdd",
+          "GitGutterAdd",
+          "DiffAdded",
+          "DiffAdd",
+        }, "none")
+      end,
+    },
+    modified = {
+      fg = function()
+        return lualine_utils.extract_color_from_hllist("fg", {
+          "LuaLineDiffChange",
+          "GitSignsChange",
+          "GitGutterChange",
+          "DiffChanged",
+          "DiffChange",
+        }, "none")
+      end,
+    },
+    removed = {
+      fg = function()
+        return lualine_utils.extract_color_from_hllist("fg", {
+          "LuaLineDiffDelete",
+          "GitSignsDelete",
+          "GitGutterDelete",
+          "DiffRemoved",
+          "DiffDelete",
+        }, "none")
+      end,
+    },
+  },
   diff_color = {
-    added = get_hl_from_hllist({
-      "LuaLineDiffAdd",
-      "GitSignsAdd",
-      "GitGutterAdd",
-      "DiffAdded",
-      "DiffAdd",
-    }),
-    modified = get_hl_from_hllist({
-      "LuaLineDiffChange",
-      "GitSignsChange",
-      "GitGutterChange",
-      "DiffChanged",
-      "DiffChange",
-    }),
-    removed = get_hl_from_hllist({
-      "LuaLineDiffDelete",
-      "GitSignsDelete",
-      "GitGutterDelete",
-      "DiffRemoved",
-      "DiffDelete",
-    }),
+    added = {},
+    modified = {},
+    removed = {},
   },
   source = function()
     local gitsigns = vim.b.gitsigns_status_dict
@@ -100,5 +120,9 @@ M.diff = {
     end
   end,
 }
+
+M.diff.diff_color.added.fg = M.diff.reload_color.added.fg()
+M.diff.diff_color.modified.fg = M.diff.reload_color.modified.fg()
+M.diff.diff_color.removed.fg = M.diff.reload_color.removed.fg()
 
 return M

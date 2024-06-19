@@ -32,10 +32,10 @@ return {
       function()
         if vim.g.disable_autoformat then
           vim.g.disable_autoformat = false
-          utils.info("Autoformat enabled")
+          SereneNvim.info("Autoformat enabled")
         else
           vim.g.disable_autoformat = true
-          utils.info("Autoformat disabled")
+          SereneNvim.info("Autoformat disabled")
         end
       end,
       desc = "Toggle Format On Save",

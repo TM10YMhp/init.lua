@@ -45,4 +45,26 @@ return {
       },
     }
   end,
+  config = function(_, opts)
+    require("lualine").setup(opts)
+
+    --- HACK: reload diff colors
+    vim.api.nvim_clear_autocmds({
+      event = { "ColorScheme" },
+      group = "lualine",
+    })
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      group = vim.api.nvim_create_augroup("Lualine_TM", { clear = true }),
+      desc = "Set highlight",
+      callback = function()
+        local diff = SereneNvim.lualine.diff
+
+        diff.diff_color.added.fg = diff.reload_color.added.fg()
+        diff.diff_color.modified.fg = diff.reload_color.modified.fg()
+        diff.diff_color.removed.fg = diff.reload_color.removed.fg()
+
+        require("lualine").setup(opts)
+      end,
+    })
+  end,
 }
