@@ -44,12 +44,22 @@ return {
   opts = {
     formatters = {
       stylua = {
-        prepend_args = {
-          "--config-path=" .. vim.fn.stdpath("config") .. "/.stylua.toml",
-        },
+        prepend_args = function()
+          local cwd = vim.uv.cwd()
+          if
+            vim.fn.filereadable(cwd .. "/.stylua.toml")
+            or vim.fn.filereadable(cwd .. "/stylua.toml")
+          then
+            return {}
+          end
+
+          return {
+            "--config-path=" .. vim.fn.stdpath("config") .. "/.stylua.toml",
+          }
+        end,
       },
       prettier = {
-        prepend_args = function(self, ctx)
+        prepend_args = function(_, ctx)
           if vim.endswith(ctx.filename, ".astro") then
             return {
               "--plugin=prettier-plugin-astro",
