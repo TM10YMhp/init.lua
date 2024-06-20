@@ -1,16 +1,21 @@
+local gitsigns_signs = {
+  -- stylua: ignore start
+  add          = { text = "│" },
+  change       = { text = "│" },
+  delete       = { text = "_" },
+  topdelete    = { text = "-" },
+  changedelete = { text = "~" },
+  untracked    = { text = "." },
+  -- stylua: ignore end
+}
+
 return {
   "lewis6991/gitsigns.nvim",
   event = "VeryLazy",
   opts = {
-    -- stylua: ignore
-    signs = {
-      add          = { text = "│" },
-      change       = { text = "│" },
-      delete       = { text = "_" },
-      topdelete    = { text = "-" },
-      changedelete = { text = "~" },
-      untracked    = { text = "." },
-    },
+    signs = gitsigns_signs,
+    signs_staged = gitsigns_signs,
+    signs_staged_enable = true,
     update_debounce = 1000,
     current_line_blame_opts = {
       virt_text = true,

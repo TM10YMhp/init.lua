@@ -1,5 +1,10 @@
 return {
   {
+    "BranimirE/fix-auto-scroll.nvim",
+    event = "BufLeave",
+    config = true,
+  },
+  {
     "jinh0/eyeliner.nvim",
     keys = {
       { "f", mode = { "n", "o", "x" }, desc = "Jump forward" },
