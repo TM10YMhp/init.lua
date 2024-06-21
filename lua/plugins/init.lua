@@ -1,5 +1,52 @@
 return {
   {
+    "markonm/traces.vim",
+    event = "VeryLazy",
+    config = function()
+      vim.g.traces_substitute_preview = 0
+      vim.g.traces_abolish_integration = 1
+    end,
+  },
+  {
+    "tpope/vim-abolish",
+    cmd = { "S", "Subvert", "Abolish" },
+    keys = {
+      { "cr", desc = "Abolish Coercion" },
+      {
+        "<leader>uS",
+        [[:%S///gc<left><left><left><left>]],
+        desc = "Abolish Substitute",
+      },
+      {
+        "<leader>uS",
+        [[:S///gc<left><left><left><left>]],
+        mode = "x",
+        desc = "Abolish Substitute Selection",
+      },
+    },
+  },
+  {
+    "tpope/vim-eunuch",
+    -- stylua: ignore
+    cmd = {
+      "Unlink",
+      "Remove",
+      "Delete",
+      "Move", "Rename", "Copy", "Duplicate",
+      "Chmod",
+      "Mkdir",
+      "Cfind", "Clocate",
+      "Lfind", "Llocate",
+      "SudoWrite",
+      "SudoEdit",
+      "Wall", "W",
+    },
+  },
+  {
+    "tpope/vim-sleuth",
+    cmd = "Sleuth",
+  },
+  {
     "BranimirE/fix-auto-scroll.nvim",
     event = "BufLeave",
     config = true,
@@ -30,27 +77,6 @@ return {
         },
       },
     },
-  },
-  {
-    "tpope/vim-eunuch",
-    -- stylua: ignore
-    cmd = {
-      "Unlink",
-      "Remove",
-      "Delete",
-      "Move", "Rename", "Copy", "Duplicate",
-      "Chmod",
-      "Mkdir",
-      "Cfind", "Clocate",
-      "Lfind", "Llocate",
-      "SudoWrite",
-      "SudoEdit",
-      "Wall", "W",
-    },
-  },
-  {
-    "tpope/vim-sleuth",
-    cmd = "Sleuth",
   },
   {
     "rhysd/git-messenger.vim",

@@ -81,15 +81,15 @@ vim.keymap.set("n", "<leader><tab><s-tab>", "<cmd>tabprevious<cr>", {
 })
 
 -- Substitute
-vim.keymap.set("n", [[\\]], [[:%s///gc<left><left><left>]], {
+vim.keymap.set("n", "<leader>us", [[:%s///gc<left><left><left>]], {
   desc = "Substitute",
 })
-vim.keymap.set("x", [[\\]], [[:s///gc<left><left><left>]], {
-  desc = "Substitute",
+vim.keymap.set("x", "<leader>us", [[:s///gc<left><left><left>]], {
+  desc = "Substitute Selection",
 })
 vim.keymap.set(
   "n",
-  [[\<c-\>]],
+  "<leader>ur",
   [[:cfdo %s///g|update<c-left><right><right><right>]],
   { desc = "Substitute cfdo" }
 )
