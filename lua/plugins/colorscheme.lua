@@ -14,7 +14,7 @@ return {
   },
   {
     "ellisonleao/gruvbox.nvim",
-    event = "CmdlineEnter",
+    event = "CmdlineEnter :",
     opts = {
       italic = {
         strings = false,
@@ -28,7 +28,7 @@ return {
   },
   {
     "scottmckendry/cyberdream.nvim",
-    event = "CmdlineEnter",
+    event = "CmdlineEnter :",
     opts = {
       transparent = true,
       borderless_telescope = false,
@@ -36,12 +36,12 @@ return {
   },
   {
     "Mofiqul/vscode.nvim",
-    event = "CmdlineEnter",
+    event = "CmdlineEnter :",
     opts = {},
   },
   {
     "Shatur/neovim-ayu",
-    event = "CmdlineEnter",
+    event = "CmdlineEnter :",
     name = "ayu",
     opts = {
       overrides = {
@@ -51,7 +51,7 @@ return {
   },
   {
     "folke/tokyonight.nvim",
-    event = "CmdlineEnter",
+    event = "CmdlineEnter :",
     opts = {
       style = "night",
       styles = {
@@ -62,7 +62,7 @@ return {
   },
   {
     "rebelot/kanagawa.nvim",
-    event = "CmdlineEnter",
+    event = "CmdlineEnter :",
     opts = {
       commentStyle = { italic = false },
       keywordStyle = { italic = false },
@@ -70,7 +70,7 @@ return {
   },
   {
     "catppuccin/nvim",
-    event = "CmdlineEnter",
+    event = "CmdlineEnter :",
     name = "catppuccin",
     opts = {
       no_italic = true,
