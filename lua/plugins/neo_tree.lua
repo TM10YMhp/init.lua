@@ -194,6 +194,8 @@ return {
         return {
           cwd = path,
           prompt_title = builtin_name .. " | <CR> Open | <C-s> Navigate",
+          file_ignore_patterns = {},
+          no_ignore = true,
           attach_mappings = function(prompt_bufnr, map)
             local actions = require("telescope.actions")
             local telescope_actions =

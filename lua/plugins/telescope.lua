@@ -22,7 +22,7 @@ return {
         function()
           require("telescope.builtin").find_files({
             prompt_title = "Find Files <All>",
-            -- file_ignore_patterns = {},
+            file_ignore_patterns = {},
             no_ignore = true,
           })
         end,
