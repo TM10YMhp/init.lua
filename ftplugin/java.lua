@@ -142,6 +142,8 @@ vim.api.nvim_buf_create_user_command(0, "LspStop", function()
   vim.lsp.stop_client(vim.lsp.get_clients())
 end, {})
 
+-- DAP config
+
 local dap = require("dap")
 dap.configurations.java = {
   {
@@ -157,7 +159,7 @@ jdtls.setup_dap({ hotcodereplace = "auto" })
 
 vim.keymap.set(
   "n",
-  "<leader>Da",
+  "<leader>da",
   "<cmd>lua require'dap'.continue()<CR>",
   { desc = "Debug: Start" }
 )
