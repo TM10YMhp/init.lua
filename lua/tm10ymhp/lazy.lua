@@ -67,33 +67,34 @@ require("lazy").setup({
   },
   dev = { path = "~/projects" },
   ui = {
-    -- TODO: check this
     size = { width = 90, height = 40 },
     wrap = true,
     border = "single",
     icons = {
-      cmd = "",
-      config = "",
-      event = "",
-      ft = "",
-      init = "",
-      import = "",
-      keys = "",
-      lazy = "(H) ",
-      loaded = "●",
+      -- stylua: ignore start
+      cmd        = "",
+      config     = "",
+      event      = "",
+      ft         = "",
+      init       = "",
+      import     = "",
+      keys       = "",
+      lazy       = "(H) ",
+      loaded     = "●",
       not_loaded = "○",
-      plugin = "",
-      runtime = "",
-      require = "",
-      source = "",
-      start = "",
-      task = "",
-      list = {
+      plugin     = "",
+      runtime    = "",
+      require    = "",
+      source     = "",
+      start      = "",
+      task       = "",
+      list       = {
         "●",
         "-",
         "",
         "",
       },
+      -- stylua: ignore end
     },
   },
   throttle = 1000,
@@ -165,10 +166,8 @@ vim.api.nvim_create_autocmd("User", {
 vim.api.nvim_create_autocmd("LspAttach", {
   once = true,
   callback = function()
-    --[[
-    This is a modification of mini.completion
-    Only displays signature information
-    --]]
+    -- This is a modification of mini.completion
+    -- Only displays signature information
     require("tm10ymhp.mini_signature").setup({
       window = {
         signature = { border = "single" },
