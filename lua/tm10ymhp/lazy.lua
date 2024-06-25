@@ -1,11 +1,12 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
   vim.fn.system({
     "git",
     "clone",
     "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
+    lazyrepo,
     lazypath,
   })
 end
@@ -60,8 +61,13 @@ require("lazy").setup({
     require("plugins.extras.todo_comments"),
     require("plugins.extras.tsc"),
   },
+  rocks = {
+    -- TODO: check updated docs, this feature not documented
+    hererocks = false,
+  },
   dev = { path = "~/projects" },
   ui = {
+    -- TODO: check this
     size = { width = 90, height = 40 },
     wrap = true,
     border = "single",
@@ -91,12 +97,8 @@ require("lazy").setup({
     },
   },
   throttle = 1000,
-  diff = {
-    cmd = "diffview.nvim",
-  },
-  checker = {
-    enable = false,
-  },
+  diff = { cmd = "diffview.nvim" },
+  checker = { enable = false },
   change_detection = {
     enable = false,
     notify = false,

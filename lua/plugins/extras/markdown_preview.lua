@@ -29,6 +29,9 @@ return {
     },
   },
   config = function()
-    vim.cmd("doautocmd mkdp_init BufEnter")
+    vim.api.nvim_exec_autocmds(
+      "BufEnter",
+      { group = "mkdp_init", modeline = false }
+    )
   end,
 }
