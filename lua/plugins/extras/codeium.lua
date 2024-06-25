@@ -1,3 +1,4 @@
+-- TODO: check cache
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
