@@ -121,6 +121,11 @@ if vim.g.my_jdtls_autostart then
 end
 
 vim.api.nvim_buf_create_user_command(0, "LspStart", function()
+  if vim.api.nvim_get_option_value("modified", {}) then
+    SereneNvim.warn("JDTLS: Can't start on modified buffer")
+    return
+  end
+
   vim.g.my_jdtls_autostart = true
 
   local bufnrs = get_java_bufnrs()

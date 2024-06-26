@@ -105,7 +105,6 @@ return {
       vim.g.startuptime_tries = 10
     end,
   },
-  -- TODO: search alternative
   {
     "romainl/vim-cool",
     event = "CursorMoved",
