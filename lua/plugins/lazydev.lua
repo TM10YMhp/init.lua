@@ -1,4 +1,3 @@
--- FIX: WIP Experimental
 return {
   {
     "neovim/nvim-lspconfig",

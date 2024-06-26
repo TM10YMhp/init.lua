@@ -48,12 +48,12 @@ return {
     "L3MON4D3/LuaSnip",
     dependencies = { "rafamadriz/friendly-snippets" },
     config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-
       local luasnip = require("luasnip")
 
-      -- TODO: check this
+      -- set this before configuring luasnip
       luasnip.filetype_extend("all", { "loremipsum" })
+      require("luasnip.loaders.from_vscode").lazy_load()
+
       luasnip.setup()
 
       -- https://github.com/L3MON4D3/LuaSnip/issues/656
@@ -65,7 +65,7 @@ return {
         pattern = { "s:n", "i:*" },
         desc = "Forget the current snippet when leaving the insert mode",
         callback = function(evt)
-          -- If we have n active nodes, n - 1 will still remain after a
+          -- if we have n active nodes, n - 1 will still remain after a
           -- `unlink_current()` call. We unlink all of them by wrapping the calls
           -- in a loop.
           while true do

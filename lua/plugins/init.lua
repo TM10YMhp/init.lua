@@ -1,15 +1,14 @@
 return {
   {
-    "markonm/traces.vim",
-    event = "VeryLazy",
-    config = function()
-      vim.g.traces_substitute_preview = 0
-      vim.g.traces_abolish_integration = 1
-    end,
-  },
-  {
     "tpope/vim-abolish",
     cmd = { "S", "Subvert", "Abolish" },
+    dependencies = {
+      "markonm/traces.vim",
+      config = function()
+        vim.g.traces_substitute_preview = 0
+        vim.g.traces_abolish_integration = 1
+      end,
+    },
     keys = {
       { "cr", desc = "Abolish Coercion" },
       {
@@ -106,6 +105,7 @@ return {
       vim.g.startuptime_tries = 10
     end,
   },
+  -- TODO: search alternative
   {
     "romainl/vim-cool",
     event = "CursorMoved",
