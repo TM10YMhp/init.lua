@@ -75,6 +75,7 @@ require("lazy").setup({
       cmd        = "",
       config     = "",
       event      = "",
+      favorite   = "",
       ft         = "",
       init       = "",
       import     = "",
@@ -91,8 +92,8 @@ require("lazy").setup({
       list       = {
         "●",
         "-",
-        "",
-        "",
+        "*",
+        "-",
       },
       -- stylua: ignore end
     },

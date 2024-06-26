@@ -109,9 +109,6 @@ return {
   {
     "romainl/vim-cool",
     event = "CursorMoved",
-    config = function()
-      vim.opt.hlsearch = true
-    end,
   },
   {
     "Aasim-A/scrollEOF.nvim",
