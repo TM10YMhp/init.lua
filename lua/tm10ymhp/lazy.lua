@@ -61,8 +61,6 @@ require("lazy").setup({
     require("plugins.extras.todo_comments"),
     require("plugins.extras.tsc"),
   },
-  concurrency = jit.os:find("Windows") and vim.uv.available_parallelism()
-    or nil,
   rocks = {
     -- TODO: check updated docs, this feature not documented
     hererocks = false,
