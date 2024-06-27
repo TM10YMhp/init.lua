@@ -4,6 +4,10 @@ return {
   opts = {
     opts = {
       disable_winbar_cb = function()
+        if vim.list_contains({ "fugitiveblame" }, vim.o.filetype) then
+          return false
+        end
+
         return vim.fn.win_gettype() == "popup"
           or not vim.list_contains({ "", "help" }, vim.o.buftype)
           or vim.list_contains({ "dashboard" }, vim.o.filetype)
