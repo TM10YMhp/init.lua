@@ -15,6 +15,7 @@ return {
             text = { ".*" },
             namespace = { "diagnostic/signs" },
             colwidth = 1,
+            wrap = true,
             foldclosed = true,
           },
           condition = { builtin.not_empty },
