@@ -2,6 +2,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "java" },
   callback = function()
     vim.defer_fn(function()
+      -- TODO: move to utils
       local get_java_bufnrs = function()
         local res = {}
         for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
@@ -59,29 +60,6 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.api.nvim_buf_create_user_command(0, "LspRestart", function()
         vim.cmd("JdtRestart")
       end, {})
-
-      -- DAP config
-
-      -- TODO; config one time
-      local dap = require("dap")
-      dap.configurations.java = {
-        {
-          type = "java",
-          request = "attach",
-          name = "Debug (Attach) - Remote",
-          hostName = "127.0.0.1",
-          port = 5005,
-        },
-      }
-
-      jdtls.setup_dap({ hotcodereplace = "auto" })
-
-      vim.keymap.set(
-        "n",
-        "<leader>da",
-        "<cmd>lua require'dap'.continue()<CR>",
-        { desc = "Debug: Start" }
-      )
     end, 10)
   end,
 })
@@ -91,7 +69,6 @@ return {
   config = function()
     local jdtls_path =
       require("mason-registry").get_package("jdtls"):get_install_path()
-    local workspace_path = vim.fn.stdpath("data") .. "/.cache/jdtls/workspace/"
 
     local jda_path = require("mason-registry")
       .get_package("java-debug-adapter")
@@ -103,12 +80,13 @@ return {
     elseif vim.fn.has("mac") == 1 then
       os = "mac"
     end
-
     local path_to_lsp_server = jdtls_path .. "/config_" .. os
+
     local path_jar =
       vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
 
     local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+    local workspace_path = vim.fn.stdpath("data") .. "/.cache/jdtls/workspace/"
     local workspace_dir = workspace_path .. project_name
 
     local root_files = {
@@ -189,7 +167,30 @@ return {
       },
     }
 
+    local jdtls = require("jdtls")
+
     -- HACK: set my_config
-    require("jdtls").my_config = config
+    jdtls.my_config = config
+
+    -- DAP config
+    local dap = require("dap")
+    dap.configurations.java = {
+      {
+        type = "java",
+        request = "attach",
+        name = "Debug (Attach) - Remote",
+        hostName = "127.0.0.1",
+        port = 5005,
+      },
+    }
+
+    jdtls.setup_dap({ hotcodereplace = "auto" })
+
+    vim.keymap.set(
+      "n",
+      "<leader>da",
+      "<cmd>lua require'dap'.continue()<CR>",
+      { desc = "Debug: Start" }
+    )
   end,
 }
