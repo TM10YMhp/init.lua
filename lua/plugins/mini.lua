@@ -15,10 +15,10 @@ return {
         -- stylua: ignore end
       })
 
-      for key, value in pairs(variants) do
-        local low, up = value.suffix:lower(), value.suffix:upper()
-        local key = key:gsub("^%l", string.upper)
-        local mode = value.mode or { "n" }
+      for k, v in pairs(variants) do
+        local low, up = v.suffix:lower(), v.suffix:upper()
+        local key = k:gsub("^%l", string.upper)
+        local mode = v.mode or { "n" }
 
         table.insert(
           mappings,
@@ -143,6 +143,7 @@ return {
               pattern = pattern:sub(3):gsub([[\]], "")
             end
 
+            ---@module "mini.jump2d"
             MiniJump2d.start({
               allowed_lines = { blank = false, fold = false },
               spotter = MiniJump2d.gen_pattern_spotter(pattern),

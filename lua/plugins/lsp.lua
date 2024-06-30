@@ -126,12 +126,10 @@ return {
     local dir = "servers"
     local config_path = vim.fn.stdpath("config") .. "/lua/"
 
-    -- TODO: check if dir exists
-    -- local success, config = pcall(require, dir)
-    -- if not success then
-    --   SereneNvim.error("LSP: " .. dir .. " not found")
-    --   return
-    -- end
+    if vim.fn.isdirectory(config_path .. dir) == 0 then
+      SereneNvim.error("LSP: '" .. dir .. "' folder not found")
+      return
+    end
 
     for basename, filetype in vim.fs.dir(config_path .. dir) do
       if filetype ~= "file" then
