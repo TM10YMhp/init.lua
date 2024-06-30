@@ -10,9 +10,9 @@ vim.api.nvim_create_autocmd("FileType", {
             goto continue
           end
 
-          local name = vim.api.nvim_buf_get_name(bufnr)
-          local ext = name:match("^.+%.(.+)$")
-          if ext == "java" then
+          if
+            vim.api.nvim_get_option_value("filetype", { buf = bufnr }) == "java"
+          then
             table.insert(res, bufnr)
           end
 
@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
       local jdtls = require("jdtls")
       -- HACK: use my_config
-      local config = require("jdtls").my_config
+      local config = jdtls.my_config
 
       if vim.g.my_jdtls_autostart then
         jdtls.start_or_attach(config)
