@@ -133,20 +133,26 @@ return {
       local server = require(dir .. "." .. name_file)
       if type(server) == "table" then
         local enabled = not (server.enabled == false)
-        if enabled then
-          if type(server.setup) == "function" then
-            local opts = server.setup()
-            local setup = vim.tbl_deep_extend("force", defaults, opts)
-            local name = server[1]
-            lspconfig[name].setup(setup)
-          else
-            for _, name in ipairs(server) do
-              if type(name) == "string" then
-                lspconfig[name].setup(defaults)
-              end
+
+        if not enabled then
+          goto continue
+        end
+
+        if type(server.setup) == "function" and server[1] ~= "jdtls" then
+          local opts = server.setup()
+          local setup = vim.tbl_deep_extend("force", defaults, opts)
+          local name = server[1]
+
+          lspconfig[name].setup(setup)
+        else
+          for _, name in ipairs(server) do
+            if type(name) == "string" and name ~= "jdtls" then
+              lspconfig[name].setup(defaults)
             end
           end
         end
+
+        ::continue::
       end
     end
   end,
