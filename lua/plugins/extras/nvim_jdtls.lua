@@ -23,8 +23,7 @@ vim.api.nvim_create_autocmd("FileType", {
       end
 
       local jdtls = require("jdtls")
-      -- HACK: use my_config
-      local config = jdtls.my_config
+      local config = require("servers.jdtls")
 
       if vim.g.my_jdtls_autostart then
         jdtls.start_or_attach(config)
@@ -68,9 +67,6 @@ return {
   "mfussenegger/nvim-jdtls",
   config = function()
     local jdtls = require("jdtls")
-
-    -- HACK: set my_config
-    jdtls.my_config = require("servers.jdtls").setup()
 
     -- DAP config
     local dap = require("dap")

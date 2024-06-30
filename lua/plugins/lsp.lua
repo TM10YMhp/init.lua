@@ -125,35 +125,51 @@ return {
 
     local dir = "servers"
     local config_path = vim.fn.stdpath("config") .. "/lua/"
-    local files =
-      vim.fn.split(vim.fn.glob(config_path .. dir .. "/*.lua", true))
 
-    for _, file in pairs(files) do
-      local name_file = vim.fn.fnamemodify(file, ":t:r")
-      local server = require(dir .. "." .. name_file)
-      if type(server) == "table" then
-        local enabled = not (server.enabled == false)
+    -- TODO: check if dir exists
+    -- local success, config = pcall(require, dir)
+    -- if not success then
+    --   SereneNvim.error("LSP: " .. dir .. " not found")
+    --   return
+    -- end
 
-        if not enabled then
-          goto continue
-        end
+    for basename, filetype in vim.fs.dir(config_path .. dir) do
+      if filetype ~= "file" then
+        goto continue
+      end
 
-        if type(server.setup) == "function" and server[1] ~= "jdtls" then
-          local opts = server.setup()
-          local setup = vim.tbl_deep_extend("force", defaults, opts)
-          local name = server[1]
+      local extension = vim.fn.fnamemodify(basename, ":e")
+      if extension ~= "lua" then
+        goto continue
+      end
 
-          lspconfig[name].setup(setup)
-        else
-          for _, name in ipairs(server) do
-            if type(name) == "string" and name ~= "jdtls" then
-              lspconfig[name].setup(defaults)
-            end
+      local config_name = vim.fn.fnamemodify(basename, ":t:r")
+      if config_name == "jdtls" then
+        goto continue
+      end
+
+      local user_config = require(dir .. "." .. config_name)
+
+      if config_name == "init" then
+        for _, name in ipairs(user_config) do
+          if type(name) == "string" and name ~= "jdtls" then
+            lspconfig[name].setup(defaults)
           end
         end
-
-        ::continue::
+        goto continue
       end
+
+      if type(user_config) ~= "table" or #user_config ~= 0 then
+        SereneNvim.error(
+          "LSP: " .. dir .. "." .. config_name .. " should return a dictionary"
+        )
+        goto continue
+      end
+
+      local config = vim.tbl_deep_extend("force", defaults, user_config)
+      lspconfig[config_name].setup(config)
+
+      ::continue::
     end
   end,
 }
