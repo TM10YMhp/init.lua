@@ -65,6 +65,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 return {
   "mfussenegger/nvim-jdtls",
+  dependencies = { "mfussenegger/nvim-dap" },
   config = function()
     local jdtls = require("jdtls")
 

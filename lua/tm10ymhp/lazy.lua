@@ -59,6 +59,7 @@ require("lazy").setup({
     require("plugins.extras.pomo"),
     require("plugins.extras.rest"),
     require("plugins.extras.todo_comments"),
+    require("plugins.extras.ts_error_translator"),
     require("plugins.extras.tsc"),
   },
   rocks = {

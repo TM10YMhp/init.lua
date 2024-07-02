@@ -21,9 +21,7 @@ return {
     },
     { "williamboman/mason-lspconfig.nvim", config = true },
     { "b0o/SchemaStore.nvim" },
-    { "dmmulroy/ts-error-translator.nvim", opts = {} },
     { "deathbeam/lspecho.nvim", opts = { decay = 3000 } },
-    { "mfussenegger/nvim-dap" },
   },
   keys = {
     {
@@ -157,7 +155,7 @@ return {
         goto continue
       end
 
-      if type(user_config) ~= "table" or #user_config ~= 0 then
+      if vim.islist(user_config) then
         SereneNvim.error(
           "LSP: " .. dir .. "." .. config_name .. " should return a dictionary"
         )
