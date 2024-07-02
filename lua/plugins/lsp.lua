@@ -144,9 +144,17 @@ return {
         goto continue
       end
 
-      local user_config = require(dir .. "." .. config_name)
+      local module_name = dir .. "." .. config_name
+      local user_config = require(module_name)
 
       if config_name == "init" then
+        if not vim.islist(user_config) then
+          SereneNvim.error(
+            string.format("LSP: '%s' should return a list", module_name)
+          )
+          goto continue
+        end
+
         for _, name in ipairs(user_config) do
           if type(name) == "string" and name ~= "jdtls" then
             lspconfig[name].setup(defaults)
@@ -155,9 +163,9 @@ return {
         goto continue
       end
 
-      if vim.islist(user_config) then
+      if type(user_config) ~= "table" or vim.islist(user_config) then
         SereneNvim.error(
-          "LSP: " .. dir .. "." .. config_name .. " should return a dictionary"
+          string.format("LSP: '%s' should return a dictionary", module_name)
         )
         goto continue
       end
