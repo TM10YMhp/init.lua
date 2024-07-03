@@ -115,6 +115,7 @@ require("lazy").setup({
         "matchit",
         "matchparen",
         "netrwPlugin",
+        "rplugin",
         "spellfile",
         "tarPlugin",
         "tohtml",
