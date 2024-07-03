@@ -2,7 +2,6 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "java" },
   callback = function()
     vim.defer_fn(function()
-      -- TODO: move to utils
       local get_java_bufnrs = function()
         local res = {}
         for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do

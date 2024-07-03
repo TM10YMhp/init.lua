@@ -59,7 +59,7 @@ return {
     "-data",
     workspace_dir,
   },
-  -- TODO: refactor
+  --- nvim-jdtls
   root_dir = (function()
     for _, patterns in ipairs(root_files) do
       local root = require("jdtls.setup").find_root(patterns)
@@ -68,6 +68,15 @@ return {
       end
     end
   end)(),
+  --- lspconfig
+  -- root_dir = function(fname)
+  --   for _, patterns in ipairs(root_files) do
+  --     local root = require("lspconfig").util.root_pattern(unpack(patterns))(fname)
+  --     if root then
+  --       return root
+  --     end
+  --   end
+  -- end,
   settings = {
     java = {
       eclipse = { downloadSources = true },

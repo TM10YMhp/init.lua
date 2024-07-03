@@ -7,7 +7,7 @@ vim.filetype.add({
     ["env"] = "dotenv",
   },
   pattern = {
-    -- INFO: Match filenames like - ".env.example", ".env.local" and so on
+    -- match filenames like - ".env.example", ".env.local" and so on
     ["%.env%.[%w_.-]+"] = "dotenv",
   },
 })

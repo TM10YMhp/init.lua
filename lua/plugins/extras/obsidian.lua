@@ -53,7 +53,6 @@ return {
     disable_frontmatter = true,
     templates = {
       folder = "templates",
-      -- NOTE: check this
       substitutions = {
         ["date:YY\\wWW"] = function()
           return os.date("%yw%W")
