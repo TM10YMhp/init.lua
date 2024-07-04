@@ -63,8 +63,10 @@ return {
   },
   config = function(_, opts)
     require("notify").setup(opts)
+    vim.notify = require("notify")
+
     -- https://github.com/rcarriga/nvim-notify/issues/205
-    vim.notify = vim.schedule_wrap(require("notify"))
+    -- vim.notify = vim.schedule_wrap(require("notify"))
 
     -- local banned_messages = { "No information available" }
     -- vim.notify = function(msg, ...)

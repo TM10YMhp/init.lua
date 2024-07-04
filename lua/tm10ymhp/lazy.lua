@@ -152,15 +152,14 @@ vim.api.nvim_create_autocmd("User", {
     local bufname = vim.api.nvim_buf_get_name(0)
     if bufname ~= "" then
       local stats = require("lazy").stats()
-      local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+      local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
       SereneNvim.info(
-        "lazy.nvim loaded "
-          .. stats.loaded
-          .. "/"
-          .. stats.count
-          .. " plugins in "
-          .. ms
-          .. "ms"
+        string.format(
+          "lazy.nvim loaded %d/%d plugins in %.2fms",
+          stats.loaded,
+          stats.count,
+          ms
+        )
       )
     end
   end,
