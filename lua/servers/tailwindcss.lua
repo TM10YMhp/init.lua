@@ -1,6 +1,6 @@
 return {
   -- only detect tailwind config files
-  root_dir = require("lspconfig").util.root_pattern(
+  root_dir = require("lspconfig.util").root_pattern(
     "tailwind.config.js",
     "tailwind.config.cjs",
     "tailwind.config.mjs",

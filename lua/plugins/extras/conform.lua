@@ -67,6 +67,12 @@ return {
           end
         end,
       },
+      ["blade-formatter"] = {
+        prepend_args = {
+          "--indent-inner-html",
+          "--extra-liners=''",
+        },
+      },
     },
     formatters_by_ft = {
       -- stylua: ignore start
@@ -91,6 +97,8 @@ return {
       handlebars      = { "prettier" },
       astro           = { "prettier" },
       java            = { "google-java-format" },
+      blade           = { "blade-formatter" },
+      php             = { "php_cs_fixer" },
       -- stylua: ignore end
     },
     format_on_save = function(bufnr)

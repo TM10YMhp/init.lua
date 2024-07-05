@@ -1,12 +1,11 @@
 return {
-  "astro",
-  "rust_analyzer",
-  "clangd",
-  "astro",
-  "svelte",
-  "cssls",
   "angularls",
+  "astro",
+  "clangd",
   "csharp_ls",
-  "prismals",
   "css_variables",
+  "cssls",
+  "prismals",
+  "rust_analyzer",
+  "svelte",
 }

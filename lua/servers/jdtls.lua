@@ -71,7 +71,7 @@ return {
   --- lspconfig
   -- root_dir = function(fname)
   --   for _, patterns in ipairs(root_files) do
-  --     local root = require("lspconfig").util.root_pattern(unpack(patterns))(fname)
+  --     local root = require("lspconfig.util").root_pattern(unpack(patterns))(fname)
   --     if root then
   --       return root
   --     end
