@@ -12,11 +12,13 @@ setmetatable(M, {
 M.notify = function(msg, level, opts)
   local default_opts = { title = "Notification" }
 
-  vim.notify(
-    msg,
-    level or vim.log.levels.INFO,
-    vim.tbl_extend("force", default_opts, opts or {})
-  )
+  vim.schedule(function()
+    vim.notify(
+      msg,
+      level or vim.log.levels.INFO,
+      vim.tbl_extend("force", default_opts, opts or {})
+    )
+  end)
 end
 
 M.error = function(msg, opts)

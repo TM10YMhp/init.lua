@@ -105,21 +105,7 @@ return {
   },
   config = function()
     local lspconfig = require("lspconfig")
-
     require("lspconfig.ui.windows").default_options = { border = "single" }
-
-    local defaults = {
-      autostart = false,
-      flags = {
-        allow_incremental_sync = false,
-        debounce_text_changes = 500,
-      },
-    }
-
-    local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    if has_cmp then
-      defaults.capabilities = cmp_nvim_lsp.default_capabilities()
-    end
 
     local dir = "servers"
     local config_path = vim.fn.stdpath("config") .. "/lua/"
@@ -129,51 +115,50 @@ return {
       return
     end
 
-    for basename, filetype in vim.fs.dir(config_path .. dir) do
-      if filetype ~= "file" then
-        goto continue
-      end
+    local defaults = {
+      autostart = false,
+      flags = {
+        allow_incremental_sync = false,
+        debounce_text_changes = 500,
+      },
+    }
 
-      local extension = vim.fn.fnamemodify(basename, ":e")
-      if extension ~= "lua" then
-        goto continue
-      end
-
-      local config_name = vim.fn.fnamemodify(basename, ":t:r")
-      if config_name == "jdtls" then
-        goto continue
-      end
-
-      local module_name = dir .. "." .. config_name
-      local user_config = require(module_name)
-
-      if config_name == "init" then
-        if not vim.islist(user_config) then
-          SereneNvim.error(
-            string.format("LSP: '%s' should return a list", module_name)
-          )
-          goto continue
-        end
-
-        for _, name in ipairs(user_config) do
-          if type(name) == "string" and name ~= "jdtls" then
-            lspconfig[name].setup(defaults)
-          end
-        end
-        goto continue
-      end
-
-      if type(user_config) ~= "table" or vim.islist(user_config) then
-        SereneNvim.error(
-          string.format("LSP: '%s' should return a dictionary", module_name)
-        )
-        goto continue
-      end
-
-      local config = vim.tbl_deep_extend("force", defaults, user_config)
-      lspconfig[config_name].setup(config)
-
-      ::continue::
+    local success, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    if success then
+      defaults.capabilities = cmp_nvim_lsp.default_capabilities()
     end
+
+    local count = 0
+    require("mason-lspconfig").setup_handlers({
+      function(server_name)
+        if server_name == "jdtls" or server_name == "biome" then
+          return
+        end
+
+        local module_name = dir .. "." .. server_name
+        local success, user_config = pcall(require, module_name)
+
+        if not success then
+          lspconfig[server_name].setup(defaults)
+          return
+        end
+
+        if type(user_config) ~= "table" or vim.islist(user_config) then
+          SereneNvim.error(
+            string.format("LSP: '%s' should return a dictionary", module_name)
+          )
+          return
+        end
+
+        count = count + 1
+
+        local config = vim.tbl_deep_extend("force", defaults, user_config)
+        lspconfig[server_name].setup(config)
+      end,
+    })
+
+    SereneNvim.info(
+      string.format("LSP: using %d server configs found in '%s'", count, dir)
+    )
   end,
 }
