@@ -1,14 +1,7 @@
 return {
   "andrewferrier/debugprint.nvim",
   keys = {
-    "gbp",
-    "gbP",
-    "gbv",
-    "gbV",
-    "gbo",
-    "gbO",
-    { "gbv", mode = "x" },
-    { "gbV", mode = "x" },
+    { "gb", mode = { "n", "x" } },
   },
   opts = {
     keymaps = {
