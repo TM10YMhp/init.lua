@@ -1,6 +1,54 @@
 local M = {}
 
--- TODO: check this
+---@class SereneNvim.call.Opts
+---@field name string
+---@field type
+---| "opt_local"
+---| "opt"
+---| "o"
+---| "buffer"
+---| "b"
+---| "global"
+---| "g"
+
+---@param option string
+---@param opts? SereneNvim.call.Opts
+function M.test(option, opts)
+  opts = opts or { type = "opt" }
+
+  local type_names = {
+    ["opt"] = vim.opt,
+    ["opt_local"] = vim.opt_local,
+    ["buffer"] = vim.b,
+    ["b"] = vim.b,
+    ["global"] = vim.g,
+    ["g"] = vim.g,
+  }
+  local t = type_names[opts.type]
+  if not t then
+    error(string.format("invalid type name: %s", opts.type), 2)
+  end
+
+  local name = opts.name or option
+
+  if opts.type == "opt" or opts.type == "opt_local" then
+    t[option] = not t[option]:get()
+
+    if t[option]:get() then
+      SereneNvim.info("Enabled " .. name, { title = "Option" })
+    else
+      SereneNvim.warn("Disabled " .. name, { title = "Option" })
+    end
+  else
+    t[option] = not t[option]
+
+    if t[option] then
+      SereneNvim.info("Enabled " .. name, { title = "Option" })
+    else
+      SereneNvim.warn("Disabled " .. name, { title = "Option" })
+    end
+  end
+end
 
 ---@param silent boolean?
 ---@param values? {[1]:any, [2]:any}
