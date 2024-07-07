@@ -14,7 +14,7 @@ vim.opt.foldlevel = 99
 vim.api.nvim_create_autocmd("BufRead", {
   desc = "Update folds",
   callback = function()
-    if not require("tm10ymhp.utils").is_large_file(vim.fn.expand("%")) then
+    if not SereneNvim.is_large_file(vim.fn.expand("%")) then
       vim.api.nvim_create_autocmd("BufWinEnter", {
         once = true,
         command = "normal! zx",

@@ -9,7 +9,7 @@ setmetatable(M, {
   end,
 })
 
-M.notify = function(msg, level, opts)
+function M.notify(msg, level, opts)
   local default_opts = { title = "Notification" }
 
   vim.schedule(function()
@@ -21,14 +21,27 @@ M.notify = function(msg, level, opts)
   end)
 end
 
-M.error = function(msg, opts)
+function M.error(msg, opts)
   M.notify(msg, vim.log.levels.ERROR, opts or {})
 end
 
-M.info = function(msg, opts)
+function M.info(msg, opts)
   M.notify(msg, vim.log.levels.INFO, opts or {})
 end
 
-M.warn = function(msg, opts)
+function M.warn(msg, opts)
   M.notify(msg, vim.log.levels.WARN, opts or {})
+end
+
+function M.is_large_file(filepath)
+  if
+    -- vim.fn.strwidth(filepath) > 300 or
+    -- vim.fn.getfsize(filepath) > 1024 * 1024 -- 1024kb
+    -- vim.fn.getfsize(filepath) > 512 * 1024 -- 512kb
+    vim.fn.getfsize(filepath) > 896 * 1024 -- 896kb
+  then
+    return true
+  else
+    return false
+  end
 end

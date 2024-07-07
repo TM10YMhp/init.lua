@@ -158,7 +158,7 @@ return {
     optional = true,
     opts = function(_, opts)
       local function on_move(data)
-        require("tm10ymhp.utils").on_rename(data.source, data.destination)
+        SereneNvim.lsp.on_rename(data.source, data.destination)
       end
 
       opts.event_handlers = opts.event_handlers or {}

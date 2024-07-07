@@ -122,7 +122,7 @@ return {
           preview = {
             hide_on_startup = true,
             filetype_hook = function(filepath, bufnr, opts)
-              if require("tm10ymhp.utils").is_large_file(filepath) then
+              if SereneNvim.is_large_file(filepath) then
                 require("telescope.previewers.utils").set_preview_message(
                   bufnr,
                   opts.winid,
