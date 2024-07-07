@@ -1,5 +1,9 @@
 return {
   {
+    "tommcdo/vim-exchange",
+    keys = { { "cx", desc = "Exchange" } },
+  },
+  {
     "BranimirE/fix-auto-scroll.nvim",
     event = "BufLeave",
     config = true,

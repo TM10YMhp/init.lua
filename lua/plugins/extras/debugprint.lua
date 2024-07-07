@@ -1,5 +1,6 @@
 return {
   "andrewferrier/debugprint.nvim",
+  -- TODO: prevent load lazy.lua
   keys = {
     { "gb", mode = { "n", "x" } },
   },

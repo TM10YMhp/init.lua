@@ -46,7 +46,6 @@ return {
   {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
-    dependencies = { "echasnovski/mini.bufremove" },
     keys = {
       {
         "<leader>bp",
