@@ -13,7 +13,7 @@ local M = {}
 
 ---@param option string
 ---@param opts? SereneNvim.call.Opts
-function M.test(option, opts)
+function M.__call(option, opts)
   opts = opts or { type = "opt" }
 
   local type_names = {
@@ -46,33 +46,6 @@ function M.test(option, opts)
       SereneNvim.info("Enabled " .. name, { title = "Option" })
     else
       SereneNvim.warn("Disabled " .. name, { title = "Option" })
-    end
-  end
-end
-
----@param silent boolean?
----@param values? {[1]:any, [2]:any}
-function M.option(option, silent, values)
-  if values then
-    if vim.opt_local[option]:get() == values[1] then
-      ---@diagnostic disable-next-line: no-unknown
-      vim.opt_local[option] = values[2]
-    else
-      ---@diagnostic disable-next-line: no-unknown
-      vim.opt_local[option] = values[1]
-    end
-    return SereneNvim.info(
-      "Set " .. option .. " to " .. vim.opt_local[option]:get(),
-      { title = "Option" }
-    )
-  end
-  ---@diagnostic disable-next-line: no-unknown
-  vim.opt_local[option] = not vim.opt_local[option]:get()
-  if not silent then
-    if vim.opt_local[option]:get() then
-      SereneNvim.info("Enabled " .. option, { title = "Option" })
-    else
-      SereneNvim.warn("Disabled " .. option, { title = "Option" })
     end
   end
 end
@@ -119,7 +92,7 @@ end
 
 setmetatable(M, {
   __call = function(m, ...)
-    return m.option(...)
+    return m.__call(...)
   end,
 })
 
