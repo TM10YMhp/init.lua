@@ -23,7 +23,7 @@ M.cursor_position = function()
   if vim.fn.getfsize(vim.fn.expand("%")) > 1024 * 1024 then
     return "Bigfile"
   else
-    return '%l:%v|%{virtcol("$")-1}'
+    return '%l:%{charcol(".")}|%{charcol("$")-1}'
   end
 end
 
