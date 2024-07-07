@@ -63,6 +63,13 @@ require("lazy").setup({
     require("plugins.extras.ts_error_translator"),
     require("plugins.extras.tsc"),
   },
+  pkg = {
+    sources = {
+      -- "lazy", -- HACK: disable lazy.lua, SereneNvim will manage it
+      "rockspec", -- will only be used when rocks.enabled is true
+      "packspec",
+    },
+  },
   rocks = {
     -- TODO: check updated docs, this feature not documented
     hererocks = false,
