@@ -286,6 +286,15 @@ return {
           keymaps = {
             modes = { "", "n", "v", "s", "x", "o", "!", "i", "l", "c", "t" },
             layout_config = { width = 80 },
+            filter = function(km)
+              if
+                string.match(tostring(km.lhs), "Þ")
+                or string.match(tostring(km.rhs), "which%-key")
+              then
+                return false
+              end
+              return true
+            end,
           },
           current_buffer_fuzzy_find = {
             skip_empty_lines = true,

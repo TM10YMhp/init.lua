@@ -25,7 +25,6 @@ require("lazy").setup({
     require("plugins.gitsigns"),
     require("plugins.harpoon"),
     require("plugins.heirline"),
-    require("plugins.improved_search"),
     require("plugins.init"),
     require("plugins.lazydev"),
     require("plugins.lsp"),
