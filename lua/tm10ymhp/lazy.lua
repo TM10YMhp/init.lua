@@ -42,6 +42,7 @@ require("lazy").setup({
     require("plugins.treesitter"),
     require("plugins.ts_comments"),
 
+    require("plugins.extras.abolish"),
     require("plugins.extras.cloak"),
     require("plugins.extras.codeium"),
     require("plugins.extras.conform"),
@@ -49,6 +50,7 @@ require("lazy").setup({
     require("plugins.extras.dashboard"),
     require("plugins.extras.debugprint"),
     require("plugins.extras.dressing"),
+    require("plugins.extras.git_messenger"),
     require("plugins.extras.markdown_preview"),
     require("plugins.extras.nvim_bqf"),
     require("plugins.extras.nvim_jdtls"),
