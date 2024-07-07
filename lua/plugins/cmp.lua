@@ -174,11 +174,12 @@ return {
           {
             name = "nvim_lsp",
             max_item_count = 40,
+            priority = 50,
             entry_filter = function(entry)
               return cmp.lsp.CompletionItemKind.Snippet ~= entry:get_kind()
             end,
           },
-          { name = "luasnip", max_item_count = 10 },
+          { name = "luasnip", max_item_count = 10, priority = 40 },
           {
             name = "buffer",
             max_item_count = 15,

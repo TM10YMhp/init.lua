@@ -27,5 +27,9 @@ return {
       desc = "Comment textobject",
     },
   },
-  opts = {},
+  opts = {
+    lang = {
+      blade = "{{-- %s --}}",
+    },
+  },
 }

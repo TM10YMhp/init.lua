@@ -42,6 +42,7 @@ return {
       table.insert(opts.sources, 2, {
         name = "codeium",
         group_index = 1,
+        priority = 30,
       })
     end,
   },
