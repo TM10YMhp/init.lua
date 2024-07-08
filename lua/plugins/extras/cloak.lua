@@ -12,6 +12,18 @@ vim.filetype.add({
   },
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("tm10ymhp_dotenv", { clear = true }),
+  pattern = { "dotenv" },
+  desc = "Set syntax bash for dotenv files",
+  callback = function()
+    vim.schedule(function()
+      vim.opt_local.syntax = "bash"
+      vim.opt_local.commentstring = "# %s"
+    end)
+  end,
+})
+
 return {
   "laytan/cloak.nvim",
   ft = { "dotenv", "TelescopePrompt" },
