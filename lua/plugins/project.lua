@@ -5,8 +5,6 @@ return {
     {
       "ahmedkhalf/project.nvim",
       event = "VeryLazy",
-      -- TODO: check this
-      -- event = vim.fn.argc(-1) == 0 and "BufLeave" or "VeryLazy",
       keys = {
         { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
       },

@@ -1,7 +1,7 @@
 return {
   {
     "yorickpeterse/nvim-pqf",
-    event = "VeryLazy",
+    event = vim.fn.argc(-1) == 0 and "BufAdd" or "VeryLazy",
     opts = {},
   },
   {

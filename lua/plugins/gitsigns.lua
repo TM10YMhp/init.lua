@@ -11,7 +11,7 @@ local gitsigns_signs = {
 
 return {
   "lewis6991/gitsigns.nvim",
-  event = "VeryLazy",
+  event = vim.fn.argc(-1) == 0 and "BufAdd" or "VeryLazy",
   opts = {
     signs = gitsigns_signs,
     signs_staged = gitsigns_signs,
