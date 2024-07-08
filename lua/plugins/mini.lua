@@ -128,7 +128,7 @@ return {
         desc = "Start 2d jumping",
       },
       {
-        "<c-s>",
+        "<c-x>",
         function()
           vim.api.nvim_input("<cr>")
 
@@ -151,13 +151,6 @@ return {
           end)
         end,
         mode = { "c" },
-        desc = "Start 2d jumping",
-      },
-      {
-        "<leader>/",
-        function()
-          vim.api.nvim_input("//<c-s>")
-        end,
         desc = "Start 2d jumping",
       },
     },

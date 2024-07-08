@@ -2,7 +2,7 @@ return {
   "stevearc/oil.nvim",
   cmd = "Oil",
   keys = {
-    { "<leader>e", "<cmd>Oil<cr>", desc = "Open Oil" },
+    { "<leader>sl", "<cmd>Oil<cr>", desc = "Open Oil" },
   },
   opts = {
     default_file_explorer = false,
