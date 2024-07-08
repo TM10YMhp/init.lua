@@ -404,7 +404,7 @@ return {
     dependencies = {
       {
         "yegappan/mru",
-        event = "VeryLazy",
+        event = vim.fn.argc(-1) == 0 and "BufAdd" or "VeryLazy",
         config = function()
           vim.api.nvim_exec_autocmds(
             "BufRead",

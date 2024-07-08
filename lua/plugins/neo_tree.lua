@@ -23,9 +23,10 @@ return {
     cmd = "Neotree",
     branch = "v3.x",
     event = function()
-      local bufname = vim.api.nvim_buf_get_name(0)
-      if vim.fn.isdirectory(bufname) == 1 then
-        return { "BufEnter" }
+      for _, value in ipairs(vim.fn.argv()) do
+        if vim.fn.isdirectory(value) == 1 then
+          return { "BufEnter" }
+        end
       end
     end,
     dependencies = {
