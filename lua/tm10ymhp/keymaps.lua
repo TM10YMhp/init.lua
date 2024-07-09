@@ -205,7 +205,7 @@ vim.keymap.set(
   "<leader>cc",
   [[<cmd>%s/\s*\/\*\_.\{-}\*\/\n\|^\s*\/\/.*\n\|\s*\/\/.*//g<cr>]],
   {
-    desc = "Delete all comments (javascript, typescript)",
+    desc = "Delete all comments (js, ts)",
   }
 )
 vim.keymap.set(
@@ -213,6 +213,6 @@ vim.keymap.set(
   "<leader>cc",
   [[:s/\s*\/\*\_.\{-}\*\/\n\|^\s*\/\/.*\n\|\s*\/\/.*//g<cr>]],
   {
-    desc = "Delete all comments (javascript, typescript)",
+    desc = "Delete all comments (js, ts)",
   }
 )

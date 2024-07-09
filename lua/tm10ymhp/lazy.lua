@@ -62,6 +62,7 @@ require("lazy").setup({
     require("plugins.extras.todo_comments"),
     require("plugins.extras.ts_error_translator"),
     require("plugins.extras.tsc"),
+    require("plugins.extras.which_key"),
   },
   pkg = {
     sources = {

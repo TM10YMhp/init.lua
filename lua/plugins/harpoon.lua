@@ -19,35 +19,35 @@ return {
       desc = "Harpoon: Quick Menu",
     },
     {
-      "<leader>1",
+      "<leader>m1",
       function()
         require("harpoon"):list():select(1)
       end,
       desc = "Harpoon: Nav File 1",
     },
     {
-      "<leader>2",
+      "<leader>m2",
       function()
         require("harpoon"):list():select(2)
       end,
       desc = "Harpoon: Nav File 2",
     },
     {
-      "<leader>3",
+      "<leader>m3",
       function()
         require("harpoon"):list():select(3)
       end,
       desc = "Harpoon: Nav File 3",
     },
     {
-      "<leader>4",
+      "<leader>m4",
       function()
         require("harpoon"):list():select(4)
       end,
       desc = "Harpoon: Nav File 4",
     },
     {
-      "<leader>5",
+      "<leader>m5",
       function()
         require("harpoon"):list():select(5)
       end,
