@@ -102,17 +102,62 @@ return {
     opts = function()
       local actions = require("telescope.actions")
       local action_layout = require("telescope.actions.layout")
-      local action_state = require("telescope.actions.state")
 
-      local open_selected = function(pb)
-        -- https://github.com/nvim-telescope/telescope.nvim/issues/1048
-        local picker = action_state.get_current_picker(pb)
-        local multi = picker:get_multi_selection()
-        actions.select_default(pb) -- the normal enter behaviour
-        for _, j in pairs(multi) do
-          if j.path ~= nil then -- is it a file -> open it as well:
-            local path = j.path:gsub("/", "\\")
-            vim.cmd("edit " .. path)
+      -- https://github.com/nvim-telescope/telescope.nvim/issues/1048
+      local open_selected = function(prompt_bufnr)
+        local picker =
+          require("telescope.actions.state").get_current_picker(prompt_bufnr)
+        local selected = picker:get_multi_selection()
+        if vim.tbl_isempty(selected) then
+          actions.select_default(prompt_bufnr)
+        else
+          actions.close(prompt_bufnr)
+          for _, v in pairs(selected) do
+            if v.path then
+              vim.cmd(
+                "edit"
+                  .. (v.lnum and " +" .. v.lnum or "")
+                  .. " "
+                  .. v.path:gsub("/", "\\")
+              )
+            end
+          end
+        end
+      end
+
+      local open_all = function(prompt_bufnr)
+        local picker =
+          require("telescope.actions.state").get_current_picker(prompt_bufnr)
+
+        local manager = picker.manager
+        if manager:num_results() > 15 then
+          SereneNvim.info("Too many results")
+          return
+        end
+
+        local entries = {}
+        local entry_to_path = function(entry)
+          local text = entry.text
+          if not text then
+            if type(entry.value) == "table" then
+              text = entry.value.text
+            else
+              text = entry.value
+            end
+          end
+
+          return text
+        end
+        for entry in manager:iter() do
+          table.insert(entries, entry_to_path(entry))
+        end
+
+        if vim.tbl_isempty(entries) then
+          SereneNvim.info("No results")
+        else
+          actions.close(prompt_bufnr)
+          for _, v in pairs(entries) do
+            vim.cmd("edit" .. " " .. v:gsub("/", "\\"))
           end
         end
       end
@@ -190,9 +235,10 @@ return {
           mappings = {
             i = {
               ["<C-p>"] = action_layout.toggle_preview,
-              ["<M-q>"] = open_selected,
               ["<C-Down>"] = actions.cycle_history_next,
               ["<C-Up>"] = actions.cycle_history_prev,
+              ["<M-q>"] = open_all,
+              ["<CR>"] = open_selected,
               --
               ["<PageUp>"] = false,
               ["<PageDown>"] = false,
@@ -201,10 +247,12 @@ return {
             },
             n = {
               ["<C-p>"] = action_layout.toggle_preview,
-              ["<M-q>"] = open_selected,
+              ["<M-q>"] = open_all,
+              ["<CR>"] = open_selected,
               --
               ["<PageUp>"] = false,
               ["<PageDown>"] = false,
+              ["q"] = actions.close,
               ["<M-u>"] = actions.results_scrolling_up,
               ["<M-d>"] = actions.results_scrolling_down,
             },
