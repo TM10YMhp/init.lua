@@ -119,6 +119,7 @@ return {
     end,
   },
   {
+    ---@module "mini.jump2d"
     "echasnovski/mini.jump2d",
     keys = {
       {
@@ -140,14 +141,25 @@ return {
             end
 
             if pattern:sub(1, 2) == [[\V]] then
-              pattern = pattern:sub(3):gsub([[\]], "")
+              pattern = pattern:sub(3):gsub([[\\]], [[\]])
             end
 
-            ---@module "mini.jump2d"
-            MiniJump2d.start({
-              allowed_lines = { blank = false, fold = false },
-              spotter = MiniJump2d.gen_pattern_spotter(pattern),
-            })
+            local x = vim.fn.matchlist(pattern, [[\v\((.+)\|(.+)\|(.+)\)]])
+            if #x ~= 0 then
+              local a = MiniJump2d.gen_pattern_spotter(x[2])
+              local b = MiniJump2d.gen_pattern_spotter(x[3])
+              local c = MiniJump2d.gen_pattern_spotter(x[4])
+
+              MiniJump2d.start({
+                allowed_lines = { blank = false, fold = false },
+                spotter = MiniJump2d.gen_union_spotter(a, b, c),
+              })
+            else
+              MiniJump2d.start({
+                allowed_lines = { blank = false, fold = false },
+                spotter = MiniJump2d.gen_pattern_spotter(pattern),
+              })
+            end
           end)
         end,
         mode = { "c" },
