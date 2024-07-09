@@ -134,14 +134,23 @@ return {
           vim.api.nvim_input("<cr>")
 
           vim.schedule(function()
-            local pattern = vim.fn.getreg("/")
+            local pattern = vim.fn.getreg("/"):gsub([[\\]], [[\]])
 
             if pattern:sub(1, 2) == [[\<]] and pattern:sub(-2) == [[\>]] then
               pattern = "%f[A-Za-z]" .. pattern:sub(3, -3) .. "%f[^A-Za-z]"
             end
 
             if pattern:sub(1, 2) == [[\V]] then
-              pattern = pattern:sub(3):gsub([[\\]], [[\]])
+              pattern = pattern:sub(3)
+            end
+
+            if pattern:sub(1, 3) == [[\%V]] then
+              pattern = pattern:sub(4)
+            end
+
+            if pattern == "" then
+              SereneNvim.warn("No spots to show.", { title = "mini.jump2d" })
+              return
             end
 
             local x = vim.fn.matchlist(pattern, [[\v\((.+)\|(.+)\|(.+)\)]])
