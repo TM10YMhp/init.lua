@@ -72,7 +72,7 @@ return {
     config = function()
       require("nvim-ts-autotag").setup()
 
-      -- use Filetype to enable autotag
+      -- HACK: attach on init
       require("nvim-ts-autotag.internal").attach()
     end,
   },

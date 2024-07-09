@@ -1,11 +1,38 @@
+vim.filetype.add({
+  pattern = {
+    [".*"] = {
+      function(path, buf)
+        return vim.bo[buf]
+            and vim.bo[buf].filetype ~= "bigfile"
+            and path
+            -- TODO: size of bigfile should be configurable in mb
+            and vim.fn.getfsize(path) > 896 * 1024 -- 896kb
+            and "bigfile"
+          or nil
+      end,
+    },
+  },
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "bigfile" },
+  desc = "Bigfile",
+  callback = function()
+    vim.opt_local.cursorline = false
+    vim.opt_local.foldenable = false
+    vim.opt_local.foldcolumn = "0"
+    vim.opt_local.number = false
+    vim.opt_local.signcolumn = "no"
+  end,
+})
+
 return {
   "pteroctopus/faster.nvim",
-  event = "BufReadPre",
+  ft = "bigfile",
   opts = {
     behaviours = {
       bigfile = {
         features_disabled = {
-          "custom_feature",
           "illuminate",
           "matchparen",
           "lsp",
@@ -13,42 +40,9 @@ return {
           "indent_blankline",
           "vimopts",
           "syntax",
-          "filetype",
+          -- "filetype",
         },
-        filetype = 1,
-      },
-    },
-    features = {
-      custom_feature = {
-        on = true,
-        defer = false,
-        disable = function()
-          vim.opt_local.cursorline = false
-          vim.opt_local.foldenable = false
-          vim.opt_local.foldcolumn = "0"
-          vim.opt_local.number = false
-          vim.opt_local.signcolumn = "no"
-          vim.b.isbigfile = true
-
-          vim.api.nvim_create_autocmd({ "BufEnter" }, {
-            desc = "Restore events",
-            callback = function()
-              if not vim.b.isbigfile then
-                vim.opt.eventignore = ""
-              else
-                vim.opt.eventignore = {
-                  "CursorHold",
-                  "CursorHoldI",
-                  "CursorMoved",
-                  "CursorMovedI",
-                  "WinScrolled",
-                  "FileType",
-                  "TextYankPost",
-                }
-              end
-            end,
-          })
-        end,
+        filesize = 1,
       },
     },
   },

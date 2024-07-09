@@ -33,12 +33,12 @@ function M.warn(msg, opts)
   M.notify(msg, vim.log.levels.WARN, opts or {})
 end
 
-function M.is_large_file(filepath)
+function M.is_large_file(path)
   if
-    -- vim.fn.strwidth(filepath) > 300 or
-    -- vim.fn.getfsize(filepath) > 1024 * 1024 -- 1024kb
-    -- vim.fn.getfsize(filepath) > 512 * 1024 -- 512kb
-    vim.fn.getfsize(filepath) > 896 * 1024 -- 896kb
+    -- vim.fn.strwidth(path) > 300 or
+    -- vim.fn.getfsize(path) > 1024 * 1024 -- 1024kb
+    -- vim.fn.getfsize(path) > 512 * 1024 -- 512kb
+    vim.fn.getfsize(path) > 896 * 1024 -- 896kb
   then
     return true
   else

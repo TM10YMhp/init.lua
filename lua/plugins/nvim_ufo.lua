@@ -89,7 +89,7 @@ return {
 
     require("ufo").setup(opts)
 
-    if vim.bo.filetype == "dashboard" then
+    if vim.bo.filetype == "dashboard" or vim.bo.filetype == "bigfile" then
       require("ufo").detach()
       vim.opt_local.foldenable = false
       vim.opt_local.foldcolumn = "0"

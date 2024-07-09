@@ -155,13 +155,14 @@ return {
 
             local x = vim.fn.matchlist(pattern, [[\v\((.+)\|(.+)\|(.+)\)]])
             if #x ~= 0 then
-              local a = MiniJump2d.gen_pattern_spotter(x[2])
-              local b = MiniJump2d.gen_pattern_spotter(x[3])
-              local c = MiniJump2d.gen_pattern_spotter(x[4])
-
+              local spotters = {
+                MiniJump2d.gen_pattern_spotter(x[2]),
+                MiniJump2d.gen_pattern_spotter(x[3]),
+                MiniJump2d.gen_pattern_spotter(x[4]),
+              }
               MiniJump2d.start({
                 allowed_lines = { blank = false, fold = false },
-                spotter = MiniJump2d.gen_union_spotter(a, b, c),
+                spotter = MiniJump2d.gen_union_spotter(unpack(spotters)),
               })
             else
               MiniJump2d.start({
