@@ -19,10 +19,9 @@ return {
     {
       "<leader>tf",
       function()
-        local state = vim.b.disable_autoformat
-        vim.b.disable_autoformat = not vim.b.disable_autoformat
-        SereneNvim.info(
-          "Buffer: Autoformat " .. (state and "Enabled" or "Disabled")
+        SereneNvim.toggle(
+          "disable_autoformat",
+          { format = "Buffer: Autoformat %s", type = "b", reverse = true }
         )
       end,
       desc = "Buffer: Toggle Format On Save",
@@ -30,13 +29,10 @@ return {
     {
       "<leader>tF",
       function()
-        if vim.g.disable_autoformat then
-          vim.g.disable_autoformat = false
-          SereneNvim.info("Autoformat enabled")
-        else
-          vim.g.disable_autoformat = true
-          SereneNvim.info("Autoformat disabled")
-        end
+        SereneNvim.toggle(
+          "disable_autoformat",
+          { format = "Autoformat %s", type = "g", reverse = true }
+        )
       end,
       desc = "Toggle Format On Save",
     },

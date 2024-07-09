@@ -1,7 +1,7 @@
 local M = {}
 
 ---@class SereneNvim.call.Opts
----@field name string
+---@field format string
 ---@field type
 ---| "opt_local"
 ---| "opt"
@@ -10,11 +10,17 @@ local M = {}
 ---| "b"
 ---| "global"
 ---| "g"
+---@field reverse boolean
 
 ---@param option string
 ---@param opts? SereneNvim.call.Opts
 function M.__call(option, opts)
-  opts = opts or { type = "opt" }
+  local defaults = {
+    format = "%s " .. option,
+    type = "opt",
+    reverse = false,
+  }
+  opts = vim.tbl_deep_extend("force", defaults, opts or {})
 
   local type_names = {
     ["opt"] = vim.opt,
@@ -29,25 +35,20 @@ function M.__call(option, opts)
     error(string.format("invalid type name: %s", opts.type), 2)
   end
 
-  local name = opts.name or option
-
+  -- http://lua-users.org/wiki/TernaryOperator
+  local state
   if opts.type == "opt" or opts.type == "opt_local" then
     t[option] = not t[option]:get()
-
-    if t[option]:get() then
-      SereneNvim.info("Enabled " .. name, { title = "Option" })
-    else
-      SereneNvim.warn("Disabled " .. name, { title = "Option" })
-    end
+    state = (opts.reverse and { not t[option]:get() } or { t[option]:get() })[1]
   else
     t[option] = not t[option]
-
-    if t[option] then
-      SereneNvim.info("Enabled " .. name, { title = "Option" })
-    else
-      SereneNvim.warn("Disabled " .. name, { title = "Option" })
-    end
+    state = (opts.reverse and { not t[option] } or { t[option] })[1]
   end
+
+  local notify = state and SereneNvim.info or SereneNvim.warn
+  local msg = string.format(opts.format, state and "Enabled" or "Disabled")
+
+  notify(msg, { title = "Option" })
 end
 
 ---@type {k:string, v:any}[]
