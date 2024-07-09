@@ -59,16 +59,6 @@ return {
   {
     "windwp/nvim-ts-autotag",
     event = "InsertCharPre",
-    keys = {
-      {
-        "<leader>ut",
-        function()
-          SereneNvim("Autotag: Attach")
-          require("nvim-ts-autotag.internal").attach()
-        end,
-        desc = "Manually Attach Autotag",
-      },
-    },
     config = function()
       require("nvim-ts-autotag").setup()
 
