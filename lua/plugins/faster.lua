@@ -29,6 +29,7 @@ vim.api.nvim_create_autocmd("FileType", {
 return {
   "pteroctopus/faster.nvim",
   ft = "bigfile",
+  keys = { { "@", desc = "execute_macro()" } },
   opts = {
     behaviours = {
       bigfile = {
