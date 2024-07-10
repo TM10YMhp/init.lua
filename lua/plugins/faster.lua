@@ -17,7 +17,7 @@ return {
           -- "syntax",
           -- "filetype",
         },
-        filesize = 1,
+        filesize = SereneNvim.config.bigfile_size,
       },
     },
     features = {
