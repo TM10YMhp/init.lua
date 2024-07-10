@@ -45,7 +45,26 @@ return {
       { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
       {
         "<leader>sk",
-        "<cmd>Telescope keymaps show_plug=false<cr>",
+        function()
+          require("telescope.builtin").keymaps({
+            prompt_title = "Key Maps <User>",
+            show_plug = false,
+            filter = function(km)
+              if
+                string.match(tostring(km.lhs), "Þ")
+                or string.match(tostring(km.rhs), "which%-key")
+              then
+                return false
+              end
+              return true
+            end,
+          })
+        end,
+        desc = "Key Maps <User>",
+      },
+      {
+        "<leader>sK",
+        "<cmd>Telescope keymaps<cr>",
         desc = "Key Maps",
       },
       {
@@ -131,7 +150,7 @@ return {
 
         local manager = picker.manager
         if manager:num_results() > 15 then
-          SereneNvim.info("Too many results")
+          SereneNvim.warn("Too many results, limiting to 15")
           return
         end
 
@@ -153,7 +172,7 @@ return {
         end
 
         if vim.tbl_isempty(entries) then
-          SereneNvim.info("No results")
+          SereneNvim.warn("No results")
         else
           actions.close(prompt_bufnr)
           for _, v in pairs(entries) do
@@ -334,15 +353,6 @@ return {
           keymaps = {
             modes = { "", "n", "v", "s", "x", "o", "!", "i", "l", "c", "t" },
             layout_config = { width = 80 },
-            filter = function(km)
-              if
-                string.match(tostring(km.lhs), "Þ")
-                or string.match(tostring(km.rhs), "which%-key")
-              then
-                return false
-              end
-              return true
-            end,
           },
           current_buffer_fuzzy_find = {
             skip_empty_lines = true,

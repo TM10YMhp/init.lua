@@ -44,4 +44,8 @@ function M.is_large_file(path)
   end
 end
 
+function M.get_final_spec(name)
+  return require("lazy.core.config").plugins[name]
+end
+
 return M

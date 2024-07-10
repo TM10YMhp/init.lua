@@ -31,6 +31,7 @@ require("lazy").setup({
     require("plugins.lualine"),
     require("plugins.mini"),
     require("plugins.mini_ai"),
+    require("plugins.mini_bufremove"),
     require("plugins.neo_tree"),
     require("plugins.nvim_surround"),
     require("plugins.nvim_ufo"),

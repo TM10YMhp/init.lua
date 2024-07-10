@@ -1,38 +1,5 @@
 return {
   {
-    "echasnovski/mini.bufremove",
-    keys = {
-      {
-        "<leader>bd",
-        function()
-          local bd = require("mini.bufremove").delete
-          if vim.bo.modified then
-            local choice = vim.fn.confirm(
-              ("Save changes to %q?"):format(vim.fn.bufname()),
-              "&Yes\n&No\n&Cancel"
-            )
-            if choice == 1 then -- Yes
-              vim.cmd.write()
-              bd(0)
-            elseif choice == 2 then -- No
-              bd(0, true)
-            end
-          else
-            bd(0)
-          end
-        end,
-        desc = "Delete Buffer New",
-      },
-      {
-        "<leader>bD",
-        function()
-          require("mini.bufremove").delete(0, true)
-        end,
-        desc = "Delete Buffer (Force) New",
-      },
-    },
-  },
-  {
     "chrisgrieser/nvim-early-retirement",
     event = "BufLeave",
     opts = {
@@ -95,21 +62,15 @@ return {
       { "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
       { "<Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
     },
-    opts = function()
+    opts = function(_, opts)
       local bufferline = require("bufferline")
 
-      return {
+      return vim.tbl_deep_extend("force", opts, {
         options = {
           style_preset = {
             bufferline.style_preset.no_bold,
             bufferline.style_preset.no_italic,
           },
-          close_command = function(n)
-            require("mini.bufremove").delete(n, false)
-          end,
-          right_mouse_command = function(n)
-            require("mini.bufremove").delete(n, false)
-          end,
           indicator = { style = "none" },
           buffer_close_icon = "x",
           modified_icon = "*",
@@ -140,7 +101,7 @@ return {
           always_show_bufferline = true,
           hover = { enabled = false },
         },
-      }
+      })
     end,
   },
 }
