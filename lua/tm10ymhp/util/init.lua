@@ -33,10 +33,10 @@ end
 
 function M.is_large_file(path)
   if
-    -- vim.fn.strwidth(path) > 300 or
     -- vim.fn.getfsize(path) > 1024 * 1024 -- 1024kb
     -- vim.fn.getfsize(path) > 512 * 1024 -- 512kb
-    vim.fn.getfsize(path) > 896 * 1024 -- 896kb
+    -- vim.fn.getfsize(path) > 896 * 1024 -- 896kb
+    vim.fn.getfsize(path) >= 1024 * 1024 * SereneNvim.config.bigfile_size
   then
     return true
   else
