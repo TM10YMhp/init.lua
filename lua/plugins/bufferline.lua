@@ -65,7 +65,7 @@ return {
     opts = function(_, opts)
       local bufferline = require("bufferline")
 
-      return vim.tbl_deep_extend("force", opts, {
+      return {
         options = {
           style_preset = {
             bufferline.style_preset.no_bold,
@@ -101,7 +101,10 @@ return {
           always_show_bufferline = true,
           hover = { enabled = false },
         },
-      })
+      }
+    end,
+    config = function(_, opts)
+      require("bufferline").setup(opts)
     end,
   },
 }

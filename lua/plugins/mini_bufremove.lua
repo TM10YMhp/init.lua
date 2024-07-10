@@ -24,17 +24,15 @@ return {
   {
     "akinsho/bufferline.nvim",
     optional = true,
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
-        options = {
-          close_command = function(n)
-            require("mini.bufremove").delete(n, false)
-          end,
-          right_mouse_command = function(n)
-            require("mini.bufremove").delete(n, false)
-          end,
-        },
-      })
-    end,
+    opts = {
+      options = {
+        close_command = function(bufnr)
+          require("mini.bufremove").delete(bufnr, false)
+        end,
+        right_mouse_command = function(bufnr)
+          require("mini.bufremove").delete(bufnr, false)
+        end,
+      },
+    },
   },
 }
