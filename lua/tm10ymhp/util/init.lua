@@ -1,7 +1,5 @@
 local M = {}
 
-_G.SereneNvim = M
-
 setmetatable(M, {
   __index = function(t, k)
     t[k] = require("tm10ymhp.util." .. k)
@@ -45,3 +43,5 @@ function M.is_large_file(path)
     return false
   end
 end
+
+return M

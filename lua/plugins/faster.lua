@@ -23,6 +23,12 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.foldcolumn = "0"
     vim.opt_local.number = false
     vim.opt_local.signcolumn = "no"
+
+    vim.opt_local.swapfile = false
+    vim.opt_local.foldmethod = "manual"
+    vim.opt_local.undolevels = -1
+    vim.opt_local.undoreload = 0
+    vim.opt_local.list = false
   end,
 })
 
@@ -36,11 +42,11 @@ return {
         features_disabled = {
           "illuminate",
           "matchparen",
-          "lsp",
+          -- "lsp",
           -- "treesitter",
           "indent_blankline",
-          "vimopts",
-          "syntax",
+          -- "vimopts",
+          -- "syntax",
           -- "filetype",
         },
         filesize = 1,
