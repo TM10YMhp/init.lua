@@ -1,23 +1,50 @@
-return {
-  {
-    "s1n7ax/nvim-window-picker",
-    keys = {
-      {
-        "<leader>ww",
-        function()
-          local picked_window_id = require("window-picker").pick_window()
-            or vim.api.nvim_get_current_win()
-
-          vim.api.nvim_set_current_win(picked_window_id)
+local function get_telescope_node(state, path, title)
+  return {
+    cwd = path,
+    prompt_title = title .. " | <CR> Open | <C-s> Navigate",
+    file_ignore_patterns = {},
+    no_ignore = true,
+    attach_mappings = function(prompt_bufnr, map)
+      local actions = require("telescope.actions")
+      local telescope_actions = require("telescope.actions.mt").transform_mod({
+        navigate = function()
+          actions.close(prompt_bufnr)
+          local action_state = require("telescope.actions.state")
+          local selection = action_state.get_selected_entry()
+          local filename = selection.filename
+          if filename == nil then
+            filename = selection[1]
+          end
+          filename = path .. "\\" .. filename
+          require("neo-tree.sources.filesystem").navigate(
+            state,
+            state.path,
+            -- TODO: check this
+            filename:gsub("/", "\\")
+          )
         end,
-        desc = "Pick Window",
-      },
-    },
-    opts = { hint = "statusline-winbar" },
-    config = function(_, opts)
-      require("window-picker").setup(opts)
+      })
+
+      map({ "i", "n" }, "<C-s>", telescope_actions.navigate)
+
+      return true
     end,
-  },
+  }
+end
+
+local function get_telescope_builtin(builtin_name, state, path)
+  local title = ""
+  for str in string.gmatch(builtin_name, "([^" .. "_" .. "]+)") do
+    title = title .. str:gsub("^%l", string.upper) .. " "
+  end
+  title = title:match("^%s*(.*%S)")
+
+  return require("telescope.builtin")[builtin_name](
+    get_telescope_node(state, path, title)
+  )
+end
+
+return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
@@ -33,7 +60,6 @@ return {
       "ahmedkhalf/project.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      "s1n7ax/nvim-window-picker",
     },
     keys = {
       {
@@ -138,10 +164,6 @@ return {
           mappings = {
             ["space"] = "none",
             ["/"] = "none",
-            ["F"] = "telescope_find",
-            ["f"] = "telescope_find_root",
-            ["G"] = "telescope_grep",
-            ["g"] = "telescope_grep_root",
             ["P"] = {
               "toggle_preview",
               config = { use_float = false, use_image_nvim = false },
@@ -153,6 +175,9 @@ return {
         bind_to_cwd = true,
       },
     },
+    config = function(_, opts)
+      require("neo-tree").setup(opts)
+    end,
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -162,10 +187,10 @@ return {
         SereneNvim.lsp.on_rename(data.source, data.destination)
       end
 
-      opts.event_handlers = opts.event_handlers or {}
-
       local events = require("neo-tree.events")
-      vim.list_extend(opts.event_handlers or {}, {
+
+      opts.event_handlers = opts.event_handlers or {}
+      vim.list_extend(opts.event_handlers, {
         { event = events.FILE_MOVED, handler = on_move },
         { event = events.FILE_RENAMED, handler = on_move },
       })
@@ -177,7 +202,7 @@ return {
     opts = function(_, opts)
       local default_renderers = require("neo-tree.defaults").renderers
 
-      -- remove icons
+      -- HACK: remove icons
       table.remove(default_renderers.directory, 2)
       table.remove(default_renderers.file, 2)
 
@@ -190,56 +215,8 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     optional = true,
-    opts = function(_, opts)
-      local function getTelescopeNode(state, path, builtin_name)
-        return {
-          cwd = path,
-          prompt_title = builtin_name .. " | <CR> Open | <C-s> Navigate",
-          file_ignore_patterns = {},
-          no_ignore = true,
-          attach_mappings = function(prompt_bufnr, map)
-            local actions = require("telescope.actions")
-            local telescope_actions =
-              require("telescope.actions.mt").transform_mod({
-                navigate = function()
-                  actions.close(prompt_bufnr)
-                  local action_state = require("telescope.actions.state")
-                  local selection = action_state.get_selected_entry()
-                  local filename = selection.filename
-                  if filename == nil then
-                    filename = selection[1]
-                  end
-                  filename = path .. "\\" .. filename
-                  require("neo-tree.sources.filesystem").navigate(
-                    state,
-                    state.path,
-                    -- TODO: check this
-                    filename:gsub("/", "\\")
-                  )
-                end,
-              })
-
-            map({ "i", "n" }, "<C-s>", telescope_actions.navigate)
-
-            return true
-          end,
-        }
-      end
-
-      local function getTelescopeBuiltin(builtin_name, state, path)
-        local builtin = {
-          live_grep = require("telescope.builtin").live_grep,
-          find_files = require("telescope.builtin").find_files,
-        }
-        local _builtin_name = builtin_name == "live_grep" and "Live Grep"
-          or "Find Files"
-
-        return builtin[builtin_name](
-          getTelescopeNode(state, path, _builtin_name)
-        )
-      end
-
-      opts.commands = {
+    opts = {
+      commands = {
         telescope_find = function(state)
           if state.tree == nil then
             return
@@ -249,14 +226,14 @@ return {
           if vim.fn.isdirectory(path) == 0 then
             path = node._parent_id
           end
-          getTelescopeBuiltin("find_files", state, path)
+          get_telescope_builtin("find_files", state, path)
         end,
         telescope_find_root = function(state)
           if state.tree == nil then
             return
           end
           local path = state.tree.nodes.root_ids[1]
-          getTelescopeBuiltin("find_files", state, path)
+          get_telescope_builtin("find_files", state, path)
         end,
         telescope_grep = function(state)
           if state.tree == nil then
@@ -267,16 +244,26 @@ return {
           if vim.fn.isdirectory(path) == 0 then
             path = node._parent_id
           end
-          getTelescopeBuiltin("live_grep", state, path)
+          get_telescope_builtin("live_grep", state, path)
         end,
         telescope_grep_root = function(state)
           if state.tree == nil then
             return
           end
           local path = state.tree.nodes.root_ids[1]
-          getTelescopeBuiltin("live_grep", state, path)
+          get_telescope_builtin("live_grep", state, path)
         end,
-      }
-    end,
+      },
+      filesystem = {
+        window = {
+          mappings = {
+            ["F"] = "telescope_find",
+            ["f"] = "telescope_find_root",
+            ["G"] = "telescope_grep",
+            ["g"] = "telescope_grep_root",
+          },
+        },
+      },
+    },
   },
 }

@@ -25,9 +25,8 @@ return {
     { "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
     { "<Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
   },
-  opts = function(_, opts)
+  opts = function()
     local bufferline = require("bufferline")
-
     return {
       options = {
         style_preset = {

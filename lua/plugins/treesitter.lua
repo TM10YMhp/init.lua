@@ -10,6 +10,8 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    -- https://github.com/folke/lazy.nvim/commit/1f7b720
+    opts_extend = { "ensure_installed" },
     opts = {
       -- https://thevaluable.dev/tree-sitter-neovim-overview/
       parser_install_dir = vim.fn.stdpath("config"),
@@ -52,6 +54,7 @@ return {
         filetype = "blade",
       }
 
+      -- git slow in windows
       require("nvim-treesitter.install").prefer_git = false
       require("nvim-treesitter.configs").setup(opts)
     end,
