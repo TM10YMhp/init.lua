@@ -33,6 +33,7 @@ require("lazy").setup({
     require("plugins.mini_ai"),
     require("plugins.mini_bufremove"),
     require("plugins.neo_tree"),
+    require("plugins.nvim_early_retirement"),
     require("plugins.nvim_surround"),
     require("plugins.nvim_ufo"),
     require("plugins.nvim_various_textobjs"),
