@@ -1,45 +1,13 @@
-vim.filetype.add({
-  pattern = {
-    [".*"] = {
-      function(path, buf)
-        return vim.bo[buf]
-            and vim.bo[buf].filetype ~= "bigfile"
-            and path
-            -- TODO: size of bigfile should be configurable in mb
-            and vim.fn.getfsize(path) > 896 * 1024 -- 896kb
-            and "bigfile"
-          or nil
-      end,
-    },
-  },
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "bigfile" },
-  desc = "Bigfile",
-  callback = function()
-    vim.opt_local.cursorline = false
-    vim.opt_local.foldenable = false
-    vim.opt_local.foldcolumn = "0"
-    vim.opt_local.number = false
-    vim.opt_local.signcolumn = "no"
-
-    vim.opt_local.swapfile = false
-    vim.opt_local.foldmethod = "manual"
-    vim.opt_local.undolevels = -1
-    vim.opt_local.undoreload = 0
-    vim.opt_local.list = false
-  end,
-})
-
 return {
   "pteroctopus/faster.nvim",
-  ft = "bigfile",
-  keys = { { "@", desc = "execute_macro()" } },
+  event = "BufReadPre",
   opts = {
     behaviours = {
       bigfile = {
         features_disabled = {
+          "custom_feature",
+          "defer_feature",
+
           "illuminate",
           "matchparen",
           -- "lsp",
@@ -50,6 +18,32 @@ return {
           -- "filetype",
         },
         filesize = 1,
+      },
+    },
+    features = {
+      custom_feature = {
+        on = true,
+        defer = false,
+        disable = function()
+          vim.opt_local.cursorline = false
+          vim.opt_local.foldenable = false
+          vim.opt_local.foldcolumn = "0"
+          vim.opt_local.number = false
+          vim.opt_local.signcolumn = "no"
+
+          vim.opt_local.swapfile = false
+          vim.opt_local.foldmethod = "manual"
+          vim.opt_local.undolevels = -1
+          vim.opt_local.undoreload = 0
+          vim.opt_local.list = false
+        end,
+      },
+      defer_feature = {
+        on = true,
+        defer = true,
+        disable = function()
+          vim.opt_local.filetype = "bigfile"
+        end,
       },
     },
   },

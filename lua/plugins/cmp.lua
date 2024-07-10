@@ -1,48 +1,3 @@
--- https://code.visualstudio.com/docs/editor/intellisense#_types-of-completions
-local kind_icons = {
-  -- stylua: ignore start
-  Text          = "w",
-  Method        = "m",
-  Function      = "m",
-  Constructor   = "m",
-  Field         = "n",
-  Variable      = "v",
-  Class         = "c",
-  Interface     = "I",
-  Module        = "M",
-  Property      = "p",
-  Unit          = "u",
-  Value         = "E",
-  Enum          = "E",
-  Keyword       = "k",
-  Snippet       = "s",
-  Color         = "C",
-  File          = "F",
-  Reference     = "r",
-  Folder        = "D",
-  EnumMember    = "E",
-  Constant      = "C",
-  Struct        = "S",
-  Event         = "e",
-  Operator      = "o",
-  TypeParameter = "T",
-  Codeium       = "A",
-  -- stylua: ignore end
-}
-local item_icons = {
-  -- stylua: ignore start
-  buffer           = "Buf",
-  nvim_lsp         = "LSP",
-  luasnip          = "Snip",
-  nvim_lua         = "Lua",
-  latex_symbols    = "LTX",
-  obsidian         = "Obs",
-  obsidian_new     = "New",
-  ["buffer-lines"] = "BufL",
-  codeium          = "AI",
-  -- stylua: ignore end
-}
-
 return {
   {
     "L3MON4D3/LuaSnip",
@@ -152,7 +107,7 @@ return {
             config = {
               formatting = {
                 format = function(entry, item)
-                  item.kind = kind_icons[item.kind] or "?"
+                  item.kind = SereneNvim.config.icons.kinds[item.kind] or "?"
                   return item
                 end,
               },
@@ -201,10 +156,10 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
-            item.kind = kind_icons[item.kind] or "?"
+            item.kind = SereneNvim.config.icons.kinds[item.kind] or "?"
 
             item.menu = "["
-              .. (item_icons[entry.source.name] or entry.source.name)
+              .. (SereneNvim.config.icons.sources[entry.source.name] or entry.source.name)
               .. "]"
 
             function trim(text)
