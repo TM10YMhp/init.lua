@@ -29,9 +29,17 @@ require("lazy").setup({
     require("plugins.lazydev"),
     require("plugins.lsp"),
     require("plugins.lualine"),
-    require("plugins.mini"),
-    require("plugins.mini_ai"),
-    require("plugins.mini_bufremove"),
+
+    require("plugins.mini.init"),
+    -- mini
+    -- require("plugins.mini.mini_ai"),
+    -- require("plugins.mini.mini_align"),
+    -- require("plugins.mini.mini_bracketed"),
+    -- require("plugins.mini.mini_bufremove"),
+    -- require("plugins.mini.mini_jump2d"),
+    -- require("plugins.mini.mini_move"),
+    -- require("plugins.mini.mini_trailspace"),
+
     require("plugins.neo_tree"),
     require("plugins.nvim_early_retirement"),
     require("plugins.nvim_surround"),
