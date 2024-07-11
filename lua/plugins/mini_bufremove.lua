@@ -7,14 +7,36 @@ return {
         function()
           require("mini.bufremove").delete(0, false)
         end,
-        desc = "Delete Buffer New",
+        desc = "Mini: Delete Buffer",
       },
       {
         "<leader>bD",
         function()
-          require("mini.bufremove").delete(0, true)
+          for _, v in ipairs(vim.api.nvim_list_bufs()) do
+            if vim.bo[v].bufhidden ~= "hide" then
+              require("mini.bufremove").delete(v, false)
+            end
+          end
         end,
-        desc = "Delete Buffer (Force) New",
+        desc = "Mini: Delete All Buffers",
+      },
+      {
+        "<leader>bw",
+        function()
+          require("mini.bufremove").wipeout(0, false)
+        end,
+        desc = "Mini: Wipeout Buffer",
+      },
+      {
+        "<leader>bW",
+        function()
+          for _, v in ipairs(vim.api.nvim_list_bufs()) do
+            if vim.bo[v].bufhidden ~= "hide" then
+              require("mini.bufremove").wipeout(v, false)
+            end
+          end
+        end,
+        desc = "Mini: Wipeout All Buffers",
       },
     },
     opts = {

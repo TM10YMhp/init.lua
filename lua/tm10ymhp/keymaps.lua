@@ -30,18 +30,20 @@ vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", {
   desc = "Switch to Other Buffer",
 })
 
-vim.keymap.set("n", "<leader>qq", "<cmd>bd<cr>", {
-  desc = "Delete Buffer",
-})
-vim.keymap.set("n", "<leader>qa", "<cmd>silent! %bd<cr>", {
-  desc = "Delete All Buffers",
-})
-vim.keymap.set("n", "<leader>qQ", "<cmd>bw<cr>", {
-  desc = "Wipeout Buffer",
-})
-vim.keymap.set("n", "<leader>qA", "<cmd>silent! %bw<cr>", {
-  desc = "Wipeout All Buffers",
-})
+if not SereneNvim.has("mini.bufremove") then
+  vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>", {
+    desc = "Delete Buffer",
+  })
+  vim.keymap.set("n", "<leader>bD", "<cmd>silent! %bd<cr>", {
+    desc = "Delete All Buffers",
+  })
+  vim.keymap.set("n", "<leader>bw", "<cmd>bw<cr>", {
+    desc = "Wipeout Buffer",
+  })
+  vim.keymap.set("n", "<leader>bW", "<cmd>silent! %bw<cr>", {
+    desc = "Wipeout All Buffers",
+  })
+end
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set("n", "<c-up>", "<cmd>resize +2<cr>", {

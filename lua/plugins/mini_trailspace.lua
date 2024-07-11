@@ -5,8 +5,8 @@ return {
     {
       "<leader>ct",
       function()
-        MiniTrailspace.trim()
-        MiniTrailspace.trim_last_lines()
+        require("mini.trailspace").trim()
+        require("mini.trailspace").trim_last_lines()
       end,
       desc = "Trim All",
     },
@@ -28,8 +28,8 @@ return {
           return
         end
 
-        MiniTrailspace.trim()
-        MiniTrailspace.trim_last_lines()
+        require("mini.trailspace").trim()
+        require("mini.trailspace").trim_last_lines()
       end,
     })
   end,
