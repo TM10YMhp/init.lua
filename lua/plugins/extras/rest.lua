@@ -16,18 +16,19 @@ return {
       },
     },
     keys = {
+      { "<leader>R", "", desc = "+rest" },
       {
-        "<leader>rr",
+        "<leader>Rr",
         "<cmd>lua require('rest-nvim').run()<cr>",
         desc = "RestNvim Run",
       },
       {
-        "<leader>rl",
+        "<leader>Rl",
         "<cmd>lua require('rest-nvim').last()<cr>",
         desc = "RestNvim Last",
       },
       {
-        "<leader>rp",
+        "<leader>Rp",
         "<cmd>lua require('rest-nvim').run(true)<cr>",
         desc = "RestNvim Preview",
       },

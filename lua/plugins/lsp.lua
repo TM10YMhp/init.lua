@@ -55,12 +55,8 @@ return {
       desc = "LSP: Hover",
     },
     { "<leader>cf", vim.lsp.buf.format, desc = "LSP: Format" },
-    { "<leader>li", "<cmd>LspInfo<cr>", desc = "LSP: Info" },
-    {
-      "<leader>ll",
-      "<cmd>edit " .. vim.lsp.get_log_path() .. "<cr>",
-      desc = "LSP: Log",
-    },
+
+    { "<leader>k", "", desc = "+workspace" },
     {
       "<leader>ka",
       vim.lsp.buf.add_workspace_folder,
@@ -75,6 +71,14 @@ return {
       "<leader>kl",
       "<cmd>lua vim.print(vim.lsp.buf.list_workspace_folders())<cr>",
       desc = "LSP: List Workspace Folders",
+    },
+
+    { "<leader>l", "", desc = "+lsp/actions" },
+    { "<leader>li", "<cmd>LspInfo<cr>", desc = "LSP: Info" },
+    {
+      "<leader>ll",
+      "<cmd>edit " .. vim.lsp.get_log_path() .. "<cr>",
+      desc = "LSP: Log",
     },
     {
       "<leader>lr",

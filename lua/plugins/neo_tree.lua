@@ -57,7 +57,6 @@ return {
       end
     end,
     dependencies = {
-      "ahmedkhalf/project.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
     },

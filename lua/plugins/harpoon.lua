@@ -3,6 +3,7 @@ return {
   branch = "harpoon2",
   dependencies = { "nvim-lua/plenary.nvim" },
   keys = {
+    { "<leader>m", "", desc = "+harpoon" },
     {
       "<leader>ma",
       function()

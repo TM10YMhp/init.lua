@@ -29,7 +29,6 @@ vim.api.nvim_create_autocmd("FileType", {
 return {
   "mfussenegger/nvim-lint",
   dependencies = {
-    "ahmedkhalf/project.nvim",
     "williamboman/mason.nvim",
   },
   keys = {

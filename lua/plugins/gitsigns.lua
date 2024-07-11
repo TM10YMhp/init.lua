@@ -34,6 +34,16 @@ return {
   },
   keys = {
     {
+      "<leader>dd",
+      "<cmd>Gitsigns diffthis<cr>",
+      desc = "Diff This",
+    },
+    {
+      "<leader>dD",
+      "<cmd>Gitsigns diffthis ~<cr>",
+      desc = "Diff This ~",
+    },
+    {
       "<leader>tg",
       "<cmd>Gitsigns toggle_signs<cr>",
       desc = "Toggle Git Signs",
@@ -51,6 +61,8 @@ return {
     },
     { "]h", "<cmd>Gitsigns next_hunk<CR>", desc = "Next Hunk" },
     { "[h", "<cmd>Gitsigns prev_hunk<CR>", desc = "Prev Hunk" },
+
+    { "<leader>h", "", desc = "+hunk" },
     {
       "<leader>hb",
       "<cmd>lua require('gitsigns').blame_line({full=true})<cr>",
@@ -88,16 +100,6 @@ return {
       "<leader>hR",
       "<cmd>exe 'Gitsigns reset_buffer'|Gitsigns refresh<cr>",
       desc = "Reset Buffer",
-    },
-    {
-      "<leader>dd",
-      "<cmd>Gitsigns diffthis<cr>",
-      desc = "Diff This",
-    },
-    {
-      "<leader>dD",
-      "<cmd>Gitsigns diffthis ~<cr>",
-      desc = "Diff This ~",
     },
   },
 }
