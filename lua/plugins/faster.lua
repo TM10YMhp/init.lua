@@ -1,6 +1,8 @@
 return {
   "pteroctopus/faster.nvim",
-  event = "BufReadPre",
+  event = SereneNvim.is_large_file(vim.api.nvim_buf_get_name(0))
+      and "BufReadPre"
+    or "VeryLazy",
   opts = {
     behaviours = {
       bigfile = {

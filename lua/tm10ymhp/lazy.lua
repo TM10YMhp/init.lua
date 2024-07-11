@@ -30,7 +30,7 @@ require("lazy").setup({
     require("plugins.lsp"),
     require("plugins.lualine"),
 
-    require("plugins.mini.init"),
+    require("plugins.mini"),
     -- mini
     -- require("plugins.mini.mini_ai"),
     -- require("plugins.mini.mini_align"),
