@@ -176,42 +176,30 @@ return {
       },
     },
     config = function(_, opts)
-      require("neo-tree").setup(opts)
-    end,
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    optional = true,
-    opts = function(_, opts)
       local function on_move(data)
         SereneNvim.lsp.on_rename(data.source, data.destination)
       end
 
       local events = require("neo-tree.events")
-
       opts.event_handlers = opts.event_handlers or {}
       vim.list_extend(opts.event_handlers, {
         { event = events.FILE_MOVED, handler = on_move },
         { event = events.FILE_RENAMED, handler = on_move },
       })
-    end,
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    optional = true,
-    opts = function(_, opts)
-      local default_renderers = require("neo-tree.defaults").renderers
 
       -- HACK: remove icons
+      local default_renderers = require("neo-tree.defaults").renderers
       table.remove(default_renderers.directory, 2)
       table.remove(default_renderers.file, 2)
-
       opts.renderers = {
         directory = default_renderers.directory,
         file = default_renderers.file,
       }
+
+      require("neo-tree").setup(opts)
     end,
   },
+  -- TODO: telescope extensions
   {
     "nvim-neo-tree/neo-tree.nvim",
     optional = true,
