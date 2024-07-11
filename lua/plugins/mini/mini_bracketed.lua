@@ -1,42 +1,33 @@
 return {
   "echasnovski/mini.bracketed",
   keys = function(self)
+    -- stylua: ignore
+    local variants = {
+      jump       = { mode = { "n", "o" } },
+      comment    = { mode = { "n", "x", "o" } },
+      conflict   = { mode = { "n", "x", "o" } },
+      diagnostic = { mode = { "n", "x", "o" } },
+      indent     = { mode = { "n", "x", "o" } },
+      treesitter = { mode = { "n", "x", "o" } },
+    }
+
     local mappings = {}
-
-    local variants = vim.tbl_deep_extend("force", self.opts, {
-        -- stylua: ignore start
-        jump       = { mode = { "n", "o" } },
-        comment    = { mode = { "n", "x", "o" } },
-        conflict   = { mode = { "n", "x", "o" } },
-        diagnostic = { mode = { "n", "x", "o" } },
-        indent     = { mode = { "n", "x", "o" } },
-        treesitter = { mode = { "n", "x", "o" } },
-      -- stylua: ignore end
-    })
-
-    for k, v in pairs(variants) do
+    for k, v in pairs(self.opts) do
       local low, up = v.suffix:lower(), v.suffix:upper()
       local key = k:gsub("^%l", string.upper)
-      local mode = v.mode or { "n" }
+      local mode = variants[k] and variants[k].mode or { "n" }
 
+      table.insert(mappings, { "[" .. up, mode = mode, desc = key .. " first" })
+      table.insert(mappings, { "]" .. up, mode = mode, desc = key .. " last" })
       table.insert(
         mappings,
-        { "[" .. up, mode = vim.deepcopy(mode), desc = key .. " first" }
+        { "[" .. low, mode = mode, desc = key .. " backward" }
       )
       table.insert(
         mappings,
-        { "]" .. up, mode = vim.deepcopy(mode), desc = key .. " last" }
-      )
-      table.insert(
-        mappings,
-        { "[" .. low, mode = vim.deepcopy(mode), desc = key .. " backward" }
-      )
-      table.insert(
-        mappings,
-        { "]" .. low, mode = vim.deepcopy(mode), desc = key .. " forward" }
+        { "]" .. low, mode = mode, desc = key .. " forward" }
       )
     end
-
     return mappings
   end,
   -- stylua: ignore

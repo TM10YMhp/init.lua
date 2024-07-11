@@ -12,10 +12,8 @@ return {
       desc = "Pick Window",
     },
   },
+  main = "window-picker",
   opts = {
     hint = "statusline-winbar",
   },
-  config = function(_, opts)
-    require("window-picker").setup(opts)
-  end,
 }

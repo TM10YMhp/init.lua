@@ -64,7 +64,6 @@ return {
     event = "InsertCharPre",
     config = function()
       require("nvim-ts-autotag").setup()
-
       -- HACK: attach on init
       require("nvim-ts-autotag.internal").attach()
     end,
