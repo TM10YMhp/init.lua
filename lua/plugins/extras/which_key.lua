@@ -19,7 +19,6 @@ return {
       ["<leader>d"] = { name = "+diff" },
       ["<leader>g"] = { name = "+git" },
       ["<leader>i"] = { name = "+insert" },
-      ["<leader>q"] = { name = "+delete/wipeout" },
       ["<leader>s"] = { name = "+search" },
       ["<leader>t"] = { name = "+toggle" },
       ["<leader>u"] = { name = "+ui" },
