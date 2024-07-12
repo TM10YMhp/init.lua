@@ -1,26 +1,36 @@
--- FIX: path problems in Windows
 return {
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "ahmedkhalf/project.nvim",
-      event = "VeryLazy",
-      keys = {
-        { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
-      },
-      opts = {
-        -- silent_chdir = false,
-      },
-      config = function(_, opts)
-        require("project_nvim").setup(opts)
-
-        vim.cmd("ProjectRoot")
-
-        SereneNvim.on_load("telescope.nvim", function()
-          require("telescope").load_extension("projects")
-        end)
-      end,
+    "ahmedkhalf/project.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
     },
+    opts = {
+      -- silent_chdir = false,
+    },
+    config = function(_, opts)
+      -- HACK: check if directory exists
+      local M = require("project_nvim.utils.path")
+      local superclass_exists = M.exists
+      ---@diagnostic disable-next-line: duplicate-set-field
+      function M.exists(path)
+        path = path:gsub("\\", "/")
+        return vim.fn.isdirectory(path) == 1 or superclass_exists(path)
+      end
+
+      require("project_nvim").setup(opts)
+
+      vim.cmd("ProjectRoot")
+
+      SereneNvim.on_load("telescope.nvim", function()
+        require("telescope").load_extension("projects")
+      end)
+    end,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    optional = true,
+    dependencies = { "ahmedkhalf/project.nvim" },
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
