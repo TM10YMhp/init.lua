@@ -96,5 +96,26 @@ return {
     vim.g.floaterm_width = 0.85
     vim.g.floaterm_height = 0.85
     vim.g.floaterm_autohide = 2
+
+    vim.api.nvim_create_autocmd("BufLeave", {
+      group = vim.api.nvim_create_augroup(
+        "tm10ymhp_hide_floaterm",
+        { clear = true }
+      ),
+      desc = "Hide floaterm when leaving buffer",
+      callback = function(event)
+        if
+          vim.bo[event.buf].filetype == "floaterm"
+          and vim.fn.win_gettype() == "popup"
+        then
+          vim.schedule(function()
+            local found_winnr = vim.fn["floaterm#window#find"]()
+            if found_winnr > 0 then
+              vim.fn["floaterm#window#hide"](event.buf)
+            end
+          end)
+        end
+      end,
+    })
   end,
 }

@@ -14,7 +14,7 @@ return {
       -- https://github.com/L3MON4D3/LuaSnip/issues/656
       vim.api.nvim_create_autocmd("ModeChanged", {
         group = vim.api.nvim_create_augroup(
-          "UnlinkLuaSnipSnippetOnModeChange",
+          "tm10ymhp_unlink_snippet_on_mode_change",
           { clear = true }
         ),
         pattern = { "s:n", "i:*" },
@@ -106,6 +106,7 @@ return {
           ["<C-l>"] = cmp.mapping.complete({
             config = {
               formatting = {
+                -- FIX: use same formatter except abbr limit
                 format = function(entry, item)
                   item.kind = SereneNvim.config.icons.kinds[item.kind] or "?"
                   return item
@@ -165,12 +166,11 @@ return {
             function trim(text)
               local max = math.floor(0.35 * vim.o.columns)
               if text and text:len() > max then
-                text = text:sub(1, max) .. "…"
+                return text:sub(1, max) .. "…"
               else
                 local padding = string.rep(" ", 5 - text:len())
-                text = text .. padding
+                return text .. padding
               end
-              return text
             end
 
             item.abbr = trim(item.abbr)
