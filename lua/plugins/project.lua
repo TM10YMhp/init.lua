@@ -2,9 +2,6 @@ return {
   {
     "ahmedkhalf/project.nvim",
     event = "VeryLazy",
-    keys = {
-      { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
-    },
     opts = {
       -- silent_chdir = false,
     },
@@ -30,6 +27,9 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     optional = true,
+    keys = {
+      { "<leader>sp", "<cmd>Telescope projects<cr>", desc = "Projects" },
+    },
     dependencies = { "ahmedkhalf/project.nvim" },
   },
   {
