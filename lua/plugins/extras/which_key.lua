@@ -1,30 +1,52 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  opts = {
-    window = {
-      border = "single",
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Local Keymaps (which-key)",
     },
   },
-  config = function(_, opts)
-    vim.o.timeout = true
-    vim.o.timeoutlen = 500
-
-    local wk = require("which-key")
-    wk.setup(opts)
-    wk.register({
-      ["<leader><tab>"] = { name = "+tabs" },
-      ["<leader>b"] = { name = "+buffer" },
-      ["<leader>c"] = { name = "+code" },
-      ["<leader>d"] = { name = "+diff" },
-      ["<leader>g"] = { name = "+git" },
-      ["<leader>i"] = { name = "+insert" },
-      ["<leader>s"] = { name = "+search" },
-      ["<leader>t"] = { name = "+toggle" },
-      ["<leader>u"] = { name = "+ui" },
-      ["<leader>w"] = { name = "+windows" },
-      ["<leader>x"] = { name = "+diagnostics/quickfix" },
-      ["<leader>z"] = { name = "+games" },
-    })
-  end,
+  opts = {
+    win = {
+      row = -2,
+      border = "single",
+    },
+    spec = {
+      { "<leader><tab>", group = "tabs" },
+      { "<leader>b", group = "buffer" },
+      { "<leader>c", group = "code" },
+      { "<leader>d", group = "diff" },
+      { "<leader>g", group = "git" },
+      { "<leader>i", group = "insert" },
+      { "<leader>s", group = "search" },
+      { "<leader>t", group = "toggle" },
+      { "<leader>u", group = "ui" },
+      { "<leader>w", group = "windows" },
+      { "<leader>x", group = "diagnostics/quickfix" },
+      { "<leader>z", group = "games" },
+    },
+    icons = {
+      rules = false,
+      keys = {
+        Up = "Up-",
+        Down = "Down",
+        Left = "Left-",
+        Right = "Right-",
+        C = "⌃",
+        M = "M-",
+        S = "S-",
+        CR = "CR-",
+        Esc = "Esc-",
+        ScrollWheelDown = "ScrollWheelDown-",
+        ScrollWheelUp = "ScrollWheelUp-",
+        NL = "NL-",
+        Space = "Space-",
+        Tab = "Tab-",
+      },
+    },
+  },
 }
