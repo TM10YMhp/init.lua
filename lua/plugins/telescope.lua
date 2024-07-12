@@ -194,21 +194,11 @@ return {
           return
         end
 
+        -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/actions/init.lua#L910
+        local from_entry = require("telescope.from_entry")
         local entries = {}
-        local entry_to_path = function(entry)
-          local text = entry.text
-          if not text then
-            if type(entry.value) == "table" then
-              text = entry.value.text
-            else
-              text = entry.value
-            end
-          end
-
-          return text
-        end
         for entry in manager:iter() do
-          table.insert(entries, entry_to_path(entry))
+          table.insert(entries, from_entry.path(entry, false, false))
         end
 
         if vim.tbl_isempty(entries) then
