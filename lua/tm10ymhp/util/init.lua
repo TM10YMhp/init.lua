@@ -97,4 +97,19 @@ function M.on_lazy_init(fn)
   })
 end
 
+---@param opts { pattern: string|string[], callback: fun() }
+function M.on_lazy_ft(opts)
+  M.on_lazy_init(function()
+    vim.api.nvim_create_autocmd("FileType", {
+      once = true,
+      pattern = opts.pattern,
+      callback = function()
+        vim.defer_fn(function()
+          opts.callback()
+        end, 10)
+      end,
+    })
+  end)
+end
+
 return M

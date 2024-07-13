@@ -8,8 +8,7 @@ local linters_by_ft = {
   svelte          = { "eslint_d" },
 }
 
-vim.api.nvim_create_autocmd("FileType", {
-  once = true,
+SereneNvim.on_lazy_ft({
   pattern = {
     "javascript",
     "typescript",
@@ -18,11 +17,9 @@ vim.api.nvim_create_autocmd("FileType", {
     "svelte",
   },
   callback = function()
-    vim.defer_fn(function()
-      require("lazy").load({
-        plugins = { "nvim-lint" },
-      })
-    end, 10)
+    require("lazy").load({
+      plugins = { "nvim-lint" },
+    })
   end,
 })
 

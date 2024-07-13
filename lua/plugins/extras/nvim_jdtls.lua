@@ -1,3 +1,5 @@
+SereneNvim.on_lazy_init(function()
+-- stylua: ignore
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "java" },
   callback = function()
@@ -61,6 +63,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end, 10)
   end,
 })
+end)
 
 return {
   "mfussenegger/nvim-jdtls",

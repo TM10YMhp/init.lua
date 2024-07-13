@@ -26,20 +26,6 @@ return {
     { "deathbeam/lspecho.nvim", opts = { decay = 3000 } },
   },
   keys = {
-    {
-      "]d",
-      function()
-        vim.diagnostic.goto_next()
-      end,
-      desc = "Next Diagnostic",
-    },
-    {
-      "[d",
-      function()
-        vim.diagnostic.goto_prev()
-      end,
-      desc = "Previous Diagnostic",
-    },
     { "<leader>cr", vim.lsp.buf.rename, desc = "LSP: Rename" },
     { "<leader>ca", vim.lsp.buf.code_action, desc = "LSP: Code Action" },
     {

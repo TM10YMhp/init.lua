@@ -35,6 +35,20 @@ return {
       { "<leader>w", group = "windows" },
       { "<leader>x", group = "diagnostics/quickfix" },
       { "<leader>z", group = "games" },
+      {
+        "]d",
+        function()
+          vim.diagnostic.goto_next()
+        end,
+        desc = "Next Diagnostic",
+      },
+      {
+        "[d",
+        function()
+          vim.diagnostic.goto_prev()
+        end,
+        desc = "Previous Diagnostic",
+      },
     },
     icons = {
       rules = false,
