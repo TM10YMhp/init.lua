@@ -1,4 +1,4 @@
-local function lazy_init()
+SereneNvim.on_lazy_init(function()
   vim.filetype.add({
     extension = {
       env = "dotenv",
@@ -24,22 +24,7 @@ local function lazy_init()
       end)
     end,
   })
-end
-
-local lazy_autocmds = vim.fn.argc(-1) == 0
-if not lazy_autocmds then
-  lazy_init()
-end
-
-vim.api.nvim_create_autocmd("User", {
-  once = true,
-  pattern = "VeryLazy",
-  callback = function()
-    if lazy_autocmds then
-      lazy_init()
-    end
-  end,
-})
+end)
 
 return {
   "laytan/cloak.nvim",

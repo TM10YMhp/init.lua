@@ -47,6 +47,15 @@ SereneNvim.config = {
       ["buffer-lines"] = "BufL",
       codeium          = "AI",
     },
+    -- stylua: ignore
+    gitsigns = {
+      add          = { text = "│" },
+      change       = { text = "│" },
+      delete       = { text = "_" },
+      topdelete    = { text = "-" },
+      changedelete = { text = "~" },
+      untracked    = { text = "." },
+    },
   },
   extras = {
     obsidian_dir = "~/vaults/notes_md",

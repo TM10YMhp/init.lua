@@ -1,25 +1,10 @@
-local function lazy_init()
+SereneNvim.on_lazy_init(function()
   vim.filetype.add({
     extension = {
       http = "http",
     },
   })
-end
-
-local lazy_autocmds = vim.fn.argc(-1) == 0
-if not lazy_autocmds then
-  lazy_init()
-end
-
-vim.api.nvim_create_autocmd("User", {
-  once = true,
-  pattern = "VeryLazy",
-  callback = function()
-    if lazy_autocmds then
-      lazy_init()
-    end
-  end,
-})
+end)
 
 return {
   {
@@ -61,6 +46,7 @@ return {
       }, "\n")
 
       local orig_run = rest.run
+      ---@diagnostic disable-next-line: duplicate-set-field
       rest.run = function(...)
         if vim.bo.filetype == "http" then
           return orig_run(...)
@@ -70,6 +56,7 @@ return {
       end
 
       local orig_last = rest.last
+      ---@diagnostic disable-next-line: duplicate-set-field
       rest.last = function(...)
         if vim.bo.filetype == "http" then
           return orig_last(...)

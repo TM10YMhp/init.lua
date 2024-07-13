@@ -79,4 +79,22 @@ function M.on_load(name, fn)
   end
 end
 
+---@param fn fun()
+function M.on_lazy_init(fn)
+  local lazy_init = vim.fn.argc(-1) == 0
+  if not lazy_init then
+    fn()
+  end
+
+  vim.api.nvim_create_autocmd("User", {
+    once = true,
+    pattern = "VeryLazy",
+    callback = function()
+      if lazy_init then
+        fn()
+      end
+    end,
+  })
+end
+
 return M
