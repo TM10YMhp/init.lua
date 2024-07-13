@@ -1,12 +1,10 @@
-local obsidian_dir = "~/vaults/notes_md"
-
 return {
   "epwalsh/obsidian.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
   keys = {
     {
       "<leader>oe",
-      "<cmd>Neotree dir=" .. obsidian_dir .. "<cr>",
+      "<cmd>Neotree dir=" .. SereneNvim.config.extras.obsidian_dir .. "<cr>",
       desc = "Obsidian Explorer",
     },
     { "<leader>oT", "<cmd>ObsidianTemplate<cr>", desc = "Obsidian Template" },
@@ -31,7 +29,10 @@ return {
   },
   opts = {
     workspaces = {
-      { name = "personal", path = obsidian_dir },
+      {
+        name = "personal",
+        path = SereneNvim.config.extras.obsidian_dir,
+      },
     },
     notes_subdir = "inbox",
     daily_notes = {

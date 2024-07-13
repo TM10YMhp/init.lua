@@ -1,26 +1,43 @@
-vim.filetype.add({
-  extension = {
-    env = "dotenv",
-  },
-  filename = {
-    [".env"] = "dotenv",
-    ["env"] = "dotenv",
-  },
-  pattern = {
-    -- match filenames like - ".env.example", ".env.local" and so on
-    ["%.env%.[%w_.-]+"] = "dotenv",
-  },
-})
+local function lazy_init()
+  vim.filetype.add({
+    extension = {
+      env = "dotenv",
+    },
+    filename = {
+      [".env"] = "dotenv",
+      ["env"] = "dotenv",
+    },
+    pattern = {
+      -- match filenames like - ".env.example", ".env.local" and so on
+      ["%.env%.[%w_.-]+"] = "dotenv",
+    },
+  })
 
-vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("tm10ymhp_dotenv", { clear = true }),
-  pattern = { "dotenv" },
-  desc = "Set syntax bash for dotenv files",
+  vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("tm10ymhp_dotenv", { clear = true }),
+    pattern = { "dotenv" },
+    desc = "Set syntax bash for dotenv files",
+    callback = function()
+      vim.schedule(function()
+        vim.opt_local.syntax = "bash"
+        vim.opt_local.commentstring = "# %s"
+      end)
+    end,
+  })
+end
+
+local lazy_autocmds = vim.fn.argc(-1) == 0
+if not lazy_autocmds then
+  lazy_init()
+end
+
+vim.api.nvim_create_autocmd("User", {
+  once = true,
+  pattern = "VeryLazy",
   callback = function()
-    vim.schedule(function()
-      vim.opt_local.syntax = "bash"
-      vim.opt_local.commentstring = "# %s"
-    end)
+    if lazy_autocmds then
+      lazy_init()
+    end
   end,
 })
 

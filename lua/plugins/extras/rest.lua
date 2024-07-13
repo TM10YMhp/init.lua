@@ -1,7 +1,24 @@
-vim.filetype.add({
-  extension = {
-    http = "http",
-  },
+local function lazy_init()
+  vim.filetype.add({
+    extension = {
+      http = "http",
+    },
+  })
+end
+
+local lazy_autocmds = vim.fn.argc(-1) == 0
+if not lazy_autocmds then
+  lazy_init()
+end
+
+vim.api.nvim_create_autocmd("User", {
+  once = true,
+  pattern = "VeryLazy",
+  callback = function()
+    if lazy_autocmds then
+      lazy_init()
+    end
+  end,
 })
 
 return {

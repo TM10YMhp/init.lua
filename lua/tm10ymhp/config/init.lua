@@ -48,6 +48,9 @@ SereneNvim.config = {
       codeium          = "AI",
     },
   },
+  extras = {
+    obsidian_dir = "~/vaults/notes_md",
+  },
 }
 
 return M
