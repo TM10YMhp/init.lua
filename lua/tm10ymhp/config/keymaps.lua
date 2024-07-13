@@ -195,9 +195,6 @@ end, { desc = "Toggle LocList" })
 vim.keymap.set("n", "<leader>ul", "<cmd>Lazy<cr>", {
   desc = "Lazy",
 })
-vim.keymap.set("n", "<leader>um", "<cmd>Mason<cr>", {
-  desc = "Mason",
-})
 vim.keymap.set("n", "<leader>ui", vim.show_pos, {
   desc = "Inspect pos",
 })

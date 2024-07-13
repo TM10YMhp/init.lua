@@ -1,4 +1,3 @@
-require("config")
-
-require("tm10ymhp.options")
-require("tm10ymhp.lazy")
+require("tm10ymhp.config") -- check this
+require("tm10ymhp.config.options") -- call before lazy.nvim
+require("tm10ymhp.config.lazy")

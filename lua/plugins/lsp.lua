@@ -5,6 +5,7 @@ return {
     {
       "williamboman/mason.nvim",
       cmd = { "Mason", "MasonLog" },
+      keys = { { "<leader>um", "<cmd>Mason<cr>", desc = "Mason" } },
       opts = {
         ui = {
           check_outdated_packages_on_open = false,
@@ -18,6 +19,7 @@ return {
           },
         },
       },
+      config = true,
     },
     { "williamboman/mason-lspconfig.nvim", config = true },
     { "b0o/SchemaStore.nvim" },
@@ -115,18 +117,21 @@ return {
       return
     end
 
+    local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    local capabilities = vim.tbl_deep_extend(
+      "force",
+      {},
+      vim.lsp.protocol.make_client_capabilities(),
+      has_cmp and cmp_nvim_lsp.default_capabilities() or {}
+    )
     local defaults = {
       autostart = false,
       flags = {
         allow_incremental_sync = false,
         debounce_text_changes = 500,
       },
+      capabilities = capabilities,
     }
-
-    local success, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    if success then
-      defaults.capabilities = cmp_nvim_lsp.default_capabilities()
-    end
 
     local count = 0
     require("mason-lspconfig").setup_handlers({
