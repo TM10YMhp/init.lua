@@ -4,7 +4,6 @@ return {
   "epwalsh/obsidian.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
   keys = {
-    { "<leader>o", "", desc = "+obsidian" },
     {
       "<leader>oe",
       "<cmd>Neotree dir=" .. obsidian_dir .. "<cr>",

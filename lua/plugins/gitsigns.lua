@@ -61,8 +61,6 @@ return {
     },
     { "]h", "<cmd>Gitsigns next_hunk<CR>", desc = "Next Hunk" },
     { "[h", "<cmd>Gitsigns prev_hunk<CR>", desc = "Prev Hunk" },
-
-    { "<leader>h", "", desc = "+hunk" },
     {
       "<leader>hb",
       "<cmd>lua require('gitsigns').blame_line({full=true})<cr>",
