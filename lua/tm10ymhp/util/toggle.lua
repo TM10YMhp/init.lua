@@ -45,10 +45,9 @@ function M.__call(option, opts)
     state = (opts.reverse and { not t[option] } or { t[option] })[1]
   end
 
-  local notify = state and SereneNvim.info or SereneNvim.warn
   local msg = string.format(opts.format, state and "Enabled" or "Disabled")
-
-  notify(msg, { title = "Option" })
+  local n = state and SereneNvim.info or SereneNvim.warn
+  n(msg, { title = "Option" })
 end
 
 ---@type {k:string, v:any}[]

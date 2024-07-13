@@ -12,6 +12,7 @@ return {
   },
   opts = {
     win = {
+      no_overlap = false,
       row = -2,
       border = "single",
     },
