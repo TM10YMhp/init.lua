@@ -1,3 +1,5 @@
+-- TODO: check this
+---@class SereneNvim.Util: { lualine: SereneNvim.Util.Lualine }
 local M = {}
 
 setmetatable(M, {
@@ -44,7 +46,7 @@ function M.is_large_file(path)
   end
 end
 
----@param plugin string
+---@param name string
 function M.get_plugin(name)
   return require("lazy.core.config").spec.plugins[name]
 end
