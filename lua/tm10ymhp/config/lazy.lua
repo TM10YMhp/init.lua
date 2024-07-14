@@ -79,11 +79,9 @@ require("lazy").setup({
   },
 })
 
--- autocmds can be loaded lazily when not opening a file
-local lazy_autocmds = vim.fn.argc(-1) == 0
-if not lazy_autocmds then
+SereneNvim.on_lazy_init(function()
   require("tm10ymhp.config.autocmds")
-end
+end)
 
 -- startuptime
 vim.api.nvim_create_autocmd("User", {
@@ -95,11 +93,6 @@ vim.api.nvim_create_autocmd("User", {
     end
 
     require("tm10ymhp.config.diagnostic")
-
-    if lazy_autocmds then
-      require("tm10ymhp.config.autocmds")
-    end
-
     require("tm10ymhp.config.keymaps")
 
     if vim.api.nvim_buf_get_name(0) ~= "" then

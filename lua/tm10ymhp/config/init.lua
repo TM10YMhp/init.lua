@@ -62,4 +62,15 @@ SereneNvim.config = {
   },
 }
 
+M.did_init = false
+function M.init()
+  if M.did_init then
+    return
+  end
+  M.did_init = true
+
+  require("tm10ymhp.config.options") -- call before lazy.nvim
+  require("tm10ymhp.config.lazy")
+end
+
 return M
