@@ -1,5 +1,7 @@
 -- TODO: check this
----@class SereneNvim.Util: { lualine: SereneNvim.Util.Lualine }
+
+---@class SereneNvim.Util
+---@field lualine SereneNvim.Util.Lualine
 local M = {}
 
 setmetatable(M, {
