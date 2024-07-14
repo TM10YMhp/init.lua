@@ -89,15 +89,6 @@ return {
           require("telescope.builtin").keymaps({
             prompt_title = "Key Maps <User>",
             show_plug = false,
-            filter = function(km)
-              if
-                string.match(tostring(km.lhs), "Þ")
-                or string.match(tostring(km.rhs), "which%-key")
-              then
-                return false
-              end
-              return true
-            end,
           })
         end,
         desc = "Key Maps <User>",
