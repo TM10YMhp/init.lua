@@ -4,7 +4,7 @@ local M = {}
 
 setmetatable(M, {
   __index = function(t, k)
-    t[k] = require("tm10ymhp.util." .. k)
+    t[k] = require("util." .. k)
     return t[k]
   end,
 })

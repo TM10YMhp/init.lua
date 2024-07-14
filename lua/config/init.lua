@@ -1,4 +1,4 @@
-_G.SereneNvim = require("tm10ymhp.util")
+_G.SereneNvim = require("util")
 
 local M = {}
 
