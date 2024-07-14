@@ -52,7 +52,7 @@ return {
           },
           "^().*()$",
         },
-        u = { "%l%l%l-://[A-Za-z0-9_%-/.#%%=?&'@+*]+" },
+        u = { "%l%l%l-://[A-Za-z0-9_%-/.#%%=?&'@+*:]+" },
         k = function(scope)
           local res = {}
           for i = 1, vim.api.nvim_buf_line_count(0) do
