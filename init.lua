@@ -1,1 +1,1 @@
-require("tm10ymhp.config").init()
+require("config").init()

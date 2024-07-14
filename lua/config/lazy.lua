@@ -80,7 +80,7 @@ require("lazy").setup({
 })
 
 SereneNvim.on_lazy_init(function()
-  require("tm10ymhp.config.autocmds")
+  require("config.autocmds")
 end)
 
 -- startuptime
@@ -92,8 +92,8 @@ vim.api.nvim_create_autocmd("User", {
       vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
     end
 
-    require("tm10ymhp.config.diagnostic")
-    require("tm10ymhp.config.keymaps")
+    require("config.diagnostic")
+    require("config.keymaps")
 
     if vim.api.nvim_buf_get_name(0) ~= "" then
       local stats = require("lazy").stats()

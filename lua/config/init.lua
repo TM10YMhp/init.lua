@@ -70,8 +70,8 @@ function M.init()
   end
   M.did_init = true
 
-  require("tm10ymhp.config.options") -- call before lazy.nvim
-  require("tm10ymhp.config.lazy")
+  require("config.options") -- call before lazy.nvim
+  require("config.lazy")
 end
 
 return M

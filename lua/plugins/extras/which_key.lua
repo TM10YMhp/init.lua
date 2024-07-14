@@ -15,7 +15,6 @@ return {
       no_overlap = false,
       height = { min = 4, max = 0.25 },
       border = "single",
-      title = true,
     },
     spec = {
       { "<leader><tab>", group = "tabs" },
