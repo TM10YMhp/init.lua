@@ -1,6 +1,6 @@
 return {
   "rebelot/heirline.nvim",
-  event = vim.fn.argc(-1) == 0 and "BufAdd" or "VeryLazy",
+  event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
   opts = {
     opts = {
       disable_winbar_cb = function()

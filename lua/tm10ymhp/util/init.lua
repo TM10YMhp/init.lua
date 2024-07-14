@@ -79,10 +79,10 @@ function M.on_load(name, fn)
   end
 end
 
+M.lazy_init = vim.fn.argc(-1) == 0
 ---@param fn fun()
 function M.on_lazy_init(fn)
-  local lazy_init = vim.fn.argc(-1) == 0
-  if not lazy_init then
+  if not M.lazy_init then
     fn()
   end
 
@@ -90,7 +90,7 @@ function M.on_lazy_init(fn)
     once = true,
     pattern = "VeryLazy",
     callback = function()
-      if lazy_init then
+      if M.lazy_init then
         fn()
       end
     end,

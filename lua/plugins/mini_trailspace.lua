@@ -1,6 +1,6 @@
 return {
   "echasnovski/mini.trailspace",
-  event = vim.fn.argc(-1) == 0 and "BufAdd" or "VeryLazy",
+  event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
   keys = {
     {
       "<leader>ct",

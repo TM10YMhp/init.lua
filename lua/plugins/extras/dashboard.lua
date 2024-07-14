@@ -1,6 +1,6 @@
 return {
   "nvimdev/dashboard-nvim",
-  event = vim.fn.argc(-1) == 0 and "UIEnter" or {},
+  event = SereneNvim.lazy_init and "UIEnter" or {},
   cmd = "Dashboard",
   dependencies = {
     "rubiin/fortune.nvim",
@@ -69,7 +69,7 @@ return {
     require("dashboard").setup(opts)
 
     -- close Lazy and re-open when the dashboard is ready
-    if vim.o.filetype == "lazy" and vim.fn.argc(-1) == 0 then
+    if vim.o.filetype == "lazy" and SereneNvim.lazy_init then
       vim.schedule(function()
         vim.cmd.close()
         vim.cmd("Dashboard")

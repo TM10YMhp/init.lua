@@ -2,7 +2,7 @@ return {
   "alan-w-255/telescope-mru.nvim",
   dependencies = {
     "yegappan/mru",
-    event = vim.fn.argc(-1) == 0 and "BufAdd" or "VeryLazy",
+    event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
     config = function()
       vim.api.nvim_exec_autocmds(
         "BufRead",
