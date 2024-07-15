@@ -39,10 +39,14 @@ local function get_telescope_builtin(builtin_name, state, path)
 end
 
 return {
+  { import = "plugins.telescope.telescope_live_grep_args" },
+  { import = "plugins.telescope.telescope_mru" },
+  { import = "plugins.telescope.telescope_symbols" },
+  { import = "plugins.telescope.telescope_undo" },
+  { "nvim-lua/plenary.nvim", lazy = true },
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       {
         "<leader>sw",
@@ -474,5 +478,4 @@ return {
       },
     },
   },
-  { import = "plugins.telescope" },
 }
