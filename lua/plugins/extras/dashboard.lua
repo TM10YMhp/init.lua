@@ -28,7 +28,7 @@ return {
           -- stylua: ignore
           center = {
             { action = "Telescope find_files", desc = "Find file",    key = "f" },
-            { action = "ene | startinsert",    desc = "New file",     key = "n" },
+            { action = "ene | startinsert",    desc = "New file",     key = "<C-N>" },
             { action = "Neotree",              desc = "Explorer",     key = "e" },
             { action = "Telescope mru",        desc = "Recent files", key = "o" },
             { action = "Telescope live_grep",  desc = "Find text",    key = "g" },

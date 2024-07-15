@@ -10,6 +10,7 @@ return {
       desc = "Buffer Local Keymaps (which-key)",
     },
   },
+  opts_extend = { "spec" },
   opts = {
     win = {
       no_overlap = false,
