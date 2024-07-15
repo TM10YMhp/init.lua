@@ -474,4 +474,5 @@ return {
       },
     },
   },
+  { import = "plugins.telescope" },
 }

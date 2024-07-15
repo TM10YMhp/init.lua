@@ -1,4 +1,6 @@
 return {
+  { import = "plugins.mini" },
+  { import = "plugins.telescope" },
   {
     "tommcdo/vim-exchange",
     keys = { { "cx", desc = "Exchange" } },
