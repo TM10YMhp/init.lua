@@ -27,11 +27,11 @@ return {
         header = vim.split(logo, "\n"),
           -- stylua: ignore
           center = {
-            { action = "Telescope find_files", desc = "Find file",    key = "f" },
             { action = "ene | startinsert",    desc = "New file",     key = "<C-N>" },
+            { action = "Telescope find_files", desc = "Find file",    key = "f" },
+            { action = "Telescope live_grep",  desc = "Find text",    key = "g" },
             { action = "Neotree",              desc = "Explorer",     key = "e" },
             { action = "Telescope mru",        desc = "Recent files", key = "o" },
-            { action = "Telescope live_grep",  desc = "Find text",    key = "g" },
             { action = "Telescope projects",   desc = "Projects",     key = "p" },
             { action = "Mason",                desc = "Mason",        key = "m" },
             { action = "Lazy",                 desc = "Lazy",         key = "l" },
