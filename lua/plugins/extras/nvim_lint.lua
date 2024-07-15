@@ -25,9 +25,6 @@ SereneNvim.on_lazy_ft({
 
 return {
   "mfussenegger/nvim-lint",
-  dependencies = {
-    "williamboman/mason.nvim",
-  },
   keys = {
     {
       "<leader>cl",
