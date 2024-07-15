@@ -17,14 +17,13 @@ return {
   },
   opts = {
     timeout = 3000,
+    -- stylua: ignore
     icons = {
-      -- stylua: ignore start
       DEBUG = "D",
       ERROR = "E",
       INFO  = "I",
       TRACE = "T",
       WARN  = "W",
-      -- stylua: ignore end
     },
     max_height = function()
       return math.floor(vim.o.lines * 0.75)
@@ -42,6 +41,8 @@ return {
         },
       }
       config.border = "single"
+      config.focusable = false
+      config.style = "minimal"
 
       vim.api.nvim_win_set_config(win, config)
     end,
