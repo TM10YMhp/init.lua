@@ -2,8 +2,9 @@ _G.SereneNvim = require("util")
 
 local M = {}
 
--- TODO: use __index
-SereneNvim.config = {
+SereneNvim.config = M
+
+local config = {
   bigfile_size = 1, -- 1 MB
   icons = {
     -- https://code.visualstudio.com/docs/editor/intellisense#_types-of-completions
@@ -73,5 +74,12 @@ function M.init()
   require("config.options") -- call before lazy.nvim
   require("config.lazy")
 end
+
+setmetatable(M, {
+  __index = function(t, k)
+    t[k] = config[k]
+    return t[k]
+  end,
+})
 
 return M

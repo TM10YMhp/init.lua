@@ -2,6 +2,7 @@
 
 ---@class SereneNvim.Util
 ---@field lualine SereneNvim.Util.Lualine
+
 local M = {}
 
 setmetatable(M, {
