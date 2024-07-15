@@ -116,4 +116,17 @@ return {
       }
     end,
   },
+  config = function(_, opts)
+    require("conform").setup(opts)
+
+    -- HACK: set options for info window
+    vim.api.nvim_create_user_command("ConformInfo", function()
+      require("conform.health").show_window()
+      vim.api.nvim_win_set_config(
+        vim.api.nvim_get_current_win(),
+        { border = "single" }
+      )
+      vim.wo[vim.api.nvim_get_current_win()].wrap = true
+    end, { desc = "Show information about Conform formatters" })
+  end,
 }
