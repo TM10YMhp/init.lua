@@ -110,6 +110,7 @@ vim.api.nvim_create_autocmd("User", {
       vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
     end
 
+    require("config.diagnostic")
     require("config.keymaps")
 
     if vim.api.nvim_buf_get_name(0) ~= "" then
