@@ -11,7 +11,17 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "folke/lazydev.nvim" },
+    opts = {
+      servers = {
+        lua_ls = {
+          on_new_config = function()
+            require("lazy").load({
+              plugins = { "lazydev.nvim" },
+            })
+          end,
+        },
+      },
+    },
   },
   {
     "hrsh7th/nvim-cmp",
