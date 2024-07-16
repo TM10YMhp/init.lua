@@ -1,12 +1,3 @@
--- return {
---   {
---     "neovim/nvim-lspconfig",
---     opts = {
---       servers = {},
---     },
---   },
--- }
-
 return {
   {
     "neovim/nvim-lspconfig",

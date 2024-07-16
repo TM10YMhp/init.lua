@@ -52,7 +52,7 @@ return {
       },
     },
     icons = {
-      rules = false,
+      mappings = false,
       keys = {
         Up = "Up ",
         Down = "Down ",
@@ -60,6 +60,7 @@ return {
         Right = "Right ",
         C = "C-",
         M = "M-",
+        D = "D-",
         S = "S-",
         CR = "CR ",
         Esc = "<Esc>",

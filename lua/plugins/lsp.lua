@@ -139,6 +139,7 @@ return {
       },
     },
     config = function(_, opts)
+      require("config.diagnostic")
       require("lspconfig.ui.windows").default_options = { border = "single" }
 
       local servers = opts.servers
