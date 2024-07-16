@@ -17,6 +17,15 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
     { import = "plugins.extras" },
+
+    { import = "plugins.extras.lang.cmake" },
+    { import = "plugins.extras.lang.java" },
+    { import = "plugins.extras.lang.json" },
+    { import = "plugins.extras.lang.latex" },
+    { import = "plugins.extras.lang.php" },
+    { import = "plugins.extras.lang.python" },
+    { import = "plugins.extras.lang.tailwind" },
+    { import = "plugins.extras.lang.typescript" },
   },
   pkg = {
     sources = {
@@ -76,6 +85,15 @@ require("lazy").setup({
         "zipPlugin",
       },
     },
+  },
+  -- Enable profiling of lazy.nvim. This will add some overhead,
+  -- so only enable this when you are debugging lazy.nvim
+  profiling = {
+    -- Enables extra stats on the debug tab related to the loader cache.
+    -- Additionally gathers stats about all package.loaders
+    loader = false,
+    -- Track each new require in the Lazy profiling tab
+    require = false,
   },
 })
 

@@ -27,7 +27,7 @@ return {
         header = vim.split(logo, "\n"),
           -- stylua: ignore
           center = {
-            { action = "ene | startinsert",    desc = "New file",     key = "<C-N>" },
+            { action = "ene | startinsert",    desc = "New file",     key = "n" },
             { action = "Telescope find_files", desc = "Find file",    key = "f" },
             { action = "Telescope live_grep",  desc = "Find text",    key = "g" },
             { action = "Neotree",              desc = "Explorer",     key = "e" },

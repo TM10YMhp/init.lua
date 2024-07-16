@@ -18,7 +18,6 @@ return {
       ensure_installed = {
         "lua",
         "vimdoc",
-        "jsonc",
         "markdown",
         "markdown_inline",
         "javascript",
