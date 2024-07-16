@@ -1,21 +1,3 @@
-local root_files = {
-  -- Multi-module projects
-  {
-    ".git",
-    "mvnw",
-    "gradlew",
-    -- "build.gradle",
-    -- "build.gradle.kts",
-  },
-  -- Single-module projects
-  {
-    "build.xml", -- Ant
-    "pom.xml", -- Maven
-    "settings.gradle", -- Gradle
-    "settings.gradle.kts", -- Gradle
-  },
-}
-
 SereneNvim.on_lazy_ft({
   pattern = { "java" },
   callback = function()
@@ -56,21 +38,42 @@ return {
       local jdtls_path =
         require("mason-registry").get_package("jdtls"):get_install_path()
       local lombok_jar = jdtls_path .. "/lombok.jar"
-      local path_jar =
+      local jar_path =
         vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
+
+      -- TODO: check this
       local config_dir = "config_linux"
       if vim.fn.has("win32") == 1 then
         config_dir = "config_win"
       elseif vim.fn.has("mac") == 1 then
         config_dir = "config_mac"
       end
-      local path_to_lsp_server = jdtls_path .. "/" .. config_dir
+      local jdtls_config_dir = jdtls_path .. "/" .. config_dir
       local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
       local workspace_path = vim.fn.stdpath("data")
         .. "/.cache/jdtls/workspace/"
-      local workspace_dir = workspace_path .. project_name
+      local jdtls_workspace_dir = workspace_path .. project_name
+
+      local root_files = {
+        -- Multi-module projects
+        {
+          ".git",
+          "mvnw",
+          "gradlew",
+          -- "build.gradle",
+          -- "build.gradle.kts",
+        },
+        -- Single-module projects
+        {
+          "build.xml", -- Ant
+          "pom.xml", -- Maven
+          "settings.gradle", -- Gradle
+          "settings.gradle.kts", -- Gradle
+        },
+      }
 
       return {
+        -- stylua: ignore
         cmd = {
           "java",
           "-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -81,16 +84,11 @@ return {
           "-javaagent:" .. lombok_jar,
           "-Xmx1G",
           "--add-modules=ALL-SYSTEM",
-          "--add-opens",
-          "java.base/java.util=ALL-UNNAMED",
-          "--add-opens",
-          "java.base/java.lang=ALL-UNNAMED",
-          "-jar",
-          path_jar,
-          "-configuration",
-          path_to_lsp_server,
-          "-data",
-          workspace_dir,
+          "--add-opens", "java.base/java.util=ALL-UNNAMED",
+          "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+          "-jar", jar_path,
+          "-configuration", jdtls_config_dir,
+          "-data", jdtls_workspace_dir,
         },
         root_dir = (function()
           for _, patterns in ipairs(root_files) do
