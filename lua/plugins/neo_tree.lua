@@ -8,6 +8,7 @@ return {
         return { "BufEnter" }
       end
     end
+    return { "BufAdd" }
   end,
   dependencies = {
     "nvim-lua/plenary.nvim",

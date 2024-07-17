@@ -42,11 +42,13 @@ return {
         prepend_args = function()
           local cwd = vim.uv.cwd()
           if
-            vim.fn.filereadable(cwd .. "/.stylua.toml")
-            or vim.fn.filereadable(cwd .. "/stylua.toml")
+            vim.fn.filereadable(cwd .. "/.stylua.toml") == 1
+            or vim.fn.filereadable(cwd .. "/stylua.toml") == 1
           then
             return {}
           end
+
+          SereneNvim.warn("stylua config not found")
 
           return {
             "--config-path=" .. vim.fn.stdpath("config") .. "/.stylua.toml",
