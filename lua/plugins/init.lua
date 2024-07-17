@@ -1,5 +1,14 @@
 return {
   {
+    "tzachar/highlight-undo.nvim",
+    event = "VeryLazy",
+    opts = {
+      duration = 100,
+      undo = { hlgroup = "DiffText" },
+      redo = { hlgroup = "DiffChange" },
+    },
+  },
+  {
     "tommcdo/vim-exchange",
     keys = { { "cx", desc = "Exchange" } },
   },
