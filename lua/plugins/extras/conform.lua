@@ -48,8 +48,6 @@ return {
             return {}
           end
 
-          SereneNvim.warn("stylua config not found")
-
           return {
             "--config-path=" .. vim.fn.stdpath("config") .. "/.stylua.toml",
           }
