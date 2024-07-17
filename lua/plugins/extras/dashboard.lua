@@ -68,19 +68,18 @@ return {
   config = function(_, opts)
     require("dashboard").setup(opts)
 
+    vim.opt_local.foldenable = false
+    vim.opt_local.foldcolumn = "0"
+
     -- close Lazy and re-open when the dashboard is ready
     if vim.o.filetype == "lazy" and SereneNvim.lazy_init then
       vim.schedule(function()
         vim.cmd.close()
         vim.cmd("Dashboard")
-        vim.b.minitrailspace_disable = true
         vim.defer_fn(function()
           require("lazy").show()
         end, 10)
       end)
-    else
-      vim.cmd("Dashboard")
-      vim.b.minitrailspace_disable = true
     end
   end,
 }

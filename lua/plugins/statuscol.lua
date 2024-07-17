@@ -5,7 +5,7 @@ return {
     local builtin = require("statuscol.builtin")
 
     return {
-      ft_ignore = { "fugitive" },
+      ft_ignore = { "fugitive", "dashboard", "bigfile" },
       bt_ignore = { "terminal", "help" },
       relculright = false,
       segments = {

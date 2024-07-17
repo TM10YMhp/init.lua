@@ -60,9 +60,6 @@ return {
 
     return {
       open_fold_hl_timeout = 0,
-      -- provider_selector = function(bufnr, filetype, buftype)
-      --   return {'treesitter', 'indent'}
-      -- end,
       fold_virt_text_handler = handler,
       preview = {
         win_config = {
@@ -89,19 +86,22 @@ return {
 
     require("ufo").setup(opts)
 
-    if vim.bo.filetype == "dashboard" or vim.bo.filetype == "bigfile" then
-      require("ufo").detach()
-      vim.opt_local.foldenable = false
-      vim.opt_local.foldcolumn = "0"
+    local ft_ignore = {
+      "nvcheatsheet",
+      "neo-tree",
+      "dashboard",
+      "dbui",
+      "bigfile",
+    }
+
+    for _, bufnr in ipairs(vim.fn.tabpagebuflist(vim.fn.tabpagenr("$"))) do
+      if vim.list_contains(ft_ignore, vim.bo[bufnr].filetype) then
+        require("ufo").detach(bufnr)
+      end
     end
 
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = {
-        "nvcheatsheet",
-        "neo-tree",
-        "dashboard",
-        "dbui",
-      },
+      pattern = ft_ignore,
       callback = function()
         vim.schedule(function()
           require("ufo").detach()
