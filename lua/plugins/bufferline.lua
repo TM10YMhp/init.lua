@@ -43,14 +43,12 @@ return {
         tab_size = 0,
         diagnostics = "nvim_lsp",
         diagnostics_update_in_insert = false,
-        diagnostics_indicator = function(_, _, diagnostics_dict)
-          local s = " "
-          for e, n in pairs(diagnostics_dict) do
-            local sym = e == "error" and "E "
-              or (e == "warning" and "W " or "H ")
-            s = s .. n .. sym
-          end
-          return vim.trim(s)
+        diagnostics_indicator = function(_, _, diag)
+          return vim.trim(
+            (diag.error and "E" .. diag.error .. " " or "")
+              .. (diag.warning and "W" .. diag.warning .. " " or "")
+              .. (diag.hint and "H" .. diag.hint .. " " or "")
+          )
         end,
         show_buffer_icons = false,
         show_buffer_close_icons = false,

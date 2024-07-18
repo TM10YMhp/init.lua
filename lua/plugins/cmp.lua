@@ -163,7 +163,7 @@ return {
               .. (SereneNvim.config.icons.sources[entry.source.name] or entry.source.name)
               .. "]"
 
-            function trim(text)
+            local function trim(text)
               local max = math.floor(0.35 * vim.o.columns)
               if text and text:len() > max then
                 return text:sub(1, max) .. "…"

@@ -4,8 +4,8 @@ return {
     event = "VeryLazy",
     opts = {
       duration = 100,
-      undo = { hlgroup = "DiffText" },
-      redo = { hlgroup = "DiffChange" },
+      undo = { hlgroup = "Search" },
+      redo = { hlgroup = "Search" },
     },
   },
   {
