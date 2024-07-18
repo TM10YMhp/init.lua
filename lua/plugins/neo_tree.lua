@@ -139,15 +139,6 @@ return {
       { event = events.FILE_RENAMED, handler = on_move },
     })
 
-    -- HACK: remove icons
-    local default_renderers = require("neo-tree.defaults").renderers
-    table.remove(default_renderers.directory, 2)
-    table.remove(default_renderers.file, 2)
-    opts.renderers = {
-      directory = default_renderers.directory,
-      file = default_renderers.file,
-    }
-
     require("neo-tree").setup(opts)
   end,
 }
