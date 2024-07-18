@@ -121,6 +121,10 @@ return {
       }
     end,
     config = function(_, opts)
+      if vim.env.JAVA_HOME == nil then
+        SereneNvim.warn("JDTLS: JAVA_HOME not found")
+      end
+
       local mason_registry = require("mason-registry")
       local bundles = {} ---@type string[]
       if
