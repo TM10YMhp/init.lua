@@ -8,7 +8,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
+    event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     -- https://github.com/folke/lazy.nvim/commit/1f7b720
     opts_extend = { "ensure_installed" },
@@ -60,7 +60,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    event = "InsertCharPre",
+    event = SereneNvim.lazy_init and "BufAdd" or "InsertCharPre",
     config = function()
       require("nvim-ts-autotag").setup()
       -- HACK: attach on init

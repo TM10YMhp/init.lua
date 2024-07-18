@@ -40,7 +40,7 @@ return {
   },
   {
     "windwp/nvim-autopairs",
-    event = "InsertEnter",
+    event = SereneNvim.lazy_init and "BufAdd" or "InsertEnter",
     dependencies = { "hrsh7th/nvim-cmp" },
     opts = {},
     config = function(_, opts)
@@ -55,7 +55,8 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter /,?" },
+    event = SereneNvim.lazy_init and "BufAdd"
+      or { "InsertEnter", "CmdlineEnter /,?" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "saadparwaiz1/cmp_luasnip",
