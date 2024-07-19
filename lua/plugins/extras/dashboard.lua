@@ -68,9 +68,6 @@ return {
   config = function(_, opts)
     require("dashboard").setup(opts)
 
-    vim.opt_local.foldenable = false
-    vim.opt_local.foldcolumn = "0"
-
     -- close Lazy and re-open when the dashboard is ready
     if vim.o.filetype == "lazy" and SereneNvim.lazy_init then
       vim.schedule(function()

@@ -63,9 +63,23 @@ return {
     event = SereneNvim.lazy_init and "BufAdd" or "InsertCharPre",
     config = function()
       require("nvim-ts-autotag").setup()
-      -- HACK: attach on init
       require("nvim-ts-autotag.internal").attach()
     end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
+    keys = {
+      {
+        "<leader>ut",
+        "<cmd>TSContextToggle<cr>",
+        desc = "Toggle Treesitter Context",
+      },
+    },
+    opts = {
+      mode = "cursor",
+      max_lines = 3,
+    },
   },
   {
     "Wansmer/treesj",
@@ -96,21 +110,6 @@ return {
         "<cmd>CellularAutomaton game_of_life<CR>",
         desc = "Cellular Automaton: Game Of Life",
       },
-    },
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "VeryLazy",
-    keys = {
-      {
-        "<leader>ut",
-        "<cmd>TSContextToggle<cr>",
-        desc = "Toggle Treesitter Context",
-      },
-    },
-    opts = {
-      mode = "cursor",
-      max_lines = 3,
     },
   },
 }

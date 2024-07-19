@@ -28,4 +28,12 @@ return {
       },
     }
   end,
+  config = function(_, opts)
+    require("statuscol").setup(opts)
+
+    vim.api.nvim_exec_autocmds(
+      "Filetype",
+      { group = "StatusCol", modeline = false }
+    )
+  end,
 }

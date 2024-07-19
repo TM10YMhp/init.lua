@@ -97,6 +97,8 @@ return {
     for _, bufnr in ipairs(vim.fn.tabpagebuflist(vim.fn.tabpagenr("$"))) do
       if vim.list_contains(ft_ignore, vim.bo[bufnr].filetype) then
         require("ufo").detach(bufnr)
+        vim.opt_local.foldenable = false
+        vim.opt_local.foldcolumn = "0"
       end
     end
 
