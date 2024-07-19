@@ -6,9 +6,29 @@ end
 
 function M.enable()
   M.reset_augroup()
+  M.fix_conceallevel()
   M.fix_tsc()
   M.fix_neo_tree()
   M.fix_conform()
+end
+
+function M.fix_conceallevel()
+  M.on_module("vim.lsp.util", function(mod)
+    local open_floating_preview = mod.open_floating_preview
+
+    mod.open_floating_preview = function(contents, syntax, opts, ...)
+      opts = opts or {}
+      opts.max_width = 80
+      opts.max_height = 35
+      opts.style = "minimal"
+      opts.border = "single"
+
+      local bufnr, winid = open_floating_preview(contents, syntax, opts, ...)
+      vim.wo[winid].conceallevel = 0
+
+      return bufnr, winid
+    end
+  end)
 end
 
 -- detect jsconfig.json
