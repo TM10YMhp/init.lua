@@ -47,21 +47,15 @@ Si encuentra algun problema o tiene alguna sugerencia, por favor abre un issue y
 - Eliminar archivos de Neovim actuales
 
 ```bash
-# recomendado
-
-## Windows
-rm -rf ~/AppData/Local/nvim/
-## Linux
-rm -rf ~/.config/nvim/
-
-# opcional pero recomendado
-
-## Windows
-rm -rf ~/AppData/Local/nvim-data/
-## Linux
-rm -rf ~/.local/share/nvim/
+# linux/macos (unix)
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
 rm -rf ~/.local/state/nvim/
-rm -rf ~/.cache/nvim/
+rm -rf ~/.cache/nvim
+
+# windows
+rd -r ~\AppData\Local\nvim
+rd -r ~\AppData\Local\nvim-data
 ```
 
 - Posicionarse en el directorio
