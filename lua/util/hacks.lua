@@ -8,14 +8,15 @@ function M.enable()
   M.reset_augroup()
   M.fix_tsc()
   M.fix_neo_tree()
+  M.fix_conform()
 end
 
--- HACK: tsc detect jsconfig.json
+-- detect jsconfig.json
 function M.fix_tsc()
   M.on_module("tsc.utils", function(mod)
     local find_nearest_tsconfig = mod.find_nearest_tsconfig
 
-    function mod.find_nearest_tsconfig()
+    mod.find_nearest_tsconfig = function()
       find_nearest_tsconfig()
 
       local jsconfig = vim.fn.findfile("jsconfig.json", ".;")
@@ -24,11 +25,26 @@ function M.fix_tsc()
   end)
 end
 
--- HACK: remove icons
+-- remove icons
 function M.fix_neo_tree()
   M.on_module("neo-tree.defaults", function(mod)
     table.remove(mod.renderers.directory, 2)
     table.remove(mod.renderers.file, 2)
+  end)
+end
+
+-- pretty info
+function M.fix_conform()
+  M.on_module("conform.health", function(mod)
+    local show_window = mod.show_window
+
+    mod.show_window = function()
+      show_window()
+
+      local win = vim.api.nvim_get_current_win()
+      vim.api.nvim_win_set_config(win, { border = "single" })
+      vim.wo[win].wrap = true
+    end
   end)
 end
 

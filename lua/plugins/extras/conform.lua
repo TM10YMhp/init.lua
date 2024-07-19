@@ -69,8 +69,8 @@ return {
         },
       },
     },
+    -- stylua: ignore
     formatters_by_ft = {
-      -- stylua: ignore start
       cs              = { "clang-format" },
       c               = { "clang-format" },
       cpp             = { "clang-format" },
@@ -94,7 +94,6 @@ return {
       java            = { "google-java-format" },
       blade           = { "blade-formatter" },
       php             = { "php_cs_fixer" },
-      -- stylua: ignore end
     },
     format_on_save = function(bufnr)
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -115,17 +114,4 @@ return {
       }
     end,
   },
-  config = function(_, opts)
-    require("conform").setup(opts)
-
-    -- HACK: set options for info window
-    vim.api.nvim_create_user_command("ConformInfo", function()
-      require("conform.health").show_window()
-      vim.api.nvim_win_set_config(
-        vim.api.nvim_get_current_win(),
-        { border = "single" }
-      )
-      vim.wo[vim.api.nvim_get_current_win()].wrap = true
-    end, { desc = "Show information about Conform formatters" })
-  end,
 }
