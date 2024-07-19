@@ -60,7 +60,7 @@ return {
 
     -- NOTE: keep
     local oneMaps = {
-      visibleInWindow = "gw",
+      -- visibleInWindow = "gw", -- break `gw` format
       restOfIndentation = "R",
       restOfWindow = "gW",
       column = "|",

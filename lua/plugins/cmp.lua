@@ -55,7 +55,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    event = SereneNvim.lazy_init and "BufAdd"
+    event = SereneNvim.lazy_init and { "BufAdd", "CmdlineEnter /,?" }
       or { "InsertEnter", "CmdlineEnter /,?" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",

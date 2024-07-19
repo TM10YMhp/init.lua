@@ -6,11 +6,18 @@ return {
     {
       "<leader>cF",
       function()
-        require("conform").format({
-          lsp_format = "never",
-          async = false,
-          timeout_ms = 3000,
-        })
+        require("conform").format({ timeout_ms = 3000 }, function(err)
+          if not err then
+            local mode = vim.api.nvim_get_mode().mode
+            if vim.startswith(string.lower(mode), "v") then
+              vim.api.nvim_feedkeys(
+                vim.api.nvim_replace_termcodes("<Esc>", true, false, true),
+                "n",
+                true
+              )
+            end
+          end
+        end)
       end,
       mode = { "n", "x" },
       desc = "Conform: Format",
@@ -69,10 +76,15 @@ return {
         },
       },
     },
+    default_format_opts = {
+      lsp_format = "never",
+      async = false,
+      quiet = false,
+    },
     -- stylua: ignore
     formatters_by_ft = {
       cs              = { "clang-format" },
-      c               = { "clang-format" },
+      c               = { "clang-format", lsp_format = "fallback" },
       cpp             = { "clang-format" },
       lua             = { "stylua" },
       json            = { "biome" },
@@ -106,12 +118,7 @@ return {
         return
       end
 
-      return {
-        lsp_format = "never",
-        async = false,
-        quiet = false,
-        timeout_ms = 800,
-      }
+      return { timeout_ms = 800 }
     end,
   },
 }

@@ -1,3 +1,13 @@
+SereneNvim.on_lazy_init(function()
+  vim.filetype.add({
+    extension = {
+      xaml = "xml",
+    },
+  })
+end)
+
+-- ts install xml and cs
+
 return {
   {
     "mfussenegger/nvim-lint",
@@ -34,7 +44,6 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       { "williamboman/mason-lspconfig.nvim", config = function() end },
-      { "deathbeam/lspecho.nvim", opts = { decay = 3000 } },
     },
     keys = {
       { "<leader>cr", vim.lsp.buf.rename, desc = "LSP: Rename" },
