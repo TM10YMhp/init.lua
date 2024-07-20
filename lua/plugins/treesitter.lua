@@ -8,7 +8,8 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
+    event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
+    cmd = "TSUpdate",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     -- https://github.com/folke/lazy.nvim/commit/1f7b720
     opts_extend = { "ensure_installed" },
