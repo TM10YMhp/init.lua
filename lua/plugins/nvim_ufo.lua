@@ -92,6 +92,7 @@ return {
       "dashboard",
       "dbui",
       "bigfile",
+      "lazy",
     }
 
     for _, bufnr in ipairs(vim.fn.tabpagebuflist(vim.fn.tabpagenr("$"))) do

@@ -1,4 +1,12 @@
 return {
+  -- TODO: check this
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+    config = function()
+      vim.g.undotree_WindowLayout = 4
+    end,
+  },
   {
     "tzachar/highlight-undo.nvim",
     event = "VeryLazy",

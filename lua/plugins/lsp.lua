@@ -1,13 +1,3 @@
-SereneNvim.on_lazy_init(function()
-  vim.filetype.add({
-    extension = {
-      xaml = "xml",
-    },
-  })
-end)
-
--- ts install xml and cs
-
 return {
   {
     "mfussenegger/nvim-lint",
