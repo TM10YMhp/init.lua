@@ -7,9 +7,10 @@ SereneNvim.on_lazy_init(function()
 end)
 
 return {
+  { "nvim-lua/plenary.nvim", lazy = true },
   {
     "rest-nvim/rest.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    main = "rest-nvim",
     tag = "v1.2.1", -- NOTE: wait until the project is resumed
     opts = {
       result_split_horizontal = true,
@@ -34,37 +35,6 @@ return {
         desc = "RestNvim Preview",
       },
     },
-    config = function(_, opts)
-      local rest = require("rest-nvim")
-
-      rest.setup(opts)
-
-      -- HACK: only run in http filetype
-      local message = table.concat({
-        'RestNvim is only available for filetype "http"',
-        'Current filetype is "' .. vim.bo.filetype .. '"',
-      }, "\n")
-
-      local orig_run = rest.run
-      ---@diagnostic disable-next-line: duplicate-set-field
-      rest.run = function(...)
-        if vim.bo.filetype == "http" then
-          return orig_run(...)
-        end
-
-        SereneNvim.warn(message)
-      end
-
-      local orig_last = rest.last
-      ---@diagnostic disable-next-line: duplicate-set-field
-      rest.last = function(...)
-        if vim.bo.filetype == "http" then
-          return orig_last(...)
-        end
-
-        SereneNvim.warn(message)
-      end
-    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",

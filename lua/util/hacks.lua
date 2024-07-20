@@ -6,10 +6,39 @@ end
 
 function M.enable()
   M.reset_augroup()
+  M.fix_rest()
   M.fix_conceallevel()
   M.fix_tsc()
   M.fix_neo_tree()
   M.fix_conform()
+end
+
+-- only run in http filetype
+function M.fix_rest()
+  M.on_module("rest-nvim", function(mod)
+    local message = table.concat({
+      'RestNvim is only available for filetype "http"',
+      'Current filetype is "' .. vim.bo.filetype .. '"',
+    }, "\n")
+
+    local run = mod.run
+    mod.run = function(...)
+      if vim.bo.filetype == "http" then
+        return run(...)
+      end
+
+      SereneNvim.warn(message)
+    end
+
+    local last = mod.last
+    mod.last = function(...)
+      if vim.bo.filetype == "http" then
+        return last(...)
+      end
+
+      SereneNvim.warn(message)
+    end
+  end)
 end
 
 function M.fix_conceallevel()
