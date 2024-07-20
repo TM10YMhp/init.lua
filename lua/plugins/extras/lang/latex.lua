@@ -4,16 +4,17 @@ return {
     opts = {
       servers = {
         texlab = {
+          on_new_config = function(new_config)
+            new_config.settings.texlab.build.args = new_config.settings.texlab.build.args
+              or {}
+            vim.list_extend(new_config.settings.texlab.build.args, {
+              "-outdir=build",
+              "-pdflatex=xelatex",
+            })
+          end,
           settings = {
             texlab = {
               build = {
-                args = vim.list_extend(
-                  require("lspconfig.server_configurations.texlab").default_config.settings.texlab.build.args,
-                  {
-                    "-outdir=build",
-                    "-pdflatex=xelatex",
-                  }
-                ),
                 onSave = true,
               },
             },

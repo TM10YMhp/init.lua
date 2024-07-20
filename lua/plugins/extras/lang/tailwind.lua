@@ -5,12 +5,14 @@ return {
       servers = {
         tailwindcss = {
           -- only detect tailwind config files
-          root_dir = require("lspconfig.util").root_pattern(
-            "tailwind.config.js",
-            "tailwind.config.cjs",
-            "tailwind.config.mjs",
-            "tailwind.config.ts"
-          ),
+          root_dir = function(fname)
+            return require("lspconfig.util").root_pattern(
+              "tailwind.config.js",
+              "tailwind.config.cjs",
+              "tailwind.config.mjs",
+              "tailwind.config.ts"
+            )(fname)
+          end,
           settings = {
             tailwindCSS = {
               hovers = true,

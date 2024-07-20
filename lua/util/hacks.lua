@@ -64,12 +64,22 @@ end
 function M.fix_tsc()
   M.on_module("tsc.utils", function(mod)
     local find_nearest_tsconfig = mod.find_nearest_tsconfig
-
     mod.find_nearest_tsconfig = function()
       find_nearest_tsconfig()
 
       local jsconfig = vim.fn.findfile("jsconfig.json", ".;")
       return jsconfig ~= "" and { jsconfig } or {}
+    end
+
+    local find_tsc_bin = mod.find_tsc_bin
+    mod.find_tsc_bin = function()
+      local tsc_bin = find_tsc_bin()
+
+      if tsc_bin == "tsc" then
+        return vim.fn.exepath("tsc")
+      end
+
+      return tsc_bin
     end
   end)
 end
@@ -104,6 +114,7 @@ function M.on_module(module, fn)
     return fn(package.loaded[module])
   end
 
+  -- FIX: loop and previous error
   package.preload[module] = function()
     package.preload[module] = nil
     for _, loader in pairs(package.loaders) do
