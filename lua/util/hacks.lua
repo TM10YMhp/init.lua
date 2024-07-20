@@ -114,8 +114,10 @@ function M.on_module(module, fn)
     return fn(package.loaded[module])
   end
 
-  -- FIX: loop and previous error
   package.preload[module] = function()
+    -- print(package.loaded[module]) -- -5.6817549271743e-322
+    -- FIX: loop and previous error
+    package.loaded[module] = nil
     package.preload[module] = nil
     for _, loader in pairs(package.loaders) do
       local ret = loader(module)
