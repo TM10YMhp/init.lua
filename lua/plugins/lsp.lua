@@ -36,40 +36,51 @@ return {
       { "williamboman/mason-lspconfig.nvim", config = function() end },
     },
     keys = {
-      { "<leader>cr", vim.lsp.buf.rename, desc = "LSP: Rename" },
-      { "<leader>ca", vim.lsp.buf.code_action, desc = "LSP: Code Action" },
+      {
+        "<leader>cr",
+        "<cmd>lua vim.lsp.buf.rename()<cr>",
+        desc = "LSP: Rename",
+      },
+      {
+        "<leader>ca",
+        "<cmd>lua vim.lsp.buf.code_action()<cr>",
+        desc = "LSP: Code Action",
+      },
       {
         "<c-k>",
-        vim.lsp.buf.signature_help,
+        "<cmd>lua vim.lsp.buf.signature_help()<cr>",
         mode = { "n", "i" },
         desc = "LSP: Signature Help",
       },
       {
         "K",
-        -- NOTE: https://github.com/neovim/neovim/blob/master/runtime/lua/vim/lsp.lua#L382-L383
-        [[<cmd>lua vim.lsp.buf.hover()<cr>]],
+        "<cmd>lua vim.lsp.buf.hover()<cr>",
         desc = "LSP: Hover",
       },
-      { "<leader>cf", vim.lsp.buf.format, desc = "LSP: Format" },
+      {
+        "<leader>cf",
+        "<cmd>lua vim.lsp.buf.format()<cr>",
+        desc = "LSP: Format",
+      },
       {
         "<leader>ka",
-        vim.lsp.buf.add_workspace_folder,
+        "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>",
         desc = "LSP: Add Workspace Folder",
       },
       {
         "<leader>kr",
-        vim.lsp.buf.remove_workspace_folder,
+        "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>",
         desc = "LSP: Remove Workspace Folder",
       },
       {
         "<leader>kl",
-        "<cmd>lua vim.print(vim.lsp.buf.list_workspace_folders())<cr>",
+        "<cmd>=vim.lsp.buf.list_workspace_folders()<cr>",
         desc = "LSP: List Workspace Folders",
       },
       { "<leader>li", "<cmd>LspInfo<cr>", desc = "LSP: Info" },
       {
         "<leader>ll",
-        "<cmd>edit " .. vim.lsp.get_log_path() .. "<cr>",
+        "<cmd>lua vim.cmd.edit(vim.lsp.get_log_path())<cr>",
         desc = "LSP: Log",
       },
       {
