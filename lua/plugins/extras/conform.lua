@@ -121,4 +121,8 @@ return {
       return { timeout_ms = 800 }
     end,
   },
+  config = function(_, opts)
+    require("conform").setup(opts)
+    SereneNvim.hacks.conform()
+  end,
 }

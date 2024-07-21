@@ -6,14 +6,7 @@ return {
       -- silent_chdir = false,
     },
     config = function(_, opts)
-      -- HACK: check if directory exists
-      local M = require("project_nvim.utils.path")
-      local superclass_exists = M.exists
-      ---@diagnostic disable-next-line: duplicate-set-field
-      function M.exists(path)
-        path = path:gsub("\\", "/")
-        return vim.fn.isdirectory(path) == 1 or superclass_exists(path)
-      end
+      SereneNvim.hacks.project()
 
       require("project_nvim").setup(opts)
 

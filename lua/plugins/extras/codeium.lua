@@ -20,18 +20,7 @@ return {
     },
     config = function(_, opts)
       require("codeium").setup(opts)
-
-      -- HACK: toggle codeium
-      vim.g.codeium_enabled = true
-
-      -- https://github.com/Exafunction/codeium.nvim/issues/136
-      local Source = require("codeium.source")
-
-      local superclass_is_available = Source.is_available
-      ---@diagnostic disable-next-line: duplicate-set-field
-      function Source:is_available()
-        return superclass_is_available(self) and vim.g.codeium_enabled
-      end
+      SereneNvim.hacks.codeium()
     end,
   },
   {

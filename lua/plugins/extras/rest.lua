@@ -10,7 +10,6 @@ return {
   { "nvim-lua/plenary.nvim", lazy = true },
   {
     "rest-nvim/rest.nvim",
-    main = "rest-nvim",
     tag = "v1.2.1", -- NOTE: wait until the project is resumed
     opts = {
       result_split_horizontal = true,
@@ -35,6 +34,10 @@ return {
         desc = "RestNvim Preview",
       },
     },
+    config = function(_, opts)
+      require("rest-nvim").setup(opts)
+      SereneNvim.hacks.rest()
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",

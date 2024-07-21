@@ -114,9 +114,6 @@ vim.api.nvim_create_autocmd("User", {
     require("config.diagnostic")
     require("config.keymaps")
 
-    -- HACK: enable hacks
-    SereneNvim.hacks.enable()
-
     if vim.api.nvim_buf_get_name(0) ~= "" then
       local stats = require("lazy").stats()
       local ms = math.floor(stats.startuptime * 100 + 0.5) / 100

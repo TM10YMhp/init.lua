@@ -11,31 +11,7 @@ return {
 
       luasnip.setup()
 
-      -- https://github.com/L3MON4D3/LuaSnip/issues/656
-      vim.api.nvim_create_autocmd("ModeChanged", {
-        group = vim.api.nvim_create_augroup(
-          "tm10ymhp_unlink_snippet_on_mode_change",
-          { clear = true }
-        ),
-        pattern = { "s:n", "i:*" },
-        desc = "Forget the current snippet when leaving the insert mode",
-        callback = function(evt)
-          -- if we have n active nodes, n - 1 will still remain after a
-          -- `unlink_current()` call. We unlink all of them by wrapping the calls
-          -- in a loop.
-          while true do
-            if
-              luasnip.session
-              and luasnip.session.current_nodes[evt.buf]
-              and not luasnip.session.jump_active
-            then
-              luasnip.unlink_current()
-            else
-              break
-            end
-          end
-        end,
-      })
+      SereneNvim.hacks.luasnip()
     end,
   },
   {
@@ -61,7 +37,10 @@ return {
     },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
-      "saadparwaiz1/cmp_luasnip",
+      {
+        "saadparwaiz1/cmp_luasnip",
+        dependencies = { "L3MON4D3/LuaSnip" },
+      },
       "hrsh7th/cmp-buffer",
       "amarakon/nvim-cmp-buffer-lines",
     },
@@ -249,19 +228,7 @@ return {
         },
       })
 
-      -- HACK: disabled nvim-cmp for command mode wildmenu
-      -- https://github.com/hrsh7th/nvim-cmp/discussions/1731#discussion-5751566
-      vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
-        pattern = { ":" },
-        callback = function()
-          local mappings = vim.api.nvim_get_keymap("c")
-          for _, v in pairs(mappings) do
-            if v.desc == "cmp.utils.keymap.set_map" then
-              vim.keymap.del("c", v.lhs)
-            end
-          end
-        end,
-      })
+      SereneNvim.hacks.cmp()
     end,
   },
 }

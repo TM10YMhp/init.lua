@@ -1,132 +1,175 @@
 local M = {}
 
-function M.reset_augroup()
-  M.group = vim.api.nvim_create_augroup("tm10ymhp.hacks", { clear = true })
+-- toggle codeium
+function M.codeium()
+  vim.g.codeium_enabled = true
+
+  -- https://github.com/Exafunction/codeium.nvim/issues/136
+  local mod = require("codeium.source")
+
+  local is_available = mod.is_available
+  ---@diagnostic disable-next-line: duplicate-set-field
+  function mod:is_available()
+    return is_available(self) and vim.g.codeium_enabled
+  end
 end
 
-function M.enable()
-  M.reset_augroup()
-  M.fix_rest()
-  M.fix_conceallevel()
-  M.fix_tsc()
-  M.fix_neo_tree()
-  M.fix_conform()
+-- fix windows path
+function M.telescope()
+  local mod = require("telescope.actions.state")
+  local get_selected_entry = mod.get_selected_entry
+  ---@diagnostic disable-next-line: duplicate-set-field
+  mod.get_selected_entry = function()
+    local entry = get_selected_entry()
+    if entry.path then
+      entry.path = entry.path:gsub("/", "\\")
+    end
+    return entry
+  end
+end
+
+-- disabled nvim-cmp for command mode wildmenu
+function M.cmp()
+  -- https://github.com/hrsh7th/nvim-cmp/discussions/1731#discussion-5751566
+  vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
+    pattern = { ":" },
+    callback = function()
+      local mappings = vim.api.nvim_get_keymap("c")
+      for _, v in pairs(mappings) do
+        if v.desc == "cmp.utils.keymap.set_map" then
+          vim.keymap.del("c", v.lhs)
+        end
+      end
+    end,
+  })
+end
+
+-- check if directory exists
+function M.project()
+  local mod = require("project_nvim.utils.path")
+  local exists = mod.exists
+  ---@diagnostic disable-next-line: duplicate-set-field
+  mod.exists = function(path)
+    path = path:gsub("\\", "/")
+    return vim.fn.isdirectory(path) == 1 or exists(path)
+  end
+end
+
+function M.luasnip()
+  -- https://github.com/L3MON4D3/LuaSnip/issues/656
+  local mod = require("luasnip")
+  vim.api.nvim_create_autocmd("ModeChanged", {
+    group = vim.api.nvim_create_augroup(
+      "tm10ymhp_unlink_snippet_on_mode_change",
+      { clear = true }
+    ),
+    pattern = { "s:n", "i:*" },
+    desc = "Forget the current snippet when leaving the insert mode",
+    callback = function(evt)
+      -- if we have n active nodes, n - 1 will still remain after a
+      -- `unlink_current()` call. We unlink all of them by wrapping the calls
+      -- in a loop.
+      while true do
+        if
+          mod.session
+          and mod.session.current_nodes[evt.buf]
+          and not mod.session.jump_active
+        then
+          mod.unlink_current()
+        else
+          break
+        end
+      end
+    end,
+  })
 end
 
 -- only run in http filetype
-function M.fix_rest()
-  M.on_module("rest-nvim", function(mod)
-    local message = table.concat({
-      'RestNvim is only available for filetype "http"',
-      'Current filetype is "' .. vim.bo.filetype .. '"',
-    }, "\n")
+function M.rest()
+  local mod = require("rest-nvim")
+  local message = table.concat({
+    'RestNvim is only available for filetype "http"',
+    'Current filetype is "' .. vim.bo.filetype .. '"',
+  }, "\n")
 
-    local run = mod.run
-    mod.run = function(...)
-      if vim.bo.filetype == "http" then
-        return run(...)
-      end
-
-      SereneNvim.warn(message)
+  local run = mod.run
+  mod.run = function(...)
+    if vim.bo.filetype == "http" then
+      return run(...)
     end
 
-    local last = mod.last
-    mod.last = function(...)
-      if vim.bo.filetype == "http" then
-        return last(...)
-      end
+    SereneNvim.warn(message)
+  end
 
-      SereneNvim.warn(message)
+  local last = mod.last
+  mod.last = function(...)
+    if vim.bo.filetype == "http" then
+      return last(...)
     end
-  end)
+
+    SereneNvim.warn(message)
+  end
 end
 
-function M.fix_conceallevel()
-  M.on_module("vim.lsp.util", function(mod)
-    local open_floating_preview = mod.open_floating_preview
+function M.conceallevel()
+  local mod = vim.lsp.util
+  local open_floating_preview = mod.open_floating_preview
+  mod.open_floating_preview = function(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.max_width = 80
+    opts.max_height = 35
+    opts.style = "minimal"
+    opts.border = "single"
 
-    mod.open_floating_preview = function(contents, syntax, opts, ...)
-      opts = opts or {}
-      opts.max_width = 80
-      opts.max_height = 35
-      opts.style = "minimal"
-      opts.border = "single"
+    local bufnr, winid = open_floating_preview(contents, syntax, opts, ...)
+    vim.wo[winid].conceallevel = 0
 
-      local bufnr, winid = open_floating_preview(contents, syntax, opts, ...)
-      vim.wo[winid].conceallevel = 0
-
-      return bufnr, winid
-    end
-  end)
+    return bufnr, winid
+  end
 end
 
 -- detect jsconfig.json
-function M.fix_tsc()
-  M.on_module("tsc.utils", function(mod)
-    local find_nearest_tsconfig = mod.find_nearest_tsconfig
-    mod.find_nearest_tsconfig = function()
-      find_nearest_tsconfig()
+function M.tsc()
+  local mod = require("tsc.utils")
 
-      local jsconfig = vim.fn.findfile("jsconfig.json", ".;")
-      return jsconfig ~= "" and { jsconfig } or {}
+  local find_nearest_tsconfig = mod.find_nearest_tsconfig
+  mod.find_nearest_tsconfig = function()
+    find_nearest_tsconfig()
+
+    local jsconfig = vim.fn.findfile("jsconfig.json", ".;")
+    return jsconfig ~= "" and { jsconfig } or {}
+  end
+
+  local find_tsc_bin = mod.find_tsc_bin
+  mod.find_tsc_bin = function()
+    local tsc_bin = find_tsc_bin()
+
+    if tsc_bin == "tsc" then
+      return vim.fn.exepath("tsc")
     end
 
-    local find_tsc_bin = mod.find_tsc_bin
-    mod.find_tsc_bin = function()
-      local tsc_bin = find_tsc_bin()
-
-      if tsc_bin == "tsc" then
-        return vim.fn.exepath("tsc")
-      end
-
-      return tsc_bin
-    end
-  end)
+    return tsc_bin
+  end
 end
 
 -- remove icons
-function M.fix_neo_tree()
-  M.on_module("neo-tree.defaults", function(mod)
-    table.remove(mod.renderers.directory, 2)
-    table.remove(mod.renderers.file, 2)
-  end)
+function M.neo_tree()
+  local mod = require("neo-tree.defaults")
+  table.remove(mod.renderers.directory, 2)
+  table.remove(mod.renderers.file, 2)
 end
 
 -- pretty info
-function M.fix_conform()
-  M.on_module("conform.health", function(mod)
-    local show_window = mod.show_window
+function M.conform()
+  local mod = require("conform.health")
+  local show_window = mod.show_window
 
-    mod.show_window = function()
-      show_window()
+  mod.show_window = function()
+    show_window()
 
-      local win = vim.api.nvim_get_current_win()
-      vim.api.nvim_win_set_config(win, { border = "single" })
-      vim.wo[win].wrap = true
-    end
-  end)
-end
-
----https://www.gammon.com.au/scripts/doc.php?lua=package.loaders
----@param fn fun(mod)
-function M.on_module(module, fn)
-  if package.loaded[module] then
-    return fn(package.loaded[module])
-  end
-
-  package.preload[module] = function()
-    -- print(package.loaded[module]) -- -5.6817549271743e-322
-    -- FIX: loop and previous error
-    package.loaded[module] = nil
-    package.preload[module] = nil
-    for _, loader in pairs(package.loaders) do
-      local ret = loader(module)
-      if type(ret) == "function" then
-        local mod = ret()
-        fn(mod)
-        return mod
-      end
-    end
+    local win = vim.api.nvim_get_current_win()
+    vim.api.nvim_win_set_config(win, { border = "single" })
+    vim.wo[win].wrap = true
   end
 end
 

@@ -5,4 +5,8 @@ return {
     flags = { watch = true },
     use_diagnostics = true,
   },
+  config = function()
+    SereneNvim.hacks.tsc()
+    require("tsc").setup()
+  end,
 }

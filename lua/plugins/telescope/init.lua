@@ -157,17 +157,7 @@ return {
       local actions = require("telescope.actions")
       local action_layout = require("telescope.actions.layout")
 
-      -- HACK: fix windows
-      local action_state = require("telescope.actions.state")
-      local superclass_get_selected_entry = action_state.get_selected_entry
-      ---@diagnostic disable-next-line: duplicate-set-field
-      function action_state.get_selected_entry()
-        local entry = superclass_get_selected_entry()
-        if entry.path then
-          entry.path = entry.path:gsub("/", "\\")
-        end
-        return entry
-      end
+      SereneNvim.hacks.telescope()
 
       -- https://github.com/nvim-telescope/telescope.nvim/issues/1048
       local open_selected = function(prompt_bufnr)
