@@ -35,7 +35,7 @@ local config = {
       Event         = "e",
       Operator      = "o",
       TypeParameter = "T",
-      Codeium       = "A",
+      Codeium       = "★",
     },
     -- stylua: ignore
     sources = {

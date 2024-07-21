@@ -93,11 +93,11 @@ return {
   },
   {
     "romainl/vim-cool",
-    event = "CursorMoved",
+    event = "VeryLazy",
   },
   {
     "Aasim-A/scrollEOF.nvim",
-    event = "CursorMoved",
+    event = "VeryLazy",
     opts = { insert_mode = true },
   },
 }
