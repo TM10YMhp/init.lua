@@ -8,10 +8,7 @@ return {
   },
   opts = function()
     local logo = table.concat({
-      "Welcome to my Neovim setup",
-      "",
-      "Inspired by the legacy of Bram Moolenaar",
-      "the creator of Vim",
+      "SereneNvim - indev " .. os.date("%y%m%d"),
     }, "\n")
 
     logo = string.rep("\n", 2) .. logo .. "\n\n"

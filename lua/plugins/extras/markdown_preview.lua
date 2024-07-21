@@ -2,6 +2,7 @@ return {
   "iamcco/markdown-preview.nvim",
   build = "cd app && npm install && git restore .",
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  -- TODO: check this
   init = function()
     local config_path = vim.fn.stdpath("config") .. "/lua/styles/"
 

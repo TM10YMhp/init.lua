@@ -2,6 +2,7 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function()
+    -- HACK: if load before setup
     -- PERF: we don't need this
     local lualine_require = require("lualine_require")
     lualine_require.require = require
