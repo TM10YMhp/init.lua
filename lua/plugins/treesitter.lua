@@ -62,7 +62,7 @@ return {
   },
   {
     "oncomouse/nvim-treesitter-endwise",
-    event = SereneNvim.lazy_init and "BufAdd" or "InsertCharPre",
+    event = SereneNvim.lazy_init and "BufAdd" or "InsertEnter",
     opts = {},
     config = function(_, opts)
       require("nvim-treesitter-endwise").setup(opts)

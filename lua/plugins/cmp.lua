@@ -37,10 +37,7 @@ return {
     },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
-      {
-        "saadparwaiz1/cmp_luasnip",
-        dependencies = { "L3MON4D3/LuaSnip" },
-      },
+      "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-buffer",
       "amarakon/nvim-cmp-buffer-lines",
     },
