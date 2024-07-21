@@ -9,7 +9,7 @@ return {
     },
     config = function(_, opts)
       require("serene").setup(opts)
-      vim.cmd.colorscheme("serene")
+      require("serene").load()
     end,
   },
   {

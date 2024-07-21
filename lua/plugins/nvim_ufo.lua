@@ -29,9 +29,9 @@ return {
       desc = "Peek folds under cursor (Preview)",
     },
   },
-  opts = function()
-    -- TODo: refactor
-    local handler = function(virtText, lnum, endLnum, width, truncate)
+  opts = {
+    open_fold_hl_timeout = 0,
+    fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
       local newVirtText = {}
       local suffix = (" ... (%d) "):format(endLnum - lnum)
       local sufWidth = vim.fn.strdisplaywidth(suffix)
@@ -57,28 +57,23 @@ return {
       end
       table.insert(newVirtText, { suffix, "UfoFoldedEllipsis" })
       return newVirtText
-    end
-
-    return {
-      open_fold_hl_timeout = 0,
-      fold_virt_text_handler = handler,
-      preview = {
-        win_config = {
-          border = "single",
-          -- border = { "", "─", "", "", "", "─", "", "" },
-          winblend = 0,
-        },
-        mappings = {
-          scrollU = "<C-u>",
-          scrollD = "<C-d>",
-          scrollE = "<Down>",
-          scrollY = "<Up>",
-          jumpTop = "gg",
-          jumpBot = "G",
-        },
+    end,
+    preview = {
+      win_config = {
+        border = "single",
+        -- border = { "", "─", "", "", "", "─", "", "" },
+        winblend = 0,
       },
-    }
-  end,
+      mappings = {
+        scrollU = "<C-u>",
+        scrollD = "<C-d>",
+        scrollE = "<Down>",
+        scrollY = "<Up>",
+        jumpTop = "gg",
+        jumpBot = "G",
+      },
+    },
+  },
   config = function(_, opts)
     vim.o.foldcolumn = "1"
     vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
