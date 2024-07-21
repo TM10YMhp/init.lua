@@ -23,6 +23,13 @@ return {
       signature = { enabled = false },
     },
     health = { checker = false },
+    routes = {
+      {
+        filter = { event = "lsp", kind = "progress" },
+        view = "notify",
+        opts = { replace = true },
+      },
+    },
     throttle = 1000 / 10,
     format = {
       level = {
@@ -34,11 +41,6 @@ return {
       },
       spinner = {
         name = "toggle5",
-      },
-    },
-    views = {
-      notify = {
-        replace = true,
       },
     },
   },
