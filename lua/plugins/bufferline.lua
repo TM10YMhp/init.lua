@@ -63,5 +63,15 @@ return {
       },
     }
   end,
-  config = true,
+  config = function(_, opts)
+    require("bufferline").setup(opts)
+
+    local ft_ignore = { "dashboard" }
+
+    for _, bufnr in ipairs(vim.fn.tabpagebuflist(vim.fn.tabpagenr("$"))) do
+      if vim.list_contains(ft_ignore, vim.bo[bufnr].filetype) then
+        vim.opt.showtabline = 0
+      end
+    end
+  end,
 }

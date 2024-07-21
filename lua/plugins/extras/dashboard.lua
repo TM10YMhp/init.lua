@@ -68,15 +68,47 @@ return {
   config = function(_, opts)
     require("dashboard").setup(opts)
 
-    -- close Lazy and re-open when the dashboard is ready
-    if vim.o.filetype == "lazy" and SereneNvim.lazy_init then
-      vim.schedule(function()
-        vim.cmd.close()
-        vim.cmd("Dashboard")
-        vim.defer_fn(function()
-          require("lazy").show()
-        end, 10)
-      end)
+    if vim.o.filetype == "lazy" then
+      vim.api.nvim_create_autocmd("WinClosed", {
+        pattern = tostring(vim.api.nvim_get_current_win()),
+        once = true,
+        callback = function()
+          vim.schedule(function()
+            vim.api.nvim_exec_autocmds("UIEnter", { group = "dashboard" })
+          end)
+        end,
+      })
     end
+
+    -- only modify first instance
+    local mod = require("dashboard")
+    local instance = mod.instance
+    mod.instance = function(self)
+      instance(self)
+
+      vim.opt.showtabline = 0
+
+      vim.api.nvim_create_autocmd("BufUnload", {
+        buffer = vim.api.nvim_get_current_buf(),
+        once = true,
+        callback = function()
+          vim.opt.showtabline = 2
+        end,
+      })
+    end
+
+    vim.api.nvim_create_user_command("Dashboard", function()
+      require("dashboard"):instance()
+
+      vim.opt.showtabline = 0
+
+      vim.api.nvim_create_autocmd("BufUnload", {
+        buffer = vim.api.nvim_get_current_buf(),
+        once = true,
+        callback = function()
+          vim.opt.showtabline = 2
+        end,
+      })
+    end, {})
   end,
 }
