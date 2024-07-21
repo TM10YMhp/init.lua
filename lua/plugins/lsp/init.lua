@@ -1,33 +1,5 @@
 return {
-  {
-    "mfussenegger/nvim-lint",
-    optional = true,
-    dependencies = { "williamboman/mason.nvim" },
-  },
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    dependencies = { "williamboman/mason.nvim" },
-  },
-  {
-    "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonLog" },
-    keys = { { "<leader>um", "<cmd>Mason<cr>", desc = "Mason" } },
-    opts = {
-      ui = {
-        check_outdated_packages_on_open = false,
-        border = "single",
-        width = 90,
-        height = 40,
-        icons = {
-          package_installed = "●",
-          package_pending = "-",
-          package_uninstalled = "○",
-        },
-      },
-    },
-    config = true,
-  },
+  { import = "plugins.lsp.mason" },
   {
     "neovim/nvim-lspconfig",
     cmd = { "LspLog", "LspStart", "LspInfo" },
@@ -195,12 +167,11 @@ return {
 
       if have_mason then
         mlsp.setup({
-          -- ensure_installed = vim.tbl_deep_extend(
-          --   "force",
-          --   ensure_installed,
-          --   LazyVim.opts("mason-lspconfig.nvim").ensure_installed or {}
-          -- ),
-          ensure_installed = ensure_installed,
+          ensure_installed = vim.tbl_deep_extend(
+            "force",
+            ensure_installed,
+            SereneNvim.opts("mason-lspconfig.nvim").ensure_installed or {}
+          ),
           handlers = { setup },
         })
       end

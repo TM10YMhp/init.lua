@@ -11,7 +11,7 @@ return {
     popupmenu = { enabled = false },
     lsp = {
       progress = {
-        throttle = 1000 / 5,
+        throttle = 1000 / 4,
         view = "notify",
       },
       override = {

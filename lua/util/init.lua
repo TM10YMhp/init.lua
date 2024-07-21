@@ -82,6 +82,16 @@ function M.on_load(name, fn)
   end
 end
 
+---@param name string
+function M.opts(name)
+  local plugin = M.get_plugin(name)
+  if not plugin then
+    return {}
+  end
+  local Plugin = require("lazy.core.plugin")
+  return Plugin.values(plugin, "opts", false)
+end
+
 M.lazy_init = vim.fn.argc(-1) == 0
 ---@param fn fun()
 function M.on_lazy_init(fn)
