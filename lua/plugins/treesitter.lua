@@ -10,13 +10,9 @@ return {
       -- https://thevaluable.dev/tree-sitter-neovim-overview/
       parser_install_dir = vim.fn.stdpath("config"),
       ensure_installed = {
-        "lua",
         "vimdoc",
         "markdown",
         "markdown_inline",
-        "javascript",
-        "typescript",
-        "tsx",
         -- "css",
         -- "astro",
         -- "c",

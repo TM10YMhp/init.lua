@@ -126,22 +126,6 @@ return {
           },
         },
       },
-      servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              runtime = { version = "LuaJIT" },
-              telemetry = { enable = false },
-              completion = {
-                showWord = "Disable",
-                workspaceWord = false,
-              },
-              hint = { enable = true },
-              -- workspace = { checkThirdParty = "Disable" },
-            },
-          },
-        },
-      },
       setup = {
         biome = function()
           return true
