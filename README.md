@@ -8,9 +8,7 @@ Elija el fragmento de código que comprenda totalmente.
 
 Siempre en WIP 🏗
 
-<!-- screenshot -->
-
-![screenshot](https://github.com/TM10YMhp/dotfiles/blob/master/images/screenshot.png)
+![screenshot](./img/screenshot.png)
 
 <sub>Para conocer el esquema de colores, consulte [serene.nvim](https://github.com/TM10YMhp/serene.nvim). Para ver más presentaciones, consulte la sección [presentaciones].</sub>
 
@@ -24,7 +22,7 @@ Si encuentra algun problema o tiene alguna sugerencia, por favor abre un issue y
 
 - 🚀 Increiblemente rapido.
 - 💤 VeryLazy, complementos cargados muy perezosamente gracias a [lazy.nvim](https://github.com/folke/lazy.nvim).
-- 📦 Gran cantidad de complementos preconfigurados y listos para usar.
+- 📦 Más de 100 complementos preconfigurados y listos para usar.
 
 ## ⚡️ Requisitos previos
 
@@ -61,16 +59,17 @@ rd -r ~\AppData\Local\nvim-data
 - Posicionarse en el directorio
 
 ```bash
-# Windows
-cd ~/AppData/Local/
-# Linux
+# linux/macos (unix)
 cd ~/.config/
+
+# windows
+cd ~/AppData/Local/
 ```
 
 - Clonar repositorio
 
 ```
-git clone -b dev https://github.com/TM10YMhp/init.lua.git nvim
+git clone -b test https://github.com/TM10YMhp/init.lua.git nvim
 ```
 
 - Elimina la carpeta `.git` para que puedas agregarla a tu propio repositorio más tarde
@@ -88,82 +87,3 @@ nvim
 ### 2. Instalar complementos
 
 Luego de iniciar neovim espere a que `lazy.nvim` instale todos los complementos y finalmente reinicie neovim.
-
-<details><summary>Lista de complementos</summary>
-
-- LuaSnip
-- [debugloop/telescope-undo.nvim](https://github.com/debugloop/telescope-undo.nvim)
-- [echasnovski/mini.completion](https://github.com/echasnovski/mini.completion)
-- [folke/lazy.nvim](https://github.com/folke/lazy.nvim)
-- [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
-- [iamcco/markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
-- [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
-- [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-- [numToStr/Comment.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-- [nvim-telescope/telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
-- [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-- [ojroques/nvim-osc52](https://github.com/ojroques/nvim-osc52)
-- [voldikss/vim-floaterm](https://github.com/voldikss/vim-floaterm)
-- [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
-- [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
-- cellular-automaton.nvim
-- cloak.nvim
-- cmp-buffer
-- cmp-nvim-lsp
-- cmp_luasnip
-- codeium.vim
-- conform.nvim
-- diffview.nvim
-- fidget.nvim
-- friendly-snippets
-- harpoon
-- indent-o-matic
-- mini.ai
-- mini.align
-- mini.bracketed
-- mini.files
-- mini.jump
-- mini.jump2d
-- mini.move
-- mini.tabline
-- mini.trailspace
-- mru
-- nvim-autopairs
-- nvim-cmp
-- nvim-cmp-buffer-lines
-- nvim-early-retirement
-- nvim-lint
-- nvim-tree.lua
-- nvim-treesitter
-- nvim-treesitter-endwise
-- nvim-ts-autotag
-- nvim-ts-context-commentstring
-- nvim-ufo
-- nvim-various-textobjs
-- obsidian.nvim
-- playground
-- plenary.nvim
-- pomo.nvim
-- project.nvim
-- promise-async
-- rest.nvim
-- rose-pine
-- scrollEOF.nvim
-- serene.nvim
-- solarized-osaka.nvim
-- statuscol.nvim
-- telescope-live-grep-args.nvim
-- telescope-mru.nvim
-- telescope-symbols.nvim
-- telescope-ui-select.nvim
-- treesj
-- trouble.nvim
-- vim-be-good
-- vim-cool
-- vim-fugitive
-- vscode.nvim
-- window-picker
-
-</details>
