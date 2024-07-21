@@ -18,6 +18,9 @@ require("lazy").setup({
     { import = "plugins" },
     { import = "plugins.extras" },
 
+    { import = "plugins.extras.formatting.biome" },
+    { import = "plugins.extras.formatting.prettier" },
+
     { import = "plugins.extras.lang.cmake" },
     { import = "plugins.extras.lang.java" },
     { import = "plugins.extras.lang.json" },

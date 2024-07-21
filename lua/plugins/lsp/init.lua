@@ -83,7 +83,7 @@ return {
       },
     },
     opts = {
-      defaults = {
+      default_config = {
         autostart = false,
         flags = {
           allow_incremental_sync = false,
@@ -97,11 +97,6 @@ return {
             willRename = true,
           },
         },
-      },
-      setup = {
-        biome = function()
-          return true
-        end,
       },
     },
     config = function(_, opts)
@@ -120,7 +115,7 @@ return {
       local function setup(server)
         local server_opts = vim.tbl_deep_extend(
           "force",
-          opts.defaults or {},
+          opts.default_config or {},
           { capabilities = vim.deepcopy(capabilities) },
           servers[server] or {}
         )

@@ -24,11 +24,6 @@ return {
       require("mason").setup(opts)
 
       local mr = require("mason-registry")
-      mr:on("package:install:success", function()
-        vim.defer_fn(function()
-          vim.cmd("LspStart")
-        end, 100)
-      end)
 
       mr.refresh(function()
         for _, tool in ipairs(opts.ensure_installed) do

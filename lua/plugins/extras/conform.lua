@@ -44,68 +44,15 @@ return {
     },
   },
   opts = {
-    formatters = {
-      stylua = {
-        prepend_args = function()
-          local cwd = vim.uv.cwd()
-          if
-            vim.fn.filereadable(cwd .. "/.stylua.toml") == 1
-            or vim.fn.filereadable(cwd .. "/stylua.toml") == 1
-          then
-            return {}
-          end
-
-          return {
-            "--config-path=" .. vim.fn.stdpath("config") .. "/.stylua.toml",
-          }
-        end,
-      },
-      prettier = {
-        prepend_args = function(_, ctx)
-          if vim.endswith(ctx.filename, ".astro") then
-            return {
-              "--plugin=prettier-plugin-astro",
-            }
-          end
-        end,
-      },
-      ["blade-formatter"] = {
-        prepend_args = {
-          "--indent-inner-html",
-          "--extra-liners=''",
-        },
-      },
-    },
     default_format_opts = {
       lsp_format = "never",
       async = false,
       quiet = false,
     },
-    -- stylua: ignore
     formatters_by_ft = {
-      cs              = { "clang-format" },
-      c               = { "clang-format", lsp_format = "fallback" },
-      cpp             = { "clang-format" },
-      lua             = { "stylua" },
-      json            = { "biome" },
-      jsonc           = { "biome" },
-      javascript      = { "biome" },
-      javascriptreact = { "biome" },
-      typescript      = { "biome" },
-      typescriptreact = { "biome" },
-      vue             = { "prettier" },
-      css             = { "prettier" },
-      scss            = { "prettier" },
-      less            = { "prettier" },
-      html            = { "prettier" },
-      yaml            = { "prettier" },
-      markdown        = { "prettier" },
-      graphql         = { "prettier" },
-      handlebars      = { "prettier" },
-      astro           = { "prettier" },
-      java            = { "google-java-format" },
-      blade           = { "blade-formatter" },
-      php             = { "php_cs_fixer" },
+      cs = { "clang-format" },
+      c = { "clang-format", lsp_format = "fallback" },
+      cpp = { "clang-format" },
     },
     format_on_save = function(bufnr)
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -118,7 +65,7 @@ return {
         return
       end
 
-      return { timeout_ms = 800 }
+      return { timeout_ms = 500 }
     end,
   },
   config = function(_, opts)

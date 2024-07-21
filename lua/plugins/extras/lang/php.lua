@@ -19,4 +19,31 @@ return {
       },
     },
   },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "php-cs-fixer",
+        "blade-formatter",
+      },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        blade = { "blade-formatter" },
+        php = { "php_cs_fixer" },
+      },
+      formatters = {
+        ["blade-formatter"] = {
+          prepend_args = {
+            "--indent-inner-html",
+            "--extra-liners=''",
+          },
+        },
+      },
+    },
+  },
 }

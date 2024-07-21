@@ -50,4 +50,36 @@ return {
       },
     },
   },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = { "stylua" },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+      },
+      formatters = {
+        stylua = {
+          prepend_args = function()
+            local cwd = vim.uv.cwd()
+            if
+              vim.fn.filereadable(cwd .. "/.stylua.toml") == 1
+              or vim.fn.filereadable(cwd .. "/stylua.toml") == 1
+            then
+              return {}
+            end
+
+            return {
+              "--config-path=" .. vim.fn.stdpath("config") .. "/.stylua.toml",
+            }
+          end,
+        },
+      },
+    },
+  },
 }
