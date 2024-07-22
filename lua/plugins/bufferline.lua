@@ -25,46 +25,50 @@ return {
     { "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
     { "<Tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
   },
-  opts = function()
+  opts = {
+    options = {
+      indicator = { style = "none" },
+      buffer_close_icon = "x",
+      modified_icon = "*",
+      close_icon = "x",
+      left_trunc_marker = "<",
+      right_trunc_marker = ">",
+      truncate_names = false,
+      tab_size = 0,
+      diagnostics = "nvim_lsp",
+      diagnostics_update_in_insert = false,
+      diagnostics_indicator = function(_, _, diag)
+        return vim.trim(
+          (diag.error and "E" .. diag.error .. " " or "")
+            .. (diag.warning and "W" .. diag.warning .. " " or "")
+            .. (diag.hint and "H" .. diag.hint .. " " or "")
+        )
+      end,
+      show_buffer_icons = false,
+      show_buffer_close_icons = false,
+      show_close_icon = false,
+      show_duplicate_prefix = true,
+      max_prefix_length = 100,
+      move_wraps_at_ends = false,
+      separator_style = { "", "" },
+      enforce_regular_tabs = false,
+      always_show_bufferline = true,
+      hover = { enabled = false },
+    },
+  },
+  config = function(_, opts)
     local bufferline = require("bufferline")
-    return {
+
+    opts = vim.tbl_deep_extend("force", opts, {
       options = {
         style_preset = {
           bufferline.style_preset.no_bold,
           bufferline.style_preset.no_italic,
         },
-        indicator = { style = "none" },
-        buffer_close_icon = "x",
-        modified_icon = "*",
-        close_icon = "x",
-        left_trunc_marker = "<",
-        right_trunc_marker = ">",
-        truncate_names = false,
-        tab_size = 0,
-        diagnostics = "nvim_lsp",
-        diagnostics_update_in_insert = false,
-        diagnostics_indicator = function(_, _, diag)
-          return vim.trim(
-            (diag.error and "E" .. diag.error .. " " or "")
-              .. (diag.warning and "W" .. diag.warning .. " " or "")
-              .. (diag.hint and "H" .. diag.hint .. " " or "")
-          )
-        end,
-        show_buffer_icons = false,
-        show_buffer_close_icons = false,
-        show_close_icon = false,
-        show_duplicate_prefix = true,
-        max_prefix_length = 100,
-        move_wraps_at_ends = false,
-        separator_style = { "", "" },
-        enforce_regular_tabs = false,
-        always_show_bufferline = true,
-        hover = { enabled = false },
       },
-    }
-  end,
-  config = function(_, opts)
-    require("bufferline").setup(opts)
+    })
+
+    bufferline.setup(opts)
 
     local ft_ignore = { "dashboard" }
 

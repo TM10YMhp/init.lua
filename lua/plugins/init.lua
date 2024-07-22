@@ -1,10 +1,11 @@
 return {
-  -- TODO: check this
   {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
     config = function()
       vim.g.undotree_WindowLayout = 4
+      vim.g.undotree_DiffpanelHeight = 30
+      vim.g.undotree_DiffAutoOpen = 0
     end,
   },
   {

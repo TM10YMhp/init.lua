@@ -43,6 +43,7 @@ return {
   { import = "plugins.telescope.telescope_mru" },
   { import = "plugins.telescope.telescope_symbols" },
   { import = "plugins.telescope.telescope_undo" },
+  { import = "plugins.telescope.telescope_fzf_native" },
   { "nvim-lua/plenary.nvim", lazy = true },
   {
     "nvim-telescope/telescope.nvim",
@@ -153,7 +154,7 @@ return {
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Git Commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Git Status" },
     },
-    opts = function()
+    opts = function(_, opts)
       local actions = require("telescope.actions")
       local action_layout = require("telescope.actions.layout")
 
@@ -208,7 +209,7 @@ return {
         end
       end
 
-      return {
+      local _opts = {
         defaults = {
           preview = {
             hide_on_startup = true,
@@ -390,28 +391,10 @@ return {
           },
         },
       }
+
+      return vim.tbl_deep_extend("force", _opts, opts)
     end,
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-    },
-    opts = {
-      extensions = {
-        fzf = {
-          fuzzy = false,
-          override_generic_sorter = true,
-          override_file_sorter = true,
-          case_mode = "smart_case",
-        },
-      },
-    },
-    config = function(_, opts)
-      require("telescope").setup(opts)
-      require("telescope").load_extension("fzf")
-    end,
+    config = true,
   },
   -- integrate telescope with neo-tree
   {
