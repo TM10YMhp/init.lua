@@ -1,4 +1,5 @@
 return {
+  -- same telescope-undo
   {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
