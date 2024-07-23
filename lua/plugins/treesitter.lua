@@ -59,11 +59,7 @@ return {
     event = SereneNvim.lazy_init and "BufAdd" or "InsertCharPre",
     config = function()
       require("nvim-ts-autotag").setup()
-
-      vim.api.nvim_exec_autocmds(
-        "FileType",
-        { group = "nvim_ts_xmltag", modeline = false }
-      )
+      require("nvim-ts-autotag.internal").attach()
     end,
   },
   {
