@@ -19,7 +19,7 @@ M.absolute_path = {
   provider = function(self)
     return self.data
   end,
-  update = { "BufEnter" },
+  update = { "BufLeave" },
 }
 
 return M

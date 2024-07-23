@@ -2,8 +2,14 @@ return {
   "iamcco/markdown-preview.nvim",
   build = "cd app && npm install && git restore .",
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-  -- TODO: check this
-  init = function()
+  keys = {
+    {
+      "<leader>tp",
+      vim.fn["mkdp#util#toggle_preview"],
+      desc = "Toggle Markdown Preview",
+    },
+  },
+  config = function()
     local config_path = vim.fn.stdpath("config") .. "/lua/styles/"
 
     vim.g.mkdp_command_for_global = 1
@@ -21,15 +27,7 @@ return {
     vim.g.mkdp_theme = "dark"
     vim.g.mkdp_combine_preview = 1
     vim.g.mkdp_combine_preview_auto_refresh = 1
-  end,
-  keys = {
-    {
-      "<leader>tp",
-      vim.fn["mkdp#util#toggle_preview"],
-      desc = "Toggle Markdown Preview",
-    },
-  },
-  config = function()
+
     vim.api.nvim_exec_autocmds(
       "BufEnter",
       { group = "mkdp_init", modeline = false }

@@ -8,10 +8,10 @@ return {
     event = function()
       for _, value in ipairs(vim.fn.argv()) do
         if vim.fn.isdirectory(value) == 1 then
-          return { "BufEnter" }
+          return "BufEnter"
         end
       end
-      return { "BufAdd" }
+      return "BufAdd"
     end,
     keys = {
       {
