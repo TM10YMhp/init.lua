@@ -1,35 +1,9 @@
 return {
   "echasnovski/mini.bracketed",
-  keys = function(self)
-    -- stylua: ignore
-    local variants = {
-      jump       = { mode = { "n", "o" } },
-      comment    = { mode = { "n", "x", "o" } },
-      conflict   = { mode = { "n", "x", "o" } },
-      diagnostic = { mode = { "n", "x", "o" } },
-      indent     = { mode = { "n", "x", "o" } },
-      treesitter = { mode = { "n", "x", "o" } },
-    }
-
-    local mappings = {}
-    for k, v in pairs(self.opts) do
-      local low, up = v.suffix:lower(), v.suffix:upper()
-      local key = k:gsub("^%l", string.upper)
-      local mode = variants[k] and variants[k].mode or { "n" }
-
-      table.insert(mappings, { "[" .. up, mode = mode, desc = key .. " first" })
-      table.insert(mappings, { "]" .. up, mode = mode, desc = key .. " last" })
-      table.insert(
-        mappings,
-        { "[" .. low, mode = mode, desc = key .. " backward" }
-      )
-      table.insert(
-        mappings,
-        { "]" .. low, mode = mode, desc = key .. " forward" }
-      )
-    end
-    return mappings
-  end,
+  keys = {
+    { "[", mode = { "n", "x", "o" }, desc = "Backward" },
+    { "]", mode = { "n", "x", "o" }, desc = "Forward" },
+  },
   -- stylua: ignore
   opts = {
     buffer     = { suffix = 'b', options = {} },
