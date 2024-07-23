@@ -21,7 +21,6 @@ return {
         "markdown",
         "markdown_inline",
         -- "css",
-        -- "astro",
         -- "c",
         -- "cpp",
         -- "angular",

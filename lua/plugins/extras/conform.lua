@@ -49,11 +49,6 @@ return {
       async = false,
       quiet = false,
     },
-    formatters_by_ft = {
-      cs = { "clang-format" },
-      c = { "clang-format", lsp_format = "fallback" },
-      cpp = { "clang-format" },
-    },
     format_on_save = function(bufnr)
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
         return

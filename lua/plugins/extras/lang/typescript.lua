@@ -13,12 +13,6 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        cssmodules_ls = {
-          filetypes = { "javascriptreact", "typescriptreact" },
-          init_options = {
-            camelCase = "false",
-          },
-        },
         tsserver = {
           init_options = {
             tsserver = {
