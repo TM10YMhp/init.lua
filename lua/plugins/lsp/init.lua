@@ -59,7 +59,6 @@ return {
         "<leader>lr",
         function()
           SereneNvim.info("LSP: Restart")
-          vim.diagnostic.reset()
           vim.cmd("LspRestart")
         end,
         desc = "LSP: Restart",
@@ -68,7 +67,6 @@ return {
         "<leader>lq",
         function()
           SereneNvim.info("LSP: Stop")
-          vim.diagnostic.reset()
           vim.cmd("LspStop")
         end,
         desc = "LSP: Stop",
