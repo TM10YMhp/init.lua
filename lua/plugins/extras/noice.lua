@@ -54,4 +54,11 @@ return {
 
     require("noice").setup(opts)
   end,
+  config = function(_, opts)
+    -- HACK: noice redraws when it's not needed
+    local mod = require("noice.util.hacks")
+    mod.fix_redraw = function() end
+
+    require("noice").setup(opts)
+  end,
 }
