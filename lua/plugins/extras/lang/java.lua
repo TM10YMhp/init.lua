@@ -2,6 +2,10 @@ SereneNvim.on_lazy_ft("nvim-jdtls", { "java" })
 
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "java" } },
+  },
+  {
     "neovim/nvim-lspconfig",
     opts = {
       -- make sure mason installs the server
