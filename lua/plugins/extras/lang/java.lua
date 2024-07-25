@@ -1,11 +1,4 @@
-SereneNvim.on_lazy_ft({
-  pattern = { "java" },
-  callback = function()
-    require("lazy").load({
-      plugins = { "nvim-jdtls" },
-    })
-  end,
-})
+SereneNvim.on_lazy_ft("nvim-jdtls", { "java" })
 
 return {
   {

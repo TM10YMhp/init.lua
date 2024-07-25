@@ -1,26 +1,9 @@
-local enabled_lint = true
--- stylua: ignore
-local linters_by_ft = {
-  javascript      = { "eslint_d" },
-  typescript      = { "eslint_d" },
-  javascriptreact = { "eslint_d" },
-  typescriptreact = { "eslint_d" },
-  svelte          = { "eslint_d" },
-}
-
-SereneNvim.on_lazy_ft({
-  pattern = {
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-    "svelte",
-  },
-  callback = function()
-    require("lazy").load({
-      plugins = { "nvim-lint" },
-    })
-  end,
+SereneNvim.on_lazy_ft("nvim-lint", {
+  "javascript",
+  "typescript",
+  "javascriptreact",
+  "typescriptreact",
+  "svelte",
 })
 
 return {
@@ -33,28 +16,22 @@ return {
     },
     {
       "<leader>tl",
-      function()
-        if enabled_lint then
-          require("lint").linters_by_ft = {}
-          vim.diagnostic.reset()
-          SereneNvim.info("Lint: Disabled")
-        else
-          require("lint").linters_by_ft = linters_by_ft
-          require("lint").try_lint()
-          SereneNvim.info("Lint: Enabled")
-        end
-        enabled_lint = not enabled_lint
-      end,
       desc = "Toggle Lint",
     },
   },
   opts = {
     events = { "BufWritePost", "BufReadPost", "InsertLeave", "TextChanged" },
-    linters_by_ft = linters_by_ft,
+    -- stylua: ignore
+    linters_by_ft = {
+      javascript      = { "eslint_d" },
+      typescript      = { "eslint_d" },
+      javascriptreact = { "eslint_d" },
+      typescriptreact = { "eslint_d" },
+      svelte          = { "eslint_d" },
+    },
   },
   config = function(_, opts)
     local lint = require("lint")
-
     lint.linters_by_ft = opts.linters_by_ft
 
     vim.api.nvim_create_autocmd(opts.events, {
@@ -72,12 +49,29 @@ return {
     local existsEslintConfig =
       not vim.tbl_isempty(vim.list_extend(oldEslintConfig, newEslintConfig))
 
+    vim.g.linter_enabled = true
+
     if existsEslintConfig then
       lint.try_lint()
     else
       lint.linters_by_ft = {}
       SereneNvim.info("Lint: Not found eslint config")
-      enabled_lint = false
+      vim.g.linter_enabled = false
     end
+
+    vim.keymap.set("n", "<leader>tl", function()
+      if vim.g.linter_enabled then
+        require("lint").linters_by_ft = {}
+        vim.diagnostic.reset()
+        SereneNvim.info("Lint: Disabled")
+      else
+        require("lint").linters_by_ft = opts.linters_by_ft
+        require("lint").try_lint()
+        SereneNvim.info("Lint: Enabled")
+      end
+      vim.g.linter_enabled = not vim.g.linter_enabled
+    end, {
+      desc = "Toggle Lint",
+    })
   end,
 }

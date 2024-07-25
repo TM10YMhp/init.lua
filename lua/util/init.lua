@@ -110,15 +110,16 @@ function M.on_lazy_init(fn)
   })
 end
 
----@param opts { pattern: string|string[], callback: fun() }
-function M.on_lazy_ft(opts)
+---@param name string
+---@param pattern string|string[]
+function M.on_lazy_ft(name, pattern)
   M.on_lazy_init(function()
     vim.api.nvim_create_autocmd("FileType", {
       once = true,
-      pattern = opts.pattern,
+      pattern = pattern,
       callback = function()
         vim.defer_fn(function()
-          opts.callback()
+          require("lazy").load({ plugins = { name } })
         end, 10)
       end,
     })
