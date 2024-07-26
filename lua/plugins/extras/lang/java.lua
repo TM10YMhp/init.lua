@@ -254,9 +254,7 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = { "google-java-format" },
-    },
+    opts = { ensure_installed = { "google-java-format" } },
   },
   {
     "stevearc/conform.nvim",

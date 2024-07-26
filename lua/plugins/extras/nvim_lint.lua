@@ -1,3 +1,5 @@
+vim.g.linter_enabled = true
+
 SereneNvim.on_lazy_ft("nvim-lint", {
   "javascript",
   "typescript",
@@ -11,7 +13,7 @@ return {
   keys = {
     {
       "<leader>cl",
-      "<cmd>lua require('lint').try_lint()<cr>",
+      "<cmd>lua SereneNvim.lint.debounce()<cr>",
       desc = "Lint",
     },
     {
@@ -21,43 +23,33 @@ return {
   },
   opts = {
     events = { "BufWritePost", "BufReadPost", "InsertLeave", "TextChanged" },
-    -- stylua: ignore
-    linters_by_ft = {
-      javascript      = { "eslint_d" },
-      typescript      = { "eslint_d" },
-      javascriptreact = { "eslint_d" },
-      typescriptreact = { "eslint_d" },
-      svelte          = { "eslint_d" },
-    },
+    linters_by_ft = {},
+    linters = {},
   },
   config = function(_, opts)
     local lint = require("lint")
-    lint.linters_by_ft = opts.linters_by_ft
+    for name, linter in pairs(opts.linters) do
+      if type(linter) == "table" and type(lint.linters[name]) == "table" then
+        lint.linters[name] =
+          vim.tbl_deep_extend("force", lint.linters[name], linter)
+      else
+        lint.linters[name] = linter
+      end
+    end
+
+    if vim.g.linter_enabled then
+      lint.linters_by_ft = opts.linters_by_ft
+      SereneNvim.lint.debounce()
+    else
+      lint.linters_by_ft = {}
+    end
 
     vim.api.nvim_create_autocmd(opts.events, {
       group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
       callback = function()
-        lint.try_lint()
+        SereneNvim.lint.debounce()
       end,
     })
-
-    local oldEslintConfig =
-      vim.fn.split(vim.fn.glob(vim.uv.cwd() .. "/.eslintrc.*"))
-    local newEslintConfig =
-      vim.fn.split(vim.fn.glob(vim.uv.cwd() .. "/eslint.config.*"))
-
-    local existsEslintConfig =
-      not vim.tbl_isempty(vim.list_extend(oldEslintConfig, newEslintConfig))
-
-    vim.g.linter_enabled = true
-
-    if existsEslintConfig then
-      lint.try_lint()
-    else
-      lint.linters_by_ft = {}
-      SereneNvim.info("Lint: Not found eslint config")
-      vim.g.linter_enabled = false
-    end
 
     vim.keymap.set("n", "<leader>tl", function()
       if vim.g.linter_enabled then
@@ -66,7 +58,7 @@ return {
         SereneNvim.info("Lint: Disabled")
       else
         require("lint").linters_by_ft = opts.linters_by_ft
-        require("lint").try_lint()
+        SereneNvim.lint.debounce()
         SereneNvim.info("Lint: Enabled")
       end
       vim.g.linter_enabled = not vim.g.linter_enabled

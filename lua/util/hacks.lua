@@ -2,8 +2,6 @@ local M = {}
 
 -- toggle codeium
 function M.codeium()
-  vim.g.codeium_enabled = true
-
   -- https://github.com/Exafunction/codeium.nvim/issues/136
   local mod = require("codeium.source")
 

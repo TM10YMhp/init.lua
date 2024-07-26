@@ -1,3 +1,5 @@
+vim.g.codeium_enabled = true
+
 return {
   {
     "Exafunction/codeium.nvim",

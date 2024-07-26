@@ -11,9 +11,7 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = { "biome" },
-    },
+    opts = { ensure_installed = { "biome" } },
   },
   {
     "stevearc/conform.nvim",

@@ -1,9 +1,7 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = { "clang-format" },
-    },
+    opts = { ensure_installed = { "clang-format" } },
   },
   {
     "stevearc/conform.nvim",
