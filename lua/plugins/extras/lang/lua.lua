@@ -66,8 +66,8 @@ return {
           prepend_args = function()
             local cwd = vim.uv.cwd()
             if
-              vim.fn.filereadable(cwd .. "/.stylua.toml") == 1
-              or vim.fn.filereadable(cwd .. "/stylua.toml") == 1
+              vim.tbl_isempty(vim.fn.glob(cwd .. "/.stylua.toml", true, true))
+              or vim.tbl_isempty(vim.fn.glob(cwd .. "/stylua.toml", true, true))
             then
               return {}
             end

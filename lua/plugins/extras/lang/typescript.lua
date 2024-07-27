@@ -84,14 +84,18 @@ return {
       linters = {
         eslint_d = {
           condition = function()
-            local old_eslint_config =
-              vim.fn.split(vim.fn.glob(vim.uv.cwd() .. "/.eslintrc.*"))
-            local new_eslint_config =
-              vim.fn.split(vim.fn.glob(vim.uv.cwd() .. "/eslint.config.*"))
-            local exists_eslint_config = not vim.tbl_isempty(
-              vim.list_extend(old_eslint_config, new_eslint_config)
-            )
-            return exists_eslint_config
+            local cwd = vim.uv.cwd()
+            local old_eslint_config = function()
+              return not vim.tbl_isempty(
+                vim.fn.glob(cwd .. "/.eslintrc.*", true, true)
+              )
+            end
+            local new_eslint_config = function()
+              return not vim.tbl_isempty(
+                vim.fn.glob(cwd .. "/eslint.config.*", true, true)
+              )
+            end
+            return old_eslint_config() or new_eslint_config()
           end,
         },
       },

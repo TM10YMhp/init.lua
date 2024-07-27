@@ -394,7 +394,6 @@ return {
 
       return vim.tbl_deep_extend("force", _opts, opts)
     end,
-    config = true,
   },
   -- integrate telescope with neo-tree
   {

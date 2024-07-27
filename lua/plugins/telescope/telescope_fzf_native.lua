@@ -2,11 +2,6 @@ return {
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
-    config = function(_, opts)
-      SereneNvim.on_load("telescope.nvim", function()
-        require("telescope").load_extension("fzf")
-      end)
-    end,
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -22,5 +17,9 @@ return {
         },
       },
     },
+    config = function(_, opts)
+      require("telescope").setup(opts)
+      require("telescope").load_extension("fzf")
+    end,
   },
 }
