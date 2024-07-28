@@ -72,6 +72,7 @@ function M.init()
   M.did_init = true
 
   require("config.options") -- call before lazy.nvim
+  require("config.autocmds") -- check BufReadPost
   require("config.lazy")
 end
 

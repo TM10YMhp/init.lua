@@ -105,10 +105,6 @@ require("lazy").setup({
   },
 })
 
-SereneNvim.on_lazy_init(function()
-  require("config.autocmds")
-end)
-
 -- startuptime
 vim.api.nvim_create_autocmd("User", {
   once = true,

@@ -11,7 +11,6 @@ return {
           return "BufEnter"
         end
       end
-      return "BufAdd"
     end,
     keys = {
       {

@@ -45,6 +45,30 @@ local function augroup_create(name)
   return vim.api.nvim_create_augroup("tm10ymhp_" .. name, { clear = true })
 end
 
+vim.api.nvim_create_autocmd({ "BufRead" }, {
+  group = augroup_create("bigfile"),
+  desc = "Bigfile config",
+  callback = function(args)
+    if not SereneNvim.is_large_file(vim.api.nvim_buf_get_name(args.buf)) then
+      return
+    end
+
+    vim.opt_local.filetype = "bigfile"
+
+    vim.opt_local.cursorline = false
+    vim.opt_local.foldenable = false
+    vim.opt_local.foldcolumn = "0"
+    vim.opt_local.number = false
+    vim.opt_local.signcolumn = "no"
+
+    vim.opt_local.swapfile = false
+    vim.opt_local.foldmethod = "manual"
+    vim.opt_local.undolevels = -1
+    vim.opt_local.undoreload = 0
+    vim.opt_local.list = false
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup_create("checktime"),
   desc = "Check if we need to reload the file",
