@@ -1,6 +1,5 @@
 return {
   "nvim-telescope/telescope-symbols.nvim",
-  dependencies = { "nvim-telescope/telescope.nvim" },
   keys = {
     { "<leader>is", "<cmd>Telescope symbols<cr>", desc = "Insert Symbol" },
     {
