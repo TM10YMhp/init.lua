@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
   group = augroup_create("bigfile"),
   desc = "Bigfile config",
   callback = function(args)
-    if not SereneNvim.is_large_file(vim.api.nvim_buf_get_name(args.buf)) then
+    if not SereneNvim.is_bigfile(vim.api.nvim_buf_get_name(args.buf)) then
       return
     end
 

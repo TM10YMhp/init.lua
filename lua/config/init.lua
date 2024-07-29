@@ -5,7 +5,9 @@ local M = {}
 SereneNvim.config = M
 
 local config = {
-  bigfile_size = 1, -- 1 MB
+  -- bigfile_size = 1024 * 1024 -- 1024kb == 1MB
+  -- bigfile_size = 1024 * 512 -- 512kb
+  bigfile_size = 1024 * 896, -- 896kb
   icons = {
     -- https://code.visualstudio.com/docs/editor/intellisense#_types-of-completions
     -- stylua: ignore
@@ -35,7 +37,7 @@ local config = {
       Event         = "e",
       Operator      = "o",
       TypeParameter = "T",
-      Codeium       = "★",
+      Codeium       = "*",
     },
     -- stylua: ignore
     sources = {
