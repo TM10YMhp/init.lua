@@ -55,6 +55,7 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
 
     vim.opt_local.filetype = "bigfile"
 
+    vim.opt_local.wrap = false
     vim.opt_local.cursorline = false
     vim.opt_local.foldenable = false
     vim.opt_local.foldcolumn = "0"
