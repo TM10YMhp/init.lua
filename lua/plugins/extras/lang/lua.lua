@@ -64,10 +64,11 @@ return {
       formatters = {
         stylua = {
           prepend_args = function()
-            local cwd = vim.uv.cwd()
             if
-              vim.tbl_isempty(vim.fn.glob(cwd .. "/.stylua.toml", true, true))
-              or vim.tbl_isempty(vim.fn.glob(cwd .. "/stylua.toml", true, true))
+              SereneNvim.exists_in_cwd({
+                ".stylua.toml",
+                "stylua.toml",
+              })
             then
               return {}
             end

@@ -12,6 +12,10 @@ function M.debounce(ms)
 end
 
 function M.lint()
+  if not vim.g.linter_enabled then
+    return
+  end
+
   local names = lint._resolve_linter_by_ft(vim.bo.filetype)
   names = vim.list_extend({}, names)
 

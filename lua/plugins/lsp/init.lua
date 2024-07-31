@@ -74,10 +74,12 @@ return {
       {
         "<leader>ls",
         function()
-          SereneNvim.info("LSP: Start")
+          SereneNvim.info("LSP: Start LSP and Linter")
+          vim.g.linter_enabled = true
+          SereneNvim.lint.debounce()
           vim.cmd("LspStart")
         end,
-        desc = "LSP: Start",
+        desc = "LSP: Start LSP and Linter",
       },
     },
     opts = {

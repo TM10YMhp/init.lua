@@ -1,4 +1,4 @@
-vim.g.linter_enabled = true
+vim.g.linter_enabled = false
 
 SereneNvim.on_lazy_ft("nvim-lint", {
   "javascript",
@@ -37,11 +37,10 @@ return {
       end
     end
 
+    lint.linters_by_ft = opts.linters_by_ft
+
     if vim.g.linter_enabled then
-      lint.linters_by_ft = opts.linters_by_ft
       SereneNvim.lint.debounce()
-    else
-      lint.linters_by_ft = {}
     end
 
     vim.api.nvim_create_autocmd(opts.events, {
@@ -53,11 +52,9 @@ return {
 
     vim.keymap.set("n", "<leader>tl", function()
       if vim.g.linter_enabled then
-        require("lint").linters_by_ft = {}
         vim.diagnostic.reset()
         SereneNvim.info("Lint: Disabled")
       else
-        require("lint").linters_by_ft = opts.linters_by_ft
         SereneNvim.lint.debounce()
         SereneNvim.info("Lint: Enabled")
       end

@@ -84,18 +84,20 @@ return {
       linters = {
         eslint_d = {
           condition = function()
-            local cwd = vim.uv.cwd()
-            local old_eslint_config = function()
-              return not vim.tbl_isempty(
-                vim.fn.glob(cwd .. "/.eslintrc.*", true, true)
-              )
-            end
-            local new_eslint_config = function()
-              return not vim.tbl_isempty(
-                vim.fn.glob(cwd .. "/eslint.config.*", true, true)
-              )
-            end
-            return old_eslint_config() or new_eslint_config()
+            return SereneNvim.exists_in_cwd({
+              ".eslintrc",
+              ".eslintrc.js",
+              ".eslintrc.cjs",
+              ".eslintrc.yaml",
+              ".eslintrc.yml",
+              ".eslintrc.json",
+              "eslint.config.js",
+              "eslint.config.mjs",
+              "eslint.config.cjs",
+              "eslint.config.ts",
+              "eslint.config.mts",
+              "eslint.config.cts",
+            })
           end,
         },
       },
