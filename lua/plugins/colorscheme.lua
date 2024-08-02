@@ -27,6 +27,18 @@ return {
     },
   },
   {
+    "rose-pine/neovim",
+    event = "CmdlineEnter :",
+    name = "rose-pine",
+    opts = {
+      styles = {
+        bold = false,
+        italic = false,
+        transparency = true,
+      },
+    },
+  },
+  {
     "scottmckendry/cyberdream.nvim",
     event = "CmdlineEnter :",
     opts = {
