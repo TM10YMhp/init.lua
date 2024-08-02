@@ -106,7 +106,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "neotest-summary",
     "neotest-output-panel",
     "dbout",
-    "gitsigns.blame",
+    "gitsigns-blame",
     "floggraph",
     "fugitive",
     "fugitiveblame",
