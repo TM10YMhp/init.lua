@@ -114,7 +114,7 @@ vim.keymap.set("x", "J", "omzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
-vim.keymap.set("t", "<c-x>", [[<c-\><c-n>]], {
+vim.keymap.set("t", "<M-q>", [[<c-\><c-n>]], {
   desc = "Go to Normal mode",
 })
 

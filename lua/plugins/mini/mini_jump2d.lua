@@ -9,7 +9,7 @@ return {
       desc = "Start 2d jumping",
     },
     {
-      "<c-x>",
+      "<M-f>",
       function()
         vim.api.nvim_input("<cr>")
 
