@@ -1,13 +1,5 @@
 vim.g.linter_enabled = false
 
-SereneNvim.on_lazy_ft("nvim-lint", {
-  "javascript",
-  "typescript",
-  "javascriptreact",
-  "typescriptreact",
-  "svelte",
-})
-
 return {
   "mfussenegger/nvim-lint",
   keys = {
@@ -39,9 +31,9 @@ return {
 
     lint.linters_by_ft = opts.linters_by_ft
 
-    if vim.g.linter_enabled then
+    vim.schedule(function()
       SereneNvim.lint.debounce()
-    end
+    end)
 
     vim.api.nvim_create_autocmd(opts.events, {
       group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
@@ -52,13 +44,12 @@ return {
 
     vim.keymap.set("n", "<leader>tl", function()
       if vim.g.linter_enabled then
-        vim.diagnostic.reset()
+        SereneNvim.lint.disable()
         SereneNvim.info("Lint: Disabled")
       else
-        SereneNvim.lint.debounce()
+        SereneNvim.lint.enable()
         SereneNvim.info("Lint: Enabled")
       end
-      vim.g.linter_enabled = not vim.g.linter_enabled
     end, {
       desc = "Toggle Lint",
     })

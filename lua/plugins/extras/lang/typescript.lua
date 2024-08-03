@@ -1,3 +1,13 @@
+if vim.g.linter_enabled then
+  SereneNvim.on_lazy_ft("nvim-lint", {
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "svelte",
+  })
+end
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",

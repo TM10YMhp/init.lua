@@ -2,6 +2,16 @@ local lint = require("lint")
 
 local M = {}
 
+function M.enable()
+  vim.g.linter_enabled = true
+  M.debounce()
+end
+
+function M.disable()
+  vim.g.linter_enabled = false
+  vim.diagnostic.reset()
+end
+
 function M.debounce(ms)
   ms = ms or 100
   local timer = vim.uv.new_timer()
