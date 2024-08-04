@@ -42,6 +42,14 @@ return {
       highlight_on_key = true,
       match = "[a-zA-Z0-9]",
     },
+    config = function(_, opts)
+      require("eyeliner").setup(opts)
+
+      vim.api.nvim_exec_autocmds(
+        "BufEnter",
+        { group = "Eyeliner", modeline = false }
+      )
+    end,
   },
   {
     "tpope/vim-sleuth",
@@ -51,7 +59,9 @@ return {
         "<leader>ce",
         function()
           SereneNvim.info("Detect Indent")
-          vim.cmd("Sleuth")
+          vim.schedule(function()
+            vim.cmd("Sleuth")
+          end)
         end,
         desc = "Detect Indent",
       },
@@ -83,7 +93,7 @@ return {
         enabled = true,
         semicolon = {
           enabled = true,
-          ft = { "cs", "c", "cpp", "java" },
+          ft = { "cs", "c", "cpp", "java", "php" },
         },
       },
     },
