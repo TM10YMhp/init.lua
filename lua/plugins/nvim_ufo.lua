@@ -95,16 +95,15 @@ return {
       if vim.list_contains(ft_ignore, vim.bo[bufnr].filetype) then
         require("ufo").detach(bufnr)
         vim.opt_local.foldcolumn = "0"
-        vim.opt_local.foldlevel = 99
         vim.opt_local.foldenable = false
       end
     end
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = ft_ignore,
-      callback = function()
+      callback = function(args)
         vim.schedule(function()
-          require("ufo").detach()
+          require("ufo").detach(args.buf)
           vim.opt_local.foldenable = false
           vim.opt_local.foldcolumn = "0"
         end)

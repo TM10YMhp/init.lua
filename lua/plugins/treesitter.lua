@@ -74,25 +74,4 @@ return {
       max_join_length = 150,
     },
   },
-  {
-    "Eandrju/cellular-automaton.nvim",
-    cmd = "CellularAutomaton",
-    keys = {
-      {
-        "<leader>zr",
-        "<cmd>CellularAutomaton make_it_rain<CR>",
-        desc = "Cellular Automaton: Make It Rain",
-      },
-      {
-        "<leader>zs",
-        "<cmd>CellularAutomaton scramble<CR>",
-        desc = "Cellular Automaton: Scramble",
-      },
-      {
-        "<leader>zg",
-        "<cmd>CellularAutomaton game_of_life<CR>",
-        desc = "Cellular Automaton: Game Of Life",
-      },
-    },
-  },
 }

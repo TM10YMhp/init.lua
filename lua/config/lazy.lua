@@ -23,6 +23,7 @@ require("lazy").setup({
     { import = "plugins.extras.formatting.prettier" },
 
     { import = "plugins.extras.lang.astro" },
+    { import = "plugins.extras.lang.blade" },
     { import = "plugins.extras.lang.cmake" },
     { import = "plugins.extras.lang.csharp" },
     { import = "plugins.extras.lang.cssmodules" },

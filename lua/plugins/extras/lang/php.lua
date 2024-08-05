@@ -1,25 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      -- add blade support
-      local parser_config =
-        require("nvim-treesitter.parsers").get_parser_configs()
-
-      parser_config.blade = {
-        install_info = {
-          url = "https://github.com/EmranMR/tree-sitter-blade",
-          files = { "src/parser.c" },
-          branch = "main",
-        },
-        filetype = "blade",
-      }
-
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
-        "blade",
-        "php",
-      })
-    end,
+    opts = { ensure_installed = { "php" } },
   },
   {
     "neovim/nvim-lspconfig",
@@ -43,28 +25,14 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "php-cs-fixer",
-        "blade-formatter",
-      },
-    },
+    opts = { ensure_installed = { "php-cs-fixer" } },
   },
   {
     "stevearc/conform.nvim",
     optional = true,
     opts = {
       formatters_by_ft = {
-        blade = { "blade-formatter" },
         php = { "php_cs_fixer" },
-      },
-      formatters = {
-        ["blade-formatter"] = {
-          prepend_args = {
-            "--indent-inner-html",
-            "--extra-liners=''",
-          },
-        },
       },
     },
   },
