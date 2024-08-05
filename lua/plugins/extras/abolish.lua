@@ -1,5 +1,25 @@
 return {
   {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      -- TODO: check delay
+      spec = {
+        { "crc", desc = "camelCase" },
+        { "crm", desc = "MixedCase (aka PascalCase)" },
+        { "crp", desc = "PascalCase" },
+        { "crs", desc = "snake_case" },
+        { "cr_", desc = "snake_case" },
+        { "cru", desc = "UPPERCASE" },
+        { "crU", desc = "UPPERCASE" },
+        { "cr-", desc = "kebab-case" },
+        { "crk", desc = "dash-case (aka kebab-case)" },
+        { "cr.", desc = "dot.case" },
+        { "cr ", desc = "space case" },
+      },
+    },
+  },
+  {
     "markonm/traces.vim",
     config = function()
       vim.g.traces_substitute_preview = 0

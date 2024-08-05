@@ -10,8 +10,11 @@ return {
       desc = "Buffer Local Keymaps (which-key)",
     },
   },
-  opts_extend = { "spec" },
+  opts_extend = { "spec", "triggers" },
   opts = {
+    triggers = {
+      { "<auto>", mode = "nixsotc" },
+    },
     win = {
       no_overlap = false,
       height = { min = 4, max = 0.25 },

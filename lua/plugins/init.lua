@@ -22,15 +22,6 @@ return {
     },
   },
   {
-    "tommcdo/vim-exchange",
-    keys = { { "cx", desc = "Exchange" } },
-  },
-  {
-    "BranimirE/fix-auto-scroll.nvim",
-    event = "BufLeave",
-    config = true,
-  },
-  {
     "jinh0/eyeliner.nvim",
     keys = {
       { "f", mode = { "n", "o", "x" }, desc = "Jump forward" },
@@ -110,9 +101,22 @@ return {
     "romainl/vim-cool",
     event = "VeryLazy",
   },
+  -- scroll and cursor
   {
     "Aasim-A/scrollEOF.nvim",
     event = "VeryLazy",
     opts = { insert_mode = true },
+  },
+  {
+    "tonymajestro/smart-scrolloff.nvim",
+    event = "VeryLazy",
+    opts = {
+      scrolloff_percentage = 0.2,
+    },
+  },
+  {
+    "BranimirE/fix-auto-scroll.nvim",
+    event = "BufLeave",
+    config = true,
   },
 }
