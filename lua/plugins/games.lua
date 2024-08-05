@@ -143,7 +143,6 @@ return {
       end
     end,
   },
-  -- TODO: fix cursor move in rain
   {
     "NStefan002/speedtyper.nvim",
     cmd = "Speedtyper",
@@ -151,7 +150,7 @@ return {
       {
         "<leader>vf",
         "<cmd>Speedtyper<CR>",
-        desc = "Type Speed Game",
+        desc = "Type Speedtyper",
       },
     },
     opts = {
@@ -171,6 +170,26 @@ return {
 
         vim.api.nvim_set_option_value("stc", "", { scope = "local" })
         vim.opt_local.scrolloff = 0
+      end
+
+      local mod2 = require("speedtyper.game_modes")
+      local start_game = mod2.start_game
+      mod2.start_game = function()
+        start_game()
+
+        local game_mode = mod2.game_mode
+        if game_mode ~= "rain" then
+          return
+        end
+
+        local buf = vim.api.nvim_get_current_buf()
+        vim.keymap.set({ "n", "v", "i" }, "<CR>", "<nop>", { buffer = buf })
+        vim.keymap.set({ "n", "v", "i" }, "<BS>", function()
+          if vim.fn.getline(vim.fn.line(".")):len() == 0 then
+            return
+          end
+          return "<BS>"
+        end, { buffer = buf, expr = true })
       end
 
       require("speedtyper").setup(opts)

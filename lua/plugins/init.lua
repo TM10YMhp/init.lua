@@ -32,6 +32,7 @@ return {
   },
   {
     "jinh0/eyeliner.nvim",
+    commit = "d5dac00",
     keys = {
       { "f", mode = { "n", "o", "x" }, desc = "Jump forward" },
       { "F", mode = { "n", "o", "x" }, desc = "Jump backward" },
