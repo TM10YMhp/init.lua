@@ -1,3 +1,6 @@
+-- TODO: chech this
+vim.opt.fileformats = { "unix", "dos" }
+
 -- disable some default providers
 vim.g.loaded_node_provider = 0
 vim.g.loaded_python3_provider = 0
