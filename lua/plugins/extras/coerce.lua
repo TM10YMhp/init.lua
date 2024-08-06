@@ -9,6 +9,13 @@ return {
   {
     "gregorias/coerce.nvim",
     event = "VeryLazy",
+    opts = {
+      default_mode_keymap_prefixes = {
+        normal_mode = "cr",
+        motion_mode = "gCr",
+        visual_mode = "gCr",
+      },
+    },
     config = function(_, opts)
       local coerce = require("coerce")
 
