@@ -1,30 +1,40 @@
 return {
-  "andrewferrier/debugprint.nvim",
-  -- TODO: prevent load lazy.lua
-  keys = {
-    { "gb", mode = { "n", "x" } },
+  {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<leader>r", group = "DebugPrint" },
+      },
+    },
   },
-  opts = {
-    keymaps = {
-      normal = {
-        plain_below = "gbp",
-        plain_above = "gbP",
-        variable_below = "gbv",
-        variable_above = "gbV",
-        textobj_below = "gbo",
-        textobj_above = "gbO",
-      },
-      visual = {
-        variable_below = "gbv",
-        variable_above = "gbV",
-      },
+  {
+    "andrewferrier/debugprint.nvim",
+    keys = {
+      { "<leader>r", mode = { "n", "x" } },
     },
-    commands = {
-      toggle_comment_debug_prints = nil,
-      delete_debug_prints = nil,
+    opts = {
+      keymaps = {
+        normal = {
+          plain_below = "<leader>rp",
+          plain_above = "<leader>rP",
+          variable_below = "<leader>rv",
+          variable_above = "<leader>rV",
+          textobj_below = "<leader>ro",
+          textobj_above = "<leader>rO",
+        },
+        visual = {
+          variable_below = "<leader>rv",
+          variable_above = "<leader>rV",
+        },
+      },
+      commands = {
+        toggle_comment_debug_prints = nil,
+        delete_debug_prints = nil,
+      },
+      display_counter = false,
+      display_snippet = false,
+      print_tag = "::",
     },
-    display_counter = false,
-    display_snippet = false,
-    print_tag = "::",
   },
 }
