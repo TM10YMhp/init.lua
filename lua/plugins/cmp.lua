@@ -27,6 +27,17 @@ return {
       local cmp = require("cmp")
 
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+      vim.keymap.set("n", "<leader>up", function()
+        local autopairs = require("nvim-autopairs")
+        autopairs.toggle()
+
+        local state = not autopairs.state.disabled
+        local msg =
+          string.format("%s Autopairs", state and "Enabled" or "Disabled")
+        local n = state and SereneNvim.info or SereneNvim.warn
+        n(msg, { title = "Option" })
+      end, { desc = "Toggle Autopairs" })
     end,
   },
   {
