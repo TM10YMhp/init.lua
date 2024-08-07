@@ -27,14 +27,12 @@ return {
             if vim.endswith(ctx.filename, ".astro") then
               return {
                 "--html-whitespace-sensitivity=ignore",
-                "--end-of-line crlf",
                 "--plugin=prettier-plugin-astro",
               }
             end
 
             return {
               "--html-whitespace-sensitivity=ignore",
-              "--end-of-line crlf",
             }
           end,
         },

@@ -14,7 +14,7 @@ return {
   },
   {
     "tzachar/highlight-undo.nvim",
-    event = "VeryLazy",
+    keys = { "u", "<c-r>" },
     opts = {
       duration = 100,
       undo = { hlgroup = "Search" },
@@ -101,6 +101,7 @@ return {
     "romainl/vim-cool",
     event = "VeryLazy",
   },
+  -- NOTE: cursormove fire cmdlineenter?
   -- scroll and cursor
   {
     "Aasim-A/scrollEOF.nvim",

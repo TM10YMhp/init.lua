@@ -43,7 +43,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
+    event = SereneNvim.lazy_init and "BufAdd" or "InsertCharPre",
     config = function()
       require("nvim-ts-autotag").setup()
       require("nvim-ts-autotag.internal").attach()

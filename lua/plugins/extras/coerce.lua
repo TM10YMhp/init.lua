@@ -8,7 +8,7 @@ return {
   },
   {
     "gregorias/coerce.nvim",
-    event = "VeryLazy",
+    keys = { "cr", { "gCr", mode = { "n", "v" } } },
     opts = {
       default_mode_keymap_prefixes = {
         normal_mode = "cr",
