@@ -1,26 +1,26 @@
 return {
   {
     "markonm/traces.vim",
+    event = "VeryLazy",
     config = function()
-      vim.g.traces_substitute_preview = 0
+      vim.g.traces_substitute_preview = 1
       vim.g.traces_abolish_integration = 1
     end,
   },
   {
     "tpope/vim-abolish",
-    cmd = { "S", "Subvert", "Abolish" },
-    dependencies = { "markonm/traces.vim" },
+    event = "VeryLazy",
     keys = {
       {
         "<leader>uS",
         [[:%S///gc<left><left><left><left>]],
-        desc = "Abolish Substitute",
+        desc = "Substitute Preserve Case",
       },
       {
         "<leader>uS",
         [[:S///gc<left><left><left><left>]],
         mode = "x",
-        desc = "Abolish Substitute Selection",
+        desc = "Substitute Selection Preserve Case",
       },
     },
   },

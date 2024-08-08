@@ -6,7 +6,7 @@ return {
 
     return {
       ft_ignore = { "fugitive", "dashboard", "bigfile", "lazy", "dbui" },
-      bt_ignore = { "terminal", "help" },
+      bt_ignore = { "terminal", "help", "nofile" },
       relculright = false,
       segments = {
         { text = { builtin.foldfunc } },
