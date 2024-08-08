@@ -206,7 +206,7 @@ return {
         performance = {
           debounce = 100,
           throttle = 100,
-          fetching_timeout = 2000, -- TODO: check this
+          fetching_timeout = 500, -- TODO: check this
           confirm_resolve_timeout = 100,
           max_view_entries = 150,
         },

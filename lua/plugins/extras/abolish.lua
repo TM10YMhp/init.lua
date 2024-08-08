@@ -9,7 +9,7 @@ return {
   },
   {
     "tpope/vim-abolish",
-    event = "VeryLazy",
+    event = "CmdlineEnter :",
     keys = {
       {
         "<leader>uS",
