@@ -21,6 +21,13 @@ return {
       },
     },
     config = function(_, opts)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "mason",
+        callback = function()
+          vim.opt_local.wrap = true
+        end,
+      })
+
       require("mason").setup(opts)
 
       local mr = require("mason-registry")

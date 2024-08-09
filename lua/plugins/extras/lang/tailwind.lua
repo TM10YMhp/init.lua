@@ -44,4 +44,19 @@ return {
       },
     },
   },
+  -- TODO: check this
+  -- {
+  --   "williamboman/mason.nvim",
+  --   opts = { ensure_installed = { "rustywind" } },
+  -- },
+  -- {
+  --   "stevearc/conform.nvim",
+  --   optional = true,
+  --   opts = function(_, opts)
+  --     vim.list_extend(
+  --       opts.formatters_by_ft.javascriptreact or {},
+  --       { "rustywind" }
+  --     )
+  --   end,
+  -- },
 }
