@@ -234,18 +234,12 @@ return {
           dynamic_preview_title = true,
           prompt_prefix = "",
           color_devicons = false,
-          -- TODO: check this
           file_ignore_patterns = {
             "build/",
-            "build\\",
             ".cache/",
-            ".cache\\",
             ".git/",
-            ".git\\",
             "node_modules/",
-            "node_modules\\",
             "__pycache__/",
-            "__pycache__\\",
             ".class$",
           },
           border = true,
