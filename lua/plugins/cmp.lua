@@ -173,14 +173,14 @@ return {
         sorting = {
           priority_weight = 2,
           comparators = {
-            -- cmp.config.compare.offset,
-            -- cmp.config.compare.exact,
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
             -- cmp.config.compare.scopes,
             cmp.config.compare.score,
             cmp.config.compare.recently_used,
             -- cmp.config.compare.locality,
             -- cmp.config.compare.kind,
-            -- cmp.config.compare.sort_text,
+            cmp.config.compare.sort_text,
             cmp.config.compare.length,
             cmp.config.compare.order,
           },
@@ -206,7 +206,7 @@ return {
         performance = {
           debounce = 100,
           throttle = 100,
-          fetching_timeout = 500, -- TODO: check this
+          fetching_timeout = 500,
           confirm_resolve_timeout = 100,
           max_view_entries = 150,
         },
