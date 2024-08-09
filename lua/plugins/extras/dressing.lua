@@ -7,6 +7,9 @@ return {
       relative = "editor",
       max_width = 120,
       min_width = 60,
+      win_options = {
+        wrap = true,
+      },
     },
     select = {
       backend = { "builtin" },
@@ -14,6 +17,9 @@ return {
         border = "single",
         max_width = 120,
         min_width = 60,
+        win_options = {
+          wrap = true,
+        },
       },
     },
   },

@@ -31,6 +31,7 @@ return {
           "--column",
           "--hidden",
           "--trim",
+          "--glob=!.git",
           -- windows path separator
           "--path-separator",
           "/",

@@ -234,6 +234,7 @@ return {
           dynamic_preview_title = true,
           prompt_prefix = "",
           color_devicons = false,
+          -- TODO: check this
           file_ignore_patterns = {
             "build/",
             "build\\",

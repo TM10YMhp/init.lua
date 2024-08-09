@@ -11,7 +11,7 @@ return {
     conflict   = { suffix = 'x', options = {} },
     diagnostic = { suffix = 'e', options = {} },
     file       = { suffix = 'f', options = {} },
-    indent     = { suffix = 'i', options = { change_type = 'diff'} },
+    indent     = { suffix = 'i', options = { change_type = 'diff' } },
     jump       = { suffix = 'j', options = {} },
     oldfile    = { suffix = 'o', options = {} },
     location   = { suffix = 'l', options = {} },
