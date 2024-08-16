@@ -1,10 +1,16 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = { "RRethy/nvim-treesitter-endwise" },
-    opts = {
-      endwise = { enable = true },
-    },
+    "oncomouse/nvim-treesitter-endwise",
+    event = SereneNvim.lazy_init and "BufAdd" or "InsertCharPre",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("nvim-treesitter-endwise").setup()
+
+      vim.api.nvim_exec_autocmds(
+        "FileType",
+        { group = "NvimTreesitter-endwise", modeline = false }
+      )
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -52,6 +58,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
+    dependencies = "nvim-treesitter/nvim-treesitter",
     keys = {
       {
         "<leader>ut",
