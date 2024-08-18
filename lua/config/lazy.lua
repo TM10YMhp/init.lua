@@ -33,6 +33,7 @@ require("lazy").setup({
     { import = "plugins.extras.lang.lua" },
     { import = "plugins.extras.lang.php" },
     { import = "plugins.extras.lang.python" },
+    { import = "plugins.extras.lang.sql" },
     { import = "plugins.extras.lang.tailwind" },
     { import = "plugins.extras.lang.typescript" },
   },
