@@ -1,4 +1,9 @@
 return {
+  {
+    -- TODO: check this
+    "mattn/emmet-vim",
+    keys = { "<c-y>" },
+  },
   -- same telescope-undo
   {
     "mbbill/undotree",
@@ -33,14 +38,6 @@ return {
       highlight_on_key = true,
       match = "[a-zA-Z0-9]",
     },
-    config = function(_, opts)
-      require("eyeliner").setup(opts)
-
-      vim.api.nvim_exec_autocmds(
-        "BufEnter",
-        { group = "Eyeliner", modeline = false }
-      )
-    end,
   },
   {
     "tpope/vim-sleuth",
