@@ -18,6 +18,7 @@ return {
           url = "https://github.com/EmranMR/tree-sitter-blade",
           files = { "src/parser.c" },
           branch = "main",
+          revision = "dead019eeabe612da7fb325caf72fdc7c744d19a",
         },
         filetype = "blade",
       }

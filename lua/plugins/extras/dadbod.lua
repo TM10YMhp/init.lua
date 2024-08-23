@@ -11,11 +11,15 @@ return {
       { "<leader>db", "<cmd>DBUIToggle<CR>", desc = "Toggle DBUI" },
     },
     init = function()
-      -- TODO: remove this
+      -- TODO: remove this and use dotenv.vim
       vim.g.dbs = {
         {
           name = "root@localhost:3306",
           url = "mysql://root@localhost:3306",
+        },
+        {
+          name = "root@localhost:3307",
+          url = "mysql://root@localhost:3307",
         },
       }
 
