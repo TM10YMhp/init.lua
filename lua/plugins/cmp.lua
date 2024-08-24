@@ -111,6 +111,20 @@ return {
               },
             },
           }),
+          ["<C-s>"] = cmp.mapping.complete({
+            config = {
+              formatting = {
+                -- FIX: use same formatter except abbr limit
+                format = function(entry, item)
+                  item.kind = SereneNvim.config.icons.kinds[item.kind] or "?"
+                  return item
+                end,
+              },
+              sources = {
+                { name = "codeium" },
+              },
+            },
+          }),
           ["<C-CR>"] = function(fallback)
             cmp.abort()
             fallback()
@@ -180,7 +194,7 @@ return {
             cmp.config.compare.recently_used,
             -- cmp.config.compare.locality,
             -- cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
+            -- cmp.config.compare.sort_text, -- NOTE: tailwind border
             cmp.config.compare.length,
             cmp.config.compare.order,
           },
