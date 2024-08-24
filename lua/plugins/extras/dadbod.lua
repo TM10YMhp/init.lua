@@ -1,6 +1,11 @@
 return {
   {
+    "tpope/vim-dotenv",
+    cmd = "Dotenv",
+  },
+  {
     "tpope/vim-dadbod",
+    dependencies = { "tpope/vim-dotenv" },
     cmd = "DB",
   },
   {
@@ -11,17 +16,17 @@ return {
       { "<leader>db", "<cmd>DBUIToggle<CR>", desc = "Toggle DBUI" },
     },
     init = function()
-      -- TODO: remove this and use dotenv.vim
-      vim.g.dbs = {
-        {
-          name = "root@localhost:3306",
-          url = "mysql://root@localhost:3306",
-        },
-        {
-          name = "root@localhost:3307",
-          url = "mysql://root@localhost:3307",
-        },
-      }
+      -- DBUI_NAME=
+      -- DBUI_URL=
+      --
+      -- DB_UI_NAME=
+      --
+      -- vim.g.dbs = {
+      --   {
+      --     name = "root@localhost:3306",
+      --     url = "mysql://root@localhost:3306",
+      --   },
+      -- }
 
       local data_path = vim.fn.stdpath("data")
 
