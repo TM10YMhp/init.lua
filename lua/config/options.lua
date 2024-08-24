@@ -1,4 +1,3 @@
--- TODO: chech this
 vim.opt.fileformats = { "unix", "dos" }
 
 -- disable some default providers

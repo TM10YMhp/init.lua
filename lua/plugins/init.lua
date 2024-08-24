@@ -1,8 +1,10 @@
 return {
   {
-    -- TODO: check this
     "mattn/emmet-vim",
-    keys = { "<c-y>" },
+    keys = { "<M-e>" },
+    init = function()
+      vim.g.user_emmet_leader_key = "<M-e>"
+    end,
   },
   -- same telescope-undo
   {
