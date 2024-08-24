@@ -1,8 +1,22 @@
 return {
   {
+    "andymass/vim-matchup",
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      vim.g.matchup_matchparen_enabled = 0
+
+      vim.api.nvim_exec_autocmds(
+        "FileType",
+        { group = "matchup_filetype", modeline = false }
+      )
+    end,
+  },
+  {
     "oncomouse/nvim-treesitter-endwise",
     event = SereneNvim.lazy_init and "BufAdd" or "InsertCharPre",
-    dependencies = "nvim-treesitter/nvim-treesitter",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("nvim-treesitter-endwise").setup()
 
@@ -40,6 +54,11 @@ return {
       indent = {
         enable = true,
       },
+      -- TODO: check this
+      matchup = {
+        enable = true,
+        enable_quotes = true,
+      },
     },
     config = function(_, opts)
       -- git slow in windows
@@ -58,7 +77,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
-    dependencies = "nvim-treesitter/nvim-treesitter",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     keys = {
       {
         "<leader>ut",
