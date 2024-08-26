@@ -1,34 +1,15 @@
 SereneNvim.on_lazy_init(function()
   vim.filetype.add({
-    extension = {
-      env = "dotenv",
-    },
-    filename = {
-      [".env"] = "dotenv",
-      ["env"] = "dotenv",
-    },
     pattern = {
       -- match filenames like - ".env.example", ".env.local" and so on
-      ["%.env%.[%w_.-]+"] = "dotenv",
+      ["%.env%.[%w_.-]+"] = "sh",
     },
-  })
-
-  vim.api.nvim_create_autocmd("FileType", {
-    group = vim.api.nvim_create_augroup("tm10ymhp_dotenv", { clear = true }),
-    pattern = { "dotenv" },
-    desc = "Set syntax bash for dotenv files",
-    callback = function()
-      vim.schedule(function()
-        vim.opt_local.syntax = "bash"
-        vim.opt_local.commentstring = "# %s"
-      end)
-    end,
   })
 end)
 
 return {
   "laytan/cloak.nvim",
-  ft = { "dotenv", "TelescopePrompt" },
+  ft = { "sh", "TelescopePrompt" },
   keys = {
     {
       "<leader>tc",
