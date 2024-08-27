@@ -1,6 +1,7 @@
 return {
   "stevearc/conform.nvim",
   event = "BufWritePre",
+  commit = "d31323d", -- NOTE: errors in windows after update
   cmd = "ConformInfo",
   keys = {
     {
