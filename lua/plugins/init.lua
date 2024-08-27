@@ -76,7 +76,7 @@ return {
   },
   {
     "kawre/neotab.nvim",
-    event = "InsertCharPre",
+    event = "InsertEnter",
     opts = {
       tabkey = "",
       smart_punctuators = {

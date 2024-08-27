@@ -15,7 +15,7 @@ return {
   },
   {
     "oncomouse/nvim-treesitter-endwise",
-    event = SereneNvim.lazy_init and "BufAdd" or "InsertCharPre",
+    event = SereneNvim.lazy_init and "BufAdd" or "InsertEnter",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("nvim-treesitter-endwise").setup()
@@ -42,8 +42,6 @@ return {
         "markdown_inline",
         -- "css",
         -- "c",
-        -- "cpp",
-        -- "angular",
       },
       sync_install = true, -- async cpu cost
       auto_install = false,
@@ -68,7 +66,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    event = SereneNvim.lazy_init and "BufAdd" or "InsertCharPre",
+    event = SereneNvim.lazy_init and "BufAdd" or "InsertEnter",
     config = function()
       require("nvim-ts-autotag").setup()
       require("nvim-ts-autotag.internal").attach()

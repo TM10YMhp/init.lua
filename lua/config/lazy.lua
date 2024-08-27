@@ -26,6 +26,7 @@ require("lazy").setup({
     { import = "plugins.extras.lang.blade" },
     { import = "plugins.extras.lang.cmake" },
     { import = "plugins.extras.lang.csharp" },
+    { import = "plugins.extras.lang.css" },
     { import = "plugins.extras.lang.cssmodules" },
     { import = "plugins.extras.lang.java" },
     { import = "plugins.extras.lang.json" },
