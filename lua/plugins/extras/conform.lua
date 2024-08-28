@@ -65,7 +65,7 @@ return {
     end,
   },
   config = function(_, opts)
-    require("conform").setup(opts)
     SereneNvim.hacks.conform()
+    require("conform").setup(opts)
   end,
 }

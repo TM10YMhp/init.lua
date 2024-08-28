@@ -9,7 +9,7 @@ return {
     opts = {
       -- stylua: ignore
       formatters_by_ft = {
-        astro            = { "prettier" },
+        astro            = { "prettier", lsp_format = "prefer" },
         css              = { "prettier" },
         graphql          = { "prettier" },
         handlebars       = { "prettier" },
@@ -23,18 +23,9 @@ return {
       },
       formatters = {
         prettier = {
-          prepend_args = function(_, ctx)
-            if vim.endswith(ctx.filename, ".astro") then
-              return {
-                "--html-whitespace-sensitivity=ignore",
-                "--plugin=prettier-plugin-astro",
-              }
-            end
-
-            return {
-              "--html-whitespace-sensitivity=ignore",
-            }
-          end,
+          prepend_args = {
+            "--html-whitespace-sensitivity=ignore",
+          },
         },
       },
     },
