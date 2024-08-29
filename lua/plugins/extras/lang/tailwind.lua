@@ -26,6 +26,7 @@ return {
                 "ngClass",
                 "classNames",
                 "class:list",
+                ":class",
               },
               experimental = {
                 classRegex = {

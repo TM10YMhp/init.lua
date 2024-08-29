@@ -37,6 +37,7 @@ require("lazy").setup({
     { import = "plugins.extras.lang.sql" },
     { import = "plugins.extras.lang.tailwind" },
     { import = "plugins.extras.lang.typescript" },
+    { import = "plugins.extras.lang.vue" },
   },
   pkg = {
     sources = {
