@@ -10,7 +10,7 @@ return {
     },
   },
   {
-    "hrsh7th/nvim-cmp",
+    "nvim-cmp",
     opts = function(_, opts)
       opts.sources = opts.sources or {}
       table.insert(opts.sources, {

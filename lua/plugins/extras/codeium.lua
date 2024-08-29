@@ -26,7 +26,7 @@ return {
     end,
   },
   {
-    "hrsh7th/nvim-cmp",
+    "nvim-cmp",
     dependencies = { "Exafunction/codeium.nvim" },
     opts = function(_, opts)
       opts.sources = opts.sources or {}
