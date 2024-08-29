@@ -7,7 +7,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = { ensure_installed = { "vue" } },
   },
-  -- NOTE: https://github.com/vuejs/language-tools/issues/4706#issuecomment-2295347078
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -41,16 +40,13 @@ return {
 
       opts.servers.tsserver.init_options.plugins = opts.servers.tsserver.init_options.plugins
         or {}
-      vim.list_extend(
-        opts.servers.tsserver.init_options.plugins,
+      vim.list_extend(opts.servers.tsserver.init_options.plugins, {
         {
-          {
-            name = "@vue/typescript-plugin",
-            location = vue_language_server_path,
-            languages = { "vue" },
-          },
-        }
-      )
+          name = "@vue/typescript-plugin",
+          location = vue_language_server_path,
+          languages = { "vue" },
+        },
+      })
     end,
   },
 }
