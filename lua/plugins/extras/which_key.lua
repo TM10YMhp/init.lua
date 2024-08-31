@@ -13,7 +13,7 @@ return {
   opts_extend = { "spec", "triggers" },
   opts = {
     triggers = {
-      { "<auto>", mode = "nixsotc" },
+      { "<auto>", mode = "nxso" },
     },
     win = {
       no_overlap = false,
