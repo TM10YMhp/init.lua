@@ -5,6 +5,20 @@ return {
     cmd = { "TodoTelescope", "TodoQuickFix", "TodoTrouble", "TodoLocList" },
     keys = {
       { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Find Todo" },
+      {
+        "]t",
+        function()
+          require("todo-comments").jump_next()
+        end,
+        desc = "Next todo comment",
+      },
+      {
+        "[t",
+        function()
+          require("todo-comments").jump_prev()
+        end,
+        desc = "Previous todo comment",
+      },
     },
     opts = {
       signs = false,
