@@ -37,7 +37,7 @@ vim.opt.previewheight = 25
 
 vim.opt.cursorline = true
 
--- vim.opt.iskeyword:append({ "-" })
+vim.opt.iskeyword:append({ "$", "-" })
 
 vim.opt.conceallevel = 0
 
