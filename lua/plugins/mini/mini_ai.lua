@@ -1,7 +1,6 @@
 -- TODO: custom_textobjects nvim_various_textobjs
 return {
   "echasnovski/mini.ai",
-  dependencies = { "echasnovski/mini.extra", config = true },
   keys = {
     { "a", mode = { "x", "o" }, desc = "Around textobject" },
     { "i", mode = { "x", "o" }, desc = "Inside textobject" },
@@ -10,7 +9,6 @@ return {
   },
   opts = function()
     local spec_treesitter = require("mini.ai").gen_spec.treesitter
-    local gen_ai_spec = require("mini.extra").gen_ai_spec
 
     return {
       mappings = {
@@ -30,8 +28,74 @@ return {
       },
       n_lines = 500,
       custom_textobjects = {
-        g = gen_ai_spec.buffer(),
-        n = gen_ai_spec.number(),
+        -- mini.extra
+        g = function(ai_type)
+          local start_line, end_line = 1, vim.fn.line("$")
+          if ai_type == "i" then
+            -- Skip first and last blank lines for `i` textobject
+            local first_nonblank, last_nonblank =
+              vim.fn.nextnonblank(start_line), vim.fn.prevnonblank(end_line)
+            -- Do nothing for buffer with all blanks
+            if first_nonblank == 0 or last_nonblank == 0 then
+              return { from = { line = start_line, col = 1 } }
+            end
+            start_line, end_line = first_nonblank, last_nonblank
+          end
+
+          local to_col = math.max(vim.fn.getline(end_line):len(), 1)
+          return {
+            from = { line = start_line, col = 1 },
+            to = { line = end_line, col = to_col },
+          }
+        end,
+        d = function(ai_type)
+          local digits_pattern = "%f[%d]%d+%f[%D]"
+
+          local find_a_number = function(line, init)
+            -- First find consecutive digits
+            local from, to = line:find(digits_pattern, init)
+            if from == nil then
+              return nil, nil
+            end
+
+            -- Make sure that these digits were not processed before. This can happen
+            -- because 'miin.ai' does next with `init = from + 1`, meaning that
+            -- "-12.34" was already matched, then it would try to match starting from
+            -- "1": we want to avoid matching that right away and avoid matching "34"
+            -- from this number.
+            if from == init and line:sub(from - 1, from - 1) == "-" then
+              init = to + 1
+              from, to = line:find(digits_pattern, init)
+            end
+            if from == nil then
+              return nil, nil
+            end
+
+            if line:sub(from - 2):find("^%d%.") ~= nil then
+              init = to + 1
+              from, to = line:find(digits_pattern, init)
+            end
+            if from == nil then
+              return nil, nil
+            end
+
+            -- Match the whole number with minus and decimal part
+            if line:sub(from - 1, from - 1) == "-" then
+              from = from - 1
+            end
+            local dec_part = line:sub(to + 1):match("^%.%d+()")
+            if dec_part ~= nil then
+              to = to + dec_part - 1
+            end
+            return from, to
+          end
+
+          if ai_type == "i" then
+            return { digits_pattern }
+          end
+
+          return { find_a_number, { "^().*()$" } }
+        end,
         -- Need 'nvim-treesitter/nvim-treesitter-textobjects'
         o = spec_treesitter({
           a = { "@block.outer", "@conditional.outer", "@loop.outer" },
