@@ -19,27 +19,28 @@ return {
     opts = function(_, opts)
       local lang_utils = require("treesj.langs.utils")
 
-      opts.langs = opts.langs or {}
-      opts.langs.astro = opts.langs.astro or {}
-
-      opts.langs.astro = {
-        start_tag = lang_utils.set_default_preset({
-          both = {
-            omit = { "tag_name" },
+      return vim.tbl_deep_extend("force", opts, {
+        langs = {
+          astro = {
+            start_tag = lang_utils.set_default_preset({
+              both = {
+                omit = { "tag_name" },
+              },
+            }),
+            self_closing_tag = lang_utils.set_default_preset({
+              both = {
+                omit = { "tag_name" },
+                no_format_with = {},
+              },
+            }),
+            element = lang_utils.set_default_preset({
+              join = {
+                space_separator = false,
+              },
+            }),
           },
-        }),
-        self_closing_tag = lang_utils.set_default_preset({
-          both = {
-            omit = { "tag_name" },
-            no_format_with = {},
-          },
-        }),
-        element = lang_utils.set_default_preset({
-          join = {
-            space_separator = false,
-          },
-        }),
-      }
+        },
+      })
     end,
   },
 }
