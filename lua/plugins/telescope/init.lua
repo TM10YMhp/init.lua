@@ -210,7 +210,7 @@ return {
         end
       end
 
-      local _opts = {
+      return vim.tbl_deep_extend("force", opts, {
         defaults = {
           preview = {
             hide_on_startup = true,
@@ -386,9 +386,7 @@ return {
             end,
           },
         },
-      }
-
-      return vim.tbl_deep_extend("force", _opts, opts)
+      })
     end,
   },
   -- integrate telescope with neo-tree
