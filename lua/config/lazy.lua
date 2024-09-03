@@ -18,10 +18,6 @@ require("lazy").setup({
     { import = "plugins" },
     { import = "plugins.extras" },
 
-    { import = "plugins.extras.formatting.biome" },
-    { import = "plugins.extras.formatting.clang_format" },
-    { import = "plugins.extras.formatting.prettier" },
-
     { import = "plugins.extras.lang.astro" },
     { import = "plugins.extras.lang.blade" },
     { import = "plugins.extras.lang.cmake" },

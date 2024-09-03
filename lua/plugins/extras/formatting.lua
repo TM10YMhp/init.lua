@@ -1,7 +1,24 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = { ensure_installed = { "prettier" } },
+    opts = {
+      ensure_installed = {
+        "biome",
+        "clang-format",
+        "prettier",
+      },
+    },
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      setup = {
+        biome = function()
+          return true
+        end,
+      },
+    },
   },
   {
     "stevearc/conform.nvim",
@@ -9,6 +26,17 @@ return {
     opts = {
       -- stylua: ignore
       formatters_by_ft = {
+        javascript      = { "biome" },
+        javascriptreact = { "biome" },
+        json            = { "biome" },
+        jsonc           = { "biome" },
+        typescript      = { "biome" },
+        typescriptreact = { "biome" },
+
+        cs  = { "clang-format" },
+        c   = { "clang-format" },
+        cpp = { "clang-format" },
+
         astro            = { "prettier", lsp_format = "prefer" },
         css              = { "prettier" },
         graphql          = { "prettier" },
