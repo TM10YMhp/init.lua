@@ -261,6 +261,7 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
+        -- TODO: like astro use internal formatter
         java = { "google-java-format" },
       },
     },
