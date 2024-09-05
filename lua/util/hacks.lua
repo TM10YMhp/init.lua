@@ -1,30 +1,5 @@
 local M = {}
 
--- fix windows path
-function M.telescope()
-  local mod = require("telescope.actions.state")
-  local get_selected_entry = mod.get_selected_entry
-  ---@diagnostic disable-next-line: duplicate-set-field
-  mod.get_selected_entry = function()
-    local entry = get_selected_entry()
-    if entry.path then
-      entry.path = entry.path:gsub("/", "\\")
-    end
-    return entry
-  end
-end
-
--- check if directory exists
-function M.project()
-  local mod = require("project_nvim.utils.path")
-  local exists = mod.exists
-  ---@diagnostic disable-next-line: duplicate-set-field
-  mod.exists = function(path)
-    path = path:gsub("\\", "/")
-    return vim.fn.isdirectory(path) == 1 or exists(path)
-  end
-end
-
 function M.conceallevel()
   local mod = vim.lsp.util
   local open_floating_preview = mod.open_floating_preview
@@ -179,6 +154,31 @@ function M.luasnip()
   end)
 end
 
+function M.project()
+  M.on_module("project_nvim.utils.path", function(mod)
+    -- check if directory exists
+    local exists = mod.exists
+    mod.exists = function(path)
+      path = path:gsub("\\", "/")
+      return vim.fn.isdirectory(path) == 1 or exists(path)
+    end
+  end)
+end
+
+function M.telescope()
+  M.on_module("telescope", function(mod)
+    -- fix windows path
+    local get_selected_entry = mod.get_selected_entry
+    mod.get_selected_entry = function()
+      local entry = get_selected_entry()
+      if entry.path then
+        entry.path = entry.path:gsub("/", "\\")
+      end
+      return entry
+    end
+  end)
+end
+
 function M.reset_augroup()
   M.group = vim.api.nvim_create_augroup("serenenvim.hacks", { clear = true })
 end
@@ -194,6 +194,8 @@ function M.enable()
   M.cmp()
   M.codeium()
   M.luasnip()
+  M.project()
+  M.telescope()
 end
 
 ---@param modname string

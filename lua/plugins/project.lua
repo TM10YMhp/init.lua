@@ -6,8 +6,6 @@ return {
       -- silent_chdir = false,
     },
     config = function(_, opts)
-      SereneNvim.hacks.project()
-
       require("project_nvim").setup(opts)
 
       vim.cmd("ProjectRoot")

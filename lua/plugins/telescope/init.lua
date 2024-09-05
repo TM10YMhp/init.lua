@@ -159,8 +159,6 @@ return {
       local actions = require("telescope.actions")
       local action_layout = require("telescope.actions.layout")
 
-      SereneNvim.hacks.telescope()
-
       -- https://github.com/nvim-telescope/telescope.nvim/issues/1048
       local open_selected = function(prompt_bufnr)
         local picker =
