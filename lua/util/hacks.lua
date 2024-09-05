@@ -166,13 +166,14 @@ function M.project()
 end
 
 function M.telescope()
-  M.on_module("telescope", function(mod)
-    -- fix windows path
+  M.on_module("telescope.actions.state", function(mod)
+    -- fix windows path duplicate, check project_nvim
     local get_selected_entry = mod.get_selected_entry
     mod.get_selected_entry = function()
       local entry = get_selected_entry()
       if entry.path then
         entry.path = entry.path:gsub("/", "\\")
+        entry.path = entry.path:gsub("\\%(", "/(")
       end
       return entry
     end
