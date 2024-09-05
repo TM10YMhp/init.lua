@@ -1,12 +1,8 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
-  opts = function()
-    -- PERF: we don't need this
-    local lualine_require = require("lualine_require")
-    lualine_require.require = require
-
-    return {
+  opts = function(_, opts)
+    return vim.tbl_deep_extend("force", opts, {
       options = {
         icons_enabled = false,
         component_separators = { left = "", right = "" },
@@ -20,8 +16,12 @@ return {
       },
       sections = {
         lualine_a = {
-          -- stylua: ignore
-          { "mode", fmt = function(str) return str:sub(1, 1) end },
+          {
+            "mode",
+            fmt = function(str)
+              return str:sub(1, 1)
+            end,
+          },
         },
         lualine_b = { "b:gitsigns_head" },
         lualine_c = { SereneNvim.lualine.cursor_position },
@@ -43,6 +43,6 @@ return {
         lualine_y = { "%L" },
         lualine_z = {},
       },
-    }
+    })
   end,
 }

@@ -171,4 +171,30 @@ function M.conform()
   end
 end
 
+function M.lualine()
+  -- PERF: we don't need this
+  M.on_module("lualine_require", function(mod)
+    mod.require = require
+  end)
+end
+
+function M.enable()
+  M.lualine()
+end
+
+---@param modname string
+---@param fn fun(mod)
+function M.on_module(modname, fn)
+  if type(package.loaded[modname]) == "table" then
+    return fn(package.loaded[modname])
+  end
+  package.preload[modname] = function()
+    package.preload[modname] = nil
+    package.loaded[modname] = nil
+    local mod = require(modname)
+    fn(mod)
+    return mod
+  end
+end
+
 return M
