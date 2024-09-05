@@ -1,22 +1,5 @@
 local M = {}
 
-function M.conceallevel()
-  local mod = vim.lsp.util
-  local open_floating_preview = mod.open_floating_preview
-  mod.open_floating_preview = function(contents, syntax, opts, ...)
-    opts = opts or {}
-    opts.max_width = 80
-    opts.max_height = 35
-    opts.style = "minimal"
-    opts.border = "single"
-
-    local bufnr, winid = open_floating_preview(contents, syntax, opts, ...)
-    vim.wo[winid].conceallevel = 0
-
-    return bufnr, winid
-  end
-end
-
 function M.lualine()
   M.on_module("lualine_require", function(mod)
     -- PERF: we don't need this
@@ -180,6 +163,24 @@ function M.telescope()
   end)
 end
 
+function M.conceallevel()
+  M.on_module("vim.lsp.util", function(mod)
+    local open_floating_preview = mod.open_floating_preview
+    mod.open_floating_preview = function(contents, syntax, opts, ...)
+      opts = opts or {}
+      opts.max_width = 80
+      opts.max_height = 35
+      opts.style = "minimal"
+      opts.border = "single"
+
+      local bufnr, winid = open_floating_preview(contents, syntax, opts, ...)
+      vim.wo[winid].conceallevel = 0
+
+      return bufnr, winid
+    end
+  end)
+end
+
 function M.reset_augroup()
   M.group = vim.api.nvim_create_augroup("serenenvim.hacks", { clear = true })
 end
@@ -197,6 +198,7 @@ function M.enable()
   M.luasnip()
   M.project()
   M.telescope()
+  M.conceallevel()
 end
 
 ---@param modname string
