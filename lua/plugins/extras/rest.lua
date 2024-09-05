@@ -11,6 +11,7 @@ return {
   {
     "rest-nvim/rest.nvim",
     tag = "v1.2.1", -- NOTE: wait until the project is resumed
+    main = "rest-nvim",
     opts = {
       result_split_horizontal = true,
       result = {
@@ -34,10 +35,6 @@ return {
         desc = "RestNvim Preview",
       },
     },
-    config = function(_, opts)
-      require("rest-nvim").setup(opts)
-      SereneNvim.hacks.rest()
-    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",

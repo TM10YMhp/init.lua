@@ -137,8 +137,6 @@ return {
         { event = events.FILE_RENAMED, handler = on_move },
       })
 
-      SereneNvim.hacks.neo_tree()
-
       require("neo-tree").setup(opts)
     end,
   },

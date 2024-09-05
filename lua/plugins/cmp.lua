@@ -1,20 +1,5 @@
 return {
   {
-    "L3MON4D3/LuaSnip",
-    dependencies = { "rafamadriz/friendly-snippets" },
-    config = function()
-      local luasnip = require("luasnip")
-
-      -- set this before configuring luasnip
-      luasnip.filetype_extend("all", { "loremipsum" })
-      require("luasnip.loaders.from_vscode").lazy_load()
-
-      luasnip.setup()
-
-      SereneNvim.hacks.luasnip()
-    end,
-  },
-  {
     "windwp/nvim-autopairs",
     event = SereneNvim.lazy_init and "BufAdd" or "InsertEnter",
     dependencies = { "nvim-cmp" },
@@ -258,8 +243,6 @@ return {
           disallow_prefix_unmatching = false,
         },
       })
-
-      SereneNvim.hacks.cmp()
     end,
   },
 }

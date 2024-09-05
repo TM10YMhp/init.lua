@@ -20,10 +20,6 @@ return {
       bin_path = vim.fn.expand("~" .. "/.codeium/bin"),
       config_path = vim.fn.expand("~" .. "/.codeium/config.json"),
     },
-    config = function(_, opts)
-      require("codeium").setup(opts)
-      SereneNvim.hacks.codeium()
-    end,
   },
   {
     "nvim-cmp",
