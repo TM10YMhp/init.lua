@@ -19,10 +19,12 @@ return {
     opts = {
       bin_path = vim.fn.expand("~" .. "/.codeium/bin"),
       config_path = vim.fn.expand("~" .. "/.codeium/config.json"),
+      enable_chat = false,
     },
   },
   {
     "nvim-cmp",
+    optional = true,
     dependencies = { "Exafunction/codeium.nvim" },
     opts = function(_, opts)
       opts.sources = opts.sources or {}
