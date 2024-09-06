@@ -23,22 +23,4 @@ return {
       },
     },
   },
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "latexindent" } },
-  },
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        tex = { "latexindent" },
-      },
-      formatters = {
-        latexindent = {
-          append_args = { "-m", "-l" },
-        },
-      },
-    },
-  },
 }

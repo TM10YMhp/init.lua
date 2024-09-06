@@ -26,25 +26,4 @@ return {
       vim.list_extend(opts.ensure_installed, { "blade", "php", "php_only" })
     end,
   },
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "blade-formatter" } },
-  },
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        blade = { "blade-formatter" },
-      },
-      formatters = {
-        ["blade-formatter"] = {
-          prepend_args = {
-            "--indent-inner-html",
-            "--extra-liners=''",
-          },
-        },
-      },
-    },
-  },
 }

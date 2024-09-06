@@ -50,35 +50,4 @@ return {
       },
     },
   },
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "stylua" } },
-  },
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        lua = { "stylua" },
-      },
-      formatters = {
-        stylua = {
-          prepend_args = function()
-            if
-              SereneNvim.exists_in_cwd({
-                ".stylua.toml",
-                "stylua.toml",
-              })
-            then
-              return {}
-            end
-
-            return {
-              "--config-path=" .. vim.fn.stdpath("config") .. "/.stylua.toml",
-            }
-          end,
-        },
-      },
-    },
-  },
 }

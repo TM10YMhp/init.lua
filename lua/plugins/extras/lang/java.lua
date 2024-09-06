@@ -252,18 +252,4 @@ return {
       attach_jdtls()
     end,
   },
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "google-java-format" } },
-  },
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        -- TODO: like astro use internal formatter
-        java = { "google-java-format" },
-      },
-    },
-  },
 }

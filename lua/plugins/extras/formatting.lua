@@ -6,10 +6,16 @@ return {
         "biome",
         "clang-format",
         "prettier",
+        "sqlfluff",
+        "php-cs-fixer",
+        "stylua",
+        "latexindent",
+        "ruff",
+        "blade-formatter",
+        "google-java-format",
       },
     },
   },
-
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -48,11 +54,53 @@ return {
         scss             = { "prettier" },
         vue              = { "prettier" },
         yaml             = { "prettier" },
+
+        sql   = { "sqlfluff" },
+        mysql = { "sqlfluff" },
+        plsql = { "sqlfluff" },
+
+        php = { "php_cs_fixer" },
+
+        lua = { "stylua" },
+
+        tex = { "latexindent" },
+
+        python = { "ruff_format" },
+
+        blade = { "blade-formatter" },
+
+        java = { "google-java-format" },
       },
       formatters = {
         prettier = {
           prepend_args = {
             "--html-whitespace-sensitivity=ignore",
+          },
+        },
+        sqlfluff = {
+          args = { "format", "--dialect=ansi", "-" },
+        },
+        stylua = {
+          prepend_args = function()
+            if
+              not SereneNvim.exists_in_cwd({
+                ".stylua.toml",
+                "stylua.toml",
+              })
+            then
+              return {
+                "--config-path=" .. vim.fn.stdpath("config") .. "/.stylua.toml",
+              }
+            end
+          end,
+        },
+        latexindent = {
+          append_args = { "-m", "-l" },
+        },
+        ["blade-formatter"] = {
+          prepend_args = {
+            "--indent-inner-html",
+            "--extra-liners=''",
           },
         },
       },
