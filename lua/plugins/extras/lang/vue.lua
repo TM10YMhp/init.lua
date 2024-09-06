@@ -1,5 +1,3 @@
--- TODO: wip
-
 return {
   { import = "plugins.extras.lang.typescript" },
   { import = "plugins.extras.lang.css" },
@@ -24,15 +22,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      opts.servers.tsserver.filetypes = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-        "vue",
-      }
+      table.insert(opts.servers.tsserver.filetypes, "vue")
 
       local vue_language_server_path = require("mason-registry")
         .get_package("vue-language-server")
