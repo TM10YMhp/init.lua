@@ -151,12 +151,17 @@ end
 function M.telescope()
   M.on_module("telescope.actions.state", function(mod)
     -- fix windows path duplicate, check project_nvim
+    local is_windows = vim.fn.has("win32") or vim.fn.has("wsl")
+
     local get_selected_entry = mod.get_selected_entry
     mod.get_selected_entry = function()
       local entry = get_selected_entry()
       if entry.path then
         entry.path = entry.path:gsub("/", "\\")
         entry.path = entry.path:gsub("\\%(", "/(")
+        if package.loaded.project_nvim and is_windows then
+          entry.path = entry.path:sub(1, 1):upper() .. entry.path:sub(2)
+        end
       end
       return entry
     end
