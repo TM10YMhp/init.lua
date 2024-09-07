@@ -13,6 +13,7 @@ return {
         "ruff",
         "blade-formatter",
         "google-java-format",
+        -- "rustywind",
       },
     },
   },

@@ -20,14 +20,13 @@ return {
       -- DBUI_URL=
       --
       -- DB_UI_NAME=
-
-      -- TODO: check this
-      vim.g.dbs = {
-        {
-          name = "root@localhost:3306",
-          url = "mysql://root@localhost:3306",
-        },
-      }
+      --
+      -- vim.g.dbs = {
+      --   {
+      --     name = "root@localhost:3306",
+      --     url = "mysql://root@localhost:3306",
+      --   },
+      -- }
 
       local data_path = vim.fn.stdpath("data")
 

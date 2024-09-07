@@ -36,14 +36,16 @@ return {
           end,
           settings = {
             Lua = {
-              runtime = { version = "LuaJIT" },
-              telemetry = { enable = false },
               completion = {
                 showWord = "Disable",
                 workspaceWord = false,
+                callSnippet = "Replace",
               },
+              -- doc = {
+              --   privateName = { "^_" },
+              -- },
               hint = { enable = true },
-              -- workspace = { checkThirdParty = "Disable" },
+              workspace = { checkThirdParty = "Disable" },
             },
           },
         },

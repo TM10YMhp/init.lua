@@ -1,3 +1,10 @@
+vim.g.dbs = {
+  {
+    name = "root@localhost:3306",
+    url = "mysql://root@localhost:3306",
+  },
+}
+
 vim.opt.fileformats = { "unix", "dos" }
 
 -- disable some default providers

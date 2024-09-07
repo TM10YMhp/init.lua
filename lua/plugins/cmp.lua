@@ -82,12 +82,9 @@ return {
           }),
           ["<C-l>"] = cmp.mapping.complete({
             config = {
+              ---@diagnostic disable-next-line missing-fields
               formatting = {
-                -- FIX: use same formatter except abbr limit
-                format = function(entry, item)
-                  item.kind = SereneNvim.config.icons.kinds[item.kind] or "?"
-                  return item
-                end,
+                format = SereneNvim.cmp.format,
               },
               sources = {
                 {
@@ -100,13 +97,6 @@ return {
           }),
           ["<C-s>"] = cmp.mapping.complete({
             config = {
-              formatting = {
-                -- FIX: use same formatter except abbr limit
-                format = function(entry, item)
-                  item.kind = SereneNvim.config.icons.kinds[item.kind] or "?"
-                  return item
-                end,
-              },
               sources = {
                 { name = "codeium" },
               },
@@ -147,27 +137,7 @@ return {
         }),
         formatting = {
           fields = { "kind", "abbr", "menu" },
-          format = function(entry, item)
-            item.kind = SereneNvim.config.icons.kinds[item.kind] or "?"
-
-            item.menu = "["
-              .. (SereneNvim.config.icons.sources[entry.source.name] or entry.source.name)
-              .. "]"
-
-            local function trim(text)
-              local max = math.floor(0.35 * vim.o.columns)
-              if text and text:len() > max then
-                return text:sub(1, max) .. "…"
-              else
-                local padding = string.rep(" ", 5 - text:len())
-                return text .. padding
-              end
-            end
-
-            item.abbr = trim(item.abbr)
-
-            return item
-          end,
+          format = SereneNvim.cmp.format_complete,
           expandable_indicator = false,
         },
         experimental = { ghost_text = { hl_group = "NonText" } },
@@ -239,6 +209,7 @@ return {
             },
           },
         },
+        ---@diagnostic disable-next-line missing-fields
         matching = {
           disallow_prefix_unmatching = false,
         },
