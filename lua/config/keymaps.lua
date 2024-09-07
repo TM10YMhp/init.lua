@@ -201,7 +201,7 @@ vim.keymap.set("n", "<leader>ui", vim.show_pos, {
 
 vim.keymap.set(
   "n",
-  "<leader>cc",
+  "<leader>uc",
   [[<cmd>%s/\s*\/\*\_.\{-}\*\/\n\|^\s*\/\/.*\n\|\s*\/\/.*//g<cr>]],
   {
     desc = "Delete all comments (js, ts)",
@@ -209,7 +209,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
   "x",
-  "<leader>cc",
+  "<leader>uc",
   [[:s/\s*\/\*\_.\{-}\*\/\n\|^\s*\/\/.*\n\|\s*\/\/.*//g<cr>]],
   {
     desc = "Delete all comments (js, ts)",

@@ -1,5 +1,18 @@
 return {
   {
+    "danymat/neogen",
+    keys = {
+      {
+        "<leader>cc",
+        "<cmd>lua require('neogen').generate()<CR>",
+        desc = "Neogen Comment",
+      },
+    },
+    opts = {
+      snippet_engine = "luasnip",
+    },
+  },
+  {
     "mattn/emmet-vim",
     keys = { "<M-e>" },
     init = function()

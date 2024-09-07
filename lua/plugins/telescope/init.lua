@@ -212,11 +212,11 @@ return {
         defaults = {
           preview = {
             hide_on_startup = true,
-            filetype_hook = function(filepath, bufnr, opts)
+            filetype_hook = function(filepath, bufnr, _opts)
               if SereneNvim.is_bigfile(filepath) then
                 require("telescope.previewers.utils").set_preview_message(
                   bufnr,
-                  opts.winid,
+                  _opts.winid,
                   string.format(
                     "File too long (%s bytes)",
                     vim.fn.getfsize(filepath)
