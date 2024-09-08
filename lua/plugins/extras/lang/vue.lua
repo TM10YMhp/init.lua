@@ -22,15 +22,15 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      table.insert(opts.servers.tsserver.filetypes, "vue")
+      table.insert(opts.servers.ts_ls.filetypes, "vue")
 
       local vue_language_server_path = require("mason-registry")
         .get_package("vue-language-server")
         :get_install_path() .. "/node_modules/@vue/language-server"
 
-      opts.servers.tsserver.init_options.plugins = opts.servers.tsserver.init_options.plugins
+      opts.servers.ts_ls.init_options.plugins = opts.servers.ts_ls.init_options.plugins
         or {}
-      vim.list_extend(opts.servers.tsserver.init_options.plugins, {
+      vim.list_extend(opts.servers.ts_ls.init_options.plugins, {
         {
           name = "@vue/typescript-plugin",
           location = vue_language_server_path,

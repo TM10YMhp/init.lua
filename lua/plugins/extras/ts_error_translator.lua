@@ -4,7 +4,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        tsserver = {
+        ts_ls = {
           on_new_config = function(new_config)
             require("ts-error-translator").setup()
           end,

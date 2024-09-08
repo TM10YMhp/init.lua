@@ -23,7 +23,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        tsserver = {
+        ts_ls = {
           -- explicitly add default filetypes, so that we can extend them in
           -- related extras
           filetypes = {
