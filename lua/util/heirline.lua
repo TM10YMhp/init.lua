@@ -1,3 +1,4 @@
+---@class serenenvim.util.heirline
 local M = {}
 
 M.absolute_path = {

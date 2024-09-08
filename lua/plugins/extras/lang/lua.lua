@@ -22,7 +22,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "lua" } },
+    opts = { ensure_installed = { "lua", "luadoc" } },
   },
   {
     "neovim/nvim-lspconfig",

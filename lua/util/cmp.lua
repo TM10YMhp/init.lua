@@ -1,3 +1,4 @@
+---@class serenenvim.util.cmp
 local M = {}
 
 ---@module "cmp"

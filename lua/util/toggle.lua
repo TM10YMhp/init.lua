@@ -1,3 +1,4 @@
+---@class serenenvim.util.toggle
 local M = {}
 
 ---@class SereneNvim.call.Opts

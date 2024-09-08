@@ -1,8 +1,13 @@
 -- TODO: check this
 
----@class SereneNvim.Util
----@field lualine SereneNvim.Util.Lualine
-
+---@class serenenvim.util
+---@field cmp serenenvim.util.cmp
+---@field hacks serenenvim.util.hacks
+---@field heirline serenenvim.util.heirline
+---@field lint serenenvim.util.lint
+---@field lsp serenenvim.util.lsp
+---@field lualine serenenvim.util.lualine
+---@field toggle serenenvim.util.toggle
 local M = {}
 
 setmetatable(M, {

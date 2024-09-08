@@ -112,6 +112,7 @@ return {
     event = "VeryLazy",
     opts = { insert_mode = true },
   },
+  -- TODO: check this broken terminal scroll
   {
     "tonymajestro/smart-scrolloff.nvim",
     event = "VeryLazy",

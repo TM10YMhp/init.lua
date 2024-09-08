@@ -1,6 +1,6 @@
 local lualine_utils = require("lualine.utils.utils")
 
----@class SereneNvim.Util.Lualine
+---@class serenenvim.util.lualine
 local M = {}
 
 M.lsp_client_names = function()

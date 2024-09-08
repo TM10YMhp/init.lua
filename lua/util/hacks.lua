@@ -1,3 +1,4 @@
+---@class serenenvim.util.hacks
 local M = {}
 
 function M.lualine()

@@ -1,5 +1,6 @@
 local lint = require("lint")
 
+---@class serenenvim.util.lint
 local M = {}
 
 function M.enable()
