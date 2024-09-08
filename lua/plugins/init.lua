@@ -106,19 +106,28 @@ return {
     event = "VeryLazy",
   },
   -- NOTE: cursormove fire cmdlineenter?
-  -- scroll and cursor
   {
     "Aasim-A/scrollEOF.nvim",
     event = "VeryLazy",
     opts = { insert_mode = true },
   },
-  -- TODO: check this broken terminal scroll
   {
     "tonymajestro/smart-scrolloff.nvim",
     event = "VeryLazy",
     opts = {
       scrolloff_percentage = 0.2,
     },
+    config = function(_, opts)
+      require("smart-scrolloff").setup(opts)
+
+      vim.api.nvim_create_autocmd("WinResized", {
+        callback = function()
+          if vim.o.buftype == "terminal" then
+            vim.opt_local.scrolloff = 0
+          end
+        end,
+      })
+    end,
   },
   {
     "BranimirE/fix-auto-scroll.nvim",
