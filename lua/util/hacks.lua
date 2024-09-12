@@ -21,7 +21,14 @@ function M.tsc()
       return jsconfig ~= "" and { jsconfig } or {}
     end
 
+    -- check if project use typescript
+    local find_tsc_bin = mod.find_tsc_bin
     mod.find_tsc_bin = function()
+      local tsc_bin = find_tsc_bin()
+      if tsc_bin ~= "" then
+        return vim.fn.exepath(tsc_bin)
+      end
+
       return vim.fn.exepath("tsc")
     end
   end)
