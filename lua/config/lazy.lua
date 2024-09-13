@@ -20,9 +20,12 @@ require("lazy").setup({
 
     { import = "plugins.extras.coding.codeium" },
     { import = "plugins.extras.coding.tgpt" },
+    { import = "plugins.extras.coding.neogen" },
 
     { import = "plugins.extras.editor.telescope" },
     { import = "plugins.extras.editor.telescope_extensions" },
+
+    { import = "plugins.extras.games" },
 
     { import = "plugins.extras.lang.astro" },
     { import = "plugins.extras.lang.blade" },
