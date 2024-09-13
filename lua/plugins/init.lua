@@ -12,26 +12,8 @@ return {
         function()
           local file = vim.api.nvim_buf_get_name(0)
           local term = "FloatermNew --wintype=split --height=0.35 --autoclose=0"
-          vim.cmd(
-            term
-              .. " cat "
-              .. file
-              .. " | tgpt 'Respondeme en español, califica el código'"
-          )
+          vim.cmd(term .. " cat " .. file .. ' | tgpt "Califica el código"')
         end,
-        desc = "Califica el código",
-      },
-      {
-        "<M-t>A",
-        function()
-          -- vim.cmd('noau normal! "vy"')
-          -- local text = vim.fn.getreg("v")
-          -- vim.fn.setreg("v", {})
-
-          local term = "FloatermNew --wintype=split --height=0.35 --autoclose=0"
-          vim.cmd(term .. " tgpt -i")
-        end,
-        mode = "v",
         desc = "Califica el código",
       },
     },
