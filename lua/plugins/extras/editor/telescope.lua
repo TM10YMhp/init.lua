@@ -39,13 +39,6 @@ local function get_telescope_builtin(builtin_name, state, path)
 end
 
 return {
-  -- TODO: move to telescope_extensions
-  { import = "plugins.extras.telescope.telescope_fzf_native" },
-  { import = "plugins.extras.telescope.telescope_heading" },
-  { import = "plugins.extras.telescope.telescope_live_grep_args" },
-  { import = "plugins.extras.telescope.telescope_mru" },
-  { import = "plugins.extras.telescope.telescope_symbols" },
-  { import = "plugins.extras.telescope.telescope_undo" },
   { "nvim-lua/plenary.nvim", lazy = true },
   {
     "nvim-telescope/telescope.nvim",
