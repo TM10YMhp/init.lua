@@ -28,6 +28,7 @@ require("lazy").setup({
     { import = "plugins.extras.games" },
 
     { import = "plugins.extras.ui.colorscheme" },
+    { import = "plugins.extras.ui.satellite" },
     { import = "plugins.extras.ui.treesitter_context" },
 
     { import = "plugins.extras.lang.astro" },
