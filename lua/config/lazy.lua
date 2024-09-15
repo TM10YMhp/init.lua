@@ -32,8 +32,17 @@ require("lazy").setup({
     { import = "plugins.extras.ui.satellite" },
     { import = "plugins.extras.ui.treesitter_context" },
 
+    { import = "plugins.extras.util.abolish" },
+    { import = "plugins.extras.util.cloak" },
+    { import = "plugins.extras.util.coerce" },
+    { import = "plugins.extras.util.dadbod" },
+    { import = "plugins.extras.util.debugprint" },
+    { import = "plugins.extras.util.neotab" },
+    { import = "plugins.extras.util.pomo" },
     { import = "plugins.extras.util.rest" },
     { import = "plugins.extras.util.startuptime" },
+    { import = "plugins.extras.util.ts_error_translator" },
+    { import = "plugins.extras.util.tsc" },
 
     { import = "plugins.extras.lang.astro" },
     { import = "plugins.extras.lang.blade" },
