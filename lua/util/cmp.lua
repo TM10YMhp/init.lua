@@ -11,7 +11,7 @@ end
 
 ---@type fun(entry: cmp.Entry, vim_item: vim.CompletedItem):vim.CompletedItem
 M.format_complete = function(entry, item)
-  item.kind = SereneNvim.config.icons.kinds[item.kind] or "?"
+  item.kind = SereneNvim.config.icons.kinds[item.kind] or item.kind
 
   if vim.bo.filetype == "java" then
     local item_kind = entry:get_kind() --- @type lsp.CompletionItemKind | number
