@@ -1,4 +1,4 @@
--- TODO: wip
+-- TODO: WIP
 return {
   {
     "nvim-treesitter/nvim-treesitter",
