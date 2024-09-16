@@ -1,6 +1,6 @@
 return {
   "nvimdev/dashboard-nvim",
-  event = SereneNvim.lazy_init and "UIEnter" or {},
+  event = SereneNvim.lazy_init and "VeryLazy" or {},
   cmd = "Dashboard",
   dependencies = {
     "rubiin/fortune.nvim",
@@ -107,5 +107,7 @@ return {
         end,
       })
     end, {})
+
+    vim.cmd("Dashboard")
   end,
 }
