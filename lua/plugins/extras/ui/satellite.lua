@@ -15,8 +15,6 @@ return {
       cursor_symbol = "",
       cursor_priority = 100,
       search_symbol = "=",
-      signs_column = 0,
-      signs_max_per_row = 1,
     },
     config = function(_, opts)
       vim.api.nvim_set_hl(0, "ScrollView", { link = "CursorLine" })
