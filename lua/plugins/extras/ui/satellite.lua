@@ -1,3 +1,4 @@
+-- TODO: replace
 return {
   "lewis6991/satellite.nvim",
   event = "VeryLazy",
@@ -9,7 +10,8 @@ return {
         symbols = { " " },
       },
       diagnostic = {
-        priority = 70,
+        enable = false,
+        priority = 100,
         signs = { "-", "=", "≡" },
       },
       gitsigns = {
@@ -17,6 +19,7 @@ return {
         signs = SereneNvim.config.icons.gitsigns,
       },
       marks = {
+        enable = false,
         show_builtins = true,
       },
     },

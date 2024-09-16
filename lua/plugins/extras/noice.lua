@@ -11,7 +11,7 @@ return {
     popupmenu = { enabled = false },
     lsp = {
       progress = {
-        throttle = 1000 / 4,
+        throttle = 1000 / 2,
         view = "notify",
       },
       override = {
@@ -46,7 +46,7 @@ return {
       {
         filter = { event = "lsp", kind = "progress" },
         view = "notify",
-        opts = { replace = true },
+        opts = { replace = true, timeout = 2000 },
       },
     },
     throttle = 1000 / 10,
@@ -66,6 +66,7 @@ return {
   config = function(_, opts)
     -- HACK: noice redraws when it's not needed
     local mod = require("noice.util.hacks")
+    ---@diagnostic disable-next-line: duplicate-set-field
     mod.fix_redraw = function() end
 
     require("noice").setup(opts)
