@@ -1,14 +1,6 @@
 return {
-  {
-    "debugloop/telescope-undo.nvim",
-    keys = {
-      { "<leader>su", "<cmd>Telescope undo<cr>", desc = "Undo" },
-    },
-    config = function()
-      require("telescope").load_extension("undo")
-    end,
-  },
-  {
+  "debugloop/telescope-undo.nvim",
+  dependencies = {
     "nvim-telescope/telescope.nvim",
     optional = true,
     opts = {
@@ -19,4 +11,10 @@ return {
       },
     },
   },
+  keys = {
+    { "<leader>su", "<cmd>Telescope undo<cr>", desc = "Undo" },
+  },
+  config = function()
+    require("telescope").load_extension("undo")
+  end,
 }

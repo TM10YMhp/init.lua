@@ -29,7 +29,7 @@ require("lazy").setup({
 
     { import = "plugins.extras.ui.colorscheme" },
     { import = "plugins.extras.ui.dashboard" },
-    { import = "plugins.extras.ui.satellite" },
+    { import = "plugins.extras.ui.scrollview" },
     { import = "plugins.extras.ui.treesitter_context" },
 
     { import = "plugins.extras.util.abolish" },
