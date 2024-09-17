@@ -29,6 +29,9 @@ require("lazy").setup({
 
     { import = "plugins.extras.ui.colorscheme" },
     { import = "plugins.extras.ui.dashboard" },
+    { import = "plugins.extras.ui.dressing" },
+    { import = "plugins.extras.ui.noice" },
+    { import = "plugins.extras.ui.nvim_notify" },
     { import = "plugins.extras.ui.scrollview" },
     { import = "plugins.extras.ui.treesitter_context" },
 
@@ -37,12 +40,16 @@ require("lazy").setup({
     { import = "plugins.extras.util.coerce" },
     { import = "plugins.extras.util.dadbod" },
     { import = "plugins.extras.util.debugprint" },
+    { import = "plugins.extras.util.grug_far" },
+    { import = "plugins.extras.util.markdown_preview" },
     { import = "plugins.extras.util.neotab" },
+    { import = "plugins.extras.util.obsidian" },
     { import = "plugins.extras.util.pomo" },
     { import = "plugins.extras.util.rest" },
     { import = "plugins.extras.util.startuptime" },
     { import = "plugins.extras.util.ts_error_translator" },
     { import = "plugins.extras.util.tsc" },
+    { import = "plugins.extras.util.which_key" },
 
     { import = "plugins.extras.lang.astro" },
     { import = "plugins.extras.lang.blade" },
