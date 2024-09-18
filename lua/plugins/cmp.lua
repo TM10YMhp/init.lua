@@ -28,7 +28,7 @@ return {
   {
     -- "hrsh7th/nvim-cmp",
     "yioneko/nvim-cmp",
-    branch = "perf-up",
+    branch = "perf",
     event = {
       SereneNvim.lazy_init and "BufAdd" or "InsertEnter",
       "CmdlineEnter /,?",
