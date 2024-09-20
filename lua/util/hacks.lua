@@ -187,6 +187,7 @@ function M.conceallevel()
 end
 
 function M.uri_to_fname()
+  -- fix telescope path_display truncate
   local is_windows = vim.fn.has("win32") or vim.fn.has("wsl")
 
   local uri_to_fname = vim.uri_to_fname
@@ -199,6 +200,27 @@ function M.uri_to_fname()
 
     return res
   end
+end
+
+function M.plenary()
+  M.on_module("plenary.path", function(mod)
+    -- no extend env vars in windows
+    local expand = mod.expand
+    function mod:expand()
+      local ok, expanded = pcall(expand, self)
+      local match = string.find(self.filename, "%$")
+
+      if not ok and not match then
+        error("Path not valid")
+      end
+
+      if match then
+        expanded = self.filename
+      end
+
+      return expanded
+    end
+  end)
 end
 
 function M.reset_augroup()
@@ -218,6 +240,7 @@ function M.enable()
   M.luasnip()
   M.project()
   M.telescope()
+  M.plenary()
 
   M.conceallevel()
   M.uri_to_fname()
