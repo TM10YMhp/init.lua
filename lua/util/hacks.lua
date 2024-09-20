@@ -171,21 +171,34 @@ function M.telescope()
 end
 
 function M.conceallevel()
-  M.on_module("vim.lsp.util", function(mod)
-    local open_floating_preview = mod.open_floating_preview
-    mod.open_floating_preview = function(contents, syntax, opts, ...)
-      opts = opts or {}
-      opts.max_width = 80
-      opts.max_height = 35
-      opts.style = "minimal"
-      opts.border = "single"
+  local open_floating_preview = vim.lsp.util.open_floating_preview
+  vim.lsp.util.open_floating_preview = function(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.max_width = 80
+    opts.max_height = 35
+    opts.style = "minimal"
+    opts.border = "single"
 
-      local bufnr, winid = open_floating_preview(contents, syntax, opts, ...)
-      vim.wo[winid].conceallevel = 0
+    local bufnr, winid = open_floating_preview(contents, syntax, opts, ...)
+    vim.wo[winid].conceallevel = 0
 
-      return bufnr, winid
+    return bufnr, winid
+  end
+end
+
+function M.uri_to_fname()
+  local is_windows = vim.fn.has("win32") or vim.fn.has("wsl")
+
+  local uri_to_fname = vim.uri_to_fname
+  vim.uri_to_fname = function(uri)
+    local res = uri_to_fname(uri)
+
+    if is_windows then
+      res = res:sub(1, 1):upper() .. res:sub(2)
     end
-  end)
+
+    return res
+  end
 end
 
 function M.reset_augroup()
@@ -205,7 +218,9 @@ function M.enable()
   M.luasnip()
   M.project()
   M.telescope()
+
   M.conceallevel()
+  M.uri_to_fname()
 end
 
 ---@param modname string

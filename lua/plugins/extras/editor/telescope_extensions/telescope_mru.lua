@@ -12,6 +12,7 @@ return {
   {
     "yegappan/mru",
     event = SereneNvim.lazy_init and "BufAdd" or "VimLeavePre",
+    cmd = "MRU",
     config = function()
       vim.api.nvim_exec_autocmds(
         "BufRead",

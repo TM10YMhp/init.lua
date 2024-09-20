@@ -317,37 +317,28 @@ return {
             },
           },
           diagnostics = {
-            path_display = { tail = true },
             preview = { hide_on_startup = false },
             sort_by = "severity",
           },
           lsp_definitions = {
-            path_display = { tail = true },
             preview = { hide_on_startup = false },
             jump_type = "never",
             show_line = false,
           },
           lsp_implementations = {
-            path_display = { tail = true },
             preview = { hide_on_startup = false },
             jump_type = "never",
             show_line = false,
           },
           lsp_references = {
-            path_display = { tail = true },
-            preview = { hide_on_startup = false },
             jump_type = "never",
             show_line = false,
             include_declarations = false,
           },
           lsp_type_definitions = {
-            path_display = { tail = true },
             preview = { hide_on_startup = false },
             jump_type = "never",
             show_line = false,
-          },
-          lsp_dynamic_workspace_symbols = {
-            path_display = { tail = true },
           },
           colorscheme = {
             layout_strategy = "bottom_pane",
