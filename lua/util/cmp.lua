@@ -1,3 +1,5 @@
+-- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#completionItemKind
+
 ---@class serenenvim.util.cmp
 local M = {}
 
@@ -25,6 +27,32 @@ M.format_complete = function(entry, item)
         if detail and description then
           item.abbr = item.abbr .. detail .. ": " .. description
         end
+      end
+    end
+  end
+
+  if
+    vim.list_contains(
+      { "typescriptreact", "javascript", "typescript", "javascriptreact" },
+      vim.o.filetype
+    )
+  then
+    local item_kind = entry:get_kind() --- @type lsp.CompletionItemKind | number
+    -- item.abbr = item.abbr .. " | " .. item_kind
+
+    if item_kind == 6 or item_kind == 5 or item_kind == 3 or item_kind == 2 then -- Variable/Field/Function/Method
+      local completion_item = entry:get_completion_item()
+
+      local data = completion_item.data
+      local entryNames = data and data.entryNames
+      local source = entryNames and entryNames[1].source
+
+      local detail = completion_item.detail
+
+      if source then
+        item.abbr = item.abbr .. " [" .. source .. "]"
+      elseif detail and not entryNames then
+        item.abbr = item.abbr .. " [" .. detail .. "]"
       end
     end
   end
