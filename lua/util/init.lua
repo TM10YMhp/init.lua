@@ -7,6 +7,7 @@
 ---@field lint serenenvim.util.lint
 ---@field lsp serenenvim.util.lsp
 ---@field lualine serenenvim.util.lualine
+---@field telescope serenenvim.util.telescope
 ---@field toggle serenenvim.util.toggle
 local M = {}
 
