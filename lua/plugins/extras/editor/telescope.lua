@@ -202,6 +202,38 @@ return {
         end
       end
 
+      local layout_strategies = require("telescope.pickers.layout_strategies")
+      layout_strategies.vertical_fused = function(
+        picker,
+        max_columns,
+        max_lines,
+        layout_config
+      )
+        local layout = layout_strategies.vertical(
+          picker,
+          max_columns,
+          max_lines,
+          layout_config
+        )
+
+        layout.results.title = ""
+
+        if layout.preview then
+          layout.preview.title = ""
+          layout.results.height = layout.results.height + 1
+          layout.preview.line = layout.results.line + layout.results.height + 1
+          layout.preview.borderchars =
+            { "─", "│", "─", "│", "├", "┤", "┘", "└" }
+        else
+          layout.results.borderchars =
+            { "─", "│", "─", "│", "├", "┤", "┘", "└" }
+        end
+
+        layout.prompt.line = layout.results.line - 2
+
+        return layout
+      end
+
       return vim.tbl_deep_extend("force", opts, {
         defaults = {
           preview = {
@@ -237,7 +269,7 @@ return {
           border = true,
           -- stylua: ignore
           borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-          layout_strategy = "vertical",
+          layout_strategy = "vertical_fused",
           sorting_strategy = "ascending",
           path_display = { truncate = true },
           layout_config = {
