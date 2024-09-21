@@ -11,6 +11,9 @@ M.format = function(_, item)
   return item
 end
 
+-- https://www.reddit.com/r/neovim/comments/1f5qs07/how_to_show_parameters_of_function_in_cmp/?share_id=ywg6jz-REQG3vKoHNfTRK&utm_content=1&utm_medium=android_app&utm_name=androidcss&utm_source=share&utm_term=1
+-- https://www.reddit.com/r/neovim/comments/1ca4gm2/colorful_cmp_menu_powered_by_treesitter/
+
 ---@type fun(entry: cmp.Entry, vim_item: vim.CompletedItem):vim.CompletedItem
 M.format_complete = function(entry, item)
   item.kind = SereneNvim.config.icons.kinds[item.kind] or item.kind

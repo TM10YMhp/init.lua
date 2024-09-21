@@ -113,6 +113,7 @@ return {
       local actions = require("telescope.actions")
       local action_layout = require("telescope.actions.layout")
 
+      -- https://github.com/gabsdotco/init.lua/blob/136435ceb8ef85ada27f1be2b0041954a10cabd6/lua/plugins/telescope.lua#L15
       local layout_strategies = require("telescope.pickers.layout_strategies")
       layout_strategies.vertical_fused = function(
         picker,
