@@ -98,6 +98,7 @@ return {
       require("dashboard"):instance()
 
       vim.opt.showtabline = 0
+      vim.b.minitrailspace_disable = true
 
       vim.api.nvim_create_autocmd("BufUnload", {
         buffer = vim.api.nvim_get_current_buf(),

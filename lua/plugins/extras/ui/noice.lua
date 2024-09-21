@@ -46,7 +46,7 @@ return {
       {
         filter = { event = "lsp", kind = "progress" },
         view = "notify",
-        opts = { replace = true, timeout = 1500 },
+        opts = { replace = true, timeout = 1000 },
       },
     },
     throttle = 1000 / 10,

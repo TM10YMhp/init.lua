@@ -144,15 +144,15 @@ return {
         sorting = {
           priority_weight = 2,
           comparators = {
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
+            -- cmp.config.compare.offset,
+            -- cmp.config.compare.exact, --
             -- cmp.config.compare.scopes,
-            cmp.config.compare.score,
+            cmp.config.compare.score, -- className
             cmp.config.compare.recently_used,
             -- cmp.config.compare.locality,
             -- cmp.config.compare.kind,
-            -- cmp.config.compare.sort_text, -- NOTE: tailwind border
-            cmp.config.compare.length,
+            -- cmp.config.compare.sort_text, -- tailwind border
+            -- cmp.config.compare.length, -- php Request
             cmp.config.compare.order,
           },
         },
@@ -171,7 +171,7 @@ return {
           disallow_fullfuzzy_matching = true,
           disallow_partial_fuzzy_matching = true,
           disallow_partial_matching = true,
-          disallow_prefix_unmatching = false, -- snippets
+          disallow_prefix_unmatching = true,
           disallow_symbol_nonprefix_matching = true,
         },
         performance = {

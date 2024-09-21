@@ -2,6 +2,7 @@ return {
   "dstein64/nvim-scrollview",
   event = "VeryLazy",
   opts = {
+    excluded_filetypes = { "DiffviewFileHistory", "DiffviewFiles", "neo-tree" },
     winblend = 0,
     signs_on_startup = {
       "conflicts",
