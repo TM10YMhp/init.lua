@@ -146,13 +146,23 @@ return {
           comparators = {
             -- cmp.config.compare.offset,
             -- cmp.config.compare.exact, --
-            -- cmp.config.compare.scopes,
+            -- cmp.config.compare.scopes, --
             cmp.config.compare.score, -- className
             cmp.config.compare.recently_used,
-            -- cmp.config.compare.locality,
-            -- cmp.config.compare.kind,
+            -- cmp.config.compare.locality, --
+            -- cmp.config.compare.kind, --
             -- cmp.config.compare.sort_text, -- tailwind border
             -- cmp.config.compare.length, -- php Request
+            function(entry1, entry2)
+              -- compare constants
+              local kind1 = entry1:get_kind() --- @type lsp.CompletionItemKind | number
+              local kind2 = entry2:get_kind() --- @type lsp.CompletionItemKind | number
+              if kind1 ~= 21 and kind2 ~= 21 then
+                return nil
+              end
+
+              return cmp.config.compare.length(entry1, entry2)
+            end,
             cmp.config.compare.order,
           },
         },
