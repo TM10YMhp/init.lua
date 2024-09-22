@@ -25,6 +25,9 @@ require("lazy").setup({
     { import = "plugins.extras.editor.telescope" },
     { import = "plugins.extras.editor.telescope_extensions" },
 
+    -- { import = "plugins.extras.experimental.scrollview" },
+    { import = "plugins.extras.experimental.trouble" },
+
     { import = "plugins.extras.games" },
 
     { import = "plugins.extras.ui.colorscheme" },
@@ -32,7 +35,6 @@ require("lazy").setup({
     { import = "plugins.extras.ui.dressing" },
     { import = "plugins.extras.ui.noice" },
     { import = "plugins.extras.ui.nvim_notify" },
-    { import = "plugins.extras.ui.scrollview" },
     { import = "plugins.extras.ui.treesitter_context" },
 
     { import = "plugins.extras.util.abolish" },
