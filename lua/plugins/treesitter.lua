@@ -1,7 +1,7 @@
 return {
   {
     "oncomouse/nvim-treesitter-endwise",
-    event = SereneNvim.lazy_init and "BufAdd" or "InsertEnter",
+    event = "InsertEnter",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("nvim-treesitter-endwise").setup()
@@ -14,7 +14,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
+    event = "VeryLazy",
     cmd = "TSUpdate",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     -- https://github.com/folke/lazy.nvim/commit/1f7b720
@@ -47,7 +47,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    event = SereneNvim.lazy_init and "BufAdd" or "InsertEnter",
+    event = "InsertEnter",
     config = function()
       require("nvim-ts-autotag").setup()
       require("nvim-ts-autotag.internal").attach()

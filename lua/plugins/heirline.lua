@@ -1,6 +1,6 @@
 return {
   "rebelot/heirline.nvim",
-  event = SereneNvim.lazy_init and "BufLeave" or "VeryLazy",
+  event = "VeryLazy",
   opts = {
     opts = {
       disable_winbar_cb = function()

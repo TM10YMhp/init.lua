@@ -31,7 +31,7 @@ require("lazy").setup({
     { import = "plugins.extras.games" },
 
     { import = "plugins.extras.ui.colorscheme" },
-    { import = "plugins.extras.ui.dashboard" },
+    -- { import = "plugins.extras.ui.dashboard" },
     { import = "plugins.extras.ui.dressing" },
     { import = "plugins.extras.ui.noice" },
     { import = "plugins.extras.ui.nvim_notify" },

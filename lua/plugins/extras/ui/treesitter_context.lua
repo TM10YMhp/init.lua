@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter-context",
-  event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
+  event = "VeryLazy",
   dependencies = { "nvim-treesitter/nvim-treesitter" },
   keys = {
     {

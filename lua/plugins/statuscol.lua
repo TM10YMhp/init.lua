@@ -1,6 +1,6 @@
 return {
   "luukvbaal/statuscol.nvim",
-  event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
+  event = "VeryLazy",
   opts = function()
     local builtin = require("statuscol.builtin")
 

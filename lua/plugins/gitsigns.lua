@@ -1,6 +1,6 @@
 return {
   "lewis6991/gitsigns.nvim",
-  event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
+  event = "VeryLazy",
   opts = {
     signs = SereneNvim.config.icons.gitsigns,
     signs_staged = SereneNvim.config.icons.gitsigns,

@@ -1,7 +1,7 @@
 return {
   "kevinhwang91/nvim-ufo",
   dependencies = { "kevinhwang91/promise-async" },
-  event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
+  event = "VeryLazy",
   keys = {
     {
       "zR",

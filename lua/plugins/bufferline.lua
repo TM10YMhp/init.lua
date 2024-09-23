@@ -1,6 +1,6 @@
 return {
   "akinsho/bufferline.nvim",
-  event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
+  event = "VeryLazy",
   keys = {
     {
       "<leader>bP",

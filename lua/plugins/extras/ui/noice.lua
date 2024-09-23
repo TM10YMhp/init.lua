@@ -1,6 +1,6 @@
 return {
   "folke/noice.nvim",
-  event = SereneNvim.lazy_init and "BufAdd" or "VeryLazy",
+  event = "VeryLazy",
   dependencies = {
     "MunifTanjim/nui.nvim",
     "rcarriga/nvim-notify",
