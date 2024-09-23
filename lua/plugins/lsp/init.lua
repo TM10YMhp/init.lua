@@ -2,7 +2,8 @@ return {
   { import = "plugins.lsp.mason" },
   {
     "neovim/nvim-lspconfig",
-    cmd = { "LspLog", "LspStart", "LspInfo" },
+    -- cmd = { "LspLog", "LspStart", "LspInfo" },
+    event = "VeryLazy",
     dependencies = {
       "williamboman/mason.nvim",
       { "williamboman/mason-lspconfig.nvim", config = function() end },
