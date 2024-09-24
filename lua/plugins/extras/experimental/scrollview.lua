@@ -16,9 +16,6 @@ return {
     search_symbol = "=",
   },
   config = function(_, opts)
-    vim.api.nvim_set_hl(0, "ScrollView", { link = "CursorLine" })
-    vim.api.nvim_set_hl(0, "ScrollViewCursor", { link = "Visual" })
-
     require("scrollview.contrib.gitsigns").setup()
     require("scrollview").setup(opts)
   end,
