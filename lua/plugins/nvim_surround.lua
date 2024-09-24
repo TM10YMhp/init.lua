@@ -4,13 +4,13 @@ return {
   opts = {
     move_cursor = "sticky",
     keymaps = {
-      insert = "<C-g>s",
-      insert_line = "<C-g>S",
+      insert = false,
+      insert_line = false,
       normal = "ys",
       normal_cur = "yss",
       normal_line = "yS",
       normal_cur_line = "ySS",
-      visual = "S",
+      visual = "sa",
       visual_line = "gS",
       delete = "ds",
       change = "cs",
