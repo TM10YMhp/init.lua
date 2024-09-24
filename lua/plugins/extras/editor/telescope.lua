@@ -11,7 +11,7 @@ return {
       },
       {
         "<leader>sc",
-        ":Telescope colorscheme<cr>",
+        "<cmd>Telescope colorscheme<cr>",
         desc = "Colorscheme",
         silent = true,
       },
