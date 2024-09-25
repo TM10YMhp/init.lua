@@ -16,7 +16,7 @@ return {
     },
   },
   opts = {
-    timeout = 3000,
+    timeout = 2500,
     -- stylua: ignore
     icons = {
       DEBUG = "D",
