@@ -4,7 +4,6 @@ return {
   {
     "Exafunction/codeium.nvim",
     cmd = "Codeium",
-    commit = "aa06fa2", -- TODO: check this
     keys = {
       {
         "<leader>ti",

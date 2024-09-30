@@ -171,18 +171,18 @@ vim.api.nvim_create_autocmd("User", {
     require("config.diagnostic")
     require("config.keymaps")
 
-    if vim.api.nvim_buf_get_name(0) ~= "" then
-      local stats = require("lazy").stats()
-      local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
-      SereneNvim.info(
-        "lazy.nvim loaded "
-          .. stats.loaded
-          .. "/"
-          .. stats.count
-          .. " plugins in "
-          .. ms
-          .. "ms"
-      )
-    end
+    -- if vim.api.nvim_buf_get_name(0) ~= "" then
+    local stats = require("lazy").stats()
+    local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
+    SereneNvim.info(
+      "lazy.nvim loaded "
+        .. stats.loaded
+        .. "/"
+        .. stats.count
+        .. " plugins in "
+        .. ms
+        .. "ms"
+    )
+    -- end
   end,
 })
