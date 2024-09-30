@@ -24,8 +24,10 @@ return {
     keys = { "u", "<c-r>" },
     opts = {
       duration = 100,
-      undo = { hlgroup = "Search" },
-      redo = { hlgroup = "Search" },
+      keymaps = {
+        undo = { hlgroup = "Search" },
+        redo = { hlgroup = "Search" },
+      },
     },
   },
   {
