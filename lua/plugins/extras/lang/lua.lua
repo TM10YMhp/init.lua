@@ -39,7 +39,7 @@ return {
               completion = {
                 showWord = "Disable",
                 workspaceWord = false,
-                callSnippet = "Replace",
+                callSnippet = "Disable",
               },
               -- doc = {
               --   privateName = { "^_" },

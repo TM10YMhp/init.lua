@@ -27,8 +27,10 @@ return {
   },
   {
     -- "hrsh7th/nvim-cmp",
-    "yioneko/nvim-cmp",
-    branch = "perf",
+    -- "yioneko/nvim-cmp",
+    -- branch = "perf",
+    "iguanacucumber/magazine.nvim",
+    name = "nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter /,?" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",

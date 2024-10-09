@@ -32,6 +32,10 @@ return {
         name = "codeium",
         group_index = 1,
         priority = 30,
+        -- TODO: https://github.com/hrsh7th/nvim-cmp/pull/1314
+        -- enabled = function()
+        --   return vim.g.codeium_enabled
+        -- end,
       })
     end,
   },
