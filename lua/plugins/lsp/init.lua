@@ -2,7 +2,7 @@ return {
   { import = "plugins.lsp.mason" },
   {
     "neovim/nvim-lspconfig",
-    -- cmd = { "LspLog", "LspStart", "LspInfo" },
+    -- cmd = { "LspLog", "LspStart" },
     event = "VeryLazy",
     dependencies = {
       "williamboman/mason.nvim",
@@ -100,8 +100,6 @@ return {
       },
     },
     config = function(_, opts)
-      require("lspconfig.ui.windows").default_options = { border = "single" }
-
       local servers = opts.servers
       local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
       local capabilities = vim.tbl_deep_extend(
