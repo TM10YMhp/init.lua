@@ -1,5 +1,42 @@
 return {
   {
+    "echasnovski/mini.statusline",
+    event = "VeryLazy",
+    opts = {
+      content = {
+        active = function()
+          local mode, mode_hl =
+            MiniStatusline.section_mode({ trunc_width = 120 })
+          local git =
+            MiniStatusline.section_git({ trunc_width = 40, icon = "" })
+          local diff =
+            MiniStatusline.section_diff({ trunc_width = 75, icon = "" })
+          local diagnostics =
+            MiniStatusline.section_diagnostics({ trunc_width = 75, icon = "" })
+          local lsp = MiniStatusline.section_lsp({ trunc_width = 75 })
+          local fileinfo =
+            MiniStatusline.section_fileinfo({ trunc_width = 120 })
+          local location = MiniStatusline.section_location({ trunc_width = 75 })
+
+          return MiniStatusline.combine_groups({
+            { hl = mode_hl, strings = { mode } },
+            {
+              hl = "MiniStatuslineDevinfo",
+              strings = { git, diff, diagnostics },
+            },
+            "%<", -- Mark general truncate point
+            { hl = "MiniStatuslineFilename", strings = { location } },
+            "%=", -- End left alignment
+            { hl = "MiniStatuslineFileinfo", strings = { fileinfo, lsp } },
+            { hl = mode_hl, strings = {} },
+          })
+        end,
+      },
+      use_icons = false,
+      set_vim_settings = false,
+    },
+  },
+  {
     "mattn/emmet-vim",
     keys = { "<M-e>" },
     init = function()
