@@ -7,28 +7,48 @@ return {
         active = function()
           local mode, mode_hl =
             MiniStatusline.section_mode({ trunc_width = 120 })
-          local git =
-            MiniStatusline.section_git({ trunc_width = 40, icon = "" })
-          local diff =
-            MiniStatusline.section_diff({ trunc_width = 75, icon = "" })
+          -- TODO: check this
           local diagnostics =
             MiniStatusline.section_diagnostics({ trunc_width = 75, icon = "" })
-          local lsp = MiniStatusline.section_lsp({ trunc_width = 75 })
-          local fileinfo =
-            MiniStatusline.section_fileinfo({ trunc_width = 120 })
-          local location = MiniStatusline.section_location({ trunc_width = 75 })
+          local lsp =
+            MiniStatusline.section_lsp({ trunc_width = 75, icon = "" })
+
+          local get_filesize = function()
+            local size = vim.fn.getfsize(vim.fn.getreg("%"))
+            if size < 1024 then
+              return string.format("%dB", size)
+            elseif size < 1048576 then
+              return string.format("%.2fK", size / 1024)
+            else
+              return string.format("%.2fM", size / 1048576)
+            end
+          end
 
           return MiniStatusline.combine_groups({
             { hl = mode_hl, strings = { mode } },
             {
               hl = "MiniStatuslineDevinfo",
-              strings = { git, diff, diagnostics },
+              strings = { vim.b.gitsigns_head },
             },
             "%<", -- Mark general truncate point
-            { hl = "MiniStatuslineFilename", strings = { location } },
-            "%=", -- End left alignment
-            { hl = "MiniStatuslineFileinfo", strings = { fileinfo, lsp } },
-            { hl = mode_hl, strings = {} },
+            {
+              hl = "MiniStatuslineFilename",
+              strings = {
+                '%l:%{charcol(".")}|%{charcol("$")-1}',
+                "%=", -- End left alignment
+                "%{get(b:,'gitsigns_status','')}",
+                diagnostics,
+                vim.o.encoding,
+                vim.o.fileformat,
+                lsp,
+                vim.o.filetype,
+              },
+            },
+            {
+              hl = "MiniStatuslineFileinfo",
+              strings = { get_filesize() },
+            },
+            { hl = mode_hl, strings = { "%L" } },
           })
         end,
       },
