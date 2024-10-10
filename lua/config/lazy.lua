@@ -31,7 +31,9 @@ require("lazy").setup({
 
     { import = "plugins.extras.games" },
 
+    -- { import = "plugins.extras.ui.bufferline" },
     { import = "plugins.extras.ui.colorscheme" },
+    { import = "plugins.extras.ui.cokeline" },
     -- { import = "plugins.extras.ui.dashboard" },
     { import = "plugins.extras.ui.dressing" },
     { import = "plugins.extras.ui.noice" },
