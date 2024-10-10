@@ -1,5 +1,5 @@
 return {
-  { import = "plugins.lsp.mason" },
+  { import = "plugins.core.lsp.mason" },
   {
     "neovim/nvim-lspconfig",
     -- cmd = { "LspLog", "LspStart" },
