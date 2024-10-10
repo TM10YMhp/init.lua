@@ -6,6 +6,18 @@ return {
     { "<Tab>", "<Plug>(cokeline-focus-next)", silent = true },
   },
   opts = {
+    tabs = {
+      components = {
+        {
+          text = function(tab)
+            return (tab.is_first and tab.is_last) and "" or "|" .. tab.number
+          end,
+          highlight = function(tab)
+            return tab.is_active and "TabLineSel" or "TabLine"
+          end,
+        },
+      },
+    },
     components = {
       {
         text = function(buffer)
