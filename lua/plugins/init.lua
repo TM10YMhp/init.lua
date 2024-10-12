@@ -10,8 +10,19 @@ return {
           -- TODO: check this
           local diagnostics =
             MiniStatusline.section_diagnostics({ trunc_width = 75, icon = "" })
-          local lsp =
-            MiniStatusline.section_lsp({ trunc_width = 75, icon = "" })
+
+          local lsp_format = function()
+            local lsp =
+              MiniStatusline.section_lsp({ trunc_width = 75, icon = "" })
+            local clients = vim.trim(lsp):len()
+            local buf_ft = vim.o.filetype
+
+            if clients > 0 then
+              return "[" .. vim.trim(lsp):len() .. "]" .. buf_ft
+            end
+
+            return buf_ft
+          end
 
           local get_filesize = function()
             local size = vim.fn.getfsize(vim.fn.getreg("%"))
@@ -40,8 +51,7 @@ return {
                 diagnostics,
                 vim.o.encoding,
                 vim.o.fileformat,
-                lsp,
-                vim.o.filetype,
+                lsp_format(),
               },
             },
             {
