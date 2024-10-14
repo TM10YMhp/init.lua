@@ -7,9 +7,30 @@ return {
         active = function()
           local mode, mode_hl =
             MiniStatusline.section_mode({ trunc_width = 120 })
-          -- TODO: check this
-          local diagnostics =
-            MiniStatusline.section_diagnostics({ trunc_width = 75, icon = "" })
+
+          local workspace_diagnostic = function()
+            local res = {
+              [vim.diagnostic.severity.ERROR] = 0,
+              [vim.diagnostic.severity.WARN] = 0,
+              [vim.diagnostic.severity.INFO] = 0,
+              [vim.diagnostic.severity.HINT] = 0,
+            }
+            for _, v in ipairs(vim.diagnostic.get()) do
+              res[v.severity] = res[v.severity] + 1
+            end
+
+            local errors = res[1]
+            local warnings = res[2]
+            local infos = res[3]
+            local hints = res[4]
+
+            return vim.trim(
+              (errors > 0 and "E" .. errors .. " " or "")
+                .. (warnings > 0 and "W" .. warnings .. " " or "")
+                .. (infos > 0 and "I" .. infos .. " " or "")
+                .. (hints > 0 and "H" .. hints .. " " or "")
+            )
+          end
 
           local lsp_format = function()
             local lsp =
@@ -26,7 +47,10 @@ return {
 
           local get_filesize = function()
             local size = vim.fn.getfsize(vim.fn.getreg("%"))
-            if size < 1024 then
+
+            if size <= 0 then
+              return ""
+            elseif size < 1024 then
               return string.format("%dB", size)
             elseif size < 1048576 then
               return string.format("%.2fK", size / 1024)
@@ -48,7 +72,7 @@ return {
                 '%l:%{charcol(".")}|%{charcol("$")-1}',
                 "%=", -- End left alignment
                 "%{get(b:,'gitsigns_status','')}",
-                diagnostics,
+                workspace_diagnostic(),
                 vim.o.encoding,
                 vim.o.fileformat,
                 lsp_format(),
