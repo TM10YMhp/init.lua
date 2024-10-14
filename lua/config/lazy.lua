@@ -37,6 +37,7 @@ require("lazy").setup({
     -- { import = "plugins.extras.ui.dashboard" },
     { import = "plugins.extras.ui.dressing" },
     -- { import = "plugins.extras.ui.lualine" },
+    { import = "plugins.extras.ui.mini_statusline" },
     { import = "plugins.extras.ui.noice" },
     { import = "plugins.extras.ui.nvim_notify" },
     { import = "plugins.extras.ui.treesitter_context" },

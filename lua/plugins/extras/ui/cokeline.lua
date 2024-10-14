@@ -10,7 +10,7 @@ return {
       components = {
         {
           text = function(tab)
-            return (tab.is_first and tab.is_last) and "" or "|" .. tab.number
+            return (tab.is_first and tab.is_last) and "" or " " .. tab.number
           end,
           highlight = function(tab)
             return tab.is_active and "TabLineSel" or "TabLine"
