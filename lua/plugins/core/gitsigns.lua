@@ -24,12 +24,12 @@ return {
   keys = {
     {
       "<leader>dd",
-      "<cmd>Gitsigns diffthis<cr>",
+      "<cmd>Gitsigns diffthis vertical=true<cr>",
       desc = "Diff This",
     },
     {
       "<leader>dD",
-      "<cmd>Gitsigns diffthis ~<cr>",
+      "<cmd>Gitsigns diffthis ~ vertical=true<cr>",
       desc = "Diff This ~",
     },
     {
