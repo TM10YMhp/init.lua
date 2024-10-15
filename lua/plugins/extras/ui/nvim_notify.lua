@@ -1,6 +1,13 @@
 return {
   "rcarriga/nvim-notify",
-  event = "VeryLazy",
+  init = function()
+    -- when noice is not enabled, install notify on VeryLazy
+    if not SereneNvim.has("noice.nvim") then
+      SereneNvim.on_very_lazy(function()
+        vim.notify = require("notify")
+      end)
+    end
+  end,
   keys = {
     {
       "<leader>un",

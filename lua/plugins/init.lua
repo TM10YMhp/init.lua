@@ -80,7 +80,6 @@ return {
     "romainl/vim-cool",
     event = "VeryLazy",
   },
-  -- NOTE: cursormove fire cmdlineenter?
   {
     "Aasim-A/scrollEOF.nvim",
     event = "VeryLazy",
