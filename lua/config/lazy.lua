@@ -29,7 +29,7 @@ require("lazy").setup({
     -- { import = "plugins.extras.experimental.scrollview" },
     { import = "plugins.extras.experimental.trouble" },
 
-    { import = "plugins.extras.games" },
+    -- { import = "plugins.extras.games" },
 
     -- { import = "plugins.extras.ui.bufferline" },
     { import = "plugins.extras.ui.colorscheme" },
@@ -48,6 +48,7 @@ require("lazy").setup({
     { import = "plugins.extras.util.dadbod" },
     { import = "plugins.extras.util.debugprint" },
     { import = "plugins.extras.util.grug_far" },
+    { import = "plugins.extras.util.harpoon" },
     { import = "plugins.extras.util.markdown_preview" },
     { import = "plugins.extras.util.neotab" },
     { import = "plugins.extras.util.obsidian" },
@@ -56,6 +57,7 @@ require("lazy").setup({
     { import = "plugins.extras.util.startuptime" },
     { import = "plugins.extras.util.ts_error_translator" },
     { import = "plugins.extras.util.tsc" },
+    -- { import = "plugins.extras.util.undotree" },
     { import = "plugins.extras.util.which_key" },
 
     { import = "plugins.extras.lang.astro" },
