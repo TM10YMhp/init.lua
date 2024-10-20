@@ -5,8 +5,6 @@ return {
   opts = {
     content = {
       active = function()
-        local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
-
         local workspace_diagnostic = function()
           local res = {
             [vim.diagnostic.severity.ERROR] = 0,
@@ -59,7 +57,6 @@ return {
         end
 
         return MiniStatusline.combine_groups({
-          { hl = mode_hl, strings = { mode } },
           {
             hl = "MiniStatuslineDevinfo",
             strings = { vim.b.gitsigns_head },
@@ -81,7 +78,10 @@ return {
             hl = "MiniStatuslineFileinfo",
             strings = { get_filesize() },
           },
-          { hl = mode_hl, strings = { "%L" } },
+          {
+            hl = "MiniStatuslineModeNormal",
+            strings = { "%L" },
+          },
         })
       end,
     },
