@@ -1,5 +1,5 @@
 local git_branch = {
-  provider = function(self)
+  provider = function()
     if vim.b.gitsigns_head then
       return " " .. vim.b.gitsigns_head .. " "
     end
@@ -14,7 +14,7 @@ local git_branch = {
 }
 
 local git_diff = {
-  provider = function(self)
+  provider = function()
     return "%{get(b:,'gitsigns_status','')}"
   end,
   update = {
@@ -27,7 +27,7 @@ local git_diff = {
 }
 
 local filesize = {
-  provider = function(self)
+  provider = function()
     -- stackoverflow, compute human readable file size
     local suffix = { "b", "k", "M", "G", "T", "P", "E" }
     local fsize = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
@@ -40,9 +40,8 @@ local filesize = {
   end,
 }
 
--- TODO: optimize
 local workspace_diagnostic = {
-  provider = function(self)
+  provider = function()
     local res = {
       [vim.diagnostic.severity.ERROR] = 0,
       [vim.diagnostic.severity.WARN] = 0,
@@ -65,20 +64,21 @@ local workspace_diagnostic = {
           .. (infos > 0 and "I" .. infos .. " " or "")
           .. (hints > 0 and "H" .. hints .. " " or "")
       )
+      .. " "
   end,
+  update = { "DiagnosticChanged" },
 }
 
-local lsp_format = {
-  provider = function(self)
+local lsp_active = {
+  provider = function()
     local clients = #vim.lsp.get_clients()
-    local buf_ft = vim.o.filetype .. " "
 
     if clients > 0 then
-      return "[" .. clients .. "]" .. buf_ft
+      return "[" .. clients .. "]" .. " "
     end
-
-    return buf_ft
+    return " "
   end,
+  update = { "LspAttach", "LspDetach" },
 }
 
 return {
@@ -99,33 +99,27 @@ return {
     statusline = {
       git_branch,
       {
-        provider = function(self)
-          return table.concat({
-            " ",
-            '%l:%{charcol(".")}|%{charcol("$")-1}',
-            "%=", -- End left alignment
-          }, "")
-        end,
+        provider = table.concat({
+          " ",
+          '%l:%{charcol(".")}|%{charcol("$")-1}',
+          "%=", -- End left alignment
+        }, ""),
       },
       git_diff,
       workspace_diagnostic,
       {
-        provider = function(self)
+        provider = function()
           return table.concat({
             "",
             vim.o.encoding,
             vim.o.fileformat,
-            "",
+            vim.o.filetype,
           }, " ")
         end,
       },
-      lsp_format,
+      lsp_active,
       filesize,
-      {
-        provider = function(self)
-          return " %L "
-        end,
-      },
+      { provider = " %L " },
     },
     winbar = {
       SereneNvim.heirline.absolute_path,
