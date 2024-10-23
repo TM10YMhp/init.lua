@@ -51,10 +51,10 @@ return {
           local hints = buffer.diagnostics.hints
 
           local diagnostics = vim.trim(
-            (errors > 0 and "E" .. errors .. " " or "")
-              .. (warnings > 0 and "W" .. warnings .. " " or "")
-              .. (infos > 0 and "I" .. infos .. " " or "")
-              .. (hints > 0 and "H" .. hints .. " " or "")
+            (errors > 0 and "E" .. errors or "")
+              .. (warnings > 0 and "W" .. warnings or "")
+              .. (infos > 0 and "I" .. infos or "")
+              .. (hints > 0 and "H" .. hints or "")
           )
 
           return diagnostics:len() > 0 and " " .. diagnostics or ""

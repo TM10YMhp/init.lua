@@ -1,7 +1,7 @@
 return {
   ---@module "mini.statusline"
   "echasnovski/mini.statusline",
-  -- event = "VeryLazy",
+  event = "VeryLazy",
   opts = {
     content = {
       active = function()

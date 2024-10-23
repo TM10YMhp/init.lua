@@ -12,7 +12,7 @@ return {
             local util = require("lspconfig.util")
 
             -- HACK: path is not consistent across platforms
-            -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/intelephense.lua#L8
+            -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/intelephense.lua#L8
             local cwd = vim.uv.cwd():gsub("\\", "/")
             local root = util.root_pattern("composer.json", ".git")(pattern)
 

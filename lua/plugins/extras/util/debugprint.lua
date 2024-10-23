@@ -34,7 +34,7 @@ return {
       },
       display_counter = false,
       display_snippet = false,
-      print_tag = "::",
+      print_tag = "",
     },
   },
 }

@@ -1,8 +1,8 @@
+-- TODO: strings not respect update
 local git_branch = {
   provider = function()
-    if vim.b.gitsigns_head then
-      return " " .. vim.b.gitsigns_head .. " "
-    end
+    -- return "%{get(g:,'gitsigns_head','')}%{strftime('%S')}"
+    return "%{get(g:,'gitsigns_head','')}"
   end,
   update = {
     "User",
@@ -15,15 +15,16 @@ local git_branch = {
 
 local git_diff = {
   provider = function()
-    return "%{get(b:,'gitsigns_status','')}"
+    local status = "substitute(get(b:, 'gitsigns_status', ''), ' ', '', 'g')"
+    return "%{empty(" .. status .. ") ? '' : '(' . " .. status .. ". ')'}"
   end,
-  update = {
-    "User",
-    pattern = { "GitSignsUpdate", "GitSignsChanged" },
-    callback = function()
-      vim.schedule(vim.cmd.redrawstatus)
-    end,
-  },
+  -- update = {
+  --   "User",
+  --   pattern = { "GitSignsUpdate", "GitSignsChanged" },
+  --   callback = function()
+  --     vim.schedule(vim.cmd.redrawstatus)
+  --   end,
+  -- },
 }
 
 local filesize = {
@@ -57,14 +58,12 @@ local workspace_diagnostic = {
     local infos = res[3]
     local hints = res[4]
 
-    return " "
-      .. vim.trim(
-        (errors > 0 and "E" .. errors .. " " or "")
-          .. (warnings > 0 and "W" .. warnings .. " " or "")
-          .. (infos > 0 and "I" .. infos .. " " or "")
-          .. (hints > 0 and "H" .. hints .. " " or "")
-      )
-      .. " "
+    return vim.trim(
+      (errors > 0 and "E" .. errors or "")
+        .. (warnings > 0 and "W" .. warnings or "")
+        .. (infos > 0 and "I" .. infos or "")
+        .. (hints > 0 and "H" .. hints or "")
+    )
   end,
   update = { "DiagnosticChanged" },
 }
@@ -74,9 +73,8 @@ local lsp_active = {
     local clients = #vim.lsp.get_clients()
 
     if clients > 0 then
-      return "[" .. clients .. "]" .. " "
+      return "[" .. clients .. "]"
     end
-    return " "
   end,
   update = { "LspAttach", "LspDetach" },
 }
@@ -97,20 +95,19 @@ return {
       end,
     },
     statusline = {
+      { provider = " " },
       git_branch,
+      git_diff,
+      { provider = " " },
       {
         provider = table.concat({
-          " ",
           '%l:%{charcol(".")}|%{charcol("$")-1}',
           "%=", -- End left alignment
         }, ""),
       },
-      git_diff,
-      workspace_diagnostic,
       {
         provider = function()
           return table.concat({
-            "",
             vim.o.encoding,
             vim.o.fileformat,
             vim.o.filetype,
@@ -118,8 +115,13 @@ return {
         end,
       },
       lsp_active,
+      { provider = " " },
+      workspace_diagnostic,
+      { provider = " " },
       filesize,
-      { provider = " %L " },
+      { provider = " " },
+      { provider = "%L" },
+      { provider = " " },
     },
     winbar = {
       SereneNvim.heirline.absolute_path,
