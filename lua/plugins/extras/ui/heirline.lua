@@ -1,8 +1,7 @@
 -- TODO: strings not respect update
 local git_branch = {
   provider = function()
-    -- return "%{get(g:,'gitsigns_head','')}%{strftime('%S')}"
-    return "%{get(g:,'gitsigns_head','')}"
+    return vim.g.gitsigns_head or ""
   end,
   update = {
     "User",
@@ -19,7 +18,7 @@ local git_diff = {
       "%s+",
       ""
     )
-    return status ~= "" and "(" .. status .. ")" or ""
+    return status ~= "" and "[" .. status .. "]" or ""
   end,
   update = {
     "User",
@@ -95,6 +94,24 @@ local lsp_active = {
   update = { "LspAttach", "LspDetach" },
 }
 
+local file_encoding = {
+  provider = function()
+    return (vim.bo.fenc ~= "" and vim.bo.fenc) or vim.o.enc
+  end,
+}
+
+local file_format = {
+  provider = function()
+    return vim.bo.fileformat
+  end,
+}
+
+local file_type = {
+  provider = function()
+    return vim.bo.filetype
+  end,
+}
+
 return {
   "rebelot/heirline.nvim",
   event = "VeryLazy",
@@ -111,33 +128,22 @@ return {
       end,
     },
     statusline = {
-      { provider = " " },
       git_branch,
       git_diff,
       { provider = " " },
-      {
-        provider = table.concat({
-          '%l:%{charcol(".")}|%{charcol("$")-1}',
-          "%=", -- End left alignment
-        }, ""),
-      },
-      {
-        provider = function()
-          return table.concat({
-            vim.o.encoding,
-            vim.o.fileformat,
-            vim.o.filetype,
-          }, " ")
-        end,
-      },
-      lsp_active,
+      { provider = '%l:%{charcol(".")}|%{charcol("$")-1}' },
+      { provider = "%=" },
+      file_encoding,
       { provider = " " },
+      file_format,
+      { provider = " " },
+      file_type,
+      lsp_active,
       workspace_diagnostic,
       { provider = " " },
       filesize,
       { provider = " " },
       { provider = "%L" },
-      { provider = " " },
     },
     winbar = {
       SereneNvim.heirline.absolute_path,
