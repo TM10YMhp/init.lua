@@ -47,7 +47,7 @@ M.format_complete = function(entry, item)
       local completion_item = entry:get_completion_item()
 
       local data = completion_item.data
-      local entryNames = data and data.entryNames
+      local entryNames = type(data) == "table" and data.entryNames
       local source = entryNames and entryNames[1].source
 
       local detail = completion_item.detail

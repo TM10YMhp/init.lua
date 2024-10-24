@@ -26,9 +26,9 @@ return {
     end,
   },
   {
-    -- "hrsh7th/nvim-cmp",
-    "yioneko/nvim-cmp",
-    branch = "perf",
+    "hrsh7th/nvim-cmp",
+    -- "yioneko/nvim-cmp",
+    -- branch = "perf",
     -- "iguanacucumber/magazine.nvim", -- comparators broken
     -- name = "nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter /,?" },
