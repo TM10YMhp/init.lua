@@ -14,17 +14,32 @@ local git_branch = {
 }
 
 local git_diff = {
-  provider = function()
-    local status = "substitute(get(b:, 'gitsigns_status', ''), ' ', '', 'g')"
-    return "%{empty(" .. status .. ") ? '' : '(' . " .. status .. ". ')'}"
+  provider = function(self)
+    local status = (vim.b[self and self.bufnr or 0].gitsigns_status or ""):gsub(
+      "%s+",
+      ""
+    )
+    return status ~= "" and "(" .. status .. ")" or ""
   end,
-  -- update = {
-  --   "User",
-  --   pattern = { "GitSignsUpdate", "GitSignsChanged" },
-  --   callback = function()
-  --     vim.schedule(vim.cmd.redrawstatus)
-  --   end,
-  -- },
+  update = {
+    "User",
+    pattern = { "GitSignsUpdate", "GitSignsChanged" },
+    callback = function()
+      vim.schedule(vim.cmd.redrawstatus)
+    end,
+  },
+  -- https://github.com/rebelot/heirline.nvim/issues/71#issuecomment-1272940354
+  init = function(self)
+    if not rawget(self, "once") then
+      local clear_cache = function()
+        self._win_cache = nil
+      end
+      vim.api.nvim_create_autocmd("BufEnter", {
+        callback = clear_cache,
+      })
+      self.once = true
+    end
+  end,
 }
 
 local filesize = {
@@ -39,6 +54,7 @@ local filesize = {
     local i = math.floor((math.log(fsize) / math.log(1024)))
     return string.format("%.2g%s", fsize / math.pow(1024, i), suffix[i + 1])
   end,
+  update = { "BufWritePost" },
 }
 
 local workspace_diagnostic = {
