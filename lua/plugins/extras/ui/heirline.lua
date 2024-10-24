@@ -1,4 +1,4 @@
--- TODO: strings not respect update
+-- strings not respect update
 local git_branch = {
   provider = function()
     return vim.g.gitsigns_head or ""
