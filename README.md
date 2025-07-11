@@ -34,7 +34,7 @@ Si encuentra algun problema o tiene alguna sugerencia, por favor abre un issue y
 - para `telescope.nvim`
   - [ripgrep](https://github.com/BurntSushi/ripgrep) >= 13.0.0
   - [make]() para `telescope-fzf-native.nvim`. Mira [aqui]()
-- para `rest.nvim` **(opcional)**
+- para `kulala.nvim` **(opcional)**
   - [jq](https://github.com/jqlang/jq)
   - [tidy](https://github.com/htacg/tidy-html5)
 
