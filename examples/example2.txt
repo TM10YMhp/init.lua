@@ -1,0 +1,20 @@
+https://github.com/Saghen/blink.cmp/blob/main/lua/blink/cmp/fuzzy/rust/lib.rs
+
+&var1 $var4 #var7
+&var2 $var5 #var8
+&var3 $var6 #varr
+
+https://github.com/Saghen/blink.cmp/commit/846a0448
+_var4 _var5_
+__var6 __var7__
+
+`and` `or` `in` `end`
+
+--one
+-one
+--two
+-two
+--three
+-Three
+
+four-five

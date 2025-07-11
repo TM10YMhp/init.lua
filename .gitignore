@@ -1,0 +1,9 @@
+.php-cs-fixer.cache
+
+parser
+parser-info
+lazy-lock.json
+
+.repro
+repro.lua
+indent.log
