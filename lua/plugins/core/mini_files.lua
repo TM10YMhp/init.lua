@@ -51,7 +51,7 @@ return {
     windows = {
       preview = true,
       width_focus = 30,
-      width_preview = 15,
+      width_preview = 25,
     },
   },
 }
