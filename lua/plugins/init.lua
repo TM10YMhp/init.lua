@@ -16,4 +16,21 @@ return {
   --
   -- { import = "plugins.extras.util.emoji" },
   -- { import = "plugins.extras.util.mini_clue" },
+  {
+    "MagicDuck/grug-far.nvim",
+    cmd = { "GrugFar", "GrugFarWithin" },
+    opts = {
+      transient = true,
+      windowCreationCommand = "botright split",
+      showCompactInputs = true,
+      openTargetWindow = {
+        preferredLocation = "prev",
+      },
+      icons = { enabled = true },
+      keymaps = {
+        openNextLocation = { n = "" },
+        openPrevLocation = { n = "" },
+      },
+    },
+  },
 }
