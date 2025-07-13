@@ -10,6 +10,7 @@ return {
   -- { import = "plugins.extras.editor.nvim_highlight_colors" },
   --
   -- { import = "plugins.extras.ui.cokeline" },
+  -- { import = "plugins.extras.ui.colorscheme" },
   -- { import = "plugins.extras.ui.heirline" },
   -- { import = "plugins.extras.ui.nvim_bqf" },
   -- { import = "plugins.extras.ui.treesitter_context" },
