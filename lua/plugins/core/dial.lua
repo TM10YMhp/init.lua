@@ -59,8 +59,8 @@ return {
           capitalized_boolean,
           augend.constant.alias.bool, -- boolean value (true <-> false)
           logical_alias,
-          augend.constant.alias.alpha,
-          augend.constant.alias.Alpha,
+          -- augend.constant.alias.alpha,
+          -- augend.constant.alias.Alpha,
         },
         vue = {
           augend.constant.new({ elements = { "let", "const" } }),

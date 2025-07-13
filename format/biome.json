@@ -26,6 +26,11 @@
       "allowTrailingCommas": true
     }
   },
+  "css": {
+    "assist": {
+      "enabled": false
+    }
+  },
   "linter": {
     "enabled": false
   }
