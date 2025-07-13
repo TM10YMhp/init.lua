@@ -17,6 +17,20 @@ return {
   --
   -- { import = "plugins.extras.util.emoji" },
   -- { import = "plugins.extras.util.mini_clue" },
+
+  -- {
+  --   "mason-tool-installer.nvim",
+  --   optional = true,
+  --   opts = function(_, opts)
+  --     return {
+  --       ensure_installed = vim.tbl_filter(
+  --         function(x) return not vim.list_contains({ "tinymist", "eslint" }, x) end,
+  --         opts.ensure_installed
+  --       ),
+  --     }
+  --   end,
+  -- },
+
   {
     "MagicDuck/grug-far.nvim",
     cmd = { "GrugFar", "GrugFarWithin" },

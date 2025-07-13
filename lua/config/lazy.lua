@@ -16,11 +16,11 @@ require("lazy").setup({
   defaults = { lazy = true },
   spec = {
     { import = "plugins.core" },
-    { import = "plugins" },
     {
       enabled = vim.uv.os_gethostname():match("^DESKTOP") ~= nil,
       import = "plugins.personal",
     },
+    { import = "plugins" },
   },
   local_spec = false,
   pkg = {
