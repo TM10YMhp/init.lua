@@ -1,9 +1,10 @@
 return {
-  {
-    "blink.cmp",
-    optional = true,
-    build = "cargo build --release",
-  },
+  -- TODO: check warning on build
+  -- {
+  --   "blink.cmp",
+  --   optional = true,
+  --   build = "cargo build --release",
+  -- },
   { import = "plugins.extras.coding.blink" },
   { import = "plugins.extras.coding.colorful_menu" },
   { import = "plugins.extras.coding.luasnip" },
