@@ -10,7 +10,7 @@ return {
     event = { "InsertEnter", "CmdlineEnter" },
     -- https://github.com/Saghen/blink.cmp/issues/418
     -- dependencies = { "ydkulks/friendly-snippets" },
-    -- version = "v0.*",
+    version = "v1.*",
     -- build = "cargo build --release",
     opts_extend = { "sources.default" },
     ---@module 'blink.cmp'
