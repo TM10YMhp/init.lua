@@ -17,8 +17,12 @@ require("lazy").setup({
   spec = {
     { import = "plugins.core" },
     {
-      enabled = vim.uv.os_gethostname():match("^DESKTOP") ~= nil,
+      enabled = vim.env.USERNAME == "qwe",
       import = "plugins.personal",
+    },
+    {
+      enabled = vim.env.TERMUX_VERSION ~= nil,
+      import = "plugins.phone",
     },
     { import = "plugins" },
   },
