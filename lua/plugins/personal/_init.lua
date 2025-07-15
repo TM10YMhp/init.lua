@@ -1,11 +1,4 @@
 return {
-  {
-    "blink.cmp",
-    optional = true,
-    version = false,
-    build = "cargo build --release",
-  },
-
   { import = "plugins.extras.coding.blink" },
   { import = "plugins.extras.coding.colorful_menu" },
   { import = "plugins.extras.coding.luasnip" },
@@ -59,4 +52,11 @@ return {
 
   { import = "plugins.extras.lang.csharp" },
   { import = "plugins.extras.lang.css" },
+
+  {
+    "blink.cmp",
+    optional = true,
+    version = false,
+    build = "cargo build --release",
+  },
 }
