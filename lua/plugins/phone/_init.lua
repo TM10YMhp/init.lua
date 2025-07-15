@@ -1,3 +1,5 @@
+vim.g.clipboard = "osc52"
+
 return {
   { import = "plugins.extras.coding.blink" },
   { import = "plugins.extras.coding.colorful_menu" },
