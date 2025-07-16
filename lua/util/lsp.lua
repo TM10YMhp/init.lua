@@ -48,7 +48,9 @@ function M.legacy_start()
     local names = get_lsp_names()
     local configs = {}
     for _, name in pairs(names) do
-      configs[name] = vim.lsp.config[name]
+      if vim.lsp.config[name] ~= nil then
+        configs[name] = vim.lsp.config[name]
+      end
     end
     return configs
   end
@@ -59,7 +61,10 @@ function M.legacy_start()
     for name, config in pairs(configs) do
       local filetypes = config.filetypes or {}
       for _, ft in pairs(filetypes) do
-        if ft == filetype then table.insert(matching_configs, name) end
+        if ft == filetype then
+          table.insert(matching_configs, name)
+          break
+        end
       end
     end
     return matching_configs

@@ -4,7 +4,7 @@ local vue_language_server_path = vim.fn.expand(
 
 local config = vim.lsp.config.ts_ls
 vim.lsp.config("ts_ls", {
-  filetypes = vim.tbl_extend("force", config.filetypes, { "vue" }),
+  filetypes = vim.list_extend(config.filetypes, { "vue" }),
   init_options = {
     plugins = {
       {
