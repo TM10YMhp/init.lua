@@ -320,6 +320,21 @@ return {
       winopts = {
         preview = { hidden = true },
       },
+      actions = {
+        ["ctrl-e"] = {
+          fn = function(selected, opts)
+            local tree = require("nvim-tree.api").tree
+            local path = selected[1]
+            tree.find_file({
+              buf = path,
+              open = true,
+              focus = true,
+            })
+          end,
+          header = function(opts) return "focus file" end,
+          desc = "focus-file",
+        },
+      },
     },
     helptags = {
       fzf_opts = {
