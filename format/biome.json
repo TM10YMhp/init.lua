@@ -6,7 +6,7 @@
         "organizeImports": "on",
         "useSortedAttributes": "on",
         "useSortedKeys": "on",
-        "useSortedProperties": "on"
+        "useSortedProperties": "off"
       }
     }
   },
@@ -24,11 +24,6 @@
     "parser": {
       "allowComments": true,
       "allowTrailingCommas": true
-    }
-  },
-  "css": {
-    "assist": {
-      "enabled": false
     }
   },
   "linter": {
