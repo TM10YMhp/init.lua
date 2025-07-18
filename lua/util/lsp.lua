@@ -37,19 +37,33 @@ function M.legacy_start()
     local files =
       vim.fn.glob(vim.fn.stdpath("config") .. "/after/lsp/*", true, true)
     -- vim.api.nvim_get_runtime_file("lsp/*.lua", true)
-    local names = {}
-    for _, file in pairs(files) do
-      table.insert(names, vim.fn.fnamemodify(file, ":t:r"))
-    end
+    local names = vim.tbl_map(
+      function(x) return vim.fn.fnamemodify(x, ":t:r") end,
+      files
+    )
     return names
+  end
+
+  local has_root = function(config)
+    local bufnr = vim.api.nvim_get_current_buf()
+    if not config.root_dir and config.root_markers then
+      vim.validate("root_markers", config.root_markers, "table")
+      local path = vim.fs.root(bufnr, config.root_markers)
+      return path ~= nil
+    elseif type(config.root_dir) == "function" then
+      local path = nil
+      config.root_dir(bufnr, function(root_dir) path = root_dir end)
+      return path ~= nil
+    end
   end
 
   local function get_lsp_configs()
     local names = get_lsp_names()
     local configs = {}
-    for _, name in pairs(names) do
-      if vim.lsp.config[name] ~= nil then
-        configs[name] = vim.lsp.config[name]
+    for i, name in pairs(names) do
+      local config = vim.lsp.config[name]
+      if config ~= nil and has_root(config) then
+        configs[#configs + 1] = config
       end
     end
     return configs
@@ -57,17 +71,14 @@ function M.legacy_start()
 
   local function get_server_name_by_ft(filetype)
     local configs = get_lsp_configs()
-    local matching_configs = {}
-    for name, config in pairs(configs) do
+    local names = {}
+    for _, config in pairs(configs) do
       local filetypes = config.filetypes or {}
-      for _, ft in pairs(filetypes) do
-        if ft == filetype then
-          table.insert(matching_configs, name)
-          break
-        end
+      if filetypes and vim.tbl_contains(filetypes, filetype) then
+        names[#names + 1] = config.name
       end
     end
-    return matching_configs
+    return names
   end
 
   local names = get_server_name_by_ft(vim.bo.filetype)
@@ -75,6 +86,7 @@ function M.legacy_start()
     SereneNvim.info("LSP: No LSP server found for " .. vim.bo.filetype)
     return {}
   end
+
   SereneNvim.info("LSP: Start **" .. table.concat(names, "**, **") .. "**")
 
   vim.lsp.enable(names)
