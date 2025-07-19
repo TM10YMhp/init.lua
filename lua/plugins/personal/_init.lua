@@ -1,7 +1,6 @@
 return {
   { import = "plugins.extras.coding.blink" },
   { import = "plugins.extras.coding.colorful_menu" },
-  { import = "plugins.extras.coding.luasnip" },
   { import = "plugins.extras.coding.neogen" },
   { import = "plugins.extras.coding.supermaven" },
   { import = "plugins.extras.coding.cmp_extras" },

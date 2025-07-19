@@ -93,6 +93,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- or use `:write ++p`
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = augroup_create("auto_create_dir"),
   desc = "Auto create dir",

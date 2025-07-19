@@ -1,13 +1,44 @@
-vim.api.nvim_create_autocmd("ModeChanged", {
-  callback = function() vim.snippet.stop() end,
-})
+-- vim.api.nvim_create_autocmd("ModeChanged", {
+--   callback = function() vim.snippet.stop() end,
+-- })
 
 return {
   {
+    "L3MON4D3/LuaSnip",
+    -- enabled = false,
+    dependencies = { "rafamadriz/friendly-snippets" },
+    config = function()
+      local luasnip = require("luasnip")
+
+      -- set this before configuring luasnip
+      require("luasnip.loaders.from_vscode").lazy_load()
+      luasnip.filetype_extend("all", { "loremipsum" })
+
+      luasnip.setup()
+
+      -- https://github.com/L3MON4D3/LuaSnip/issues/656
+      -- https://github.com/L3MON4D3/LuaSnip/issues/258
+      vim.api.nvim_create_autocmd("ModeChanged", {
+        pattern = "*",
+        callback = function()
+          if
+            (
+              (vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n")
+              or vim.v.event.old_mode == "i"
+            )
+            and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+            and not require("luasnip").session.jump_active
+          then
+            require("luasnip").unlink_current()
+          end
+        end,
+      })
+    end,
+  },
+  {
+    -- https://github.com/Saghen/blink.cmp/issues/418
     "blink.cmp",
     optional = true,
-    -- https://github.com/Saghen/blink.cmp/issues/418
-    dependencies = { "ydkulks/friendly-snippets" },
     opts = {
       -- https://github.com/Saghen/blink.cmp/commit/e5b569c
       completion = {
@@ -40,13 +71,15 @@ return {
           },
         },
       },
-      -- snippets = { preset = "luasnip" },
+      snippets = { preset = "luasnip" },
       sources = {
         default = { "snippets" },
         providers = {
           snippets = {
             score_offset = -10,
-            opts = { global_snippets = { "all", "loremipsum" } },
+            opts = {
+              -- global_snippets = { "all", "loremipsum" },
+            },
           },
         },
       },

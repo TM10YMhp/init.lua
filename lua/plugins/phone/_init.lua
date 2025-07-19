@@ -3,7 +3,7 @@ vim.g.clipboard = "osc52"
 return {
   { import = "plugins.extras.coding.blink" },
   { import = "plugins.extras.coding.colorful_menu" },
-  { import = "plugins.extras.coding.luasnip" },
+  { import = "plugins.extras.coding.cmp_snippet" },
 
   { import = "plugins.extras.editor.conform" },
   { import = "plugins.extras.editor.fzf" },
