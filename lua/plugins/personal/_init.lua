@@ -5,6 +5,7 @@ return {
   { import = "plugins.extras.coding.neogen" },
   { import = "plugins.extras.coding.supermaven" },
   { import = "plugins.extras.coding.cmp_extras" },
+  { import = "plugins.extras.coding.cmp_snippet" },
 
   { import = "plugins.extras.editor.conform" },
   { import = "plugins.extras.editor.fzf" },

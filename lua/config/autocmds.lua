@@ -1,10 +1,5 @@
 local augroup = vim.api.nvim_create_augroup("serenenvim", { clear = true })
 
--- vim.api.nvim_create_autocmd("ModeChanged", {
---   group = augroup,
---   callback = function() vim.snippet.stop() end,
--- })
-
 vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "term://*",
   group = augroup,

@@ -8,8 +8,6 @@ return {
   {
     "saghen/blink.cmp",
     event = { "InsertEnter", "CmdlineEnter" },
-    -- https://github.com/Saghen/blink.cmp/issues/418
-    -- dependencies = { "ydkulks/friendly-snippets" },
     version = "v1.*",
     opts_extend = { "sources.default" },
     ---@module 'blink.cmp'
@@ -67,10 +65,6 @@ return {
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
         providers = {
-          snippets = {
-            score_offset = -10,
-            -- opts = { global_snippets = { "all", "loremipsum" } },
-          },
           lsp = {
             -- fallbacks = {},
             -- score_offset = 50,
