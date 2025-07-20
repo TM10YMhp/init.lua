@@ -43,7 +43,7 @@ return {
         modules = {
           -- cmp = true,
           -- peek = true,
-          files = true,
+          files = false, -- not work
           -- telescope = true,
           -- telescope_previewer = true,
           fzf = true,
