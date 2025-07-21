@@ -48,6 +48,9 @@ return {
       trim_left = "<",
       trim_right = ">",
     },
+    options = {
+      use_as_default_explorer = false,
+    },
     windows = {
       preview = true,
       width_focus = 30,

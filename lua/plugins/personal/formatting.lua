@@ -92,8 +92,9 @@ return {
         },
 
         ruff_format = {
-          append_args = function()
-            if not SereneNvim.exists_in_cwd({ "ruff.toml" }) then
+          append_args = function(_, ctx)
+            local bufnr = ctx.buf
+            if vim.fs.root(bufnr, { "ruff.toml" }) == nil then
               return {
                 "--config",
                 get_formatter_path("ruff.toml"),
@@ -123,8 +124,9 @@ return {
           },
         },
         sqlfluff = {
-          args = function()
-            if not SereneNvim.exists_in_cwd({ ".sqlfluff" }) then
+          args = function(_, ctx)
+            local bufnr = ctx.buf
+            if vim.fs.root(bufnr, { ".sqlfluff" }) == nil then
               return {
                 "format",
                 "--config=" .. get_formatter_path(".sqlfluff"),
@@ -144,22 +146,19 @@ return {
             "--stdin-file-path",
             "$FILENAME",
           },
-          append_args = function()
-            if
-              not SereneNvim.exists_in_cwd({ "biome.json", "biome.jsonc" })
-            then
+          append_args = function(_, ctx)
+            local bufnr = ctx.buf
+            if vim.fs.root(bufnr, { "biome.json", "biome.jsonc" }) == nil then
               return { "--config-path=" .. get_formatter_path("biome.json") }
             end
           end,
         },
         stylua = {
-          prepend_args = function()
-            if
-              not SereneNvim.exists_in_cwd({ ".stylua.toml", "stylua.toml" })
-            then
+          prepend_args = function(_, ctx)
+            local bufnr = ctx.buf
+            if vim.fs.root(bufnr, { ".stylua.toml", "stylua.toml" }) == nil then
               return {
-                "--config-path="
-                  .. vim.fn.expand(vim.fn.stdpath("config") .. "/.stylua.toml"),
+                "--config-path=" .. get_formatter_path(".stylua.toml"),
               }
             end
           end,

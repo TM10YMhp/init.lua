@@ -111,15 +111,6 @@ function M.on_lazy_ft(name, pattern)
   end)
 end
 
-function M.exists_in_cwd(patterns)
-  local cwd = vim.uv.cwd()
-  for _, pattern in ipairs(patterns) do
-    for _, _ in ipairs(vim.fn.glob(cwd .. "/" .. pattern, true, true)) do
-      return true
-    end
-  end
-end
-
 ---@param extra string
 function M.has_extra(extra)
   -- local Config = require("lazyvim.config")

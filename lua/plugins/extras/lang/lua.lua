@@ -8,6 +8,7 @@ return {
     optional = true,
     opts = { ensure_installed = { "lua_ls" } },
   },
+  { "justinsgithub/wezterm-types", lazy = true },
   {
     "folke/lazydev.nvim",
     opts = {
@@ -15,6 +16,7 @@ return {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { path = "SereneNvim", words = { "SereneNvim" } },
         { path = "snacks.nvim", words = { "Snacks" } },
+        { path = "wezterm-types", mods = { "wezterm" } },
       },
     },
   },
