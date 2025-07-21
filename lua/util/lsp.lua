@@ -41,11 +41,13 @@ function M.legacy_start()
       function(x) return vim.fn.fnamemodify(x, ":t:r") end,
       files
     )
-    -- TODO: priorize vue_ls
-    return names
+    -- HACK: load vtsls after vue_ls
+    local filter = vim.tbl_filter(function(x) return x ~= "vtsls" end, names)
+    filter[#filter + 1] = "vtsls"
+    return filter
   end
 
-  local has_root = function(config)
+  local has_root_dir = function(config)
     local bufnr = vim.api.nvim_get_current_buf()
     if not config.root_dir and config.root_markers then
       vim.validate("root_markers", config.root_markers, "table")
@@ -63,7 +65,10 @@ function M.legacy_start()
     local configs = {}
     for i, name in pairs(names) do
       local config = vim.lsp.config[name]
-      if config ~= nil and has_root(config) then
+      if
+        config ~= nil
+        and (not config.workspace_required or has_root_dir(config))
+      then
         configs[#configs + 1] = config
       end
     end

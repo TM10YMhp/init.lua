@@ -136,4 +136,12 @@ function M.on_very_lazy(fn)
   })
 end
 
+---@param fn fun()
+function M.on_init(fn)
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "LazyDone",
+    callback = function() fn() end,
+  })
+end
+
 return M
