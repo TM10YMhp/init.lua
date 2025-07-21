@@ -41,6 +41,7 @@ function M.legacy_start()
       function(x) return vim.fn.fnamemodify(x, ":t:r") end,
       files
     )
+    -- TODO: priorize vue_ls
     return names
   end
 

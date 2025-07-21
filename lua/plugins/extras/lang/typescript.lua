@@ -13,6 +13,6 @@ return {
   {
     "mason-tool-installer.nvim",
     optional = true,
-    opts = { ensure_installed = { "ts_ls" } },
+    opts = { ensure_installed = { "vtsls" } },
   },
 }
