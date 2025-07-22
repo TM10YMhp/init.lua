@@ -80,14 +80,24 @@ function M.legacy_start()
     local names = {}
     for _, config in pairs(configs) do
       local filetypes = config.filetypes or {}
-      if filetypes and vim.tbl_contains(filetypes, filetype) then
+      if filetypes and vim.list_contains(filetypes, filetype) then
         names[#names + 1] = config.name
       end
     end
     return names
   end
 
-  local names = get_server_name_by_ft(vim.bo.filetype)
+  local server_names = get_server_name_by_ft(vim.bo.filetype)
+
+  local active_clients = vim.tbl_map(
+    function(x) return x.name end,
+    vim.lsp.get_clients()
+  )
+  local names = vim.tbl_filter(
+    function(x) return not vim.list_contains(active_clients, x) end,
+    server_names
+  )
+
   if #names <= 0 then
     SereneNvim.info("LSP: No LSP server found for " .. vim.bo.filetype)
     return {}
