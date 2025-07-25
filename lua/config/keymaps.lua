@@ -153,13 +153,12 @@ end, { desc = "Toggle LocList" })
 vim.keymap.set("n", "<leader>ul", "<cmd>Lazy<cr>", {
   desc = "Lazy",
 })
+
 vim.keymap.set("n", "<leader>ui", "<cmd>Inspect<cr>", { desc = "Inspect Pos" })
-vim.keymap.set(
-  "n",
-  "<leader>uI",
-  "<cmd>InspectTree<cr>",
-  { desc = "Inspect Tree" }
-)
+vim.keymap.set("n", "<leader>uI", function()
+  vim.treesitter.inspect_tree()
+  vim.api.nvim_input("I")
+end, { desc = "Inspect Tree" })
 
 vim.keymap.set("n", "/", "ms/", {
   desc = "Mark previous before search",

@@ -20,6 +20,7 @@ vim.g.maplocalleader = "_"
 vim.g.markdown_recommended_style = 0
 
 -- options
+vim.opt.spelllang = { "en", "es" }
 vim.opt.mouse = ""
 vim.opt.splitbelow = true
 vim.opt.splitright = true

@@ -74,8 +74,6 @@ return {
         java = { "google-java-format" },
 
         typst = { "typstyle" },
-
-        ["*"] = { "injected" },
       },
       formatters = {
         injected = { options = { ignore_errors = true } },

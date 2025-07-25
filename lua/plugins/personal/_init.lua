@@ -40,7 +40,6 @@ return {
   { import = "plugins.extras.lang.java" },
   { import = "plugins.extras.lang.json" },
   -- { import = "plugins.extras.lang.latex" },
-  { import = "plugins.extras.lang.ltex" },
   { import = "plugins.extras.lang.lua" },
   { import = "plugins.extras.lang.php" },
   { import = "plugins.extras.lang.python" },

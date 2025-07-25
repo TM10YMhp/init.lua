@@ -11,6 +11,7 @@ return {
       _G.bt = function() Snacks.debug.backtrace() end
 
       -- Create some toggle mappings
+      Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>os")
       Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>ow")
       Snacks.toggle
         .option("number", { name = "Line Numbers" })
@@ -174,6 +175,9 @@ return {
       enabled = false,
       icon = "",
       expand = false,
+    },
+    image = {
+      enabled = false,
     },
   },
 }
