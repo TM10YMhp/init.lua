@@ -54,13 +54,20 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    -- event = "VeryLazy",
     event = "InsertEnter",
     opts = {},
-    -- config = function(_, opts)
-    --   require("nvim-ts-autotag").setup(opts)
-    --   require("nvim-ts-autotag.internal").attach(vim.api.nvim_get_current_buf())
-    -- end,
+    config = function(_, opts)
+      require("nvim-ts-autotag").setup(opts)
+
+      -- HACK: attach not work bufnr
+      SereneNvim.bufdo(function(bufnr)
+        if vim.api.nvim_get_current_buf() == bufnr then return end
+        vim.api.nvim_buf_call(
+          bufnr,
+          function() require("nvim-ts-autotag.internal").attach() end
+        )
+      end)
+    end,
   },
   {
     "Wansmer/treesj",

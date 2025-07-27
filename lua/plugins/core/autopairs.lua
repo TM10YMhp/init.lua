@@ -18,7 +18,6 @@ return {
       end)
     end,
     opts = {
-      disable_in_macro = false,
       check_ts = true,
     },
     config = function(_, opts)

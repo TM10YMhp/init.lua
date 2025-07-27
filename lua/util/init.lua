@@ -135,4 +135,13 @@ function M.on_init(fn)
   })
 end
 
+---@param fn fun()
+function M.bufdo(fn)
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(bufnr) and vim.fn.buflisted(bufnr) == 1 then
+      fn(bufnr)
+    end
+  end
+end
+
 return M

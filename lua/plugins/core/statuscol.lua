@@ -45,7 +45,7 @@ return {
     require("statuscol").setup(opts)
 
     vim.api.nvim_exec_autocmds(
-      "Filetype",
+      "FileType",
       { group = "StatusCol", modeline = false }
     )
   end,
