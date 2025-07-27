@@ -135,24 +135,7 @@ return {
         gui = { nerdFontsVersion = "" },
       },
     },
-    bigfile = {
-      enabled = true,
-      size = SereneNvim.config.bigfile_size,
-      setup = function()
-        vim.opt_local.wrap = false
-        vim.opt_local.cursorline = false
-        vim.opt_local.foldenable = false
-        vim.opt_local.foldcolumn = "0"
-        vim.opt_local.number = false
-        vim.opt_local.signcolumn = "no"
-
-        vim.opt_local.swapfile = false
-        vim.opt_local.foldmethod = "manual"
-        vim.opt_local.undolevels = -1
-        vim.opt_local.undoreload = 0
-        vim.opt_local.list = false
-      end,
-    },
+    bigfile = { enabled = false },
     notifier = {
       enabled = true,
       timeout = 2500,

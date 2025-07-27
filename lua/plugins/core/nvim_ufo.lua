@@ -75,11 +75,6 @@ return {
     },
   },
   config = function(_, opts)
-    vim.o.foldcolumn = "1"
-    vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-    vim.o.foldlevelstart = 99
-    vim.o.foldenable = true
-
     require("ufo").setup(opts)
 
     local ft_ignore = {
@@ -95,21 +90,32 @@ return {
       "NvimTree",
     }
 
-    for _, bufnr in ipairs(vim.fn.tabpagebuflist(vim.fn.tabpagenr("$"))) do
-      if vim.list_contains(ft_ignore, vim.bo[bufnr].filetype) then
-        require("ufo").detach(bufnr)
-        vim.opt_local.foldcolumn = "0"
-        vim.opt_local.foldenable = false
-      end
-    end
+    -- for _, bufnr in ipairs(vim.fn.tabpagebuflist(vim.fn.tabpagenr("$"))) do
+    --   if vim.list_contains(ft_ignore, vim.bo[bufnr].filetype) then
+    --     require("ufo").detach(bufnr)
+    --     vim.opt_local.foldcolumn = "0"
+    --     vim.opt_local.foldenable = false
+    --   end
+    -- end
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = ft_ignore,
       callback = function(args)
+        vim.schedule_wrap(require("ufo.main").detach)(args.buf)
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("BufWinEnter", {
+      callback = function(args)
         vim.schedule(function()
-          require("ufo").detach(args.buf)
-          vim.opt_local.foldenable = false
-          vim.opt_local.foldcolumn = "0"
+          local ufo = require("ufo.main")
+          local bufnr = args.buf
+          if
+            ufo.hasAttached(bufnr)
+            and vim.list_contains({ "terminal", "help" }, vim.bo[bufnr].buftype)
+          then
+            ufo.detach(bufnr)
+          end
         end)
       end,
     })

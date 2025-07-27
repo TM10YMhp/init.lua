@@ -30,6 +30,16 @@ return {
   --     }
   --   end,
   -- },
+  {
+    "module-bigfile",
+    virtual = true,
+    lazy = false,
+    main = "modules.bigfile",
+    dir = vim.fn.expand(vim.fn.stdpath("config") .. "/lua/modules"),
+    opts = {
+      size = SereneNvim.config.bigfile_size,
+    },
+  },
 
   {
     "MagicDuck/grug-far.nvim",

@@ -20,6 +20,10 @@ vim.g.maplocalleader = "_"
 vim.g.markdown_recommended_style = 0
 
 -- options
+vim.o.foldenable = true
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 50
+
 vim.opt.spelllang = { "en", "es" }
 vim.opt.mouse = ""
 vim.opt.splitbelow = true
