@@ -113,7 +113,7 @@ end
 function M.legacy_stop()
   local name_clients = M.get_client_names()
   SereneNvim.info("LSP: Stop **" .. table.concat(name_clients, ", ") .. "**")
-  vim.cmd("LspStop " .. table.concat(name_clients, " "))
+  vim.lsp.enable(name_clients, false)
 end
 
 function M.legacy_restart()

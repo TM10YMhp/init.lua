@@ -22,9 +22,7 @@ vim.diagnostic.config({
     border = "single",
     source = true,
   },
-  underline = {
-    severity = { vim.diagnostic.severity.INFO },
-  },
+  underline = false,
   update_in_insert = false,
   virtual_text = false,
   virtual_lines = false,
