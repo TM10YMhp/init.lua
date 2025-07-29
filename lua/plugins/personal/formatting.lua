@@ -1,5 +1,5 @@
 local get_formatter_path = function(filename)
-  return vim.fn.expand(vim.fn.stdpath("config") .. "/format/" .. filename)
+  return vim.fs.joinpath(vim.fn.stdpath("config"), "format", filename)
 end
 
 return {
