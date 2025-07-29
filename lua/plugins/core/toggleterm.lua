@@ -23,11 +23,11 @@ return {
       function() lazygit("log"):toggle() end,
       desc = "Lazygit log",
     },
-    {
-      "<leader>gf",
-      function() lazygit("-f " .. vim.fn.expand("%")):toggle() end,
-      desc = "Lazygit log file",
-    },
+    -- {
+    --   "<leader>gf",
+    --   function() lazygit("-f " .. vim.fn.expand("%")):toggle() end,
+    --   desc = "Lazygit log file",
+    -- },
 
     { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>" },
     { "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>" },

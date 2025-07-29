@@ -257,6 +257,11 @@ return {
     { "<leader>gs", "<cmd>FzfLua git_status<CR>", desc = "Fzf Git Status" },
     { "<leader>gh", "<cmd>FzfLua git_hunks<CR>", desc = "Fzf Git Hunks" },
     { "<leader>gd", "<cmd>FzfLua git_diff<CR>", desc = "Fzf Git Diff" },
+    {
+      "<leader>gf",
+      "<cmd>FzfLua git_bcommits<CR>",
+      desc = "Fzf Git Buffer Commits",
+    },
 
     { "<leader>sz", "<cmd>FzfLua zoxide<cr>", desc = "Fzf Zoxide" },
     {
@@ -408,9 +413,9 @@ return {
       },
     },
     git = {
-      status = { preview_pager = false },
-      commits = { preview_pager = false },
-      bcommits = { preview_pager = false },
+      bcommits = {
+        winopts = { preview = { vertical = "down:60%" } },
+      },
       blame = { preview_pager = false },
       diff = {
         winopts = { preview = { vertical = "down:60%" } },
