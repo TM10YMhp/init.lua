@@ -4,10 +4,9 @@ return {
       classAttributes = {
         "class",
         "className",
-        "ngClass",
-        "classNames",
         "class:list",
-        ":class",
+        "classList",
+        "ngClass",
       },
       classFunctions = {
         "cva",

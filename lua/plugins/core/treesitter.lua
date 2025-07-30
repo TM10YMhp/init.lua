@@ -47,7 +47,6 @@ return {
       },
     },
     config = function(_, opts)
-      -- git slow in windows
       require("nvim-treesitter.install").prefer_git = false
       require("nvim-treesitter.configs").setup(opts)
     end,

@@ -63,7 +63,7 @@ function M.legacy_start()
   local function get_lsp_configs()
     local names = get_lsp_names()
     local configs = {}
-    for i, name in pairs(names) do
+    for _, name in pairs(names) do
       local config = vim.lsp.config[name]
       if
         config ~= nil
@@ -118,8 +118,21 @@ end
 
 function M.legacy_restart()
   local name_clients = M.get_client_names()
-  SereneNvim.info("LSP: Restart **" .. table.concat(name_clients, ", ") .. "**")
-  vim.cmd("LspRestart " .. table.concat(name_clients, " "))
+
+  -- NOTE: nargs == "?" ???
+  -- vim.cmd("LspRestart " .. table.concat(name_clients, " "))
+
+  vim.lsp.enable(name_clients, false)
+
+  local timer = assert(vim.uv.new_timer())
+  timer:start(500, 0, function()
+    vim.schedule(function()
+      SereneNvim.info(
+        "LSP: Restart **" .. table.concat(name_clients, ", ") .. "**"
+      )
+      vim.lsp.enable(name_clients)
+    end)
+  end)
 end
 
 return M

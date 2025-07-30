@@ -61,7 +61,7 @@ return {
         },
         ghost_text = { enabled = true },
       },
-      fuzzy = { max_typos = 0 },
+      -- fuzzy = { max_typos = 0 },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
         providers = {

@@ -58,4 +58,12 @@ return {
     version = false,
     build = "cargo build --release",
   },
+
+  {
+    "toggleterm.nvim",
+    optional = true,
+    opts = {
+      shell = "cmd /s /k clink inject",
+    },
+  },
 }
