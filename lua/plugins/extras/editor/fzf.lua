@@ -326,7 +326,7 @@ return {
         preview = { hidden = true },
       },
       actions = {
-        ["ctrl-e"] = {
+        ["alt-e"] = {
           fn = function(selected, opts)
             local tree = require("nvim-tree.api").tree
             local path = selected[1]

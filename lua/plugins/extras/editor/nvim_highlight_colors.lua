@@ -40,6 +40,7 @@ return {
   --       menu = {
   --         draw = {
   --           components = {
+  --             -- customize the drawing of kind icons
   --             kind_icon = {
   --               text = function(ctx)
   --                 -- default kind icon
@@ -48,11 +49,17 @@ return {
   --                 if ctx.item.source_name == "LSP" then
   --                   local color_item = require("nvim-highlight-colors").format(
   --                     ctx.item.documentation,
-  --                     { kind = ctx.kind }
+  --                     {
+  --                       kind = ctx.kind,
+  --                       menu = "Color",
+  --                     }
   --                   )
-  --                   if color_item and color_item.abbr then
+  --                   if color_item and color_item.abbr ~= "" then
   --                     icon = color_item.abbr
   --                   end
+  --                   vim.schedule_wrap(vim.print)(
+  --                     "debug: " .. vim.inspect(color_item)
+  --                   )
   --                 end
   --                 return icon .. ctx.icon_gap
   --               end,
@@ -65,10 +72,9 @@ return {
   --                     ctx.item.documentation,
   --                     { kind = ctx.kind }
   --                   )
-  --                   if color_item and color_item.abbr_hl_group ~= "" then
+  --                   if color_item and color_item.abbr_hl_group then
   --                     highlight = color_item.abbr_hl_group
   --                   end
-  --                   vim.print(highlight)
   --                 end
   --                 return highlight
   --               end,
