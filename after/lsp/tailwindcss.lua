@@ -14,6 +14,7 @@ return {
         "twMerge",
         "cn",
         "tw",
+        "tv",
       },
       -- https://github.com/tailwindlabs/tailwindcss/issues/7553#issuecomment-735915659
       -- https://github.com/tailwindlabs/tailwindcss/discussions/7554
@@ -21,6 +22,9 @@ return {
       experimental = {
         -- TODO: arrays and objects
         classRegex = {
+          -- NOTE: all strings
+          -- { "([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]" },
+
           -- { "\\b\\w*Style\\b\\s*=\\s*[\"'`]([^\"'`]*)[\"'`]" },
           -- { "\\b\\w*ClassName\\b\\s*=\\s*[\"'`]([^\"'`]*)[\"'`]" },
           -- { "\\b\\w*ClassNames\\b\\s*=\\s*[\"'`]([^\"'`]*)[\"'`]" },
@@ -39,6 +43,7 @@ return {
             "Styles\\s*(?::\\s*[^=]+)?\\s*=\\s*([^;]*);",
             "['\"`]([^'\"`]*)['\"`]",
           },
+
           -- { "(?:tw|clsx|cn)\\(([^;]*)[\\);]", "[`'\"`]([^'\"`;]*)[`'\"`]" },
 
           -- {
