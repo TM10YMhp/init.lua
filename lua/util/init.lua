@@ -144,4 +144,8 @@ function M.bufdo(fn)
   end
 end
 
+function M.get_module_dir(module_name)
+  return vim.fs.joinpath(vim.fn.stdpath("config"), "/lua/modules", module_name)
+end
+
 return M

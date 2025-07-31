@@ -30,12 +30,13 @@ return {
   --     }
   --   end,
   -- },
+
   {
     "module-bigfile",
-    virtual = true,
+    dir = SereneNvim.get_module_dir("bigfile"),
+    -- virtual = true,
     lazy = false,
-    main = "modules.bigfile",
-    dir = vim.fn.expand(vim.fn.stdpath("config") .. "/lua/modules"),
+    main = "bigfile",
     opts = {
       size = SereneNvim.config.bigfile_size,
     },

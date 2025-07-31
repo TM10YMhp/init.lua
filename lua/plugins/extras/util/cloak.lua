@@ -36,7 +36,7 @@ return {
     },
   },
   {
-    "ssstba/ecolog.nvim",
+    "ph1losof/ecolog.nvim",
     ft = { "sh", "fzf" },
     opts = {
       shelter = {

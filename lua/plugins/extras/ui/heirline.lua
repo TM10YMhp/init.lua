@@ -34,7 +34,7 @@ return {
         end
 
         return vim.fn.win_gettype() == "popup"
-          or not vim.list_contains({ "", "help" }, vim.o.buftype)
+          or not vim.list_contains({ "", "help", "acwrite" }, vim.o.buftype)
           or vim.list_contains({ "dashboard" }, vim.o.filetype)
       end,
     },

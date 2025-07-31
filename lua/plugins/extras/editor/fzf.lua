@@ -413,6 +413,9 @@ return {
       },
     },
     git = {
+      status = {
+        winopts = { preview = { vertical = "down:60%" } },
+      },
       bcommits = {
         winopts = { preview = { vertical = "down:60%" } },
       },

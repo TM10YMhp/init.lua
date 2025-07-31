@@ -1,9 +1,9 @@
 return {
   {
-    "tm10ymhp/serene.nvim",
-    -- dev = true,
-    branch = "dev",
+    "module-serene.nvim",
+    dir = SereneNvim.get_module_dir("serene.nvim"),
     event = "UIEnter",
+    main = "serene.nvim",
     config = function()
       -- https://github.com/jackplus-xyz/binary.nvim
       require("serene").load()
