@@ -193,41 +193,32 @@ return {
         end
 
         vim.api.nvim_buf_create_user_command(0, "LspLegacyStart", function()
-          local names = SereneNvim.lsp.legacy_start()
-          if vim.tbl_contains(names, "jdtls") then return end
+          if vim.tbl_contains(SereneNvim.lsp.legacy_start(), "jdtls") then
+            return
+          end
 
           local get_java_bufnrs = function()
-            local res = {}
+            local bufnrs = {}
             for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-              if not vim.api.nvim_buf_is_loaded(bufnr) then goto continue end
-
               if
-                vim.api.nvim_get_option_value("filetype", { buf = bufnr })
-                == "java"
+                vim.api.nvim_buf_is_loaded(bufnr)
+                and vim.fn.buflisted(bufnr) == 1
+                and vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+                  == "java"
               then
-                table.insert(res, bufnr)
+                bufnrs[#bufnrs + 1] = bufnr
               end
-
-              ::continue::
             end
-
-            return res
+            return bufnrs
           end
 
           if vim.g.my_jdtls_autostart then
             return SereneNvim.warn("JDTLS: Already started")
           end
 
-          if vim.api.nvim_get_option_value("modified", {}) then
-            return SereneNvim.warn("JDTLS: Can't start on modified buffer")
-          end
-
           vim.g.my_jdtls_autostart = true
 
           local bufnrs = get_java_bufnrs()
-          if #bufnrs == 0 then
-            return SereneNvim.info("JDTLS: No java files found")
-          end
 
           SereneNvim.info("JDTLS: started for " .. #bufnrs .. " java files")
 
