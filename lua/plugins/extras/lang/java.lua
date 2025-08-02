@@ -126,6 +126,17 @@ return {
                   vim.fn.stdpath("config") .. "/format/settings.pref"
                 ),
               },
+              format = {
+                enabled = true,
+                settings = {
+                  url = vim.fn.expand(
+                    vim.fn.stdpath("config")
+                      .. "/format/"
+                      .. "eclipse-java-google-style.xml"
+                  ),
+                  -- name = "GoogleStyle",
+                },
+              },
               compile = {
                 nullAnalysis = {
                   mode = "automatic",

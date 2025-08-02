@@ -71,7 +71,7 @@ return {
 
         blade = { "blade-formatter" },
 
-        java = { "google-java-format" },
+        java = { "google-java-format", lsp_format = "prefer" },
 
         typst = { "typstyle" },
       },
