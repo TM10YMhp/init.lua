@@ -32,11 +32,6 @@ return {
     },
   },
   {
-    "BranimirE/fix-auto-scroll.nvim",
-    event = "BufLeave",
-    config = true,
-  },
-  {
     "michaeljsmith/vim-indent-object",
     keys = {
       { "ii", mode = { "o", "v" } },

@@ -106,8 +106,26 @@ vim.keymap.set("t", "<c-x>", [[<c-\><c-n>]], {
   desc = "Go to Normal mode",
 })
 
+-- vim.keymap.set(
+--   { "n", "x" },
+--   "j",
+--   [[v:count == 0 ? 'gj' : 'j']],
+--   { expr = true }
+-- )
+-- vim.keymap.set(
+--   { "n", "x" },
+--   "k",
+--   [[v:count == 0 ? 'gk' : 'k']],
+--   { expr = true }
+-- )
+vim.keymap.set("n", "gV", '"`[" . strpart(getregtype(), 0, 1) . "`]"', {
+  expr = true,
+  replace_keycodes = false,
+  desc = "Visually select changed text",
+})
 vim.keymap.set("x", "g/", [[<esc>/\%V]], {
-  desc = "Search Forward within range",
+  silent = false,
+  desc = "Search inside visual selection",
 })
 -- vim.keymap.set("x", "?", [[<esc>?\%V]], {
 --   desc = "Search Backward within range",

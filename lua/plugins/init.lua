@@ -41,6 +41,19 @@ return {
       size = SereneNvim.config.bigfile_size,
     },
   },
+  {
+    "module-fix-auto-scroll",
+    dir = SereneNvim.get_module_dir("fix-auto-scroll"),
+    event = "BufLeave",
+    main = "fix-auto-scroll",
+    config = true,
+  },
+
+  -- {
+  --   "BranimirE/fix-auto-scroll.nvim",
+  --   event = "BufLeave",
+  --   config = true,
+  -- },
 
   {
     "MagicDuck/grug-far.nvim",
