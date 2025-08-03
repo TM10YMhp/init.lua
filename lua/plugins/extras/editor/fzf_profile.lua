@@ -33,6 +33,7 @@ return {
         ["--cycle"] = true,
         ["--info"] = "default",
         ["--highlight-line"] = false,
+        ["--tiebreak"] = "end",
         -- ["--exact"] = true,
         -- ["--ansi"] = false,
       },

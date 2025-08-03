@@ -47,51 +47,20 @@ return {
     end,
   },
   {
+    "google/styleguide",
+    name = "java-google-styleguide",
+    lazy = true,
+  },
+  {
     "mfussenegger/nvim-jdtls",
-    dependencies = { "nvim-lspconfig" },
     opts = function()
-      local jdtls_path = vim.fn.expand("$MASON/packages/jdtls")
-      local lombok_jar = jdtls_path .. "/lombok.jar"
-      local jar_path = vim.fn.globpath(
-        jdtls_path .. "/plugins",
-        "org.eclipse.equinox.launcher_*.jar",
-        true,
-        true
-      )[1]
-
-      -- TODO: check this
-      local config_dir = "config_linux"
-      if vim.fn.has("win32") == 1 then
-        config_dir = "config_win"
-      elseif vim.fn.has("mac") == 1 then
-        config_dir = "config_mac"
-      end
-      local jdtls_config_dir = jdtls_path .. "/" .. config_dir
       local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-      local workspace_path = vim.fn.stdpath("data")
-        .. "/.cache/jdtls/workspace/"
-      local jdtls_workspace_dir = workspace_path .. project_name
-
-      local root_files = {
-        -- Multi-module projects
-        {
-          ".git",
-          "mvnw",
-          "gradlew",
-          -- "build.gradle",
-          -- "build.gradle.kts",
-        },
-        -- Single-module projects
-        {
-          "build.xml", -- Ant
-          "pom.xml", -- Maven
-          "settings.gradle", -- Gradle
-          "settings.gradle.kts", -- Gradle
-        },
-      }
+      local workspace_dir = vim.fn.stdpath("data")
+        .. "/site/java/workspace-root/"
+        .. project_name
+      vim.fn.mkdir(workspace_dir, "p")
 
       return {
-        -- stylua: ignore
         cmd = {
           "java",
           "-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -99,74 +68,114 @@ return {
           "-Declipse.product=org.eclipse.jdt.ls.core.product",
           "-Dlog.protocol=true",
           "-Dlog.level=ALL",
-          "-javaagent:" .. lombok_jar,
-          "-Xms1G",
+          "-javaagent:" .. vim.fn.expand("$MASON/share/jdtls/lombok.jar"),
+          "-Xms1g",
           "--add-modules=ALL-SYSTEM",
-          "--add-opens", "java.base/java.util=ALL-UNNAMED",
-          "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-          "-jar", jar_path,
-          "-configuration", jdtls_config_dir,
-          "-data", jdtls_workspace_dir,
+          "--add-opens",
+          "java.base/java.util=ALL-UNNAMED",
+          "--add-opens",
+          "java.base/java.lang=ALL-UNNAMED",
+          "-jar",
+          vim.fn.expand(
+            "$MASON/share/jdtls/plugins/org.eclipse.equinox.launcher.jar"
+          ),
+          "-configuration",
+          vim.fn.expand("$MASON/share/jdtls/config"),
+          "-data",
+          workspace_dir,
         },
-        root_dir = (function()
-          for _, patterns in ipairs(root_files) do
-            local root = require("jdtls.setup").find_root(patterns)
-            if root then return root end
-          end
-        end)(),
+        root_dir = vim.fs.root(0, {
+          {
+            -- Multi-module projects
+            ".git",
+            "mvnw",
+            "gradlew",
+            -- "build.gradle",
+            -- "build.gradle.kts",
+          },
+          {
+            -- Single-module projects
+            "build.xml", -- Ant
+            "pom.xml", -- Maven
+            "settings.gradle", -- Gradle
+            "settings.gradle.kts", -- Gradle
+          },
+        }),
         dap = { hotcodereplace = "auto" },
         jdtls = {
+          init_options = {
+            bundles = {
+              vim.fn.expand(
+                "$MASON/share/java-debug-adapter/com.microsoft.java.debug.plugin.jar"
+              ),
+            },
+          },
+          handlers = {
+            ["$/progress"] = function() end, -- disable progress updates.
+          },
+          filetypes = { "java" },
           flags = { debounce_text_changes = 500 },
           settings = {
             -- https://github.com/eclipse-jdtls/eclipse.jdt.ls/issues/1021
             -- https://github.com/eclipse-jdtls/eclipse.jdt.ls/wiki/Language-Server-Settings-&-Capabilities#java-compiler-options
             java = {
-              settings = {
-                url = vim.fn.expand(
-                  vim.fn.stdpath("config") .. "/format/settings.pref"
-                ),
-              },
               format = {
                 enabled = true,
                 settings = {
                   url = vim.fn.expand(
-                    vim.fn.stdpath("config")
-                      .. "/format/"
-                      .. "eclipse-java-google-style.xml"
+                    vim.fn.stdpath("data")
+                      .. "/lazy/java-google-styleguide/eclipse-java-google-style.xml"
                   ),
-                  -- name = "GoogleStyle",
-                },
-              },
-              compile = {
-                nullAnalysis = {
-                  mode = "automatic",
-                  -- NOTE: do not modify, use settings.pref
-                  nullable = {
-                    "org.springframework.lang.Nullable",
-                    "javax.annotation.Nullable",
-                    "org.eclipse.jdt.annotation.Nullable",
-                  },
-                  nonnull = {
-                    "org.springframework.lang.NonNull",
-                    "javax.annotation.Nonnull",
-                    "org.eclipse.jdt.annotation.NonNull",
-                  },
                 },
               },
               eclipse = { downloadSources = true },
-              configuration = {
-                updateBuildConfiguration = "automatic",
-                -- runtimes = {
-                --   {
-                --     name = "JavaSE-17",
-                --     path = vim.env.JAVA_HOME,
-                --   },
-                -- },
-              },
-              trace = { server = "off" },
+              configuration = { updateBuildConfiguration = "interactive" },
               maven = { downloadSources = true },
-              implementationsCodeLens = "all",
+              implementationsCodeLens = { enabled = true },
               referencesCodeLens = { enabled = true },
+              inlayHints = { parameterNames = { enabled = "all" } },
+              signatureHelp = { enabled = true },
+              completion = {
+                favoriteStaticMembers = {
+                  "org.hamcrest.MatcherAssert.assertThat",
+                  "org.hamcrest.Matchers.*",
+                  "org.hamcrest.CoreMatchers.*",
+                  "org.junit.jupiter.api.Assertions.*",
+                  "java.util.Objects.requireNonNull",
+                  "java.util.Objects.requireNonNullElse",
+                  "org.mockito.Mockito.*",
+                },
+              },
+              sources = {
+                organizeImports = {
+                  starThreshold = 9999,
+                  staticStarThreshold = 9999,
+                },
+              },
+              --
+              --
+              --
+              -- settings = {
+              --   url = vim.fn.expand(
+              --     vim.fn.stdpath("config") .. "/format/settings.pref"
+              --   ),
+              -- },
+              -- compile = {
+              --   nullAnalysis = {
+              --     mode = "automatic",
+              --     -- NOTE: do not modify, use settings.pref
+              --     nullable = {
+              --       "org.springframework.lang.Nullable",
+              --       "javax.annotation.Nullable",
+              --       "org.eclipse.jdt.annotation.Nullable",
+              --     },
+              --     nonnull = {
+              --       "org.springframework.lang.NonNull",
+              --       "javax.annotation.Nonnull",
+              --       "org.eclipse.jdt.annotation.NonNull",
+              --     },
+              --   },
+              -- },
             },
           },
         },
@@ -175,27 +184,6 @@ return {
     config = function(_, opts)
       if vim.env.JAVA_HOME == nil then
         SereneNvim.warn("JDTLS: JAVA_HOME not found")
-      end
-
-      local mason_registry = require("mason-registry")
-      local bundles = {} ---@type string[]
-      if
-        opts.dap
-        and SereneNvim.has("nvim-dap")
-        and mason_registry.is_installed("java-debug-adapter")
-      then
-        local java_dbg_path =
-          vim.fn.expand("$MASON/packages/java-debug-adapter")
-        local jar_patterns = {
-          java_dbg_path
-            .. "/extension/server/com.microsoft.java.debug.plugin-*.jar",
-        }
-
-        for _, jar_pattern in ipairs(jar_patterns) do
-          for _, bundle in ipairs(vim.split(vim.fn.glob(jar_pattern), "\n")) do
-            table.insert(bundles, bundle)
-          end
-        end
       end
 
       local no_autostart = function(config)
@@ -246,15 +234,19 @@ return {
           vim.g.my_jdtls_autostart = false
           SereneNvim.lsp.legacy_stop()
         end, {})
+
+        vim.api.nvim_buf_create_user_command(
+          0,
+          "LspLegacyRestart",
+          function() vim.cmd([[JdtRestart]]) end,
+          {}
+        )
       end
 
       local function attach_jdtls()
         local config = vim.tbl_deep_extend("force", {
           cmd = opts.cmd,
           root_dir = opts.root_dir,
-          init_options = {
-            bundles = bundles,
-          },
           capabilities = SereneNvim.lsp.get_capabilities(),
         }, opts.jdtls)
 
@@ -264,7 +256,7 @@ return {
 
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "java" },
-        callback = attach_jdtls,
+        callback = function() attach_jdtls() end,
       })
 
       attach_jdtls()

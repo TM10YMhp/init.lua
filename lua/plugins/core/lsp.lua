@@ -48,7 +48,7 @@ return {
     { "<leader>lq", "<cmd>LspLegacyStop<cr>", desc = "LSP: Stop" },
     { "<leader>ls", "<cmd>LspLegacyStart<cr>", desc = "LSP: Start" },
   },
-  config = function(_, opts)
+  config = function()
     vim.lsp.config("*", {
       capabilities = SereneNvim.lsp.get_capabilities(),
       flags = { debounce_text_changes = 500 },

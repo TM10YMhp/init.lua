@@ -47,14 +47,6 @@ return {
     end,
   },
   {
-    "neovim/nvim-lspconfig",
-    optional = true,
-    dependencies = {
-      "mason.nvim",
-      "mason-lspconfig.nvim",
-    },
-  },
-  {
     "mfussenegger/nvim-jdtls",
     optional = true,
     dependencies = { "mason.nvim" },
