@@ -8,6 +8,7 @@ return {
 
   { import = "plugins.extras.editor.conform" },
   { import = "plugins.extras.editor.fzf" },
+  { import = "plugins.extras.editor.fzf_profile" },
   { import = "plugins.extras.editor.refactoring" },
   { import = "plugins.extras.editor.todo_comments" },
   { import = "plugins.extras.editor.nvim_highlight_colors" },

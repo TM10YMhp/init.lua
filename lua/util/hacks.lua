@@ -160,15 +160,6 @@ function M.enable()
   M.floating_preview()
   -- M.uri_to_fname()
 
-  -- M.on_module("vim.lsp", function(mod)
-  --   local enable = mod.enable
-  --   mod.enable = function(...)
-  --     local name = select(1, ...)
-  --     table.insert(M._enabled_names, name)
-  --     return enable(...)
-  --   end
-  -- end)
-
   -- M.on_module("mason-lspconfig.features.automatic_enable", function(mod)
   --   local _ = require("mason-core.functional")
   --   local mason_pkg = require("mason-registry").get_installed_package_names()
