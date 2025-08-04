@@ -1,13 +1,12 @@
 ---@class serenenvim.util.lsp
 local M = {}
 
-function M.get_capabilities()
+function M.get_capabilities(opts)
   -- local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   local has_blink, blink = pcall(require, "blink.cmp")
   local has_lfo, lfo = pcall(require, "lsp-file-operations")
   local capabilities = vim.tbl_deep_extend(
     "force",
-    {},
     vim.lsp.protocol.make_client_capabilities(),
     -- has_cmp and cmp_nvim_lsp.default_capabilities() or {},
     has_blink and blink.get_lsp_capabilities({}, false) or {},
@@ -19,7 +18,8 @@ function M.get_capabilities()
           willRename = true,
         },
       },
-    }
+    },
+    opts or {}
   )
 
   return capabilities

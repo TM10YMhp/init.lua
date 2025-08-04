@@ -110,9 +110,9 @@ return {
               ),
             },
           },
-          handlers = {
-            ["$/progress"] = function() end, -- disable progress updates.
-          },
+          -- handlers = {
+          --   ["$/progress"] = function() end, -- disable progress updates.
+          -- },
           filetypes = { "java" },
           flags = { debounce_text_changes = 500 },
           settings = {
@@ -152,30 +152,27 @@ return {
                   staticStarThreshold = 9999,
                 },
               },
-              --
-              --
-              --
-              -- settings = {
-              --   url = vim.fn.expand(
-              --     vim.fn.stdpath("config") .. "/format/settings.pref"
-              --   ),
-              -- },
-              -- compile = {
-              --   nullAnalysis = {
-              --     mode = "automatic",
-              --     -- NOTE: do not modify, use settings.pref
-              --     nullable = {
-              --       "org.springframework.lang.Nullable",
-              --       "javax.annotation.Nullable",
-              --       "org.eclipse.jdt.annotation.Nullable",
-              --     },
-              --     nonnull = {
-              --       "org.springframework.lang.NonNull",
-              --       "javax.annotation.Nonnull",
-              --       "org.eclipse.jdt.annotation.NonNull",
-              --     },
-              --   },
-              -- },
+              settings = {
+                url = vim.fn.expand(
+                  vim.fn.stdpath("config") .. "/format/settings.pref"
+                ),
+              },
+              compile = {
+                nullAnalysis = {
+                  mode = "automatic",
+                  -- NOTE: do not modify, use settings.pref
+                  nullable = {
+                    "org.springframework.lang.Nullable",
+                    "javax.annotation.Nullable",
+                    "org.eclipse.jdt.annotation.Nullable",
+                  },
+                  nonnull = {
+                    "org.springframework.lang.NonNull",
+                    "javax.annotation.Nonnull",
+                    "org.eclipse.jdt.annotation.NonNull",
+                  },
+                },
+              },
             },
           },
         },
@@ -247,7 +244,16 @@ return {
         local config = vim.tbl_deep_extend("force", {
           cmd = opts.cmd,
           root_dir = opts.root_dir,
-          capabilities = SereneNvim.lsp.get_capabilities(),
+          -- HACK: disable autopairs for java for lambda
+          capabilities = SereneNvim.lsp.get_capabilities({
+            textDocument = {
+              completion = {
+                completionItem = {
+                  snippetSupport = false,
+                },
+              },
+            },
+          }),
         }, opts.jdtls)
 
         -- require("jdtls").start_or_attach(config, { dap = opts.dap })
