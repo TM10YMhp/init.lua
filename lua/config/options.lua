@@ -1,10 +1,3 @@
-vim.g.dbs = {
-  {
-    name = "root@localhost:3306",
-    url = "mysql://root@localhost:3306",
-  },
-}
-
 vim.opt.fileformats = { "unix", "dos" }
 
 -- disable some default providers
@@ -96,11 +89,13 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 
+vim.opt.signcolumn = "yes"
 vim.opt.textwidth = 80
+
 vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.breakindent = true
-vim.opt.signcolumn = "yes"
+
 -- vim.opt.inccommand = ""
 
 vim.opt.matchtime = 3
