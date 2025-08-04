@@ -33,7 +33,6 @@ return {
         ["--cycle"] = true,
         ["--info"] = "default",
         ["--highlight-line"] = false,
-        ["--tiebreak"] = "end",
         -- ["--exact"] = true,
         -- ["--ansi"] = false,
       },
@@ -67,7 +66,10 @@ return {
       },
       files = {
         -- cmd = os.getenv("FZF_DEFAULT_COMMAND"),
-        fzf_opts = { ["--keep-right"] = true },
+        fzf_opts = {
+          ["--tiebreak"] = "pathname,end",
+          ["--keep-right"] = true,
+        },
         winopts = { preview = { hidden = true } },
         actions = {
           ["alt-e"] = {

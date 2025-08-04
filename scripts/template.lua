@@ -2,6 +2,9 @@
 -- - "Dronakurl/injectme.nvim",
 -- - "dariuscorvus/tree-sitter-language-injection.nvim",
 
+-- UPDATE: check this
+-- - https://github.com/nvimdev/template.nvim
+
 -- query
 local javascript_string_query = [=[
 ;; string {name} injection

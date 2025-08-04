@@ -178,14 +178,14 @@ return {
         },
       }
     end,
-    config = function(_, opts)
+    config = function(_, _opts)
       if vim.env.JAVA_HOME == nil then
         SereneNvim.warn("JDTLS: JAVA_HOME not found")
       end
 
-      local no_autostart = function(config)
-        if vim.g.my_jdtls_autostart then
-          require("jdtls").start_or_attach(config, { dap = opts.dap })
+      local attach_jdtls = function(config, opts)
+        if vim.g.sn_jdtls_autostart then
+          require("jdtls").start_or_attach(config, opts)
         end
 
         vim.api.nvim_buf_create_user_command(0, "LspLegacyStart", function()
@@ -208,27 +208,23 @@ return {
             return bufnrs
           end
 
-          if vim.g.my_jdtls_autostart then
+          if vim.g.sn_jdtls_autostart then
             return SereneNvim.warn("JDTLS: Already started")
           end
 
-          vim.g.my_jdtls_autostart = true
+          vim.g.sn_jdtls_autostart = true
 
           local bufnrs = get_java_bufnrs()
 
           SereneNvim.info("JDTLS: started for " .. #bufnrs .. " java files")
 
           for _, bufnr in ipairs(bufnrs) do
-            require("jdtls").start_or_attach(
-              config,
-              { dap = opts.dap },
-              { bufnr = bufnr }
-            )
+            require("jdtls").start_or_attach(config, opts, { bufnr = bufnr })
           end
         end, {})
 
         vim.api.nvim_buf_create_user_command(0, "LspLegacyStop", function()
-          vim.g.my_jdtls_autostart = false
+          vim.g.sn_jdtls_autostart = false
           SereneNvim.lsp.legacy_stop()
         end, {})
 
@@ -240,32 +236,28 @@ return {
         )
       end
 
-      local function attach_jdtls()
-        local config = vim.tbl_deep_extend("force", {
-          cmd = opts.cmd,
-          root_dir = opts.root_dir,
-          -- HACK: disable autopairs for java for lambda
-          capabilities = SereneNvim.lsp.get_capabilities({
-            textDocument = {
-              completion = {
-                completionItem = {
-                  snippetSupport = false,
-                },
+      local config = vim.tbl_deep_extend("force", {
+        cmd = _opts.cmd,
+        root_dir = _opts.root_dir,
+        -- HACK: disable autopairs for java for lambda
+        capabilities = SereneNvim.lsp.get_capabilities({
+          textDocument = {
+            completion = {
+              completionItem = {
+                snippetSupport = false,
               },
             },
-          }),
-        }, opts.jdtls)
-
-        -- require("jdtls").start_or_attach(config, { dap = opts.dap })
-        no_autostart(config)
-      end
+          },
+        }),
+      }, _opts.jdtls)
+      local opts = { dap = _opts.dap }
 
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "java" },
-        callback = function() attach_jdtls() end,
+        callback = function() attach_jdtls(config, opts) end,
       })
 
-      attach_jdtls()
+      attach_jdtls(config, opts)
     end,
   },
 }

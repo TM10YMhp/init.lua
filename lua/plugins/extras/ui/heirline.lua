@@ -1,31 +1,31 @@
-local treesitter_context = {
-  { provider = " " },
-  { provider = "%<" },
-  {
-    provider = function()
-      local winid = vim.api.nvim_get_current_win()
-      local bufnr = vim.api.nvim_win_get_buf(winid)
-
-      local _, ctx_lines =
-        require("treesitter-context.context").get(bufnr, winid)
-
-      if ctx_lines then
-        local res = table.concat(
-          vim.tbl_map(function(item) return vim.trim(item) end, ctx_lines),
-          " "
-        )
-        return "%#Comment#" .. res .. "%#StatusLine#"
-      end
-    end,
-    update = { "CursorMoved", "CursorMovedI" },
-  },
-  { provider = " " },
-}
+-- local treesitter_context = {
+--   { provider = " " },
+--   { provider = "%<" },
+--   {
+--     provider = function()
+--       local winid = vim.api.nvim_get_current_win()
+--       local bufnr = vim.api.nvim_win_get_buf(winid)
+--
+--       local _, ctx_lines =
+--         require("treesitter-context.context").get(bufnr, winid)
+--
+--       if ctx_lines then
+--         local res = table.concat(
+--           vim.tbl_map(function(item) return vim.trim(item) end, ctx_lines),
+--           " "
+--         )
+--         return "%#Comment#" .. res .. "%#StatusLine#"
+--       end
+--     end,
+--     update = { "CursorMoved", "CursorMovedI" },
+--   },
+--   { provider = " " },
+-- }
 
 return {
   "rebelot/heirline.nvim",
   event = "VeryLazy",
-  -- dependencies = { "nvim-treesitter/nvim-treesitter-context" },
+  -- dependencies = { "nvim-treesitter-context" },
   opts = {
     opts = {
       disable_winbar_cb = function()

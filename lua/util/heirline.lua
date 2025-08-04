@@ -49,7 +49,8 @@ M.absolute_path = {
       data = folder .. "/" .. data
     end
 
-    self.data = "> " .. vim.fn.fnamemodify(data, ":.")
+    -- self.data = "> " .. vim.fn.fnamemodify(data, ":.")
+    self.data = vim.fn.fnamemodify(data, ":.")
   end,
   provider = function(self) return self.data end,
   update = { "BufLeave", "WinClosed" },
