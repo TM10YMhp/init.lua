@@ -1,37 +1,5 @@
 ;extends
 
-;; ================ string ================
-
-;; string sql injection
-((string_content) @injection.content
-  (#match? @injection.content "^(\r\n|\r|\n)*--+( )*sql")
-  (#set! injection.language "sql"))
-
-;; string javascript injection
-((string_content) @injection.content
-  (#match? @injection.content "^(\r\n|\r|\n)*//+( )*(javascript|js)")
-  (#set! injection.language "javascript"))
-
-;; string typescript injection
-((string_content) @injection.content
-  (#match? @injection.content "^(\r\n|\r|\n)*//+( )*(typescript|ts)")
-  (#set! injection.language "typescript"))
-
-;; string html injection
-((string_content) @injection.content
-  (#match? @injection.content "^(\r\n|\r|\n)*\\<\\!--( )*html( )*--\\>")
-  (#set! injection.language "html"))
-
-;; string css injection
-((string_content) @injection.content
-  (#match? @injection.content "^(\r\n|\r|\n)*/\\*+( )*css( )*\\*+/")
-  (#set! injection.language "css"))
-
-;; string python injection
-((string_content) @injection.content
-  (#match? @injection.content "^(\r\n|\r|\n)*#+( )*py")
-  (#set! injection.language "python"))
-
 ;; ================ comment ================
 
 ;; comment sql injection
@@ -81,3 +49,35 @@
       (string (string_content) @injection.content
       (#match? @comment "^#+( )*(python|py)(\\s|$)")
       (#set! injection.language "python")))))
+
+;; ================ string ================
+
+;; string sql injection
+((string_content) @injection.content
+  (#match? @injection.content "^(\r\n|\r|\n)*--+( )*sql")
+  (#set! injection.language "sql"))
+
+;; string javascript injection
+((string_content) @injection.content
+  (#match? @injection.content "^(\r\n|\r|\n)*//+( )*(javascript|js)")
+  (#set! injection.language "javascript"))
+
+;; string typescript injection
+((string_content) @injection.content
+  (#match? @injection.content "^(\r\n|\r|\n)*//+( )*(typescript|ts)")
+  (#set! injection.language "typescript"))
+
+;; string html injection
+((string_content) @injection.content
+  (#match? @injection.content "^(\r\n|\r|\n)*\\<\\!--( )*html( )*--\\>")
+  (#set! injection.language "html"))
+
+;; string css injection
+((string_content) @injection.content
+  (#match? @injection.content "^(\r\n|\r|\n)*/\\*+( )*css( )*\\*+/")
+  (#set! injection.language "css"))
+
+;; string python injection
+((string_content) @injection.content
+  (#match? @injection.content "^(\r\n|\r|\n)*#+( )*py")
+  (#set! injection.language "python"))

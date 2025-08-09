@@ -148,7 +148,7 @@ local template = {
     },
   },
   typescript = {
-    extend = "javascript",
+    extend = { "javascript" },
   },
   rust = {
     extend = {
@@ -211,11 +211,10 @@ local function escape(s)
 end
 
 ---@param t table
----@param key string|string[]
+---@param key string
 ---@return any
 local function key_get(t, key)
-  local path = type(key) == "table" and key
-    or vim.split(key, ".", { plain = true })
+  local path = vim.split(key, ".", { plain = true })
   local value = t
   for _, k in ipairs(path) do
     if type(value) ~= "table" then return value end
@@ -225,48 +224,73 @@ local function key_get(t, key)
 end
 
 ---@param t table
----@param key string|string[]
+---@param key string
 ---@param value any
+---@return any
 local function key_set(t, key, value)
-  local path = type(key) == "table" and key or vim.split(key, ".", true)
-  local last = t
-  for i = 1, #path - 1 do
-    local k = path[i]
-    if type(last[k]) ~= "table" then last[k] = {} end
-    last = last[k]
+  local keys = vim.split(key, ".", { plain = true })
+  local tbl = vim.deepcopy(t)
+  local cursor = tbl
+  for i, k in ipairs(keys) do
+    if i == #keys then
+      cursor[k] = value
+    else
+      cursor[k] = cursor[k] or {}
+      cursor = cursor[k]
+    end
   end
-  last[path[#path]] = value
+  return tbl
 end
 
+---@param v {extend: string[]}
+---@return {[string]: any}
+local function extended(v)
+  local inherit = v.extend
+  if type(inherit) ~= "table" then return v end
+
+  v.extend = nil
+  local value = vim.deepcopy(v)
+
+  local res = {}
+  for _, extend in ipairs(inherit) do
+    local val = key_get(template, extend)
+    local key, num = extend:gsub("^[^.]+%.", "")
+    if num == 0 then
+      res = vim.tbl_deep_extend("force", template[extend], value)
+    else
+      local d = key_set({}, key, val)
+      res = vim.tbl_deep_extend("force", res, d)
+    end
+  end
+  return vim.tbl_deep_extend("force", res, value)
+end
+
+-- TODO: resolve order???
 local function parse(v)
   local result = ";extends\n"
-  if v.extend then
-    if type(v.extend) == "table" then
-      local children = vim.deepcopy(v)
-      for _, extend in ipairs(v.extend) do
-        local val = key_get(template, extend)
-        key_set(v, extend:gsub("^[^.]+%.", ""), val)
-      end
-      v = vim.tbl_deep_extend("force", v, children)
-    elseif type(v.extend) == "string" then
-      v = vim.tbl_deep_extend("force", template[v.extend], v)
-    end
-    v.extend = nil
-  end
-  for key, data in pairs(v) do
+  v = extended(v)
+
+  local keys = vim.tbl_keys(v)
+  table.sort(keys)
+
+  for _, k in ipairs(keys) do
+    local key = k
+    local data = v[k]
+    -- for key, data in pairs(v) do
     if key then
-      result = result
-        .. "\n;; ================ "
-        .. key
-        .. " ================\n"
+      result = ("%s\n;; ================ %s ================\n"):format(
+        result,
+        key
+      )
     end
     if data.query and data.vars then
       for _, var in pairs(data.vars) do
         local query = data.query
-        local name = var.name
-        local match = escape(var.match)
-        query = query:gsub("{match}", match)
-        query = query:gsub("{name}", name)
+
+        for k, value in pairs(var) do
+          local a = escape(value)
+          query = query:gsub(("{%s}"):format(k), a)
+        end
 
         result = result .. "\n" .. query
       end

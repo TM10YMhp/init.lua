@@ -1,79 +1,5 @@
 ;extends
 
-;; ================ comment ================
-
-;; comment sql injection
-((comment) @comment .
-  (lexical_declaration
-    (variable_declarator
-      value: [
-        (string (string_fragment) @injection.content)
-        (template_string (string_fragment) @injection.content)
-      ] @injection.content)
-    )
-  (#match? @comment "^//+( )*sql(\\s|$)")
-  (#set! injection.language "sql"))
-
-;; comment javascript injection
-((comment) @comment .
-  (lexical_declaration
-    (variable_declarator
-      value: [
-        (string (string_fragment) @injection.content)
-        (template_string (string_fragment) @injection.content)
-      ] @injection.content)
-    )
-  (#match? @comment "^//+( )*(javascript|js)(\\s|$)")
-  (#set! injection.language "javascript"))
-
-;; comment typescript injection
-((comment) @comment .
-  (lexical_declaration
-    (variable_declarator
-      value: [
-        (string (string_fragment) @injection.content)
-        (template_string (string_fragment) @injection.content)
-      ] @injection.content)
-    )
-  (#match? @comment "^//+( )*(typescript|ts)(\\s|$)")
-  (#set! injection.language "typescript"))
-
-;; comment html injection
-((comment) @comment .
-  (lexical_declaration
-    (variable_declarator
-      value: [
-        (string (string_fragment) @injection.content)
-        (template_string (string_fragment) @injection.content)
-      ] @injection.content)
-    )
-  (#match? @comment "^//+( )*html(\\s|$)")
-  (#set! injection.language "html"))
-
-;; comment css injection
-((comment) @comment .
-  (lexical_declaration
-    (variable_declarator
-      value: [
-        (string (string_fragment) @injection.content)
-        (template_string (string_fragment) @injection.content)
-      ] @injection.content)
-    )
-  (#match? @comment "^//+( )*css(\\s|$)")
-  (#set! injection.language "css"))
-
-;; comment python injection
-((comment) @comment .
-  (lexical_declaration
-    (variable_declarator
-      value: [
-        (string (string_fragment) @injection.content)
-        (template_string (string_fragment) @injection.content)
-      ] @injection.content)
-    )
-  (#match? @comment "^//+( )*(python|py)(\\s|$)")
-  (#set! injection.language "python"))
-
 ;; ================ block_comment ================
 
 ;; variable css injection
@@ -170,6 +96,80 @@
     (comment) @_comment
     (template_string (string_fragment) @injection.content))
   (#match? @_comment "/\\*( )*(py|python)( )*\\*/")
+  (#set! injection.language "python"))
+
+;; ================ comment ================
+
+;; comment sql injection
+((comment) @comment .
+  (lexical_declaration
+    (variable_declarator
+      value: [
+        (string (string_fragment) @injection.content)
+        (template_string (string_fragment) @injection.content)
+      ] @injection.content)
+    )
+  (#match? @comment "^//+( )*sql(\\s|$)")
+  (#set! injection.language "sql"))
+
+;; comment javascript injection
+((comment) @comment .
+  (lexical_declaration
+    (variable_declarator
+      value: [
+        (string (string_fragment) @injection.content)
+        (template_string (string_fragment) @injection.content)
+      ] @injection.content)
+    )
+  (#match? @comment "^//+( )*(javascript|js)(\\s|$)")
+  (#set! injection.language "javascript"))
+
+;; comment typescript injection
+((comment) @comment .
+  (lexical_declaration
+    (variable_declarator
+      value: [
+        (string (string_fragment) @injection.content)
+        (template_string (string_fragment) @injection.content)
+      ] @injection.content)
+    )
+  (#match? @comment "^//+( )*(typescript|ts)(\\s|$)")
+  (#set! injection.language "typescript"))
+
+;; comment html injection
+((comment) @comment .
+  (lexical_declaration
+    (variable_declarator
+      value: [
+        (string (string_fragment) @injection.content)
+        (template_string (string_fragment) @injection.content)
+      ] @injection.content)
+    )
+  (#match? @comment "^//+( )*html(\\s|$)")
+  (#set! injection.language "html"))
+
+;; comment css injection
+((comment) @comment .
+  (lexical_declaration
+    (variable_declarator
+      value: [
+        (string (string_fragment) @injection.content)
+        (template_string (string_fragment) @injection.content)
+      ] @injection.content)
+    )
+  (#match? @comment "^//+( )*css(\\s|$)")
+  (#set! injection.language "css"))
+
+;; comment python injection
+((comment) @comment .
+  (lexical_declaration
+    (variable_declarator
+      value: [
+        (string (string_fragment) @injection.content)
+        (template_string (string_fragment) @injection.content)
+      ] @injection.content)
+    )
+  (#match? @comment "^//+( )*(python|py)(\\s|$)")
   (#set! injection.language "python"))
 
 ;; ================ string ================
