@@ -5,8 +5,6 @@
 -- UPDATE: check this
 -- - https://github.com/nvimdev/template.nvim
 
--- HACK: relative import
-package.path = "./scripts/?.lua;" .. package.path
 local template = require("injections.default").template
 local util = require("injections.util")
 

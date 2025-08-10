@@ -1,12 +1,10 @@
-;extends
-
-;; ================ comment ================
-
-;; comment query injection
+-- query
+local lua_comment_query = [=[
+;; comment {name} injection
 ((comment
   (comment_content) @comment)
-  (#match? @comment " query(\\s|$)")
-  (#set! injection.language "query")
+  (#match? @comment "{match}")
+  (#set! injection.language "{name}")
   .
   [
     (assignment_statement
@@ -19,3 +17,13 @@
           value: (string
             content: (string_content) @injection.content))))
   ])
+]=]
+
+return {
+  comment = {
+    vars = {
+      { name = "query", match = " query(\\s|$)" },
+    },
+    query = lua_comment_query,
+  },
+}
