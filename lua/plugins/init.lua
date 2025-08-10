@@ -23,6 +23,13 @@ return {
     },
   },
   {
+    "module-injections",
+    dir = SereneNvim.get_module_dir("injections"),
+    lazy = false,
+    main = "injections",
+    opts = {},
+  },
+  {
     "module-fix-auto-scroll",
     dir = SereneNvim.get_module_dir("fix-auto-scroll"),
     event = "BufLeave",

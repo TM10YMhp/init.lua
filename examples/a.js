@@ -1,7 +1,7 @@
 // js
 const js = `console.log("a")`;
-const js = `
 // javascript
+const js = `
 console.log("a");
 `;
 const js = /* js */ `console.log("a")`;
@@ -9,21 +9,17 @@ console.log(/* js */ `console.log("a")`);
 
 // ts
 const ts = `type T = {}`;
+// typescript
 const ts = `
-// ts
 type T = {};
 `;
 const ts = /* ts */ `type T = {}`;
 console.log(/* ts */ `type T = {}`);
 
 // sql
+const sql = `SELECT * FROM foo`;
+// sql
 const sql = `
-INSERT INTO bar (name, age) VALUES (
-  'qwe', 10
-);
-`;
-const sql = `
--- sql
 SELECT * FROM foo
 `;
 const sql = /* sql */ `SELECT * FROM foo`;
@@ -31,8 +27,8 @@ console.log(/* sql */ `SELECT * FROM foo`);
 
 // css
 const css = `p { font-size: 10px; }`;
+// css
 const css = `
-/* css */
 p { font-size: 10px; }
 `;
 const b = /* css */ `p { font-size: 10px; }`;
@@ -40,8 +36,8 @@ console.log(/* css */ `p { font-size: 10px; }`);
 
 // py
 const py = `print("hello")`;
+// py
 const py = `
-# py
 print("hello")
 `;
 const py = /* py */ `print("hello")`;
@@ -49,15 +45,15 @@ console.log(/* py */ `print("hello")`);
 
 // html
 const html = `<p>paragraph</p>`;
+// html
 const html = `
-<!-- html -->
 <p>paragraph</p>
 `;
 const html = /* html */ `<p>paragraph</p>`;
 console.log(/* html */ `<p>paragraph</p>`);
 
+// html
 const nested = `
-<!-- html -->
 <html>
   <body>
     <header
@@ -74,11 +70,10 @@ const nested = `
     ></header>
     <div x-bind:style="true && { color: 'red' }"></div>
 
-    <!-- Will render: -->
     <div
       style="color: red"
       x-data="{
-        username: '<!-- html --> <strong>calebporzio</strong>',
+        username: '<strong>calebporzio</strong>',
       }"
     >
       <template x-for="(_, asd) in colors">
