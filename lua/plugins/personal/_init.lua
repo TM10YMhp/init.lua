@@ -7,6 +7,8 @@ return {
   { import = "plugins.extras.coding.cmp_snippet" },
 
   { import = "plugins.extras.editor.conform" },
+  { import = "plugins.extras.editor.grug_far" },
+  { import = "plugins.extras.editor.tiny_glimmer" },
   { import = "plugins.extras.editor.fzf" },
   { import = "plugins.extras.editor.fzf_profile" },
   { import = "plugins.extras.editor.refactoring" },
