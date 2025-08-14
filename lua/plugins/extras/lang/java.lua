@@ -1,3 +1,5 @@
+-- TODO: WIP
+
 -- https://github.com/eclipse-jdtls/eclipse.jdt.ls/issues/581
 -- https://github.com/eclipse-jdtls/eclipse.jdt.ls/issues/1714
 -- https://nullprogram.com/blog/2011/08/30/
@@ -157,22 +159,22 @@ return {
                   vim.fn.stdpath("config") .. "/format/settings.pref"
                 ),
               },
-              compile = {
-                nullAnalysis = {
-                  mode = "automatic",
-                  -- NOTE: do not modify, use settings.pref
-                  nullable = {
-                    "org.springframework.lang.Nullable",
-                    "javax.annotation.Nullable",
-                    "org.eclipse.jdt.annotation.Nullable",
-                  },
-                  nonnull = {
-                    "org.springframework.lang.NonNull",
-                    "javax.annotation.Nonnull",
-                    "org.eclipse.jdt.annotation.NonNull",
-                  },
-                },
-              },
+              -- compile = {
+              --   nullAnalysis = {
+              --     mode = "automatic",
+              --     -- NOTE: do not modify, use settings.pref
+              --     nullable = {
+              --       "org.springframework.lang.Nullable",
+              --       "javax.annotation.Nullable",
+              --       "org.eclipse.jdt.annotation.Nullable",
+              --     },
+              --     nonnull = {
+              --       "org.springframework.lang.NonNull",
+              --       "javax.annotation.Nonnull",
+              --       "org.eclipse.jdt.annotation.NonNull",
+              --     },
+              --   },
+              -- },
             },
           },
         },

@@ -1,4 +1,4 @@
 org.eclipse.jdt.core.compiler.taskTags=
+org.eclipse.jdt.core.compiler.annotation.nonnull.secondary=lombok.NonNull,org.checkerframework.checker.nullness.qual.NonNull,org.jetbrains.annotations.NotNull
+org.eclipse.jdt.core.compiler.annotation.nullable.secondary=org.checkerframework.checker.nullness.qual.Nullable,org.jetbrains.annotations.Nullable
 org.eclipse.jdt.core.compiler.annotation.nullanalysis=enabled
-org.eclipse.jdt.core.compiler.annotation.nonnull.secondary=lombok.NonNull,org.checkerframework.checker.nullness.qual.NonNull
-org.eclipse.jdt.core.compiler.annotation.nullable.secondary=org.checkerframework.checker.nullness.qual.Nullable
