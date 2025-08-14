@@ -41,7 +41,7 @@ return {
     { "<leader>li", "<cmd>LspInfo<cr>", desc = "LSP: Info" },
     {
       "<leader>ll",
-      "<cmd>lua vim.cmd.edit(vim.lsp.get_log_path())<cr>",
+      "<cmd>lua vim.cmd.edit(vim.lsp.log.get_filename())<cr>",
       desc = "LSP: Log",
     },
     { "<leader>lr", "<cmd>LspLegacyRestart<cr>", desc = "LSP: Restart" },

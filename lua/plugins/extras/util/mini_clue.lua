@@ -25,6 +25,10 @@ return {
           { mode = "n", keys = "<Leader>" },
           { mode = "x", keys = "<Leader>" },
 
+          -- `[` and `]` keys
+          { mode = "n", keys = "[" },
+          { mode = "n", keys = "]" },
+
           -- Built-in completion
           { mode = "i", keys = "<C-x>" },
 
@@ -54,6 +58,7 @@ return {
 
         clues = {
           -- Enhance this by adding descriptions for <Leader> mapping groups
+          miniclue.gen_clues.square_brackets(),
           miniclue.gen_clues.builtin_completion(),
           miniclue.gen_clues.g(),
           miniclue.gen_clues.marks(),
