@@ -32,7 +32,7 @@ return {
     end,
   },
   -- {
-  --   "echasnovski/mini.pairs",
+  --   "nvim-mini/mini.pairs",
   --   event = { "InsertEnter", "CmdlineEnter" },
   --   init = function()
   --     SereneNvim.on_very_lazy(function()

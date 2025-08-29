@@ -1,7 +1,8 @@
 return {
+  { "nvim-mini/mini.extra", lazy = true },
   {
-    "echasnovski/mini.ai",
-    dependencies = { "echasnovski/mini.extra" },
+    "nvim-mini/mini.ai",
+    dependencies = { "mini.extra" },
     event = "VeryLazy",
     opts = function()
       local spec_treesitter = require("mini.ai").gen_spec.treesitter

@@ -110,7 +110,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.operators",
+    "nvim-mini/mini.operators",
     event = "VeryLazy",
     opts = {
       evaluate = { prefix = "" },
@@ -122,7 +122,7 @@ return {
     },
   },
   {
-    "echasnovski/mini.move",
+    "nvim-mini/mini.move",
     event = "VeryLazy",
     opts = {
       mappings = {

@@ -1,7 +1,7 @@
 return {
   -- base
   {
-    "echasnovski/mini.clue",
+    "nvim-mini/mini.clue",
     event = "VeryLazy",
     opts_extend = { "clues", "triggers" },
     opts = function()
