@@ -25,7 +25,7 @@ return {
     end
 
     return {
-      { "hide" },
+      -- { "hide" },
       fzf_colors = true,
       fzf_opts = {
         ["--no-scrollbar"] = true,
@@ -48,7 +48,7 @@ return {
         border = "single",
         preview = {
           border = "single",
-          delay = 200,
+          -- delay = 200,
           vertical = "down:60%",
         },
       },

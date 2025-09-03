@@ -9,21 +9,6 @@ return {
     opts = { ensure_installed = { "tinymist" } },
   },
   {
-    "treesj",
-    optional = true,
-    opts = function(_, opts)
-      local lang_utils = require("treesj.langs.utils")
-
-      opts.langs = vim.tbl_deep_extend("force", opts.langs or {}, {
-        typst = {
-          group = lang_utils.set_preset_for_args(),
-        },
-      })
-
-      return opts
-    end,
-  },
-  {
     "chomosuke/typst-preview.nvim",
     keys = {
       {

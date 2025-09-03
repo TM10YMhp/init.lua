@@ -76,9 +76,13 @@ return {
         default = { "snippets" },
         providers = {
           snippets = {
+            should_show_items = function(ctx)
+              return ctx.trigger.initial_kind ~= "trigger_character"
+            end,
             score_offset = -10,
             opts = {
               -- global_snippets = { "all", "loremipsum" },
+              use_label_description = true,
             },
           },
         },

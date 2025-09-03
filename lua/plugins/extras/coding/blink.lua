@@ -17,6 +17,14 @@ return {
         preset = "enter",
         ["<Tab>"] = { "select_and_accept", "fallback" },
         ["<S-Tab>"] = { "select_and_accept", "fallback" },
+        ["<C-f>"] = {
+          function(cmp) return cmp.select_next({ jump_by = "source_id" }) end,
+          "select_next",
+        },
+        ["<C-b>"] = {
+          function(cmp) return cmp.select_prev({ jump_by = "source_id" }) end,
+          "select_prev",
+        },
       },
       cmdline = {
         keymap = {

@@ -24,6 +24,13 @@ return {
             name = "Codeium",
             module = "codeium.blink",
             async = true,
+            transform_items = function(ctx, items)
+              for _, item in ipairs(items) do
+                item.kind_icon = SereneNvim.config.icons.kinds["Codeium"]
+                item.kind_name = "Codeium"
+              end
+              return items
+            end,
           },
         },
       },
