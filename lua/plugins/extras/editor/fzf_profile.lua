@@ -25,7 +25,6 @@ return {
     end
 
     return {
-      -- { "hide" },
       fzf_colors = true,
       fzf_opts = {
         ["--no-scrollbar"] = true,

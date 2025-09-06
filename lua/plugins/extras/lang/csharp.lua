@@ -30,12 +30,7 @@ return {
   },
   {
     "seblyng/roslyn.nvim",
-    ---@module 'roslyn.config'
-    ---@type RoslynNvimConfig
-    opts = {
-      -- your configuration comes here; leave empty for default settings
-    },
-    config = function()
+    init = function()
       -- respect no autostart
       local __f = false
       SereneNvim.hacks.on_module("vim.lsp", function(mod)
@@ -48,8 +43,14 @@ return {
           return enable(name, _enable)
         end
       end)
-
-      require("roslyn").setup()
+    end,
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    opts = {
+      -- your configuration comes here; leave empty for default settings
+    },
+    config = function(_, opts)
+      require("roslyn").setup(opts)
 
       vim.api.nvim_exec_autocmds(
         "FileType",
