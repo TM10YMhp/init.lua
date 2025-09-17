@@ -1,3 +1,5 @@
+-- TODO: check emmylua_ls
+-- - https://github.com/folke/lazydev.nvim/commit/c8e1d43
 return {
   before_init = function()
     require("lazy").load({

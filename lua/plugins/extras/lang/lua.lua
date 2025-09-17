@@ -8,7 +8,7 @@ return {
     optional = true,
     opts = { ensure_installed = { "lua_ls" } },
   },
-  { "justinsgithub/wezterm-types", lazy = true },
+  { "DrKJeff16/wezterm-types", lazy = true },
   {
     "folke/lazydev.nvim",
     opts = {
