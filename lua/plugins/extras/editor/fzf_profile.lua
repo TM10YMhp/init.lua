@@ -113,8 +113,15 @@ return {
         },
         code_actions = { previewer = "codeaction_native" },
       },
-      -- https://github.com/ibhagwan/fzf-lua/discussions/1887
-      diagnostics = { multiline = false },
+      diagnostics = {
+        -- https://github.com/ibhagwan/fzf-lua/discussions/1887
+        multiline = false,
+        fzf_opts = { ["--wrap"] = false },
+        sort = function(t)
+          table.sort(t, function(a, b) return a.severity < b.severity end)
+          return t
+        end,
+      },
       zoxide = {
         formatter = false,
         winopts = { preview = { hidden = true } },

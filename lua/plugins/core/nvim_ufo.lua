@@ -1,3 +1,5 @@
+-- TODO: check new fillchar foldinner
+-- - https://github.com/kevinhwang91/nvim-ufo/commit/72d54c3
 return {
   "kevinhwang91/nvim-ufo",
   dependencies = { "kevinhwang91/promise-async" },
