@@ -30,7 +30,7 @@ return {
   { import = "plugins.extras.util.markdown_preview" },
   { import = "plugins.extras.util.multicursor" },
   { import = "plugins.extras.util.neotab" },
-  { import = "plugins.extras.util.obsidian" },
+  -- { import = "plugins.extras.util.obsidian" },
   { import = "plugins.extras.util.kulala" },
   { import = "plugins.extras.util.showkeys" },
   { import = "plugins.extras.util.startuptime" },

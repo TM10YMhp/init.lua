@@ -28,6 +28,7 @@ return {
   },
   {
     "blink.cmp",
+    optional = true,
     dependencies = { "kdheepak/cmp-latex-symbols" },
     opts = {
       sources = {
@@ -46,6 +47,7 @@ return {
   },
   {
     "blink.cmp",
+    optional = true,
     dependencies = { "Arkissa/cmp-agda-symbols" },
     init = function()
       SereneNvim.hacks.on_module("cmp-agda-symbols", function(mod)
