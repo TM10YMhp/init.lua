@@ -2,13 +2,13 @@ return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   init = function()
-    SereneNvim.hacks.on_module("fzf-lua.utils", function(mod)
-      local ansi_from_hl = mod.ansi_from_hl
-      mod.ansi_from_hl = function(_hl, _s)
-        local hl, s = ansi_from_hl(_hl, _s)
-        return hl, s and s or ""
-      end
-    end)
+    -- SereneNvim.hacks.on_module("fzf-lua.utils", function(mod)
+    --   local ansi_from_hl = mod.ansi_from_hl
+    --   mod.ansi_from_hl = function(_hl, _s)
+    --     local hl, s = ansi_from_hl(_hl, _s)
+    --     return hl, s and s or ""
+    --   end
+    -- end)
 
     SereneNvim.on_very_lazy(function()
       ---@diagnostic disable-next-line: duplicate-set-field

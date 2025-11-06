@@ -8,6 +8,8 @@ return {
       local miniclue = require("mini.clue")
 
       -- fix refactoring.nvim problems
+      -- TODO: refactoring.nvim updated solved whick-key
+      -- - https://github.com/ThePrimeagen/refactoring.nvim/commit/6784b54
       vim.api.nvim_create_autocmd("CmdlineEnter", {
         callback = function(args)
           vim.schedule_wrap(miniclue.disable_all_triggers)()

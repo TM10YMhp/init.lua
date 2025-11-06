@@ -5,10 +5,10 @@ return {
       trace = "off",
       useSyntaxServer = "never",
     },
-    preferences = {
-      disableSuggestions = true,
-      useLabelDetailsInCompletionEntries = false,
-    },
+    -- preferences = {
+    --   disableSuggestions = true,
+    --   useLabelDetailsInCompletionEntries = false
+    -- },
   },
   settings = {
     typescript = {

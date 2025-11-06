@@ -53,13 +53,13 @@ return {
       },
       previewers = {
         builtin = {
-          extensions = {
-            ["png"] = { "chafa", "{file}" },
-            ["gif"] = { "chafa", "{file}" },
-            ["webp"] = { "chafa", "{file}" },
-            ["svg"] = { "chafa", "{file}" },
-            ["jpg"] = { "chafa", "{file}" },
-          },
+          -- extensions = {
+          --   ["png"] = { "chafa", "{file}" },
+          --   ["gif"] = { "chafa", "{file}" },
+          --   ["webp"] = { "chafa", "{file}" },
+          --   ["svg"] = { "chafa", "{file}" },
+          --   ["jpg"] = { "chafa", "{file}" },
+          -- },
           snacks_images = { enabled = false },
         },
       },
