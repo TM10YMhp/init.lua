@@ -9,11 +9,12 @@
 -- end
 
 return {
-  {
-    "mason-tool-installer.nvim",
-    optional = true,
-    opts = { ensure_installed = { "eslint" } },
-  },
+  -- {
+  --   "mason-tool-installer.nvim",
+  --   optional = true,
+  --   opts = { ensure_installed = { "eslint" } },
+  -- },
+
   -- {
   --   "mfussenegger/nvim-lint",
   --   optional = true,

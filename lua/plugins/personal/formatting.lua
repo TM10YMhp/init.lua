@@ -3,28 +3,29 @@ local get_formatter_path = function(filename)
 end
 
 return {
-  {
-    "mason-tool-installer.nvim",
-    optional = true,
-    opts = {
-      ensure_installed = {
-        "biome",
-        "blade-formatter",
-        "google-java-format",
-        "latexindent",
-        "php-cs-fixer",
-        "prettier",
-        "sqlfluff",
-        "stylua",
-        "typstyle", -- TODO: need pull request
-        "goimports",
-        "gofumpt",
-        "ruff",
-        -- need build
-        -- "clang-format",
-      },
-    },
-  },
+  -- {
+  --   "mason-tool-installer.nvim",
+  --   optional = true,
+  --   opts = {
+  --     ensure_installed = {
+  --       "biome",
+  --       "blade-formatter",
+  --       "google-java-format",
+  --       "latexindent",
+  --       "php-cs-fixer",
+  --       "prettier",
+  --       "sqlfluff",
+  --       "stylua",
+  --       "typstyle", -- TODO: need pull request
+  --       "goimports",
+  --       "gofumpt",
+  --       "ruff",
+  --       -- need build
+  --       -- "clang-format",
+  --     },
+  --   },
+  -- },
+
   {
     "stevearc/conform.nvim",
     optional = true,
