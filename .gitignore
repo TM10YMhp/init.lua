@@ -7,5 +7,3 @@ lazy-lock.json
 .repro
 repro.lua
 indent.log
-
-lua/plugins/presets/init.lua
