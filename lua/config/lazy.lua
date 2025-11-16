@@ -16,6 +16,7 @@ require("lazy").setup({
   defaults = { lazy = true },
   spec = {
     { import = "plugins.core" },
+    { import = "plugins.vscode" },
     {
       enabled = vim.env.USERNAME == "qwe",
       import = "plugins.personal",
