@@ -16,15 +16,7 @@ require("lazy").setup({
   defaults = { lazy = true },
   spec = {
     { import = "plugins.core" },
-    { import = "plugins.vscode" },
-    {
-      enabled = vim.env.USERNAME == "qwe",
-      import = "plugins.personal",
-    },
-    {
-      enabled = vim.env.TERMUX_VERSION ~= nil,
-      import = "plugins.phone",
-    },
+    { import = "plugins.presets" },
     { import = "plugins" },
   },
   local_spec = false,
