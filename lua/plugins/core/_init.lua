@@ -1,35 +1,9 @@
 return {
   {
-    "attilarepka/header.nvim",
-    cmd = { "AddLicenseGPL3", "AddLicenseWTFPL", "AddHeader" },
-    keys = {
-      { "<leader>ih", "<cmd>AddLicenseWTFPL<cr>", desc = "Insert Header" },
-    },
-    opts = {
-      file_name = false,
-      author = "T4PE",
-      date_created = false,
-      line_separator = "--------------",
-      copyright_text = "Copyright 2025",
-    },
-    config = function(_, opts)
-      require("header").setup(opts)
-
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        callback = function()
-          local header = require("header")
-          if header and header.update_date_modified then
-            header.update_date_modified()
-          else
-            vim.notify_once(
-              "header.update_date_modified is not available",
-              vim.log.levels.WARN
-            )
-          end
-        end,
-        desc = "Update header's date modified",
-      })
-    end,
+    "vscode-neovim/vscode-multi-cursor.nvim",
+    event = "VeryLazy",
+    cond = vim.g.vscode,
+    opts = {},
   },
   {
     "nvim-mini/mini.operators",
@@ -76,49 +50,6 @@ return {
         { group = "Fundo", modeline = false }
       )
     end,
-  },
-  {
-    "aaronik/treewalker.nvim",
-    cmd = "Treewalker",
-    keys = {
-      {
-        "<M-s>",
-        "<cmd>Treewalker Down<cr>",
-        mode = { "n", "x" },
-        desc = "Treewalker Down",
-      },
-      {
-        "<M-w>",
-        "<cmd>Treewalker Up<cr>",
-        mode = { "n", "x" },
-        desc = "Treewalker Up",
-      },
-      {
-        "<M-a>",
-        "<cmd>Treewalker Left<cr>",
-        mode = { "n", "x" },
-        desc = "Treewalker Left",
-      },
-      {
-        "<M-d>",
-        "<cmd>Treewalker Right<cr>",
-        mode = { "n", "x" },
-        desc = "Treewalker Right",
-      },
-      {
-        "<M-q>",
-        "<cmd>Treewalker SwapLeft<cr>",
-        desc = "Treewalker SwapLeft",
-      },
-      {
-        "<M-e>",
-        "<cmd>Treewalker SwapRight<cr>",
-        desc = "Treewalker SwapRight",
-      },
-    },
-    opts = {
-      highlight = false,
-    },
   },
   {
     "nmac427/guess-indent.nvim",

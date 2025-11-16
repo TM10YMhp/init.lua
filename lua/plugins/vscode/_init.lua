@@ -32,10 +32,4 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = { highlight = { enable = false } },
   },
-  {
-    "vscode-neovim/vscode-multi-cursor.nvim",
-    event = "VeryLazy",
-    cond = vim.g.vscode,
-    opts = {},
-  },
 }

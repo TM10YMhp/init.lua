@@ -82,4 +82,47 @@ return {
       max_join_length = 150,
     },
   },
+  {
+    "aaronik/treewalker.nvim",
+    cmd = "Treewalker",
+    keys = {
+      {
+        "<M-s>",
+        "<cmd>Treewalker Down<cr>",
+        mode = { "n", "x" },
+        desc = "Treewalker Down",
+      },
+      {
+        "<M-w>",
+        "<cmd>Treewalker Up<cr>",
+        mode = { "n", "x" },
+        desc = "Treewalker Up",
+      },
+      {
+        "<M-a>",
+        "<cmd>Treewalker Left<cr>",
+        mode = { "n", "x" },
+        desc = "Treewalker Left",
+      },
+      {
+        "<M-d>",
+        "<cmd>Treewalker Right<cr>",
+        mode = { "n", "x" },
+        desc = "Treewalker Right",
+      },
+      {
+        "<M-q>",
+        "<cmd>Treewalker SwapLeft<cr>",
+        desc = "Treewalker SwapLeft",
+      },
+      {
+        "<M-e>",
+        "<cmd>Treewalker SwapRight<cr>",
+        desc = "Treewalker SwapRight",
+      },
+    },
+    opts = {
+      highlight = false,
+    },
+  },
 }

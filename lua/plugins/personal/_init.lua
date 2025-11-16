@@ -1,4 +1,14 @@
 return {
+  { import = "plugins.extras.util.any_jump" },
+  { import = "plugins.extras.editor.csvview" },
+  { import = "plugins.extras.editor.diffview" },
+  { import = "plugins.extras.editor.gitsigns" },
+  { import = "plugins.extras.util.header" },
+  { import = "plugins.extras.editor.mini_files" },
+  { import = "plugins.extras.editor.mini_trailspace" },
+  { import = "plugins.extras.editor.mru" },
+  { import = "plugins.extras.ui.multinput" },
+
   { import = "plugins.extras.coding.blink" },
   { import = "plugins.extras.coding.colorful_menu" },
   -- { import = "plugins.extras.coding.neogen" },
