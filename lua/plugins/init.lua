@@ -29,4 +29,13 @@ return {
   --   event = "BufLeave",
   --   config = true,
   -- },
+
+  {
+    "NeogitOrg/neogit",
+    lazy = true,
+    cmd = "Neogit",
+    keys = {
+      { "<leader>qg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
+    },
+  },
 }
