@@ -32,10 +32,16 @@ return {
 
   {
     "NeogitOrg/neogit",
-    lazy = true,
     cmd = "Neogit",
     keys = {
-      { "<leader>qg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
+      { "<leader>qg", "<cmd>Neogit kind=split<cr>", desc = "Show Neogit UI" },
+    },
+    opts = {
+      highlight = {
+        italic = false,
+        bold = false,
+        underline = false,
+      },
     },
   },
 }
