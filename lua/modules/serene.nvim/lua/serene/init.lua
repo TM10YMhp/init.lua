@@ -78,7 +78,7 @@ function M.set_groups()
     Title            = {},
     WinBar           = {},
     WinBarNC         = {},
-    Directory        = {},
+    Directory        = { link = "Comment" },
     SpecialKey       = { link = "NonText" },
 
     Error            = { ctermfg = c.darkred, fg = g.darkred },
