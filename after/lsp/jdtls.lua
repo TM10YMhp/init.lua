@@ -1,3 +1,8 @@
+-- TODO: check this
+if not SereneNvim.is_loaded("nvim-jdtls") then
+  return
+end
+
 if vim.env.JAVA_HOME == nil then
   SereneNvim.warn("JDTLS: JAVA_HOME not found")
 end

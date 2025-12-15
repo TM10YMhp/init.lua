@@ -16,26 +16,26 @@ return {
 
     return "CmdlineEnter :"
   end,
-  keys = {
-    {
-      "<leader>ee",
-      function()
-        require("nvim-tree.api").tree.toggle({
-          path = vim.fn.getcwd(),
-        })
-      end,
-      desc = "Toggle nvim-tree",
-    },
-    {
-      "<leader>eE",
-      function()
-        require("nvim-tree.api").tree.toggle({
-          path = vim.fn.expand("%:p:h"),
-        })
-      end,
-      desc = "Toggle nvim-tree to current directory",
-    },
-  },
+  -- keys = {
+  --   {
+  --     "<leader>ee",
+  --     function()
+  --       require("nvim-tree.api").tree.toggle({
+  --         path = vim.fn.getcwd(),
+  --       })
+  --     end,
+  --     desc = "Toggle nvim-tree",
+  --   },
+  --   {
+  --     "<leader>eE",
+  --     function()
+  --       require("nvim-tree.api").tree.toggle({
+  --         path = vim.fn.expand("%:p:h"),
+  --       })
+  --     end,
+  --     desc = "Toggle nvim-tree to current directory",
+  --   },
+  -- },
   opts = {
     -- no modify this
     sync_root_with_cwd = true,

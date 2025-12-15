@@ -160,7 +160,7 @@ return {
       expand = false,
     },
     image = {
-      enabled = false,
+      enabled = true,
     },
   },
 }
