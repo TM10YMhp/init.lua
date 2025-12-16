@@ -6,7 +6,7 @@ return {
   { import = "plugins.extras.util.header" },
   { import = "plugins.extras.editor.mini_files" },
   { import = "plugins.extras.editor.mini_trailspace" },
-  { import = "plugins.extras.editor.mru" },
+  -- { import = "plugins.extras.editor.mru" },
   { import = "plugins.extras.ui.multinput" },
 
   { import = "plugins.extras.coding.blink" },

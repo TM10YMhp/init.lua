@@ -2,9 +2,7 @@ local lazygit = function(cmd)
   return require("toggleterm.terminal").Terminal:new({
     cmd = "lazygit " .. (cmd or ""),
     direction = "tab",
-    on_create = function(t)
-      vim.keymap.set("t", "<esc>", "<nop>", { buffer = t.bufnr })
-    end,
+    on_create = function(t) vim.keymap.set("t", "<esc>", "<nop>", { buffer = t.bufnr }) end,
     close_on_exit = true,
   })
 end
@@ -13,16 +11,16 @@ return {
   "akinsho/toggleterm.nvim",
   cmd = "ToggleTerm",
   keys = {
-    {
-      "<leader>gg",
-      function() lazygit():toggle() end,
-      desc = "Lazygit",
-    },
-    {
-      "<leader>gl",
-      function() lazygit("log"):toggle() end,
-      desc = "Lazygit log",
-    },
+    -- {
+    --   "<leader>gg",
+    --   function() lazygit():toggle() end,
+    --   desc = "Lazygit",
+    -- },
+    -- {
+    --   "<leader>gl",
+    --   function() lazygit("log"):toggle() end,
+    --   desc = "Lazygit log",
+    -- },
     -- {
     --   "<leader>gf",
     --   function() lazygit("-f " .. vim.fn.expand("%")):toggle() end,

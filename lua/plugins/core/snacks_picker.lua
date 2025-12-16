@@ -126,11 +126,12 @@ return {
       { "<leader>sK", function() Snacks.picker.keymaps() end, desc = "Keymaps (all)" },
       { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
       -- git
-      { "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Log" },
+      { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+      { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
       { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
       { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff" },
-      { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
       -- more
+      { "<leader>so", function() Snacks.picker.recent() end, desc = "Recent" },
       { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo" },
       { "<leader>sz", function() Snacks.picker.zoxide() end, desc = "Zoxide" },
       { "<leader>sS", function() Snacks.picker.spelling() end, desc = "Spelling" },

@@ -37,7 +37,7 @@ return {
   },
   {
     "ph1losof/ecolog.nvim",
-    ft = { "sh", "fzf" },
+    event = "VeryLazy",
     opts = {
       shelter = {
         modules = {
@@ -46,8 +46,8 @@ return {
           files = false, -- FIX: not work
           -- telescope = true,
           -- telescope_previewer = true,
-          fzf = true,
-          fzf_previewer = true,
+          -- fzf = true,
+          -- fzf_previewer = true,
           snacks = true,
           snacks_previewer = true,
         },
