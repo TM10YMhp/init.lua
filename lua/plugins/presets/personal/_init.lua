@@ -3,7 +3,7 @@ return {
   { import = "plugins.extras.editor.csvview" },
   { import = "plugins.extras.editor.diffview" },
   { import = "plugins.extras.editor.gitsigns" },
-  { import = "plugins.extras.util.header" },
+  -- { import = "plugins.extras.util.header" },
   { import = "plugins.extras.editor.mini_files" },
   { import = "plugins.extras.editor.mini_trailspace" },
   -- { import = "plugins.extras.editor.mru" },
