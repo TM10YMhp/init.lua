@@ -13,13 +13,9 @@ return {
       -- Create some toggle mappings
       Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>os")
       Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>ow")
-      Snacks.toggle
-        .option("number", { name = "Line Numbers" })
-        :map("<leader>on")
+      Snacks.toggle.option("number", { name = "Line Numbers" }):map("<leader>on")
       Snacks.toggle.option("list", { name = "List" }):map("<leader>oo")
-      Snacks.toggle
-        .option("termguicolors", { name = "Termguicolors" })
-        :map("<leader>oc")
+      Snacks.toggle.option("termguicolors", { name = "Termguicolors" }):map("<leader>oc")
       Snacks.toggle
         .new({
           id = "inlay_hints",
@@ -100,6 +96,9 @@ return {
       treesitter = false,
     },
     styles = {
+      float = {
+        border = "single",
+      },
       scratch = {
         width = 0.9,
         height = 0.9,
