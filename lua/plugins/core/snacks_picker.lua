@@ -138,10 +138,31 @@ return {
     },
     opts = {
       picker = {
-        previewers = {
-          diff = {
-            style = "terminal",
+        win = {
+          input = {
+            keys = {
+              ["<a-e>"] = { "focus_file", mode = { "n", "i" } },
+            },
           },
+          list = { wo = { foldcolumn = "0" } },
+          preview = {
+            wo = {
+              signcolumn = "no",
+              foldcolumn = "0",
+            },
+          },
+        },
+        actions = {
+          focus_file = function(p)
+            local file = p:current()._path
+            p:close()
+            Snacks.picker.explorer()
+            -- HACK: wait for explorer to open
+            vim.defer_fn(function() Snacks.explorer.reveal({ file = file }) end, 150)
+          end,
+        },
+        previewers = {
+          diff = { style = "terminal" },
         },
         sources = {
           files = {
@@ -236,15 +257,6 @@ return {
           },
         },
         prompt = "> ",
-        win = {
-          list = { wo = { foldcolumn = "0" } },
-          preview = {
-            wo = {
-              signcolumn = "no",
-              foldcolumn = "0",
-            },
-          },
-        },
         icons = {
           files = { enabled = false },
           tree = {
