@@ -27,16 +27,29 @@ end
 
 local vscode = require("vscode")
 
----@return boolean
-local is_first_startup = function()
-  local name_var = "vscode.vscode_neovim_activated"
-  local activated = vscode.eval(("return !!%s"):format(name_var))
-  if activated then return false end
-  vscode.eval(("%s = true"):format(name_var))
-  return true
-end
+-- ---@return boolean
+-- local is_first_startup = function()
+--   local name_var = "vscode.vscode_neovim_activated"
+--   local activated = vscode.eval(("return !!%s"):format(name_var))
+--   if activated then return false end
+--   vscode.eval(("%s = true"):format(name_var))
+--   return true
+-- end
+--
+-- if is_first_startup() then vscode.action("vscode-neovim.stop") end
 
-if is_first_startup() then vscode.action("vscode-neovim.stop") end
+-- NOTE: toggle neovim
+-- - https://github.com/vscode-neovim/vscode-neovim/pull/1566#issuecomment-1852111050
+-- {
+--   "key": "alt+t",
+--   "command": "vscode-neovim.stop",
+--   "when": "neovim.init"
+-- },
+-- {
+--   "key": "alt+t",
+--   "command": "vscode-neovim.restart",
+--   "when": "!neovim.init"
+-- }
 
 vim.notify = vscode.notify
 
