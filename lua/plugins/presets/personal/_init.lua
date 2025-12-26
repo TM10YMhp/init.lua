@@ -9,6 +9,8 @@ return {
   -- { import = "plugins.extras.editor.mru" },
   { import = "plugins.extras.ui.multinput" },
 
+  { import = "plugins.extras.lsp" },
+
   { import = "plugins.extras.coding.blink" },
   { import = "plugins.extras.coding.colorful_menu" },
   -- { import = "plugins.extras.coding.neogen" },
@@ -54,7 +56,7 @@ return {
   -- { import = "plugins.extras.lang.java" },
   -- { import = "plugins.extras.lang.json" },
   -- { import = "plugins.extras.lang.latex" },
-  -- { import = "plugins.extras.lang.lua" },
+  { import = "plugins.extras.lang.lua" },
   -- { import = "plugins.extras.lang.php" },
   -- { import = "plugins.extras.lang.python" },
   -- { import = "plugins.extras.lang.sql" },
