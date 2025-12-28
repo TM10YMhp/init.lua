@@ -19,7 +19,6 @@ return {
   { import = "plugins.extras.coding.cmp_snippet" },
   -- { import = "plugins.extras.coding.windsurf" },
 
-  { import = "plugins.extras.editor.snacks_explorer" },
   { import = "plugins.extras.editor.conform" },
   { import = "plugins.extras.editor.grug_far" },
   { import = "plugins.extras.editor.tiny_glimmer" },
@@ -39,7 +38,7 @@ return {
   { import = "plugins.extras.util.cloak" },
   { import = "plugins.extras.util.emoji" },
   { import = "plugins.extras.util.git_messenger" },
-  { import = "plugins.extras.util.harpoon" },
+  -- { import = "plugins.extras.util.harpoon" },
   { import = "plugins.extras.util.markdown_preview" },
   -- { import = "plugins.extras.util.multicursor" },
   { import = "plugins.extras.util.neotab" },
@@ -74,13 +73,5 @@ return {
   --   optional = true,
   --   version = false,
   --   build = "cargo build --release",
-  -- },
-
-  -- {
-  --   "toggleterm.nvim",
-  --   optional = true,
-  --   opts = {
-  --     shell = "cmd /s /k clink inject",
-  --   },
   -- },
 }

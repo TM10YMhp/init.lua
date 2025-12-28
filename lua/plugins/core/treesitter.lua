@@ -65,15 +65,13 @@ return {
       -- HACK: attach not work bufnr
       SereneNvim.bufdo(function(bufnr)
         if vim.api.nvim_get_current_buf() == bufnr then return end
-        vim.api.nvim_buf_call(
-          bufnr,
-          function() require("nvim-ts-autotag.internal").attach() end
-        )
+        vim.api.nvim_buf_call(bufnr, function() require("nvim-ts-autotag.internal").attach() end)
       end)
     end,
   },
   {
     "Wansmer/treesj",
+    cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
     keys = {
       { "gS", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
     },
