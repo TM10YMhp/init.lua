@@ -11,6 +11,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     cmd = { "TSUpdate", "TSInstall", "TSModuleInfo", "TSInstallInfo" },
+    branch = "master",
     init = function(plugin)
       -- https://github.com/LazyVim/LazyVim/commit/1e1b68d633d4bd4faa912ba5f49ab6b8601dc0c9
       require("lazy.core.loader").add_to_rtp(plugin)
@@ -68,17 +69,6 @@ return {
         vim.api.nvim_buf_call(bufnr, function() require("nvim-ts-autotag.internal").attach() end)
       end)
     end,
-  },
-  {
-    "Wansmer/treesj",
-    cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
-    keys = {
-      { "gS", "<cmd>TSJToggle<cr>", desc = "Split / Join" },
-    },
-    opts = {
-      use_default_keymaps = false,
-      max_join_length = 150,
-    },
   },
   {
     "aaronik/treewalker.nvim",

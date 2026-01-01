@@ -11,6 +11,7 @@ local enabled = {
   "nvim-surround",
   "nvim-treesitter",
   "nvim-treesitter-textobjects",
+  "mini.splitjoin",
   "treesj",
   "vim-cool",
   "vim-indent-object",

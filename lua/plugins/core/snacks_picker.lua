@@ -171,6 +171,9 @@ return {
             follow = true,
           },
           explorer = {
+            hidden = true,
+            ignored = false,
+            follow = true,
             layout = {
               cycle = false,
               layout = { position = "right" },
