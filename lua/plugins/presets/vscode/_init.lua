@@ -54,6 +54,19 @@ local vscode = require("vscode")
 
 vim.notify = vscode.notify
 
+local map = vim.keymap.set
+
+map("n", "<leader>st", function()
+  vscode.action("workbench.action.findInFiles", {
+    args = {
+      query = "\\b(PERFORMANCE|OPTIMIZE|TESTING|WARNING|FAILED|PASSED|ISSUE|OPTIM|FIXIT|FIXME|TODO|HACK|PERF|TEST|INFO|WARN|NOTE|XXX|BUG|FIX):",
+      isRegex = true,
+      isCaseSensitive = false,
+    },
+  })
+  vscode.action("search.action.focusSearchList", {})
+end, { desc = "Todo" })
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
