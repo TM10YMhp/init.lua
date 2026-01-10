@@ -170,25 +170,6 @@ return {
             ignored = false,
             follow = true,
           },
-          explorer = {
-            hidden = true,
-            ignored = false,
-            follow = true,
-            layout = {
-              cycle = false,
-              layout = { position = "right" },
-            },
-            win = {
-              list = {
-                keys = {
-                  ["]w"] = false,
-                  ["[w"] = false,
-                  ["]e"] = false,
-                  ["[e"] = false,
-                },
-              },
-            },
-          },
         },
         layouts = {
           default = {
