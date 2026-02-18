@@ -1,5 +1,18 @@
 -- TODO: mru not work in lazy jump
+-- TODO: vscode need install treesitter parser, test splitjoin regexp
 return {
+  {
+    "nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "angular",
+        "javascript",
+        "jsdoc",
+        "tsx",
+        "typescript",
+      },
+    },
+  },
   {
     "nvim-mini/mini.splitjoin",
     opts = {
@@ -40,12 +53,15 @@ return {
         max_join_length = 150,
         langs = {
           astro = html,
+          angular = html,
         },
         notify = false,
         on_error = function()
           local opts = {}
 
-          if vim.bo.filetype == "cmake" then opts = { detect = { separator = " " } } end
+          if vim.bo.filetype == "cmake" then
+            opts = { detect = { separator = " " } }
+          end
 
           require("mini.splitjoin").toggle(opts)
         end,

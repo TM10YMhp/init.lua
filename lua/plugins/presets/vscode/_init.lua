@@ -67,6 +67,23 @@ map("n", "<leader>st", function()
   vscode.action("search.action.focusSearchList", {})
 end, { desc = "Todo" })
 
+map("n", "<c-w>o", function()
+  vscode.action("closeReferenceSearch")
+  vscode.action("workbench.action.closePanel")
+  vscode.action("workbench.action.closeSidebar")
+  vscode.action("workbench.action.closeAuxiliaryBar")
+end, { desc = "CTRL-W_o" })
+
+map("n", "<up>", function()
+  vscode.action("cursorUp")
+end, { desc = "up" })
+map("n", "<down>", function()
+  vscode.action("cursorDown")
+end, { desc = "up" })
+map("n", "za", function()
+  vscode.action("editor.toggleFold")
+end, { desc = "za" })
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",

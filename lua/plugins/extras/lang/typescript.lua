@@ -1,15 +1,15 @@
 return {
-  {
-    "nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "javascript",
-        "jsdoc",
-        "tsx",
-        "typescript",
-      },
-    },
-  },
+  -- {
+  --   "nvim-treesitter",
+  --   opts = {
+  --     ensure_installed = {
+  --       "javascript",
+  --       "jsdoc",
+  --       "tsx",
+  --       "typescript",
+  --     },
+  --   },
+  -- },
   {
     "mason-tool-installer.nvim",
     optional = true,
