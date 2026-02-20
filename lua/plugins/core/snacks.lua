@@ -1,3 +1,12 @@
+-- TODO: why not work in `init`?
+SereneNvim.hacks.on_module("snacks.util", function(mod)
+  local blend = mod.blend
+  mod.blend = function(fg, bg, alpha)
+    fg = fg or "#000000"
+    return blend(fg, bg, alpha)
+  end
+end)
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
