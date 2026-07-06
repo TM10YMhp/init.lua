@@ -1,4 +1,5 @@
 return {
+  -- NOTE: necessary?
   "MagicDuck/grug-far.nvim",
   cmd = { "GrugFar", "GrugFarWithin" },
   keys = {

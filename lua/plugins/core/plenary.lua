@@ -1,4 +1,5 @@
 return {
+  -- NOTE: archivado, pero aun necesario
   "nvim-lua/plenary.nvim",
   lazy = true,
   init = function()

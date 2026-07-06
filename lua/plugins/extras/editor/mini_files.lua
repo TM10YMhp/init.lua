@@ -1,4 +1,5 @@
 return {
+  -- TODO: check lsp integration
   "nvim-mini/mini.files",
   event = "VeryLazy",
   keys = {

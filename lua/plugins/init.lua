@@ -29,4 +29,15 @@ return {
   --   event = "BufLeave",
   --   config = true,
   -- }
+
+  {
+    "module-serene.nvim",
+    dir = SereneNvim.get_module_dir("serene.nvim"),
+    event = "UIEnter",
+    main = "serene.nvim",
+    config = function()
+      -- https://github.com/jackplus-xyz/binary.nvim
+      require("serene").load()
+    end,
+  },
 }

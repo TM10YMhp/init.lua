@@ -1,4 +1,5 @@
 return {
+  -- NOTE: buscar alternativa, opencode?
   {
     "supermaven-inc/supermaven-nvim",
     cmd = {

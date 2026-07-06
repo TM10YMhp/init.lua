@@ -1,4 +1,5 @@
 return {
+  -- NOTE: a util - o upgrade?
   "andymass/vim-matchup",
   event = "VeryLazy",
   opts = {
@@ -13,9 +14,6 @@ return {
   config = function(_, opts)
     require("match-up").setup(opts)
 
-    vim.api.nvim_exec_autocmds(
-      "FileType",
-      { group = "matchup_filetype", modeline = false }
-    )
+    vim.api.nvim_exec_autocmds("FileType", { group = "matchup_filetype", modeline = false })
   end,
 }

@@ -71,6 +71,7 @@ return {
     end,
   },
   {
+    -- NOTE: a util
     "aaronik/treewalker.nvim",
     cmd = "Treewalker",
     keys = {

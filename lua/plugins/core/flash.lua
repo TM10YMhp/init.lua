@@ -1,4 +1,5 @@
 return {
+  -- NOTE: replace with easymotion? check vscode vim
   "folke/flash.nvim",
   event = "VeryLazy",
   keys = {

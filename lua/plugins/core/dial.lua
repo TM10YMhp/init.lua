@@ -12,6 +12,7 @@ local dial = function(increment, g)
 end
 
 return {
+  -- NOTE: a util
   "monaqa/dial.nvim",
   keys = {
     {

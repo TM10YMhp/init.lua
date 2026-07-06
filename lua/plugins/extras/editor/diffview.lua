@@ -1,4 +1,5 @@
 return {
+  -- NOTE: deprecated
   "sindrets/diffview.nvim",
   cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
   keys = {

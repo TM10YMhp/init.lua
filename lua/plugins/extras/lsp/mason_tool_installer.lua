@@ -1,4 +1,5 @@
 return {
+  -- NOTE: necessary?
   "WhoIsSethDaniel/mason-tool-installer.nvim",
   event = "VeryLazy",
   opts_extend = { "ensure_installed" },

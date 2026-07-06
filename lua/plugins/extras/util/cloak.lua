@@ -8,6 +8,7 @@
 -- end)
 
 return {
+  -- TODO: check update
   "zeybek/camouflage.nvim",
   event = "VeryLazy",
   init = function()

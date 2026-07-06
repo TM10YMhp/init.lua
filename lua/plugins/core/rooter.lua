@@ -1,4 +1,5 @@
 return {
+  -- NOTE: util en workspaces, pero es necesario?
   {
     "airblade/vim-rooter",
     event = "VeryLazy",
@@ -20,10 +21,7 @@ return {
       }
     end,
     config = function()
-      vim.api.nvim_exec_autocmds(
-        "BufEnter",
-        { group = "rooter", modeline = false }
-      )
+      vim.api.nvim_exec_autocmds("BufEnter", { group = "rooter", modeline = false })
     end,
   },
   {

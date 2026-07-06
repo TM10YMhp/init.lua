@@ -2,21 +2,22 @@ return {
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    init = function()
-      SereneNvim.on_very_lazy(function()
-        Snacks.toggle
-          .new({
-            name = "Auto Pairs",
-            get = function()
-              return not require("nvim-autopairs").state.disabled
-            end,
-            set = function(state)
-              require("nvim-autopairs").state.disabled = not state
-            end,
-          })
-          :map("<leader>op")
-      end)
-    end,
+    -- TODO: no depender de Snacks
+    -- init = function()
+    --   SereneNvim.on_very_lazy(function()
+    --     Snacks.toggle
+    --       .new({
+    --         name = "Auto Pairs",
+    --         get = function()
+    --           return not require("nvim-autopairs").state.disabled
+    --         end,
+    --         set = function(state)
+    --           require("nvim-autopairs").state.disabled = not state
+    --         end,
+    --       })
+    --       :map("<leader>op")
+    --   end)
+    -- end,
     opts = {
       check_ts = true,
     },

@@ -1,15 +1,5 @@
 return {
   {
-    "module-serene.nvim",
-    dir = SereneNvim.get_module_dir("serene.nvim"),
-    event = "UIEnter",
-    main = "serene.nvim",
-    config = function()
-      -- https://github.com/jackplus-xyz/binary.nvim
-      require("serene").load()
-    end,
-  },
-  {
     "jackplus-xyz/binary.nvim",
     event = "CmdlineEnter :",
     opts = {},
@@ -19,28 +9,6 @@ return {
     main = "github-theme",
     event = "CmdlineEnter :",
     opts = {},
-  },
-  {
-    "neko-night/nvim",
-    name = "nekonight",
-    event = "CmdlineEnter :",
-    init = function()
-      SereneNvim.hacks.on_module("nekonight", function(mod)
-        local load = mod.load
-        function mod.load(opts)
-          if type(opts.style) == "boolean" and opts.style == false then
-            opts.style = "night"
-          end
-          return load(opts)
-        end
-      end)
-    end,
-    opts = {
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-      },
-    },
   },
   {
     "scottmckendry/cyberdream.nvim",

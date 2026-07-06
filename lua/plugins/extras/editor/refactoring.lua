@@ -1,4 +1,5 @@
 return {
+  -- NOTE: reconfigurar
   "ThePrimeagen/refactoring.nvim",
   cmd = "Refactor",
   dependencies = {
