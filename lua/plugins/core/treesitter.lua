@@ -1,55 +1,29 @@
 return {
   {
-    "nvim-treesitter",
-    optional = true,
-    dependencies = { "metiulekm/nvim-treesitter-endwise" },
-    opts = {
-      endwise = { enable = true },
-    },
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    event = "VeryLazy",
+    init = function()
+      -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects/commit/0d7c800fadcfe2d33089f5726cb8907fc846eece
+      vim.g.no_plugin_maps = true
+    end,
   },
   {
+    "nvim-treesitter",
+    optional = true,
+    dependencies = { "RRethy/nvim-treesitter-endwise" },
+  },
+  {
+    -- NOTE: aunque ensure_installed puede volver a funcionar, lo ideal seria
+    -- instalarlos segun sea necesario.
     "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
-    cmd = { "TSUpdate", "TSInstall", "TSModuleInfo", "TSInstallInfo" },
-    branch = "master",
-    init = function(plugin)
-      -- https://github.com/LazyVim/LazyVim/commit/1e1b68d633d4bd4faa912ba5f49ab6b8601dc0c9
-      require("lazy.core.loader").add_to_rtp(plugin)
-      require("nvim-treesitter.query_predicates")
-    end,
-    -- https://github.com/folke/lazy.nvim/commit/1f7b720
-    opts_extend = { "ensure_installed" },
-    opts = {
-      -- https://thevaluable.dev/tree-sitter-neovim-overview/
-      parser_install_dir = vim.fn.expand(vim.fn.stdpath("config") .. "/after"),
-      ensure_installed = {
-        "bash",
-        "vim",
-        "query",
-        "vimdoc",
-        "markdown",
-        "markdown_inline",
-      },
-      sync_install = true, -- async cpu cost
-      auto_install = false,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
-      indent = { enable = true },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<bs>",
-        },
-      },
-    },
-    config = function(_, opts)
-      require("nvim-treesitter.install").prefer_git = false
-      require("nvim-treesitter.configs").setup(opts)
+    -- event = "VeryLazy",
+    lazy = false,
+    opts = function()
+      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.wo.foldmethod = "expr"
+
+      return {}
     end,
   },
   {

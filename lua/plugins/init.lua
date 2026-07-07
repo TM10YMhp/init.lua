@@ -1,4 +1,8 @@
 return {
+  -- { import = "plugins.presets.vscode" },
+  { import = "plugins.presets.personal" },
+  -- { import = "plugins.presets.phone" },
+
   {
     "module-bigfile",
     dir = SereneNvim.get_module_dir("bigfile"),
@@ -30,14 +34,22 @@ return {
   --   config = true,
   -- }
 
+  -- {
+  --   "module-serene.nvim",
+  --   dir = SereneNvim.get_module_dir("serene.nvim"),
+  --   event = "UIEnter",
+  --   main = "serene.nvim",
+  --   config = function()
+  --     -- https://github.com/jackplus-xyz/binary.nvim
+  --     require("serene").load()
+  --   end,
+  -- },
+
+  --
+
   {
-    "module-serene.nvim",
-    dir = SereneNvim.get_module_dir("serene.nvim"),
-    event = "UIEnter",
-    main = "serene.nvim",
-    config = function()
-      -- https://github.com/jackplus-xyz/binary.nvim
-      require("serene").load()
-    end,
+    "easymotion/vim-easymotion",
+    init = function() vim.g.EasyMotion_do_shade = 0 end,
+    event = "VeryLazy",
   },
 }

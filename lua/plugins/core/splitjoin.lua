@@ -59,9 +59,7 @@ return {
         on_error = function()
           local opts = {}
 
-          if vim.bo.filetype == "cmake" then
-            opts = { detect = { separator = " " } }
-          end
+          if vim.bo.filetype == "cmake" then opts = { detect = { separator = " " } } end
 
           require("mini.splitjoin").toggle(opts)
         end,

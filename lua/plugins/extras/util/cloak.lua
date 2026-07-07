@@ -11,23 +11,30 @@ return {
   -- TODO: check update
   "zeybek/camouflage.nvim",
   event = "VeryLazy",
+  keys = {
+    { "<leader>oC", "<cmd>CamouflageToggle<cr>", desc = "Toggle Camouflage" },
+  },
   init = function()
-    SereneNvim.on_very_lazy(function()
-      Snacks.toggle
-        .new({
-          name = "Camouflage",
-          get = function() return require("camouflage").is_enabled() end,
-          set = function(state)
-            local camouflage = require("camouflage")
-            if state then
-              camouflage.enable()
-            else
-              camouflage.disable()
-            end
-          end,
-        })
-        :map("<leader>oC")
-    end)
+    vim.api.nvim_create_autocmd("BufEnter", {
+      pattern = "*.json",
+      callback = function() vim.b.camouflage_enabled = false end,
+    })
+    --   SereneNvim.on_very_lazy(function()
+    --     Snacks.toggle
+    --       .new({
+    --         name = "Camouflage",
+    --         get = function() return require("camouflage").is_enabled() end,
+    --         set = function(state)
+    --           local camouflage = require("camouflage")
+    --           if state then
+    --             camouflage.enable()
+    --           else
+    --             camouflage.disable()
+    --           end
+    --         end,
+    --       })
+    --       :map("<leader>oC")
+    --   end)
   end,
   opts = {
     pwned = { enabled = false },

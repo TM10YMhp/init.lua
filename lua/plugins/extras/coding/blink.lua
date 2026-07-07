@@ -7,24 +7,25 @@ return {
   },
   {
     "saghen/blink.cmp",
+    dependencies = { "rafamadriz/friendly-snippets" },
     event = { "InsertEnter", "CmdlineEnter" },
-    version = "v1.*",
+    version = "1.*",
     opts_extend = { "sources.default" },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
       keymap = {
         preset = "enter",
-        ["<Tab>"] = { "select_and_accept", "fallback" },
-        ["<S-Tab>"] = { "select_and_accept", "fallback" },
-        ["<C-f>"] = {
-          function(cmp) return cmp.select_next({ jump_by = "source_id" }) end,
-          "select_next",
-        },
-        ["<C-b>"] = {
-          function(cmp) return cmp.select_prev({ jump_by = "source_id" }) end,
-          "select_prev",
-        },
+        -- ["<Tab>"] = { "select_and_accept", "fallback" },
+        -- ["<S-Tab>"] = { "select_and_accept", "fallback" },
+        -- ["<C-f>"] = {
+        --   function(cmp) return cmp.select_next({ jump_by = "source_id" }) end,
+        --   "select_next",
+        -- },
+        -- ["<C-b>"] = {
+        --   function(cmp) return cmp.select_prev({ jump_by = "source_id" }) end,
+        --   "select_prev",
+        -- },
       },
       cmdline = {
         keymap = {
@@ -113,8 +114,7 @@ return {
       for _, provider in pairs(opts.sources.providers or {}) do
         ---@cast provider blink.cmp.SourceProviderConfig|{kind?:string}
         if provider.kind then
-          local CompletionItemKind =
-            require("blink.cmp.types").CompletionItemKind
+          local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
           local kind_idx = #CompletionItemKind + 1
 
           CompletionItemKind[kind_idx] = provider.kind

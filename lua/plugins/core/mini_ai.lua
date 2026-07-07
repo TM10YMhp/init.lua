@@ -58,10 +58,4 @@ return {
       }
     end,
   },
-  {
-    "nvim-treesitter",
-    optional = true,
-    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-    opts = {},
-  },
 }

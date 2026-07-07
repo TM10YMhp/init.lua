@@ -1,3 +1,8 @@
+-- NOTE: `vim.pack` esta disponible apartir de la 0.12, pero aun esta en
+--  desarrollo, lo siguiente debe resolverse para realizar la migracion:
+--  - Local plugin support in `vim.pack` (https://github.com/neovim/neovim/issues/34765)
+--  - Timeout on `vim.pack` install (https://github.com/neovim/neovim/issues/36199)
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -16,7 +21,6 @@ require("lazy").setup({
   defaults = { lazy = true },
   spec = {
     { import = "plugins.core" },
-    { import = "plugins.presets" },
     { import = "plugins" },
   },
   local_spec = false,
@@ -87,9 +91,7 @@ vim.api.nvim_create_autocmd("User", {
   once = true,
   pattern = "VeryLazy",
   callback = function()
-    if vim.fn.has("clipboard") == 1 then
-      vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
-    end
+    if vim.fn.has("clipboard") == 1 then vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" }) end
 
     require("config.diagnostic")
     require("config.keymaps")
@@ -98,13 +100,7 @@ vim.api.nvim_create_autocmd("User", {
     local stats = require("lazy").stats()
     local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
     SereneNvim.info(
-      "lazy.nvim loaded "
-        .. stats.loaded
-        .. "/"
-        .. stats.count
-        .. " plugins in "
-        .. ms
-        .. "ms"
+      "lazy.nvim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms"
     )
     -- end
   end,

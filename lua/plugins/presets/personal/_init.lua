@@ -11,7 +11,7 @@ return {
 
   -- { import = "plugins.extras.lsp" },
 
-  -- { import = "plugins.extras.coding.blink" },
+  { import = "plugins.extras.coding.blink" },
   -- { import = "plugins.extras.coding.colorful_menu" },
   -- { import = "plugins.extras.coding.neogen" },
   -- { import = "plugins.extras.coding.supermaven" },
@@ -19,20 +19,25 @@ return {
   -- { import = "plugins.extras.coding.cmp_snippet" },
   -- { import = "plugins.extras.coding.windsurf" },
 
+  { import = "plugins.ui" },
+  { import = "plugins.extras.archive.snacks_picker" },
   { import = "plugins.extras.editor.conform" },
   -- { import = "plugins.extras.editor.grug_far" },
   -- { import = "plugins.extras.editor.tiny_glimmer" },
+
   -- { import = "plugins.extras.editor.fzf" },
   -- { import = "plugins.extras.editor.fzf_profile" },
+
   -- { import = "plugins.extras.editor.refactoring" },
   { import = "plugins.extras.editor.todo_comments" },
   -- { import = "plugins.extras.editor.nvim_highlight_colors" },
+  { import = "plugins.extras.editor.nvim_tree" },
 
   { import = "plugins.extras.ui.cokeline" },
   -- { import = "plugins.extras.ui.colorscheme" },
   { import = "plugins.extras.ui.heirline" },
   { import = "plugins.extras.ui.nvim_bqf" },
-  { import = "plugins.extras.ui.treesitter_context" },
+  -- { import = "plugins.extras.ui.treesitter_context" },
 
   -- { import = "plugins.extras.util.bloat" },
   { import = "plugins.extras.util.cloak" },
@@ -67,11 +72,4 @@ return {
   -- WIP
   -- { import = "plugins.extras.lang.csharp" },
   -- { import = "plugins.extras.lang.css" },
-
-  -- {
-  --   "blink.cmp",
-  --   optional = true,
-  --   version = false,
-  --   build = "cargo build --release",
-  -- },
 }

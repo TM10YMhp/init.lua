@@ -4,10 +4,7 @@ return {
     event = "VeryLazy",
     cmd = "MRU",
     config = function()
-      vim.api.nvim_exec_autocmds(
-        "BufRead",
-        { group = "MRUAutoCmds", modeline = false }
-      )
+      vim.api.nvim_exec_autocmds("BufRead", { group = "MRUAutoCmds", modeline = false })
     end,
   },
   -- {

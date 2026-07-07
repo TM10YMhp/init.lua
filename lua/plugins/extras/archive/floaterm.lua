@@ -117,9 +117,7 @@ return {
   config = function()
     vim.api.nvim_create_user_command("F", function(info)
       local args = info.args
-      vim.cmd(
-        "FloatermNew --wintype=split --height=0.35 --autoclose=0" .. " " .. args
-      )
+      vim.cmd("FloatermNew --wintype=split --height=0.35 --autoclose=0" .. " " .. args)
     end, { bang = true, nargs = "*" })
 
     vim.g.floaterm_width = 0.9
@@ -127,21 +125,13 @@ return {
     vim.g.floaterm_autohide = 2
 
     vim.api.nvim_create_autocmd("BufLeave", {
-      group = vim.api.nvim_create_augroup(
-        "tm10ymhp_hide_floaterm",
-        { clear = true }
-      ),
+      group = vim.api.nvim_create_augroup("tm10ymhp_hide_floaterm", { clear = true }),
       desc = "Hide floaterm when leaving buffer",
       callback = function(event)
-        if
-          vim.bo[event.buf].filetype == "floaterm"
-          and vim.fn.win_gettype() == "popup"
-        then
+        if vim.bo[event.buf].filetype == "floaterm" and vim.fn.win_gettype() == "popup" then
           vim.schedule(function()
             local found_winnr = vim.fn["floaterm#window#find"]()
-            if found_winnr > 0 then
-              vim.fn["floaterm#window#hide"](event.buf)
-            end
+            if found_winnr > 0 then vim.fn["floaterm#window#hide"](event.buf) end
           end)
         end
       end,

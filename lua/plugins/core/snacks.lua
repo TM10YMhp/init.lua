@@ -1,5 +1,6 @@
 -- TODO: why not work in `init`?
 SereneNvim.hacks.on_module("snacks.util", function(mod)
+  -- HACK: fix highlight picker
   local blend = mod.blend
   mod.blend = function(fg, bg, alpha)
     fg = fg or "#000000"
@@ -57,11 +58,11 @@ return {
       desc = "Git Browse (copy)",
       mode = { "n", "v" },
     },
-    {
-      "<leader>sn",
-      function() Snacks.notifier.show_history() end,
-      desc = "Notification History",
-    },
+    -- {
+    --   "<leader>sn",
+    --   function() Snacks.notifier.show_history() end,
+    --   desc = "Notification History",
+    -- },
     {
       "<leader>un",
       function() Snacks.notifier.hide() end,
@@ -145,7 +146,7 @@ return {
     },
     bigfile = { enabled = false },
     notifier = {
-      enabled = true,
+      enabled = false,
       timeout = 2500,
       width = { min = 28, max = 0.75 },
       height = { min = 1, max = 0.75 },

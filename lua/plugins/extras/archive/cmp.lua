@@ -31,9 +31,7 @@ return {
 
       return {
         snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
+          expand = function(args) require("luasnip").lsp_expand(args.body) end,
         },
         completion = {
           completeopt = "menu,menuone,noinsert,noselect",
@@ -110,10 +108,7 @@ return {
             option = {
               get_bufnrs = function()
                 local buf = vim.api.nvim_get_current_buf()
-                local byte_size = vim.api.nvim_buf_get_offset(
-                  buf,
-                  vim.api.nvim_buf_line_count(buf)
-                )
+                local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
                 if byte_size > 1024 * 1024 then -- 1 Megabyte max
                   return {}
                 end
@@ -144,9 +139,7 @@ return {
               -- compare constants
               local kind1 = entry1:get_kind() --- @type lsp.CompletionItemKind | number
               local kind2 = entry2:get_kind() --- @type lsp.CompletionItemKind | number
-              if kind1 ~= 21 and kind2 ~= 21 then
-                return nil
-              end
+              if kind1 ~= 21 and kind2 ~= 21 then return nil end
 
               return cmp.config.compare.length(entry1, entry2)
             end,
@@ -194,10 +187,7 @@ return {
             option = {
               get_bufnrs = function()
                 local buf = vim.api.nvim_get_current_buf()
-                local byte_size = vim.api.nvim_buf_get_offset(
-                  buf,
-                  vim.api.nvim_buf_line_count(buf)
-                )
+                local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
                 if byte_size > 1024 * 1024 then -- 1 Megabyte max
                   return {}
                 end
@@ -220,9 +210,7 @@ return {
         callback = function()
           local mappings = vim.api.nvim_get_keymap("c")
           for _, v in pairs(mappings) do
-            if v.desc == "cmp.utils.keymap.set_map" then
-              vim.keymap.del("c", v.lhs)
-            end
+            if v.desc == "cmp.utils.keymap.set_map" then vim.keymap.del("c", v.lhs) end
           end
         end,
       })

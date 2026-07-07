@@ -25,10 +25,10 @@ return {
         NOTE = { icon = "N" },
         TEST = { icon = "T" },
       },
-      highlight = {
-        keyword = "",
-        after = "",
-      },
+      -- highlight = {
+      --   keyword = "",
+      --   after = "",
+      -- },
       search = {
         command = "rg",
         args = {

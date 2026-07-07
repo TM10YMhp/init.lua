@@ -4,9 +4,7 @@ return {
     "b0o/nvim-tree-preview.lua",
     opts = {
       border = "single",
-      on_open = function(win)
-        vim.api.nvim_win_set_option(win, "foldcolumn", "0")
-      end,
+      on_open = function(win) vim.api.nvim_win_set_option(win, "foldcolumn", "0") end,
     },
   },
   event = function()
@@ -16,26 +14,26 @@ return {
 
     return "CmdlineEnter :"
   end,
-  -- keys = {
-  --   {
-  --     "<leader>ee",
-  --     function()
-  --       require("nvim-tree.api").tree.toggle({
-  --         path = vim.fn.getcwd(),
-  --       })
-  --     end,
-  --     desc = "Toggle nvim-tree",
-  --   },
-  --   {
-  --     "<leader>eE",
-  --     function()
-  --       require("nvim-tree.api").tree.toggle({
-  --         path = vim.fn.expand("%:p:h"),
-  --       })
-  --     end,
-  --     desc = "Toggle nvim-tree to current directory",
-  --   },
-  -- },
+  keys = {
+    {
+      "<leader>ee",
+      function()
+        require("nvim-tree.api").tree.toggle({
+          path = vim.fn.getcwd(),
+        })
+      end,
+      desc = "Toggle nvim-tree",
+    },
+    {
+      "<leader>eE",
+      function()
+        require("nvim-tree.api").tree.toggle({
+          path = vim.fn.expand("%:p:h"),
+        })
+      end,
+      desc = "Toggle nvim-tree to current directory",
+    },
+  },
   opts = {
     -- no modify this
     sync_root_with_cwd = true,
@@ -139,24 +137,9 @@ return {
       local preview = require("nvim-tree-preview")
 
       vim.keymap.set("n", "P", preview.watch, opts("Preview (Watch)"))
-      vim.keymap.set(
-        "n",
-        "<Esc>",
-        preview.unwatch,
-        opts("Close Preview/Unwatch")
-      )
-      vim.keymap.set(
-        "n",
-        "<C-f>",
-        function() return preview.scroll(4) end,
-        opts("Scroll Down")
-      )
-      vim.keymap.set(
-        "n",
-        "<C-b>",
-        function() return preview.scroll(-4) end,
-        opts("Scroll Up")
-      )
+      vim.keymap.set("n", "<Esc>", preview.unwatch, opts("Close Preview/Unwatch"))
+      vim.keymap.set("n", "<C-f>", function() return preview.scroll(4) end, opts("Scroll Down"))
+      vim.keymap.set("n", "<C-b>", function() return preview.scroll(-4) end, opts("Scroll Up"))
 
       -- Option A: Smart tab behavior: Only preview files, expand/collapse directories (recommended)
       vim.keymap.set("n", "<Tab>", function()
