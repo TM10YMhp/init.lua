@@ -7,18 +7,30 @@ vim.keymap.set({ "n", "i", "s" }, "<c-s>", "<nop>")
 vim.keymap.set({ "n", "i" }, "<S-Up>", "<nop>")
 vim.keymap.set({ "n", "i" }, "<S-Down>", "<nop>")
 
+local nmap = function(lhs, rhs, desc)
+  vim.keymap.set("n", lhs, rhs, { desc = desc })
+end
+local xmap = function(lhs, rhs, desc)
+  vim.keymap.set("x", lhs, rhs, { desc = desc })
+end
+
+local nmap_leader = function(suffix, rhs, desc)
+  vim.keymap.set("n", "<Leader>" .. suffix, rhs, { desc = desc })
+end
+local xmap_leader = function(suffix, rhs, desc)
+  vim.keymap.set("x", "<Leader>" .. suffix, rhs, { desc = desc })
+end
+
 -- Windows
-vim.keymap.set("n", "<C-w>m", function() SereneNvim.toggle.maximize() end, {
-  desc = "Toggle Maximize",
-})
+nmap("<C-w>m", function()
+  SereneNvim.toggle.maximize()
+end, "Toggle Maximize")
 -- vim.keymap.set("n", "]w", "<c-w>w", {})
 -- vim.keymap.set("n", "[w", "<c-w>W", {})
 
 -- Buffer
 -- vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", {
-vim.keymap.set("n", "<leader>bb", "<C-^>", {
-  desc = "Switch to Other Buffer",
-})
+nmap_leader("bb", "<C-^>", "Switch to Other Buffer")
 
 -- vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>", {
 --   desc = "Delete Buffer",
@@ -34,52 +46,23 @@ vim.keymap.set("n", "<leader>bb", "<C-^>", {
 -- })
 
 -- Resize window using <ctrl> arrow keys
-vim.keymap.set("n", "<c-up>", "<cmd>resize +2<cr>", {
-  desc = "Increase window height",
-})
-vim.keymap.set("n", "<c-down>", "<cmd>resize -2<cr>", {
-  desc = "Decrease window height",
-})
-vim.keymap.set("n", "<c-left>", "<cmd>vertical resize -2<cr>", {
-  desc = "Decrease window width",
-})
-vim.keymap.set("n", "<c-right>", "<cmd>vertical resize +2<cr>", {
-  desc = "Increase window width",
-})
+nmap("<c-up>", "<cmd>resize +2<cr>", "Increase window height")
+nmap("<c-down>", "<cmd>resize -2<cr>", "Decrease window height")
+nmap("<c-left>", "<cmd>vertical resize -2<cr>", "Decrease window width")
+nmap("<c-right>", "<cmd>vertical resize +2<cr>", "Increase window width")
 
 -- Tabs
-vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", {
-  desc = "New Tab",
-})
-vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", {
-  desc = "Close Tab",
-})
-vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", {
-  desc = "Last Tab",
-})
-vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", {
-  desc = "First Tab",
-})
-vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnext<cr>", {
-  desc = "Next Tab",
-})
-vim.keymap.set("n", "<leader><tab><s-tab>", "<cmd>tabprevious<cr>", {
-  desc = "Previous Tab",
-})
+nmap_leader("<tab>n", "<cmd>tabnew<cr>", "New Tab")
+nmap_leader("<tab>d", "<cmd>tabclose<cr>", "Close Tab")
+nmap_leader("<tab>l", "<cmd>tablast<cr>", "Last Tab")
+nmap_leader("<tab>f", "<cmd>tabfirst<cr>", "First Tab")
+nmap_leader("<tab><tab>", "<cmd>tabnext<cr>", "Next Tab")
+nmap_leader("<tab><s-tab>", "<cmd>tabprevious<cr>", "Previous Tab")
 
 -- Substitute
-vim.keymap.set("n", "<leader>us", [[:%s///gc<left><left><left>]], {
-  desc = "Substitute",
-})
-vim.keymap.set("x", "<leader>us", [[:s///gc<left><left><left>]], {
-  desc = "Substitute Selection",
-})
-vim.keymap.set(
-  "n",
-  "<leader>ur",
-  [[:cfdo %s///g|update<c-left><right><right><right>]],
-  { desc = "Substitute cfdo" }
-)
+nmap_leader("us", [[:%s///gc<left><left><left>]], "Substitute")
+xmap_leader("us", [[:s///gc<left><left><left>]], "Substitute Selection")
+nmap_leader("ur", [[:cfdo %s///g|update<c-left><right><right><right>]], "Substitute cfdo")
 
 -- Code
 vim.keymap.set({ "n", "x" }, "<leader>cs", ":set noexpandtab | retab!<cr>", {
@@ -88,19 +71,15 @@ vim.keymap.set({ "n", "x" }, "<leader>cs", ":set noexpandtab | retab!<cr>", {
 vim.keymap.set({ "n", "x" }, "<leader>cS", ":set expandtab | retab!<cr>", {
   desc = "Replace spaces with tabs",
 })
-vim.keymap.set("n", "<leader>ci", "mqHmwgg=G`wzt`q", {
-  desc = "Fix indentation",
-})
-vim.keymap.set("x", "<leader>ci", "=", {
-  desc = "Fix indentation",
-})
+nmap_leader("ci", "mqHmwgg=G`wzt`q", "Fix indentation")
+xmap_leader("ci", "=", "Fix indentation")
 
 -- Extras
 -- vim.keymap.set("n", "n", "nzzzv")
 -- vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("x", "J", "omzJ`z")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+xmap("J", "omzJ`z")
+nmap("<C-d>", "<C-d>zz")
+nmap("<C-u>", "<C-u>zz")
 
 vim.keymap.set("t", "<c-x>", [[<c-\><c-n>]], {
   desc = "Go to Normal mode",
@@ -168,15 +147,13 @@ vim.keymap.set("n", "<leader>xl", function()
   vim.cmd(action)
 end, { desc = "Toggle LocList" })
 
-vim.keymap.set("n", "<leader>ul", "<cmd>Lazy<cr>", {
-  desc = "Lazy",
-})
+nmap_leader("ul", "<cmd>Lazy<cr>", "Lazy")
 
-vim.keymap.set("n", "<leader>ui", "<cmd>Inspect<cr>", { desc = "Inspect Pos" })
-vim.keymap.set("n", "<leader>uI", function()
+nmap_leader("ui", "<cmd>Inspect<cr>", "Inspect Pos")
+nmap_leader("uI", function()
   vim.treesitter.inspect_tree()
   vim.api.nvim_input("I")
-end, { desc = "Inspect Tree" })
+end, "Inspect Tree")
 
 vim.keymap.set("n", "/", "ms/", {
   desc = "Mark previous before search",
@@ -190,11 +167,6 @@ vim.keymap.set(
     desc = "Delete all comments (js, ts)",
   }
 )
-vim.keymap.set(
-  "x",
-  "<leader>uc",
-  [[:s/\s*\/\*\_.\{-}\*\/\n\|^\s*\/\/.*\n\|\s*\/\/.*//g<cr>]],
-  {
-    desc = "Delete all comments (js, ts)",
-  }
-)
+vim.keymap.set("x", "<leader>uc", [[:s/\s*\/\*\_.\{-}\*\/\n\|^\s*\/\/.*\n\|\s*\/\/.*//g<cr>]], {
+  desc = "Delete all comments (js, ts)",
+})
